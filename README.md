@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Plataforma de Agendamento de Serviços
 
 O sistema, denominado ServiNow, tem como objetivo ser uma plataforma digital segura e acessível para que prestadores de serviços possam ofertar seus atendimentos. Além disso, permite que clientes agendem serviços de forma prática e automatizada. A plataforma pode ser utilizada em diversas áreas, como saúde, estética, educação, suporte técnico e consultorias, facilitando a conexão entre profissionais e clientes.
@@ -79,4 +78,95 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
->>>>>>> 49e58dc (Primeiro commit: definindo o framework a ser usado)
+
+# 🧱 Estrutura de Pastas – Clean Architecture com Laravel
+
+Este projeto segue os princípios da **Clean Architecture**, organizando o código em camadas bem definidas que separam as regras de negócio da infraestrutura (ORM, framework, etc), permitindo fácil manutenção, testes e escalabilidade.
+
+---
+
+## 📁 `app/Domain/`
+
+Contém o **coração do sistema**: regras de negócio puras, sem dependência de Laravel ou qualquer tecnologia externa.
+
+### ➤ `Entities/`
+Entidades do domínio, com atributos e comportamento. Representam os objetos "puros" do negócio.
+
+> Ex: `User`, `Product`, `Order`
+
+### ➤ `Repositories/`
+Interfaces dos repositórios (contratos). Define **o que** o sistema precisa fazer com dados, não **como**.
+
+> Ex: `UserRepositoryInterface`, `ProductRepositoryInterface`
+
+### ➤ `Services/`
+Serviços de **regra de negócio complexa**, reutilizáveis, independentes de tecnologia.
+
+> Ex: `TaxCalculatorService`, `UserValidator`
+
+---
+
+## 📁 `app/Application/`
+
+Camada de **aplicação** – orquestra a lógica do domínio, define os casos de uso e realiza chamadas a serviços ou repositórios.
+
+### ➤ `UseCases/`
+Cada classe representa um caso de uso (ação da aplicação). Recebe dados, executa lógica e delega tarefas.
+
+> Ex: `CreateUserUseCase`, `ListOrdersUseCase`
+
+### ➤ `DTOs/`
+Objetos de transporte de dados (Data Transfer Objects) – usados para mover dados entre camadas.
+
+> Ex: `CreateUserDTO`, `UpdateProductDTO`
+
+### ➤ `Interfaces/`
+Contratos para **serviços externos** (e-mail, fila, APIs externas). A camada de aplicação **depende da interface**, e a **infraestrutura fornece a implementação**.
+
+> Ex: `MailServiceInterface`, `PaymentGatewayInterface`
+
+---
+
+## 📁 `app/Infrastructure/`
+
+Contém a **implementação técnica** da aplicação: como o sistema faz as coisas.
+
+### ➤ `Persistence/`
+Implementações concretas dos repositórios definidos na camada de domínio, usando Eloquent, PDO, MongoDB, etc.
+
+> Ex: `EloquentUserRepository`, `PdoProductRepository`
+
+### ➤ `Services/`
+Implementações de serviços técnicos: envio de e-mail, chamadas HTTP, logs, cache, etc.
+
+> Ex: `LaravelMailService`, `HttpWeatherClient`, `StripePaymentService`
+
+---
+
+## 📁 `app/Http/`
+
+Camada de **interface com o mundo externo** – recebe requisições HTTP e responde.
+
+### ➤ `Controllers/`
+Controladores do Laravel – responsáveis por receber a requisição, validar dados e chamar o `UseCase`.
+
+> Ex: `UserController`, `AuthController`
+
+### ➤ `Requests/`
+Form Requests do Laravel usados para validação e autorização.
+
+> Ex: `CreateUserRequest`, `LoginRequest`
+
+---
+
+## 🧩 Como as camadas se conectam
+
+```plaintext
+[ HTTP Controller ] 
+        ↓
+[ Application UseCase ]
+        ↓
+[ Domain Entity / Repository Interface ]
+        ↓
+[ Infrastructure Repository / Service ]
+
