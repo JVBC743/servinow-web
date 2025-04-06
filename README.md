@@ -132,7 +132,7 @@ Contratos para **serviços externos** (e-mail, fila, APIs externas). A camada de
 Contém a **implementação técnica** da aplicação: como o sistema faz as coisas.
 
 ### ➤ `Persistence/`
-Implementações concretas dos repositórios definidos na camada de domínio, usando Eloquent, PDO, MongoDB, etc.
+Implementações concretas dos repositórios definidos na camada de domínio, usando Eloquent, PDO, MySQL, etc.
 
 > Ex: `EloquentUserRepository`, `PdoProductRepository`
 
