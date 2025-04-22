@@ -170,3 +170,25 @@ Form Requests do Laravel usados para validação e autorização.
         ↓
 [ Infrastructure Repository / Service ]
 
+
+```
+## 🐮 Como usar o Docker Compose com o Sail
+
+```plaintext
+
+Para uma melhor compreensão, vá para o site do Laravel sobre o Sail:
+
+https://laravel.com/docs/12.x/sail
+
+
+A seguir, execute os seguintes passos.
+
+No terminal, escreva: 'composer require laravel/sail --dev'
+
+Com ele, você vai tanto instalar o Artisan, Sail e colocar um arquivo YAML do Docker Compose no seu projeto.
+
+[Completar resto.]
+
+
+
+```
