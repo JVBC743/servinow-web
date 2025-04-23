@@ -1,18 +1,17 @@
 services:
-    laravel.test:
+    laravel-servinow:
         build:
-            context: './vendor/laravel/sail/runtimes/8.4'
+            context: ./vendor/laravel/sail/runtimes/8.4
             dockerfile: Dockerfile
             args:
-                WWWGROUP: 'root'
-        image: 'sail-8.4/app'
+                WWWGROUP: 1001
+        image: sail-8.4/app
         extra_hosts:
             - 'host.docker.internal:host-gateway'
         ports:
-            - '${APP_PORT:-80}:80'
-            - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
+            - '1234:80'
         environment:
-            WWWUSER: 'user'
+            WWWUSER: user
             LARAVEL_SAIL: 1
             XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
             XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
@@ -26,12 +25,12 @@ services:
     mysql:
         image: 'mysql/mysql-server:8.0'
         ports:
-            - '${FORWARD_DB_PORT:-3306}:3306'
+            - '3306:3306'
         environment:
             MYSQL_ROOT_PASSWORD: '12345678'
-            MYSQL_ROOT_HOST: 'root'
-            MYSQL_DATABASE: 'banco'
-            MYSQL_USER: 'user'
+            MYSQL_ROOT_HOST: root
+            MYSQL_DATABASE: banco
+            MYSQL_USER: user
             MYSQL_PASSWORD: '12345678'
             MYSQL_ALLOW_EMPTY_PASSWORD: 1
         volumes:

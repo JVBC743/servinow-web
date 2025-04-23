@@ -187,7 +187,8 @@ No terminal, escreva: 'composer require laravel/sail --dev'
 
 Com ele, você vai tanto instalar o Artisan, Sail e colocar um arquivo YAML do Docker Compose no seu projeto.
 
-[Completar resto.]
+No arquiv YAML do Docker Compose, vão ser configurados dois contêineres, um do sistema e outro do MySQL. Para fins de segurança, mude as senhas que estão no arquivo ou modifique um Dockerfile no caminho: 'vendor/laravel/sail/runtimes/8.x'
+
 
 
 
