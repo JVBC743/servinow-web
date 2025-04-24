@@ -6,12 +6,11 @@ services:
             args:
                 WWWGROUP: 1001
         image: sail-8.4/app
-        extra_hosts:
-            - 'host.docker.internal:host-gateway'
+        
         ports:
             - '1234:80'
         environment:
-            WWWUSER: user
+            WWWUSER: sail
             LARAVEL_SAIL: 1
             XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
             XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
@@ -28,9 +27,9 @@ services:
             - '3306:3306'
         environment:
             MYSQL_ROOT_PASSWORD: '12345678'
-            MYSQL_ROOT_HOST: root
+            MYSQL_ROOT_HOST: sail
             MYSQL_DATABASE: banco
-            MYSQL_USER: user
+            MYSQL_USER: sail
             MYSQL_PASSWORD: '12345678'
             MYSQL_ALLOW_EMPTY_PASSWORD: 1
         volumes:
@@ -43,7 +42,7 @@ services:
                 - CMD
                 - mysqladmin
                 - ping
-                - '-p${DB_PASSWORD}'
+                - '12345678'
             retries: 3
             timeout: 5s
 networks:
