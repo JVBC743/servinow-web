@@ -170,16 +170,14 @@ Form Requests do Laravel usados para validação e autorização.
         ↓
 [ Infrastructure Repository / Service ]
 
-
 ```
 ## 🐮 Como usar o Docker Compose com o Sail
 
 ```plaintext
 
-Para uma melhor compreensão, vá para o site do Laravel sobre o Sail:
+Para uma melhor compreensão, vá para o site do Laravel sobre o Sail, ele vai ajudar um pouco:
 
 https://laravel.com/docs/12.x/sail
-
 
 A seguir, execute os seguintes passos.
 
@@ -191,7 +189,7 @@ No arquivo YAML do Docker Compose, vão ser configurados dois contêineres, um d
 
 Para que o Sail funcione (no Linux), você deve ir ao '~/.bashrc' e colocar a linha: "alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'"
 
-Para subir os conteineres, use o "sail up". De resto, verifique a documentação do Laravel sobre o Sail: "https://laravel.com/docs/12.x/sail"
+Para subir os conteineres, use o "sail up". Para fazer com que você veja a tela de boas-vindas, use "sail artisan migrate"
 
 ```
 
