@@ -1,10 +1,12 @@
 services:
-    laravel-servinow:
+    servinow-sys:
         build:
             context: ./vendor/laravel/sail/runtimes/8.4
             dockerfile: Dockerfile
             args:
                 WWWGROUP: 1001
+                MYSQL_CLIENT: mysql-client
+                POSTGRES_VERSION: 16
         image: sail-8.4/app
         
         ports:
@@ -27,11 +29,22 @@ services:
             - '3306:3306'
         environment:
             MYSQL_ROOT_PASSWORD: '12345678'
-            MYSQL_ROOT_HOST: sail
+            MYSQL_ROOT_HOST: '%'
             MYSQL_DATABASE: banco
             MYSQL_USER: sail
             MYSQL_PASSWORD: '12345678'
             MYSQL_ALLOW_EMPTY_PASSWORD: 1
+            command: >
+                /bin/sh -c "
+                mysqld --skip-name-resolve=0 &
+                sleep 10;
+                mysql -u root -p12345678 -e \"
+                CREATE USER IF NOT EXISTS 'sail'@'%' IDENTIFIED BY '12345678';
+                GRANT ALL PRIVILEGES ON banco.* TO 'sail'@'%';
+                FLUSH PRIVILEGES;
+                \";
+                tail -f /dev/null
+                "
         volumes:
             - 'sail-mysql:/var/lib/mysql'
             - './vendor/laravel/sail/database/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
