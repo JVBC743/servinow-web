@@ -2,9 +2,9 @@
 
 namespace App\Domain\Entities;
 
-class User {
+class StatusAgendamento {
     public function __construct(
-        public string $name,
-        public string $email
+        public int $id,
+        public string $status,
     ) {}
 }
