@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Status_Pagamento', function (Blueprint $table) {
-            $table->id();
-            $table->string('status', length: 25);
-            $table->timestamps();
-        });
+
+        if(!Schema::hasTable('Formacao')){
+            Schema::create('Formacao', function (Blueprint $table) {
+                $table->id();
+                $table->string('formacao', length: 40);
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -23,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('Status_Pagamento');
+        Schema::dropIfExists('Formacao');
     }
 };

@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Categoria', function (Blueprint $table) {
-            $table->id();
-            $table->string('categoria', length: 25);   
-            $table->timestamps();
-        });
+        if(!Schema::hasTable('Status_Agendamento')){
+            Schema::create('Status_Agendamento', function (Blueprint $table) {
+                $table->id();
+                $table->string('status', length: 25);
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('Categoria');
+        Schema::dropIfExists('Status_Agendamento');
     }
 };

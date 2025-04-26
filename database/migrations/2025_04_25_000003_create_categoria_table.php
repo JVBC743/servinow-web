@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Servico', function (Blueprint $table) {
-            $table->id();
-            $table->string('nome_servico', length: 40);
-            $table->foreign('categoria')->references('id')->on('Categoria');
-            $table->text('desc_servico');
-            $table->timestamps();
-        });
+        if(!Schema::hasTable('Categoria')){
+            Schema::create('Categoria', function (Blueprint $table) {
+                $table->id();
+                $table->string('categoria', length: 25);   
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('Servico');
+        Schema::dropIfExists('Categoria');
     }
 };
