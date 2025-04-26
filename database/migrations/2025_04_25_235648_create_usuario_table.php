@@ -11,8 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('usuario', function (Blueprint $table) {
+        Schema::create('Usuario', function (Blueprint $table) {
             $table->id();
+            $table->string('nome', length: 50);
+            $table->string('senha', length: 60);
+            $table->string('telefone', length: 15);
+            $table->string('email', length: 80);
+            $table->string('cpf_cnpj', length: 14);
+            $table->foreign('area_atuacao')->references('id')->on('Formacao');
+            
+
             $table->timestamps();
         });
     }
@@ -22,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('usuario');
+        Schema::dropIfExists('Usuario');
     }
 };

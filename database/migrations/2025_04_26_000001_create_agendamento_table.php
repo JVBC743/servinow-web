@@ -11,8 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('agendamento', function (Blueprint $table) {
+        Schema::create('Agendamento', function (Blueprint $table) {
             $table->id();
+            $table->foreign('id_cliente')->references('id')->on('Usuario');
+            $table->foreign('id_servico')->references('id')->on('Servico');
+            $table->foreign('id_prestador')->references('id')->on('Usuario');
+            $table->dateTime('data_agendamento', precision: 0);
+            $table->foreign('status')->references('id')->on('Status_Agendamento');
+            $table->text('notificacao');
             $table->timestamps();
         });
     }
@@ -22,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('agendamento');
+        Schema::dropIfExists('Agendamento');
     }
 };

@@ -11,8 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('avaliacao', function (Blueprint $table) {
+        Schema::create('Avaliacao', function (Blueprint $table) {
             $table->id();
+            $table->foreign('id_cliente')->references('id')->on('Usuario');
+            $table->foreign('id_servico')->references('id')->on('Servico');
+            $table->dateTime('data_avaliacao', precision: 0);
+            $table->enum('nota', [1, 2, 3, 4 ,5]);
+            $table->text('comentario');
+
+
+
             $table->timestamps();
         });
     }
@@ -22,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('avaliacao');
+        Schema::dropIfExists('Avaliacao');
     }
 };
