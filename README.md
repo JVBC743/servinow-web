@@ -170,3 +170,33 @@ Form Requests do Laravel usados para validação e autorização.
         ↓
 [ Infrastructure Repository / Service ]
 
+```
+## 🐮 Como usar o Docker Compose com o Sail
+
+```plaintext
+
+Para uma melhor compreensão, vá para o site do Laravel sobre o Sail, ele vai ajudar um pouco:
+
+https://laravel.com/docs/12.x/sail
+
+A seguir, execute os seguintes passos.
+
+No terminal, escreva: 'composer require laravel/sail --dev'
+
+Com ele, você vai tanto instalar o Artisan, Sail e colocar um arquivo YAML do Docker Compose no seu projeto.
+
+No arquivo YAML do Docker Compose, vão ser configurados dois contêineres, um do sistema e outro do MySQL. Pra fins de segurança, modifique as senhas no arquivo YAML do Docker Compose. NÃO. MUDE. OS. USUÁRIOS.
+
+Para que o Sail funcione (no Linux), você deve ir ao '~/.bashrc' e colocar a linha: "alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'"
+
+Para subir os conteineres, use o "sail up". Para fazer com que você veja a tela de boas-vindas, use "sail artisan migrate"
+
+```
+
+## 🔧 Exemplo certo de arquivo ".env" para rodar o container do sistema e do banco de dados
+
+```
+
+No commit 0f57f83, tirei o ".env" do gitignore e deixei ele ser commitado. Nele, você vai poder ver todas as configurações de senha do banco de dados. Como ainda não usamos nenhuma API, não tem problema commitar agora. No caso da chave de "aplication key", tente gerar uma nova com base no comando "php artisan key:generate". De resto, podem trabalhar a vontade, o site não vai entrar em produção mesmo.
+
+```
