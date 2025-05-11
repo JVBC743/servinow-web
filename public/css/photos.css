@@ -1,10 +1,32 @@
 .photo-1{
 
-    width: 248px;
-    height: 247px;
+    width: 250px;
+    height: 250px;
+    border-radius: 117px;
+
 }
 .photo-2{
 
     width: 278;
     height: 247px;
+    border-radius: 123px;
+
+}
+#photos{
+
+    display: flex;
+    justify-content: center;
+
+}
+#photos img{
+
+    margin-left: 20px;
+    margin-right: 20px;
+
+}
+#photos img:hover{
+    border-style:solid;
+    border-width: 30px;
+    border-color: rgb(5, 201, 214);;
+
 }

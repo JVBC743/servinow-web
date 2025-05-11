@@ -6,17 +6,23 @@
     <link rel="stylesheet" href="{{  asset('css/fonts-and-texts.css') }}">
 </head>
 <body>
-    <h1 id = "cabecalho">Sobre Nós</h1>
-    <p id = "texto">Olá! Somos um grupo sem fins lucrativos, afinal, o que importa para nós é aquela nota boa que devemos ter no final do semestre! Brincadeiras a parte, buscamos oferecer os melhores sistemas para cada contexto que os nossos clientes (no caso, o professor) solicitarem. Além disso, se quiser, revise os <a href="">Termos de Compromisso</a> e de <a href="">Privacidade</a> que o site oferece aos nossos clientes.</p>
-
-    <img class = "photo-1" src="{{ asset('images/pantoja.png') }}" alt="Foto do Matheus Pantoja">
-    <img class = "photo-1" src="{{ asset('images/claion.png') }}" alt="Foto do José Claion">
-    <img class = "photo-2" src="{{ asset('images/manoel.png') }}" alt="Foto do Manoel Aguiar">
-    <img class = "photo-2" src="{{ asset('images/joao.png') }}" alt="Foto do João Victor">
-
-
-
+    <p class = "big_text">Sobre Nós</p>
+    <p id = "text_general">Olá! Somos um grupo sem fins lucrativos, afinal, o que importa para nós é aquela nota boa que devemos ter no final do semestre! Brincadeiras a parte, buscamos oferecer os melhores sistemas para cada contexto que os nossos clientes (no caso, o professor) solicitarem. Além disso, se quiser, revise os 
+        <a href="{{ route('termos') }}">Termos de Compromisso e de Privacidade</a> que o site oferece aos nossos clientes.</p>
+    <p class = "big_text">Integrantes</p>
+    <div id = "photos">
+        <a href="https://github.com/KarmaWT">
+            <img class = "photo-1" src="{{ asset('images/pantoja.png') }}" alt="Foto do Matheus Pantoja">
+        </a>
+        <a href="https://github.com/JClaion">
+            <img class = "photo-1" src="{{ asset('images/claion.png') }}" alt="Foto do José Claion">    
+        </a>
+        <a href="">
+            <img class = "photo-2" src="{{ asset('images/manoel.png') }}" alt="Foto do Manoel Aguiar">
+        </a>
+        <a href="https://www.canva.com/design/DAF-2lbgVCA/ImVa15Jxaakq0Ii2Zk2tag/edit?utm_content=DAF-2lbgVCA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">
+            <img class = "photo-2" src="{{ asset('images/joao.png') }}" alt="Foto do João Victor">
+        </a>
+    </div>
 </body>
 </html>
-
-

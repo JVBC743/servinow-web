@@ -3,6 +3,39 @@
     src: url('../css/fonts/LeagueSpartan-VariableFont_wght.ttf');
 }
 
-#texto{
+body{
     font-family: LeagueSpartan;
+}
+
+#text_general{
+    font-size: 30px;
+    text-align: justify;
+    padding-left:50px;
+    padding-right: 50px;
+}
+.big_text{
+
+    text-align: center;
+    font-size: 30px;
+    color: rgb(5, 201, 214);
+}
+
+#text a:hover{
+    color: rgb(2, 140, 150);
+
+}
+#text a{
+    color: rgb(5, 201, 214);
+    text-decoration: none;
+}
+.title_topic{
+    color: rgb(5, 201, 214);
+}
+.title_sub_topic{
+    color: rgb(5, 201, 214);
+    text-indent: 30px;
+}
+.plain_text{
+    padding-left: 50px;
+    padding-right: 50px;
 }
