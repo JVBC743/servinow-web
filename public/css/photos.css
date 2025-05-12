@@ -18,15 +18,45 @@
     justify-content: center;
 
 }
+
+
 #photos img{
 
     margin-left: 20px;
     margin-right: 20px;
 
 }
+
+@media(max-width: 600px){ /*Fotos responsivas*/
+
+    #photos{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .photo-1{
+
+        width: 125px;
+        height: 125px;
+    }
+
+    .photo-2{
+        width: 139px;
+        height: 123.5px;
+        
+    }
+
+}
 #photos img:hover{
     border-style:solid;
     border-width: 30px;
     border-color: rgb(5, 201, 214);;
+
+}
+
+.div-name-photo p{
+    
+    text-align: center;
+    font-size: 20px;
 
 }

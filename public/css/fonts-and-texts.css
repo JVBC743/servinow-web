@@ -5,6 +5,7 @@
 
 body{
     font-family: LeagueSpartan;
+    margin: 0px;
 }
 
 #text_general{
@@ -13,6 +14,18 @@ body{
     padding-left:50px;
     padding-right: 50px;
 }
+
+@media(max-width: 600px){
+    #text_general{
+
+        font-size: 16px;
+        text-align: justify;
+        padding-left: 25px;
+        padding: 25px;
+
+    } 
+}
+
 .big_text{
 
     text-align: center;
@@ -20,14 +33,18 @@ body{
     color: rgb(5, 201, 214);
 }
 
-#text a:hover{
-    color: rgb(2, 140, 150);
 
-}
-#text a{
+.links{
     color: rgb(5, 201, 214);
     text-decoration: none;
 }
+
+.links:hover{
+
+    color: rgb(2, 140, 150);
+
+}
+
 .title_topic{
     color: rgb(5, 201, 214);
 }
