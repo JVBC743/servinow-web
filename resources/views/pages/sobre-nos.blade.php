@@ -2,16 +2,16 @@
 <html>
 <head>
     <title>Sobre Nós</title>
-    <link rel="stylesheet" href="{{ asset('css/photos.css') }}"> <!-- Verificar se precisa usar o vite ou não -->
-    <link rel="stylesheet" href="{{  asset('css/fonts-and-texts.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/default_page_style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/default.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+
 </head>
-<body>
-    <p class = "big_text">Sobre Nós</p>
+<body class = "mx-6">
+    <h2 class = "empashis_text">Sobre Nós</h2>
     
-    <p id = "text_general">Olá! Somos um grupo sem fins lucrativos, afinal, o que importa para nós é aquela nota boa que devemos ter no final do semestre! Brincadeiras a parte, buscamos oferecer os melhores sistemas para cada contexto que os nossos clientes (no caso, o professor) solicitarem. Além disso, se quiser, revise os 
-        <a href="{{ route('termos') }}" class = "links">Termos de Compromisso e de Privacidade</a> que o site oferece aos nossos clientes.</p>
-    <p class = "big_text">Integrantes</p>
+    <p id = "text_general" class="fs-1">Olá! Somos um grupo sem fins lucrativos, afinal, o que importa para nós é aquela nota boa que devemos ter no final do semestre! Brincadeiras a parte, buscamos oferecer os melhores sistemas para cada contexto que os nossos clientes (no caso, o professor) solicitarem. Além disso, se quiser, revise os 
+        <a href="{{ route('termos') }}" class = "empashis_text">Termos de Compromisso e de Privacidade</a> que o site oferece aos nossos clientes.</p>
+    <h2 class = "empashis_text">Integrantes</h2>
     <div id = "photos">
         <div class = "div-name-photo">
             <a href="https://github.com/KarmaWT" target="_blank">
@@ -40,5 +40,6 @@
     </div>
 
     <h1>Mudar a altura dos nomese do photo-2</h1>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 </body>
 </html>

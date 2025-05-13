@@ -1,0 +1,15 @@
+@font-face {
+    font-family: LeagueSpartan;
+    src: url('../css/fonts/LeagueSpartan-VariableFont_wght.ttf');
+}
+
+.empashis_text{
+
+    text-decoration: none;
+    color: rgb(2, 140, 150);
+
+}
+body{
+    font-family: LeagueSpartan;
+}
+
