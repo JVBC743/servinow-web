@@ -3,22 +3,21 @@
 <head>
     <title>Sobre Nós</title>
     <link rel="stylesheet" href="{{ asset('css/default.css') }}">
-    <link rel="stylesheet" href="{{  asset('css/photos.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/photos.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
-
 </head>
-<body>
-    <div class = "container">
-        <h2>Sobre Nós</h2>
+<body id="body">
+    <div id = "div-1" class = "mx-5 mb-5 mt-5">
+        <h2 class="fs-1 mb-4 text-center">Sobre Nós</h2>
         
-        <p>Olá! Somos um grupo sem fins lucrativos, afinal, o que importa para nós é aquela nota boa que devemos ter no final do semestre! Brincadeiras a parte, buscamos oferecer os melhores sistemas para cada contexto que os nossos clientes (no caso, o professor) solicitarem. Além disso, se quiser, revise os 
-            <a href="{{ route('termos') }}">Termos de Compromisso e de Privacidade</a> que o site oferece aos nossos clientes.</p>
-        <h2>Integrantes</h2>
+        <p class="fs-4">Olá! Somos um grupo sem fins lucrativos, afinal, o que importa para nós é aquela nota boa que devemos ter no final do semestre! Brincadeiras a parte, buscamos oferecer os melhores sistemas para cada contexto que os nossos clientes (no caso, o professor) solicitarem. Além disso, se quiser, revise os 
+            <a class = "emphasis_text" href="{{ route('termos') }}">Termos de Compromisso e de Privacidade</a> que o site oferece aos nossos clientes.</p>
+        <h2 class="fs-1 text-center">Integrantes</h2>
     </div>
     
-    <div class = "container text-center d-flex">
+    <div id = "div-2" class = "text-center d-flex justify-content-center fs-4">
         <div class = "mx-3">
-            <a href="https://github.com/KarmaWT" target="_blank" >
+            <a href="https://github.com/KarmaWT" target="_blank">
                 <img src="{{ asset('images/pantoja.png') }}" class="rounded-circle" alt="Foto do Matheus Pantoja">
             </a><br>
             <p>Matheus Pantoja de Morais</p>
@@ -42,8 +41,6 @@
             <p>João Victor Brum de Castro</p>
         </div>
     </div>
-
-    <h1>Mudar a altura dos nomese do photo-2</h1>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 </body>
 </html>

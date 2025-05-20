@@ -3,12 +3,14 @@
     src: url('../css/fonts/LeagueSpartan-VariableFont_wght.ttf');
 }
 
-.empashis_text{
+.emphasis_text{
 
     text-decoration: none;
     color: rgb(2, 140, 150);
 
 }
-body{
+
+#body{
     font-family: LeagueSpartan;
+    text-align: justify;
 }
