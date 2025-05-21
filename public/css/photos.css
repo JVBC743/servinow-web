@@ -4,3 +4,10 @@ img{
     height: 8cm;
     object-fit: cover;
 }
+.div_img:hover{
+
+    border-style:solid;
+    border-width: 1cm;
+    border-radius: 100%;
+    border-color: rgb(2, 140, 150);
+}

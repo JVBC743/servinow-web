@@ -18,28 +18,38 @@
     <div id = "div-2" class = "text-center fs-4">
         <div class = "d-flex flex-wrap justify-content-center ">
             <div class = "mx-3">
-                <a href="https://github.com/KarmaWT" target="_blank">
-                    <img src="{{ asset('images/pantoja.png') }}" class="rounded-circle" alt="Foto do Matheus Pantoja">
-                </a><br>
+                <div class="div_img">
+                    <a href="https://github.com/KarmaWT" target="_blank">
+                        <img src="{{ asset('images/pantoja.png') }}" class="rounded-circle" alt="Foto do Matheus Pantoja">
+                    </a><br>
+                </div>
                 <p>Matheus Pantoja de Morais</p>
             </div>
-            <div class = "mx-3">        
-                <a href="https://github.com/JClaion" target="_blank">
-                    <img src="{{ asset('images/claion.png') }}" class="rounded-circle" alt="Foto do José Claion">    
-                </a><br>
+            <div class = "mx-3">
+                <div class="div_img">
+                    <a href="https://github.com/JClaion" target="_blank">
+                        <img src="{{ asset('images/claion.png') }}" class="rounded-circle" alt="Foto do José Claion">    
+                    </a><br>
+                </div>  
+                
                 <p>José Claion Martins de Sousa</p>
             </div>
             <div class = "mx-3">
-                <a href="" target="_blank">
+                <div class="div_img">
+                    <a href="" target="_blank">
                     <img src="{{ asset('images/manoel.png') }}" class="rounded-circle" alt="Foto do Manoel Aguiar">
                 </a><br>
+                </div>
                 <p>Manoel de Jesus Moreira de Aguiar</p>
             </div>
             <div class = "mx-3">
-                <a href="https://www.canva.com/design/DAF-2lbgVCA/ImVa15Jxaakq0Ii2Zk2tag/edit?utm_content=DAF-2lbgVCA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">
-                    <img src="{{ asset('images/joao.png') }}" class="rounded-circle" alt="Foto do João Victor">
-                </a><br>
+                <div class="div_img">
+                    <a href="https://www.canva.com/design/DAF-2lbgVCA/ImVa15Jxaakq0Ii2Zk2tag/edit?utm_content=DAF-2lbgVCA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">
+                        <img src="{{ asset('images/joao.png') }}" class="rounded-circle" alt="Foto do João Victor">
+                    </a>
+                </div>
                 <p>João Victor Brum de Castro</p>
+                
             </div>
         </div>
     </div>
