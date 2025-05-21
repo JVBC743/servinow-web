@@ -15,30 +15,32 @@
         <h2 class="fs-1 text-center">Integrantes</h2>
     </div>
     
-    <div id = "div-2" class = "text-center d-flex justify-content-center fs-4">
-        <div class = "mx-3">
-            <a href="https://github.com/KarmaWT" target="_blank">
-                <img src="{{ asset('images/pantoja.png') }}" class="rounded-circle" alt="Foto do Matheus Pantoja">
-            </a><br>
-            <p>Matheus Pantoja de Morais</p>
-        </div>
-        <div class = "mx-3">        
-            <a href="https://github.com/JClaion" target="_blank">
-                <img src="{{ asset('images/claion.png') }}" class="rounded-circle" alt="Foto do José Claion">    
-            </a><br>
-            <p>José Claion Martins de Sousa</p>
-        </div>
-        <div class = "mx-3">
-            <a href="" target="_blank">
-                <img src="{{ asset('images/manoel.png') }}" class="rounded-circle" alt="Foto do Manoel Aguiar">
-            </a><br>
-            <p>Manoel de Jesus Moreira de Aguiar</p>
-        </div>
-        <div class = "mx-3">
-            <a href="https://www.canva.com/design/DAF-2lbgVCA/ImVa15Jxaakq0Ii2Zk2tag/edit?utm_content=DAF-2lbgVCA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">
-                <img src="{{ asset('images/joao.png') }}" class="rounded-circle" alt="Foto do João Victor">
-            </a><br>
-            <p>João Victor Brum de Castro</p>
+    <div id = "div-2" class = "text-center fs-4">
+        <div class = "d-flex flex-wrap justify-content-center ">
+            <div class = "mx-3">
+                <a href="https://github.com/KarmaWT" target="_blank">
+                    <img src="{{ asset('images/pantoja.png') }}" class="rounded-circle" alt="Foto do Matheus Pantoja">
+                </a><br>
+                <p>Matheus Pantoja de Morais</p>
+            </div>
+            <div class = "mx-3">        
+                <a href="https://github.com/JClaion" target="_blank">
+                    <img src="{{ asset('images/claion.png') }}" class="rounded-circle" alt="Foto do José Claion">    
+                </a><br>
+                <p>José Claion Martins de Sousa</p>
+            </div>
+            <div class = "mx-3">
+                <a href="" target="_blank">
+                    <img src="{{ asset('images/manoel.png') }}" class="rounded-circle" alt="Foto do Manoel Aguiar">
+                </a><br>
+                <p>Manoel de Jesus Moreira de Aguiar</p>
+            </div>
+            <div class = "mx-3">
+                <a href="https://www.canva.com/design/DAF-2lbgVCA/ImVa15Jxaakq0Ii2Zk2tag/edit?utm_content=DAF-2lbgVCA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">
+                    <img src="{{ asset('images/joao.png') }}" class="rounded-circle" alt="Foto do João Victor">
+                </a><br>
+                <p>João Victor Brum de Castro</p>
+            </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
