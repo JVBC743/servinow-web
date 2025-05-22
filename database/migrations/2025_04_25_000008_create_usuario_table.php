@@ -16,6 +16,7 @@ return new class extends Migration
                 $table->id();
                 $table->string('nome', length: 50);
                 $table->string('senha', length: 60);
+                $table->text('descricao');
                 $table->string('telefone', length: 15);
                 $table->string('email', length: 80);
                 $table->string('cpf_cnpj', length: 14);

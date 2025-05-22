@@ -1,0 +1,21 @@
+@font-face {
+    font-family: LeagueSpartan;
+    src: url('../css/fonts/LeagueSpartan-VariableFont_wght.ttf');
+}
+
+.emphasis_text{
+
+    text-decoration: none;
+    color: rgb(2, 140, 150);
+
+}
+
+.emphasis_text:hover{
+    color: rgb(1, 178, 190);
+
+}
+
+#body{
+    font-family: LeagueSpartan;
+    text-align: justify;
+}
