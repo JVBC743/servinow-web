@@ -10,6 +10,11 @@
 
 }
 
+.emphasis_text:hover{
+    color: rgb(1, 178, 190);
+
+}
+
 #body{
     font-family: LeagueSpartan;
     text-align: justify;
