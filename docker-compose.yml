@@ -59,6 +59,8 @@ services:
                 - '12345678'
             retries: 3
             timeout: 5s
+        # minio:
+        #     image: 'minio:'
 networks:
     sail:
         driver: bridge
