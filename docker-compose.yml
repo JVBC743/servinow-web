@@ -1,22 +1,26 @@
 services:
     servinow-sys:
+        env_file:
+            - .env
         build:
             context: ./vendor/laravel/sail/runtimes/8.4
             dockerfile: Dockerfile
             args:
-                WWWGROUP: 1001
+                WWWGROUP: '${WWWGROUP}'
+                WWWUSER: '${WWWUSER}'
                 MYSQL_CLIENT: mysql-client
                 POSTGRES_VERSION: 16
         image: sail-8.4/app
-        
         ports:
             - '1234:80'
         environment:
-            WWWUSER: sail
+            WWWUSER: '${WWWUSER}'
+            WWWGROUP: '${WWWGROUP}'
             LARAVEL_SAIL: 1
             XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
             XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
             IGNITION_LOCAL_SITES_PATH: '${PWD}'
+            APP_NAME: '${APP_NAME:-Laravel}'
         volumes:
             - '.:/var/www/html'
         networks:
@@ -28,36 +32,33 @@ services:
         ports:
             - '3306:3306'
         environment:
-            MYSQL_ROOT_PASSWORD: '12345678'
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
             MYSQL_ROOT_HOST: '%'
             MYSQL_DATABASE: banco
             MYSQL_USER: sail
-            MYSQL_PASSWORD: '12345678'
+            MYSQL_PASSWORD: '${DB_PASSWORD}'
             MYSQL_ALLOW_EMPTY_PASSWORD: 1
-            command: >
-                /bin/sh -c "
-                mysqld --skip-name-resolve=0 &
-                sleep 10;
-                mysql -u root -p12345678 -e \"
-                CREATE USER IF NOT EXISTS 'sail'@'%' IDENTIFIED BY '12345678';
-                GRANT ALL PRIVILEGES ON banco.* TO 'sail'@'%';
-                FLUSH PRIVILEGES;
-                \";
-                tail -f /dev/null
-                "
         volumes:
             - 'sail-mysql:/var/lib/mysql'
             - './vendor/laravel/sail/database/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
         networks:
             - sail
         healthcheck:
-            test:
-                - CMD
-                - mysqladmin
-                - ping
-                - '12345678'
+            test: ["CMD", "mysqladmin", "ping", "-u", "sail", "-p${DB_PASSWORD}"]
             retries: 3
             timeout: 5s
+    phpmyadmin:  # Adicionado
+        image: phpmyadmin/phpmyadmin
+        ports:
+            - '8080:80'
+        environment:
+            PMA_HOST: mysql
+            PMA_USER: sail
+            PMA_PASSWORD: 12345678
+        networks:
+            - sail
+        depends_on:
+            - mysql
 networks:
     sail:
         driver: bridge
