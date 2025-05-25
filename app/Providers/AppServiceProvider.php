@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use App\Application\Interfaces\AuthServiceInterface;
+use App\Domain\Repositories\FormacaoRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 use App\Domain\Repositories\UserRepositoryInterface;
 use App\Infrastructure\Persistence\EloquentUserRepository;
+use App\Infrastructure\Persistence\FormacaoRepository;
 use App\Infrastructure\Services\AuthService;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,6 +19,8 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(UserRepositoryInterface::class, EloquentUserRepository::class);
         $this->app->bind(AuthServiceInterface::class, AuthService::class);
+        $this->app->bind(FormacaoRepositoryInterface::class, FormacaoRepository::class);
+
     }
 
     /**

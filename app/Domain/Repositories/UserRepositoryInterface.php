@@ -6,6 +6,6 @@ use App\Domain\Entities\Usuario;
 
 interface UserRepositoryInterface {
     public function findById(int $id): ?Usuario;
-    public function save(Usuario $user): void;
+    public function save(Usuario $user): Usuario;
     public function findByEmail(String $email): ?Usuario;
 }
