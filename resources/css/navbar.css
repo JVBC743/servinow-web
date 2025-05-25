@@ -75,3 +75,7 @@ body {
     background-color: #30e0e0;
     border-radius: 5px;
 }
+
+.bg-info {
+    background-color: #7DCCD8 !important;
+  }
