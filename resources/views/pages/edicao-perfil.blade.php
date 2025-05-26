@@ -36,9 +36,15 @@
             </div>
             <div class="ms-5 d-flex justify-content-center">
                 <div class="text-center fs-5">
-                    <img src="images/user-icon.png" alt="Foto do usuário na tela de edição de perfil.">
+                    <div class="">
+                        <img src="images/user-icon.png" alt="Foto do usuário na tela de edição de perfil.">
+                    </div>
+
                     <div class="mb-3"></div>
-                    {{ $nome_foto = "teste" }}
+                    <div>
+                        {{ $nome_foto = "teste" }}
+
+                    </div>
                     <div class="mt-4">
                         <input type="submit" value="Salvar">
                     </div>
