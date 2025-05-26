@@ -14,27 +14,40 @@
     <h1 class="ms-5 mt-4">Configuração de Conta</h1>
 
     <form action="">
-        <div class="d-flex" >
-            <div class="my-3 mx-5 inputs">
-                <input class = "mb-3" type="text" placeholder="Nome"><br>
-                <input class = "mb-3" type="text" placeholder="E-mail"><br>
-                <input class = "mb-3" type="text" placeholder="Telefone"><br>
-                <input class = "mb-3" type="text" placeholder="Área de atuação"><br>
-                <input class = "mb-3" type="text" placeholder="CPF/CNPJ"><br>
-                <div id = "img_div" >
-                    <input type="image" style="width: 200px; height:40px;">
+        <div class="d-flex">
+            <div class="d-flex fs-5">
+                <div class="my-3 mx-5 inputs">
+                    <input class = "mb-3" type="text" placeholder="Nome"><br>
+                    <input class = "mb-3" type="text" placeholder="E-mail"><br>
+                    <input class = "mb-3" type="text" placeholder="Telefone"><br>
+                    <input class = "mb-3" type="text" placeholder="Área de atuação"><br>
+                    <input class = "mb-3" type="text" placeholder="CPF/CNPJ"><br>
+                    <div id = "img_div" >
+                        <input type="image" style="width: 200px; height:40px;">
+                    </div>
+                </div>
+                <div class="my-3 inputs_2">
+                    <input class = "mb-3" type="text" placeholder="Rede social #1"><br>
+                    <input class = "mb-3" type="text" placeholder="Rede social #2"><br>
+                    <input class = "mb-3" type="text" placeholder="Rede social #3"><br>
+                    <input class = "mb-3" type="text" placeholder="Rede social #4"><br>
+                    
                 </div>
             </div>
-            <div class="my-3 inputs_2">
-                <input class = "mb-3" type="text" placeholder="Rede social #1"><br>
-                <input class = "mb-3" type="text" placeholder="Rede social #2"><br>
-                <input class = "mb-3" type="text" placeholder="Rede social #3"><br>
-                <input class = "mb-3" type="text" placeholder="Rede social #4"><br>
+            <div class="ms-5 d-flex justify-content-center">
+                <div class="text-center fs-5">
+                    <img src="images/user-icon.png" alt="Foto do usuário na tela de edição de perfil.">
+                    <div class="mb-3"></div>
+                    {{ $nome_foto = "teste" }}
+                    <div class="mt-4">
+                        <input type="submit" value="Salvar">
+                    </div>
+                </div><br>
                 
             </div>
+
         </div>
         
-
     </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 </body>
