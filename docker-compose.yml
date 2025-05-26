@@ -44,10 +44,16 @@ services:
         networks:
             - sail
         healthcheck:
-            test: ["CMD", "mysqladmin", "ping", "-u", "sail", "-p${DB_PASSWORD}"]
+            test:
+                - CMD
+                - mysqladmin
+                - ping
+                - '-u'
+                - sail
+                - '-p${DB_PASSWORD}'
             retries: 3
             timeout: 5s
-    phpmyadmin:  # Adicionado
+    phpmyadmin:
         image: phpmyadmin/phpmyadmin
         ports:
             - '8080:80'
