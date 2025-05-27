@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ asset('css/default.css') }}">
     <link rel="stylesheet" href="{{ asset('css/photos.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sizes.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
 </head>
 <body id="body">
 
@@ -41,7 +42,7 @@
             <div class="ms-5 d-flex justify-content-center">
                 <div class="text-center fs-5">
                     <div class="">
-                        <img src="images/user-icon.png" alt="Foto do usuário na tela de edição de perfil.">
+                        <img src="images/user-icon.png" alt="Foto do usuário na tela de edição de perfil." class="profile_image">
                     </div>
 
                     <div class="mb-3"></div>
