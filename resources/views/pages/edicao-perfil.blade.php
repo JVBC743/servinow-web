@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="{{ asset('css/photos.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sizes.css') }}">
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/buttons.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/colors.css') }}">
 </head>
 <body id="body">
 
@@ -27,8 +29,9 @@
                     <input class = "mb-3" type="text" placeholder="Telefone"><br>
                     <input class = "mb-3" type="text" placeholder="Área de atuação"><br>
                     <input class = "mb-3" type="text" placeholder="CPF/CNPJ"><br>
-                    <div id = "img_div" >
-                        <input type="image" style="width: 200px; height:40px;">
+                    <div>
+                        <p style="font-size: 15px">Anexar imagem</p>
+                        <input alt="Enviar imagem"type="image" class = "img_input" style="width: 150px; height: 50px">
                     </div>
                 </div>
                 <div class="my-3 inputs_2">
@@ -46,12 +49,12 @@
                     </div>
 
                     <div class="mb-3"></div>
-                    <div>
+                    <div class="photo_name fs-3">
                         {{ $nome_foto = "teste" }}
 
                     </div>
                     <div class="mt-4">
-                        <input type="submit" value="Salvar">
+                        <input type="submit" value="Salvar" class="btn btn-primary button_save">
                     </div>
                 </div><br>
                 
