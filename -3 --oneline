@@ -1,0 +1,24 @@
+[33m651a43b[m[33m ([m[1;36mHEAD -> [m[1;32mtelas-3[m[33m, [m[1;31morigin/telas-3[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m Merge pull request #11 from JVBC743/feature/rotas-e-views
+[33m05f0921[m Merge branch 'migrations-db'
+[33m5fcc12d[m Merge pull request #7 from JVBC743/Entidades
+[33m10d9edf[m[33m ([m[1;31morigin/feature/rotas-e-views[m[33m)[m Adiciona rotas e views, configura SESSION_DRIVER=file e remove dependência de banco
+[33mbbdb7b2[m[33m ([m[1;31morigin/migrations-db[m[33m)[m Criada as migrations funcionais para todas as tabelas
+[33m092d37e[m Construida as migrations de todas as tabelas, agora, só preciso ver quais serão os eventuais erros.
+[33mfacba1a[m[33m ([m[1;31morigin/Entidades[m[33m)[m entidades
+[33m2ecd48a[m Criado os arquivos das migrations
+[33m723f188[m Feito algumas correções no README.md
+[33m3d4bc43[m Adicionado mais instruções no README.md
+[33m0f57f83[m Feito a D-E-S-G-R-A-Ç-A do docker compose funcionar com o Sail. Agora, tenho que descobrir o porque da página welcome não estar funcionando.
+[33m47a9e8e[m Adicionado algumas instruções no README.md sobre o uso do Sail e Docker Compose.
+[33mf659558[m Parece que funcionou agora, tinha que colocar as permissões de owner para o sail a partir do 'html'
+[33m7deeca5[m Feita a desgraça do container do sistema ser alcançado pelo navegador via URL. Agora é só problema de permissão de arquivos e amanhã resolvo.
+[33me375334[m Adicionado algumas alterações no arquivo 'README.md', colocado o arquivo do Docker Compose, instalado o Laravel Sail e Artisan. Além de ter colocado alguns atributos na migration do usuário.
+[33mdb83c0a[m correção ferramenta
+[33md0fce1f[m ajuste md
+[33mc574551[m init arquitetura limpa
+[33meed1cf1[m Commitando o Framework.
+[33me3f8927[m Primeiro commit: definindo o framework a ser usado
+[33m6108dec[m Update README.md
+[33m2a42335[m Update README.md
+[33m4e5d6c1[m Update README.md
+[33mb8dcb84[m Initial commit

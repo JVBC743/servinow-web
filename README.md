@@ -199,4 +199,6 @@ Para subir os conteineres, use o "sail up". Para fazer com que você veja a tela
 
 No commit 0f57f83, tirei o ".env" do gitignore e deixei ele ser commitado. Nele, você vai poder ver todas as configurações de senha do banco de dados. Como ainda não usamos nenhuma API, não tem problema commitar agora. No caso da chave de "aplication key", tente gerar uma nova com base no comando "php artisan key:generate". De resto, podem trabalhar a vontade, o site não vai entrar em produção mesmo.
 
+Caso a tabela "sessions" não apareça, execute o comando "sail artisan session:table"
+
 ```
