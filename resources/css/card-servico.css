@@ -1,47 +1,25 @@
 .card-servico {
-    width: 400px;
-    aspect-ratio: 4 / 3;
-    background: rgb(231, 231, 231);
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    overflow: hidden;
-    margin: 15px;
+  width: 400px; 
+  background: rgb(231, 231, 231);
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+
+.card-foto img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  aspect-ratio: 1/1;
+}
+
+.nome-servico {
+  font-size: 1.2rem;
+}
+
+@media (max-width: 400px) {
+  .card-servico {
+    width: 100%; 
   }
-  
-  .card-servico-header {
-    background-color: #00c6d7;
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    top: 0;
-  }
-  
-  .card-foto {
-    background: #d3d3d3;
-    width: 120px;
-    aspect-ratio: 1 / 1;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-  }
-  
-  .nome-servico {
-    color: white;
-    font-size: 18px;
-    margin: 0;
-  }
-  
-  .foto-servico {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 15px;
-  }
-  
-   .card-body {
-    padding: 20px;
-    font-size: 16px;
-  } 
+}
