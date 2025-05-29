@@ -4,7 +4,7 @@ namespace App\Application\UseCases;
 
 use App\Domain\Repositories\UserRepositoryInterface;
 use App\Application\DTOs\CreateUserDTO;
-use App\Domain\Entities\User;
+use App\Domain\Entities\Usuario;
 
 class CreateUserUseCase {
     public function __construct(

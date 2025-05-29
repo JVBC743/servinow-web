@@ -9,6 +9,10 @@ Route::view('/dashboard', 'pages.dashboard')->name('dashboard');
 Route::view('/perfil', 'pages.visualizacao-perfil')->name('visualizacao-perfil');
 Route::view('/avaliacoes', 'pages.lista-avaliacao-servicos')->name('lista-avaliacoes');
 
+
+
+
+
 Route::get('/sobre-nos', function(){
 
     return view('pages/sobre-nos');
@@ -26,6 +30,9 @@ Route::get('/lista', function(){
     return view('pages/lista-usuarios');
 
 })->name('lista');
+
+Route::get('/lista', [UserController::class, 'store']);
+
 
 Route::get('/edicao-perfil', function(){
 
