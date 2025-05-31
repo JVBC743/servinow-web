@@ -2,9 +2,10 @@
 
 namespace App\Domain\Repositories;
 
-use App\Domain\Entities\User;
+use App\Domain\Entities\Usuario;
 
 interface UserRepositoryInterface {
-    public function findById(int $id): ?User;
-    public function save(User $user): void;
+    public function findById(int $id): ?Usuario;
+    public function save(Usuario $user): Usuario;
+    public function findByEmail(String $email): ?Usuario;
 }
