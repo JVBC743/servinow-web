@@ -13,6 +13,7 @@ class Servico extends Model
         'nome_servico',
         'categoria',
         'desc_servico',
+        'caminho_img',
     ];
 
     public function categoria()
