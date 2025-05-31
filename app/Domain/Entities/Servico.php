@@ -8,6 +8,6 @@ class Servico {
         public string $nome_servico,
         public Categoria $categoria,
         public string $desc_servico,
-        public string $caminho_img,
+        public string $caminho_img
     ) {}
 }
