@@ -2,7 +2,7 @@
 
 namespace App\Application\DTOs;
 
-class ListUsersDTO{
+class ListarUsuario{
     public function __construct(
         public $id,
         public $nome,
@@ -11,7 +11,6 @@ class ListUsersDTO{
         public $cpf_cnpj,
         public $atuacao
     ){
-
 
     }
 

@@ -31,7 +31,7 @@ Route::get('/lista', function(){
 
 })->name('lista');
 
-Route::get('/lista', [UserController::class, 'store']);
+//Route::get('/lista', [UserController::class, 'store']);
 
 
 Route::get('/edicao-perfil', function(){

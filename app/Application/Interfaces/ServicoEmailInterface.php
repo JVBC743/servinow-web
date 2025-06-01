@@ -2,6 +2,6 @@
 
 namespace App\Application\Interfaces;
 
-interface MailServiceInterface {
+interface ServicoEmailInterface {
     public function send(string $to, string $subject, string $message): void;
 }
