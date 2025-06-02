@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="{{ asset('css/colors.css') }}">
     <link rel="stylesheet" href="{{ asset('css/default.css') }}">
 
-
 </head>
 <body>
     
@@ -20,14 +19,17 @@
                 <th class = "px-3 py-3 fs-3 column">CPF/CNPJ</th>
                 <th class = "px-3 py-3 fs-3 column">ATUAÇÃO</th>
             </tr>
-            <tr id="rows" class="">
-                <td>{{ $teste = "===" }}</td>
-                <td>{{ $teste = "===" }} </td>
-                <td>{{ $teste = "===" }} </td>
-                <td>{{ $teste = "===" }} </td>
-                <td>{{ $teste = "===" }} </td>
-                <td>{{ $teste = "===" }} </td>
-            </tr>
+
+            @foreach ($lista as $usr)
+                <tr id="rows" class="">
+                    <td>{{ $usr['id'] }}</td>
+                    <td>{{ $usr['nome'] }}</td>
+                    <td>{{ $usr['telefone'] }} </td>
+                    <td>{{ $usr['email'] }} </td>
+                    <td>{{ $usr['cpf_cnpj'] }} </td>
+                    <td>{{ $usr['area_atuacao'] }} </td>
+                </tr>
+            @endforeach
         </table>
     </div>
     
