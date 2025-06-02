@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
-class UserFactory extends Factory
+class UsuarioFactory extends Factory
 {
     /**
      * The current password being used by the factory.
@@ -26,14 +26,13 @@ class UserFactory extends Factory
         return [
             'nome' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
+            //'email_verified_at' => now(),
             'senha' => static::$password ??= Hash::make('password'),
             'telefone' => fake()->phoneNumber(),
-            'cpf_cnpj' => fake()->randomNumber(11),
-            'atuacao'
+            'cpf_cnpj' => fake()->randomNumber(8),
+            'area_atuacao' => \App\Models\Formacao::inRandomOrder()->first()->id,
 
-
-            'remember_token' => Str::random(10),
+            //'remember_token' => Str::random(10),
 
         // public int $id,
         // public string $nome,
