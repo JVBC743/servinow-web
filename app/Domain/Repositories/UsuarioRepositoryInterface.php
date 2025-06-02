@@ -8,4 +8,5 @@ interface UsuarioRepositoryInterface {
     public function findById(int $id): ?Usuario;
     public function save(Usuario $user): void;
     public function listarUsuarios (): array;
+    public function editarUsuario();
 }

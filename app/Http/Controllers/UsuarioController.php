@@ -24,4 +24,8 @@ class UsuarioController extends Controller {
 
         return response()->json(['message' => 'Usuário criado']);
     }
+    public function edit(Request $request, EditarUsuarioUseCase $useCase){
+
+
+    }
 }

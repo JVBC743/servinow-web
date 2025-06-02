@@ -38,6 +38,8 @@ Route::get('/edicao-perfil', function(){
 
 })->name('edicao-perfil');
 
+Route::post('/edicao-perfil', [UsuarioController::class ,'index'])->name('editar.usuario');
+
 
 Route::get('/', function () {
     return view('welcome');

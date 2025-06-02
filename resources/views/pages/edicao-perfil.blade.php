@@ -20,7 +20,7 @@
     {{-- RESPONSIVIDADE VIA MEDIA QUERIES --}}
     
 
-    <form action="">
+    <form action="{{ route('usuario.editar') }}">
         <div class="d-flex flex-wrap">
             <div class="d-flex fs-5 flex-wrap me-5">
                 <div class="my-3 mx-5 inputs">
