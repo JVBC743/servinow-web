@@ -13,7 +13,7 @@ class ListarUsuarioUseCase{
     public function execute(): array{
         // aplicar lógica aqui
 
-        $lista = $this->usrRepo->listarUsuarios();
+        return $lista = $this->usrRepo->listarUsuarios();
 
     }
 }

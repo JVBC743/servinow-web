@@ -12,6 +12,8 @@ class Usuario extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
+    protected $table = 'Usuario';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -25,6 +27,7 @@ class Usuario extends Authenticatable
         'cpf_cnpj',
         'area_atuacao',
     ];
+
 
 
     /**

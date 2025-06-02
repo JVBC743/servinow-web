@@ -19,17 +19,17 @@ class EloquentUsuarioRepository implements UsuarioRepositoryInterface {
         ]);
     }
 
-    public function listar(): array{
+    public function listarUsuarios(): array{
 
-        return Usuario::all()->map(fn($usuario) => [
+        return EloquentUsuario::all()->map(fn($usuario) => [
 
             'id' => $usuario->id,
             'nome' => $usuario->nome,
             'email' => $usuario->email,
             'telefone' => $usuario->telefone,
             'cpf_cnpj' => $usuario->cpf_cnpj,
-            'atuacao' => $usuario->atuacao
+            'atuacao' => $usuario->atuacao,
 
-        ]);
+        ])->toArray();
     } 
 }
