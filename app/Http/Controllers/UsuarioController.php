@@ -6,6 +6,7 @@ use App\Application\DTOs\CreateUserDTO;
 use App\Application\UseCases\CreateUserUseCase;
 use Illuminate\Http\Request;
 use App\Application\UseCases\ListarUsuarioUseCase;
+use App\Application\UseCases\EditarUsuarioUseCase;
 
 class UsuarioController extends Controller {
 
@@ -13,6 +14,23 @@ class UsuarioController extends Controller {
         $lista = $listaUsuarios->execute();
         return view('pages.lista-usuarios', compact('lista'));
     }
+
+    public function edit(Request $request, EditarUsuarioUseCase $useCase, int $id){
+
+        $editarUsuario = $useCase->execute(Usuario::find($id), 
+    
+            
+        );
+
+        return view('pages.edicao-perfil', compact(''));
+
+
+    }
+
+
+
+
+
 
     public function store(Request $request, CreateUserUseCase $useCase) {
         $dto = new CreateUserDTO(
@@ -23,9 +41,5 @@ class UsuarioController extends Controller {
         $useCase->execute($dto);
 
         return response()->json(['message' => 'Usuário criado']);
-    }
-    public function edit(Request $request, EditarUsuarioUseCase $useCase){
-
-
     }
 }

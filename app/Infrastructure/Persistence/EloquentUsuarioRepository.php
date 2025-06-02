@@ -29,6 +29,10 @@ class EloquentUsuarioRepository implements UsuarioRepositoryInterface {
             'telefone' => $usuario->telefone,
             'cpf_cnpj' => $usuario->cpf_cnpj,
             'area_atuacao' => $usuario->area_atuacao,
+            'rede_social1' => $usuario->rede_social1,
+            'rede_social2' => $usuario->rede_social2,
+            'rede_social3' => $usuario->rede_social3,
+            'rede_social4' => $usuario->rede_social4,
 
         ])->toArray();
     }
