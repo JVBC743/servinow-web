@@ -21,6 +21,11 @@ return new class extends Migration
                 $table->string('email', length: 80);
                 $table->string('cpf_cnpj', length: 14);
                 $table->unsignedBigInteger('area_atuacao');
+                $table->string('rede_social1', length: 40);
+                $table->string('rede_social2', length: 40);
+                $table->string('rede_social3', length: 40);
+                $table->string('rede_social4', length: 40);
+
                 $table->timestamps();
                 $table->foreign('area_atuacao')->references('id')->on('Formacao');
 
