@@ -22,33 +22,15 @@ class EditarUsuarioRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nome' =>  [
-                'max:50',
-            ],
-            'email' => [
-                'max:80',
-            ],
-            'telefone' => [
-                'max:15',
-            ],
-            'atuacao' => [
-                'max:40',
-            ],
-            'cpf_cnpj' => [
-                'max:14'
-            ],
-            'rd1' => [
-                'max:40'
-            ],
-            'rd2' => [
-                'max:40'
-            ],
-            'rd3' => [
-                'max:40'
-            ],
-            'rd4' => [
-                'max:40'
-            ],
+            'nome' => 'max:50|sometimes|required|string',
+            'email' =>'max:80|sometimes|required|string',
+            'telefone' => 'max:15|sometimes|required|string',
+            'atuacao' => 'max:40|sometimes|required|string',
+            'cpf_cnpj' => 'max:14|sometimes|required|string',
+            'rd1' => 'max:40|sometimes|nullable|string',
+            'rd2' => 'max:40|sometimes|nullable|string',
+            'rd3' => 'max:40|sometimes|nullable|string',
+            'rd4' => 'max:40|sometimes|nullable|string',
         ];
     }
 }

@@ -38,7 +38,7 @@ Route::get('/edicao-perfil', function(){
 
 })->name('edicao-perfil');
 
-Route::put('/edicao-perfil', [UsuarioController::class ,'index'])->name('editar.usuario');
+Route::put('/edicao-perfil/{id}', [UsuarioController::class ,'edit'])->name('editar.usuario');
 
 
 Route::get('/', function () {

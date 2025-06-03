@@ -22,12 +22,17 @@ class UsuarioController extends Controller {
             // logica para mandar uma msg de erro de volta para a view de edição de perfil
         }
 
-        $data = $request->only([]);
+        $data = $request->validated();
 
-        $editarUsuario = $useCase->execute($usr,$data);
+        $editarUsuario = $useCase->execute($id,$data);
 
-        return view('pages.edicao-perfil', compact(''));
+        if(!$editarUsuario){
 
+            //Lógica para retornar uma msg de erro.
+            
+        }
+
+        return view('pages.edicao-perfil', compact('editarUsuario'));
 
     }
 
