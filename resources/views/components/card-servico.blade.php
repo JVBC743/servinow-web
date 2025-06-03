@@ -11,7 +11,6 @@
     <div class="card-img-container">
         <img src="{{ $imageUrl }}" alt="{{ $title }}" class="card-img-top">
     </div>
-    <div class="price-tag">{{ $price }}</div>
     <div class="card-body">
         <h5 class="card-title">{{ $title }}</h5>
         <p class="card-text">{{ $description }}</p>
