@@ -17,10 +17,14 @@ class UsuarioController extends Controller {
 
     public function edit(Request $request, EditarUsuarioUseCase $useCase, int $id){
 
-        $editarUsuario = $useCase->execute(Usuario::find($id), 
-    
-            
-        );
+        $usr = Usuario::find($id);
+        if(!$usr){
+            // logica para mandar uma msg de erro de volta para a view de edição de perfil
+        }
+
+        $data = $request->only([]);
+
+        $editarUsuario = $useCase->execute($usr,$data);
 
         return view('pages.edicao-perfil', compact(''));
 
