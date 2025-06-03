@@ -11,6 +11,7 @@ class Usuario {
         public string $email,
         public string $cpf_cnpj,
         public Formacao $area_atuacao,
+        public string $caminho_img,
         public string $rede_social1,
         public string $rede_social2,
         public string $rede_social3,

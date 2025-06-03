@@ -19,33 +19,33 @@
     {{-- 330x727px --}}
     {{-- RESPONSIVIDADE VIA MEDIA QUERIES --}}
 
-    <form action="{{ route('editar.usuario') }}">
+    <form action="{{ route('editar.usuario', $editarUsuario->id) }}">
         @csrf
         @METHOD('PUT')
         <div class="d-flex flex-wrap">
             <div class="d-flex fs-5 flex-wrap me-5">
                 <div class="my-3 mx-5 inputs">
 
-                    <input class = "mb-3" type="text" placeholder="Nome" name="nome" value="{{ $editarUsuario->nome }}"><br>
-                    <input class = "mb-3" type="email" placeholder="E-mail" name="email" value="{{ $editarUsuario->email }}"><br>
-                    <input class = "mb-3" type="text" placeholder="Telefone" name="telefone" value="{{ $editarUsuario->telefone }}"><br>
-                    <input class = "mb-3" type="text" placeholder="Área de atuação" name="atuacao" value="{{ $editarUsuario->atuacao }}"><br>
+                    <input class = "mb-3" type="text" placeholder="Nome" name="nome" value="{{ $editarUsuario->nome ?? '' }}"><br>
+                    <input class = "mb-3" type="email" placeholder="E-mail" name="email" value="{{ $editarUsuario->email ?? '' }}"><br>
+                    <input class = "mb-3" type="text" placeholder="Telefone" name="telefone" value="{{ $editarUsuario->telefone ?? '' }}"><br>
+                    <input class = "mb-3" type="text" placeholder="Área de atuação" name="atuacao" value="{{ $editarUsuario->atuacao ?? '' }}"><br>
                     <div>
                         <p style="font-size: 15px">Anexar imagem</p>
                         <input alt="Enviar imagem"type="image" class = "img_input" style="width: 150px; height: 50px">
                     </div>
                 </div>
                 <div class="my-3 inputs_2">
-                    <input class = "mb-3" type="text" placeholder="Rede social #1" name="rd1" value="{{ $editarUsuario->rede_social1 }}"><br>
-                    <input class = "mb-3" type="text" placeholder="Rede social #2" name="rd2" value="{{ $editarUsuario->rede_social2 }}"><br>
-                    <input class = "mb-3" type="text" placeholder="Rede social #3" name="rd3" value="{{ $editarUsuario->rede_social3 }}"><br>
-                    <input class = "mb-3" type="text" placeholder="Rede social #4" name="rd4" value="{{ $editarUsuario->rede_social4 }}"><br>
+                    <input class = "mb-3" type="text" placeholder="Rede social #1" name="rd1" value="{{ $editarUsuario->rede_social1 ?? '' }}"><br>
+                    <input class = "mb-3" type="text" placeholder="Rede social #2" name="rd2" value="{{ $editarUsuario->rede_social2 ?? '' }}"><br>
+                    <input class = "mb-3" type="text" placeholder="Rede social #3" name="rd3" value="{{ $editarUsuario->rede_social3 ?? '' }}"><br>
+                    <input class = "mb-3" type="text" placeholder="Rede social #4" name="rd4" value="{{ $editarUsuario->rede_social4 ?? '' }}"><br>
                 </div>
             </div>
             <div class="ms-5 d-flex justify-content-center">
                 <div class="text-center fs-5">
-                    <div class="">
-                        <img src="images/user-icon.png" alt="Foto do usuário na tela de edição de perfil." class="profile_image">
+                    <div class="">{{-- procurar saber como referenciar o caminho minio --}}
+                        <img src="{{ $editarUsuario->caminho_img }}" alt="Foto do usuário na tela de edição de perfil." class="profile_image">
                     </div>
                     <div class="mb-3"></div>
                     <div class="photo_name fs-3">

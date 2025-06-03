@@ -19,7 +19,7 @@ class UsuarioController extends Controller {
 
         $usr = Usuario::find($id);
         if(!$usr){
-            // logica para mandar uma msg de erro de volta para a view de edição de perfil
+            return redirect()->back()->with('error', 'Usuário não encontrado.');
         }
 
         $data = $request->validated();
@@ -28,16 +28,12 @@ class UsuarioController extends Controller {
 
         if(!$editarUsuario){
 
-            //Lógica para retornar uma msg de erro.
-            
+            return redirect()->back()->with('error', 'Erro ao carregar dados do usuário para edição.');
         }
 
         return view('pages.edicao-perfil', compact('editarUsuario'));
 
     }
-
-
-
 
 
 
