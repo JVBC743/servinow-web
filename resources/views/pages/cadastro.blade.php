@@ -1,106 +1,99 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tela de Cadastro</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
-</head>
+    <link rel="stylesheet" href="style.css"> </head>
 <body>
-    <div class="container">
-        <div class="register-container">
-            <h2 class="text-center mb-4">Tela de Cadastro</h2>
-            @if (session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
-            @endif
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-            <form method="POST" action="{{ route('register') }}">
-                @csrf
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="name" class="form-label">Nome</label>
-                        <input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
+    <div class="container-principal">
+        <div class="container-formulario">
+            <div class="logo-area">
+                <div class="logo-placeholder">ServiNow</div>
+                <p class="texto-logo">Texto aqui!</p>
+            </div>
+            <div class="formulario-area">
+                <h1>Tela de Cadastro</h1>
+                <form action="{{-- {{ route('sua.rota.de.cadastro') }} --}}" method="POST">
+                    @csrf <div class="linha-input">
+                        <div class="input-grupo">
+                            <label for="nome">Nome*</label>
+                            <input type="text" id="nome" name="nome" required>
+                        </div>
+                        <div class="input-grupo">
+                            <label for="cpf">CPF*</label>
+                            <input type="text" id="cpf" name="cpf" required>
+                        </div>
+                        <div class="input-grupo">
+                            <label for="data_nascimento">Data de nascimento*</label>
+                            <input type="date" id="data_nascimento" name="data_nascimento" required>
+                        </div>
                     </div>
-                    <div class="col-md-3 mb-3">
-                        <label for="cpf" class="form-label">CPF</label>
-                        <input type="text" name="cpf" class="form-control" value="{{ old('cpf') }}" required>
+
+                    <div class="linha-input">
+                        <div class="input-grupo input-email">
+                            <label for="email">E-mail*</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="input-grupo">
+                            <label for="celular">Número de celular*</label>
+                            <input type="tel" id="celular" name="celular" required>
+                        </div>
+                        <div class="input-grupo">
+                            <label for="cep">CEP*</label>
+                            <input type="text" id="cep" name="cep" required>
+                        </div>
                     </div>
-                    <div class="col-md-3 mb-3">
-                        <label for="birthDate" class="form-label">Data de nascimento</label>
-                        <input type="date" name="birthDate" class="form-control" value="{{ old('birthDate') }}" required>
+
+                    <div class="linha-input">
+                        <div class="input-grupo input-logradouro">
+                            <label for="logradouro">Logradouro*</label>
+                            <input type="text" id="logradouro" name="logradouro" required>
+                        </div>
+                        <div class="input-grupo input-numero">
+                            <label for="numero">Número*</label>
+                            <input type="text" id="numero" name="numero" required>
+                        </div>
+                        <div class="input-grupo input-complemento">
+                            <label for="complemento">Complemento</label>
+                            <input type="text" id="complemento" name="complemento">
+                        </div>
+                         <div class="input-grupo input-bairro">
+                            <label for="bairro">Bairro*</label>
+                            <input type="text" id="bairro" name="bairro" required>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="email" class="form-label">E-mail</label>
-                        <input type="email" name="email" class="form-control" value="{{ old('email') }}" required>
+
+                    <div class="linha-input">
+                        <div class="input-grupo input-cidade">
+                            <label for="cidade">Cidade*</label>
+                            <input type="text" id="cidade" name="cidade" required>
+                        </div>
+                        <div class="input-grupo input-uf">
+                            <label for="uf">UF*</label>
+                            <input type="text" id="uf" name="uf" maxlength="2" required>
+                        </div>
+                        <div class="input-grupo">
+                            <label for="senha">Senha*</label>
+                            <input type="password" id="senha" name="password" required>
+                        </div>
+                        <div class="input-grupo">
+                            <label for="repetir_senha">Repetir senha*</label>
+                            <input type="password" id="repetir_senha" name="password_confirmation" required>
+                        </div>
                     </div>
-                    <div class="col-md-3 mb-3">
-                        <label for="phone" class="form-label">Número de celular</label>
-                        <input type="tel" name="phone" class="form-control" value="{{ old('phone') }}" required>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <label for="cep" class="form-label">CEP</label>
-                        <input type="text" name="cep" class="form-control" value="{{ old('cep') }}" required>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="address" class="form-label">Logradouro</label>
-                        <input type="text" name="address" class="form-control" value="{{ old('address') }}" required disabled>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <label for="number" class="form-label">Número</label>
-                        <input type="text" name="number" class="form-control" value="{{ old('number') }}" required>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <label for="complement" class="form-label">Complemento</label>
-                        <input type="text" name="complement" class="form-control" value="{{ old('complement') }}">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3 mb-3">
-                        <label for="neighborhood" class="form-label">Bairro</label>
-                        <input type="text" name="neighborhood" class="form-control" value="{{ old('neighborhood') }}" required disabled>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <label for="city" class="form-label">Cidade</label>
-                        <input type="text" name="city" class="form-control" value="{{ old('city') }}" required disabled>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <label for="state" class="form-label">UF</label>
-                        <input type="text" name="state" class="form-control" value="{{ old('state') }}" required disabled>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="password" class="form-label">Senha</label>
-                        <input type="password" name="password" class="form-control" required>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="confirmPassword" class="form-label">Repetir senha</label>
-                        <input type="password" name="confirmPassword" class="form-control" required>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="btn register-btn">Cadastrar</button>
-                </div>
-                <p class="terms-text">
-                    As pessoas que usam nosso serviço podem ter carregado suas informações de contato no Medium. Saiba mais.<br>
-                    Ao clicar em Cadastre-se, você concorda com nossos Termos, Política de Privacidade e Política de Cookies. Você poderá receber notificações por SMS e cancelar isso quando quiser.
-                </p>
-            </form>
+
+                    <p class="termos">
+                        As pessoas que usam nosso serviço podem ter carregado suas informações de contato no Medium. <a href="#">Saiba mais</a>.
+                    </p>
+                    <p class="termos">
+                        Ao clicar em Cadastre-se, você concorda com nossos <a href="#">Termos</a>, <a href="#">Política de Privacidade</a> e <a href="#">Política de Cookies</a>. Você poderá receber notificações por SMS e cancelar isso quando quiser.
+                    </p>
+
+                    <button type="submit" class="btn-cadastrar">Cadastrar</button>
+                </form>
+            </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+<script src="{{ asset('js/script.js') }}"></script>
 </html>
