@@ -3,7 +3,7 @@
     'price' => 'R$ 00,00',
     'title' => 'Título do serviço',
     'description' => 'Descrição básica sobre o tipo do serviço a ser agendado, da disponibilidade e outras especificações.',
-    'buttonText' => 'Contratar',
+    'buttonText' => 'Agendar serviço',
     'buttonUrl' => '#'
 ])
 
