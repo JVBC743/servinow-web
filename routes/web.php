@@ -32,11 +32,15 @@ Route::get('/termos', function(){
 Route::get('/lista', [UsuarioController::class, 'index'])->name('lista');
 
 
-Route::get('/edicao-perfil', function(){
+Route::get('/edicao-perfil/{id}', function(){
 
     return view('pages/edicao-perfil');
 
 })->name('edicao-perfil');
+
+Route::get('/edicao-perfil/{id}', [UsuarioController::class, 'show'])->name('mostrar.edicao');
+
+
 
 Route::put('/edicao-perfil/{id}', [UsuarioController::class ,'edit'])->name('editar.usuario');
 
