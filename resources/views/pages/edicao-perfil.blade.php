@@ -21,7 +21,7 @@
 
     @if($editarUsuario)
 
-        <form action="{{ route('editar.usuario', $editarUsuario->id) }}">
+        <form action="{{ route('editar.usuario', $editarUsuario->id) }}" method="post">
             @csrf
             @METHOD('PUT')
             <div class="d-flex flex-wrap">
