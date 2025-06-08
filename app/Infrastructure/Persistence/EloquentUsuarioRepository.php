@@ -2,17 +2,18 @@
 
 namespace App\Infrastructure\Persistence;
 
-use App\Domain\Entities\Usuario;
+use App\Domain\Entities\Usuario as EntityUsuario;
 use App\Domain\Repositories\UsuarioRepositoryInterface;
-use App\Models\Usuario as EloquentUsuario;
+use App\Models\Usuario as ModelUsuario;
+use App\Models\Formacao;
 
 class EloquentUsuarioRepository implements UsuarioRepositoryInterface {
-    public function findById(int $id): ?Usuario {
+    public function findById(int $id): ?EntityUsuario {
         $model = EloquentUsuario::find($id);
-        return $model ? new Usuario($model->name, $model->email) : null;
+        return $model ? new EntityUsuario($model->name, $model->email) : null;
     }
 
-    public function save(Usuario $usuario): void {
+    public function save(EntityUsuario $usuario): void {
         EloquentUsuario::create([
             'nome' => $usuario->nome,
             'email' => $usuario->email
@@ -21,7 +22,7 @@ class EloquentUsuarioRepository implements UsuarioRepositoryInterface {
 
     public function listarUsuarios(): array{
 
-        return EloquentUsuario::all()->map(fn($usuario) => [
+        return ModelUsuario::all()->map(fn($usuario) => [
 
             'id' => $usuario->id,
             'nome' => $usuario->nome,
@@ -39,11 +40,16 @@ class EloquentUsuarioRepository implements UsuarioRepositoryInterface {
 
     public function editarUsuario(int $id, array $data){
 
-        $usuario = Usuario::find($id);        
-
+        $usuario = ModelUsuario::find($id);
+        $atuacao = Formacao::find($usuario->area_atuacao);
 
         if($usuario && $usuario->update($data)){
-            return $usuario;
+
+            return [
+
+                'usuario' => $usuario,
+                'atuacao' => $atuacao,
+            ];
         }
         return null;
     }

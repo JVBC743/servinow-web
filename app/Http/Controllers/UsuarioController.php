@@ -9,6 +9,10 @@ use App\Application\UseCases\ListarUsuarioUseCase;
 use App\Application\UseCases\EditarUsuarioUseCase;
 use App\Models\Usuario;
 use App\Models\Formacao;
+use App\Http\Requests\EditarUsuarioRequest;
+
+
+
 class UsuarioController extends Controller {
 
     public function index(ListarUsuarioUseCase $listaUsuarios){
@@ -25,7 +29,7 @@ class UsuarioController extends Controller {
         return view("pages.edicao-perfil", compact('editarUsuario'));
     }
 
-    public function edit(Request $request, EditarUsuarioUseCase $useCase, int $id){
+    public function edit(EditarUsuarioRequest $request, EditarUsuarioUseCase $useCase, int $id){
 
         $usr = Usuario::find($id);
         if(!$usr){
@@ -35,6 +39,8 @@ class UsuarioController extends Controller {
         $data = $request->validated();
 
         $editarUsuario = $useCase->execute($id,$data);
+
+        
 
         if(!$editarUsuario){
 
