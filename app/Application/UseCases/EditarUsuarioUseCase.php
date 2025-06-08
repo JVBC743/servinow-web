@@ -16,10 +16,15 @@ class EditarUsuarioUseCase{
 
         $retorno = $this->usrRepo->editarUsuario($id, $data);
         
-        $usuario = $retorno['usuario'];
-        $atuacao = $retorno['atuacao'];
+        $usuario = $retorno['usuario'];// obj do Usuario
+        $atuacao = $retorno['atuacao'];// obj do Formacao
 
-        $usuario->area_atuacao = $atuacao->formacao;
+        $usuario->area_atuacao_array = [
+            $usuario->area_atuacao => $atuacao->formacao,
+        ];
+
+        
+        // $string_area_atuacao = $atuacao->formacao;
 
         return $usuario;
     }
