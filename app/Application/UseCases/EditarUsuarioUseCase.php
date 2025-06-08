@@ -14,5 +14,6 @@ class EditarUsuarioUseCase{
 
         return $this->usrRepo->editarUsuario($id, $data);
 
+
     }
 }

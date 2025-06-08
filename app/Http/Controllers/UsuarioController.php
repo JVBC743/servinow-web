@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Application\UseCases\ListarUsuarioUseCase;
 use App\Application\UseCases\EditarUsuarioUseCase;
 use App\Models\Usuario;
-
+use App\Models\Formacao;
 class UsuarioController extends Controller {
 
     public function index(ListarUsuarioUseCase $listaUsuarios){
@@ -16,9 +16,11 @@ class UsuarioController extends Controller {
         return view('pages.lista-usuarios', compact('lista'));
     }
 
-    public function show($id){ //método para passar o id do usuário pela URL para simular um login.
+    public function show($id){ //método para passar o id do usuário pela URL para simular um login. Se quiser tirar para implementar o login, pode tirar
 
         $editarUsuario = Usuario::find($id);
+        $obj_formacao = Formacao::find($editarUsuario->area_atuacao); //Você só tem que arrumar um jeito de implementar isso sem o método "show".
+        $editarUsuario->area_atuacao = $obj_formacao->formacao;
 
         return view("pages.edicao-perfil", compact('editarUsuario'));
     }
@@ -42,8 +44,6 @@ class UsuarioController extends Controller {
         return view('pages.edicao-perfil', compact('editarUsuario'));
 
     }
-
-
 
     public function store(Request $request, CreateUserUseCase $useCase) {
         $dto = new CreateUserDTO(

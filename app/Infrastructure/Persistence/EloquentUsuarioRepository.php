@@ -38,7 +38,10 @@ class EloquentUsuarioRepository implements UsuarioRepositoryInterface {
     }
 
     public function editarUsuario(int $id, array $data){
-        $usuario = Usuario::find($id);
+
+        $usuario = Usuario::find($id);        
+
+
         if($usuario && $usuario->update($data)){
             return $usuario;
         }

@@ -31,7 +31,7 @@
                         <input class = "mb-3" type="text" placeholder="Nome" name="nome" value="{{ $editarUsuario->nome ?? '' }}"><br>
                         <input class = "mb-3" type="email" placeholder="E-mail" name="email" value="{{ $editarUsuario->email ?? '' }}"><br>
                         <input class = "mb-3" type="text" placeholder="Telefone" name="telefone" value="{{ $editarUsuario->telefone ?? '' }}"><br>
-                        <input class = "mb-3" type="text" placeholder="Área de atuação" name="atuacao" value="{{ $editarUsuario->atuacao ?? '' }}"><br>
+                        <input class = "mb-3" type="text" placeholder="Área de atuação" name="area_atuacao" value="{{ $editarUsuario->area_atuacao ?? '' }}"><br>
                         <div>
                             <p style="font-size: 15px">Anexar imagem</p>
                             <input alt="Enviar imagem"type="image" class = "img_input" style="width: 150px; height: 50px">
