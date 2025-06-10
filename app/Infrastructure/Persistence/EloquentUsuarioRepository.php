@@ -53,4 +53,14 @@ class EloquentUsuarioRepository implements UsuarioRepositoryInterface {
         }
         return null;
     }
+
+    public function listarFormacoes(){
+
+        return Formacao::all()->map(fn($formacoes) => [
+            'id' => $formacoes->id,
+            'formacao' => $formacoes->formacao
+
+        ])->toArray();
+
+    }
 }

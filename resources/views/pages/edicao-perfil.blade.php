@@ -33,9 +33,15 @@
                         <input class = "mb-3" type="text" placeholder="Telefone" name="telefone" value="{{ $editarUsuario->telefone ?? '' }}"><br>
                         {{-- <input class = "mb-3" type="text" placeholder="Área de atuação" name="area_atuacao" value="{{ $editarUsuario->nome_atuacao ?? '' }}"><br> --}}
 
-                        @foreach ($formacao as $formacoes)
+                        <select name="area_atuacao" id="">
+                            <option value="">Selecione a sua formação</option>
+                            @foreach ($lista as $formacao)
+                                <option value="{{ $formacao['id'] }}" {{$editarUsuario->area_atuacao == $formacao['id'] ? 'selected' : ''}}>
+                                    {{ $formacao['formacao'] }}
+                            @endforeach
+                            </option>
+                        </select>
 
-                        @endforeach
                         <div>
                             <p style="font-size: 15px">Anexar imagem</p>
                             <input alt="Enviar imagem"type="image" class = "img_input" style="width: 150px; height: 50px">
