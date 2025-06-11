@@ -7,7 +7,7 @@ use App\Models\Categoria;
 
 class Servico extends Model
 {
-    protected $table = 'servicos';
+    protected $table = 'Servico';
 
     protected $fillable = [
         'nome_servico',

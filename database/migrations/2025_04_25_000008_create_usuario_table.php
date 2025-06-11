@@ -16,11 +16,17 @@ return new class extends Migration
                 $table->id();
                 $table->string('nome', length: 50);
                 $table->string('senha', length: 60);
-                $table->text('descricao');
-                $table->string('telefone', length: 15);
+                $table->text('descricao')->nullable();
+                $table->string('telefone', length: 50);
                 $table->string('email', length: 80);
                 $table->string('cpf_cnpj', length: 14);
                 $table->unsignedBigInteger('area_atuacao');
+                $table->string('caminho_img', length: 60)->nullable();
+                $table->string('rede_social1', length: 40)->nullable()->default(null);
+                $table->string('rede_social2', length: 40)->nullable()->default(null);
+                $table->string('rede_social3', length: 40)->nullable()->default(null);
+                $table->string('rede_social4', length: 40)->nullable()->default(null);
+
                 $table->timestamps();
                 $table->foreign('area_atuacao')->references('id')->on('Formacao');
 

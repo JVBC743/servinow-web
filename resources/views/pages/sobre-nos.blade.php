@@ -16,7 +16,7 @@
     </div>
     
     <div id = "div-2" class = "text-center fs-4">
-        <div class = "d-flex flex-wrap justify-content-center ">
+        <div class = "d-flex flex-wrap justify-content-center">
             <div class = "mx-3">
                 <div class="div_img">
                     <a href="https://github.com/KarmaWT" target="_blank">

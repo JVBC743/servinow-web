@@ -8,7 +8,7 @@ use App\Models\Servico;
 
 class Avaliacao extends Model
 {
-    protected $table = 'avaliacoes';
+    protected $table = 'Avaliacao';
 
     protected $fillable = [
         'id_cliente',
