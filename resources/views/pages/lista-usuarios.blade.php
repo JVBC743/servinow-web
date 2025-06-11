@@ -27,7 +27,7 @@
                     <td>{{ $usr['telefone'] }} </td>
                     <td>{{ $usr['email'] }} </td>
                     <td>{{ $usr['cpf_cnpj'] }} </td>
-                    <td>{{ $usr['area_atuacao'] }} </td>
+                    <td>{{ $usr['nome_atuacao'] }} </td>
                 </tr>
             @endforeach
         </table>
