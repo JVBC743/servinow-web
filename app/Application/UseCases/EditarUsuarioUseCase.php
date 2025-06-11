@@ -17,10 +17,6 @@ class EditarUsuarioUseCase{
         $usuario = $retorno['usuario'];// obj do Usuario
         $atuacao = $retorno['atuacao'];// obj do Formacao
 
-        // $usuario->area_atuacao_array = [
-        //     $usuario->area_atuacao => $atuacao->formacao, //Atribuir o nome da formação para o usuário
-        // ];
-
         return $usuario;
     }
 }

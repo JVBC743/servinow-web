@@ -48,10 +48,10 @@
                         </div>
                     </div>
                     <div class="my-3 inputs_2">
-                        <input class = "mb-3" type="text" placeholder="Rede social #1" name="rd1" value="{{ $editarUsuario->rede_social1 ?? '' }}"><br>
-                        <input class = "mb-3" type="text" placeholder="Rede social #2" name="rd2" value="{{ $editarUsuario->rede_social2 ?? '' }}"><br>
-                        <input class = "mb-3" type="text" placeholder="Rede social #3" name="rd3" value="{{ $editarUsuario->rede_social3 ?? '' }}"><br>
-                        <input class = "mb-3" type="text" placeholder="Rede social #4" name="rd4" value="{{ $editarUsuario->rede_social4 ?? '' }}"><br>
+                        <input class = "mb-3" type="text" placeholder="Rede social #1" name="rede_social1" value="{{ $editarUsuario->rede_social1 ?? '' }}"><br>
+                        <input class = "mb-3" type="text" placeholder="Rede social #2" name="rede_social2" value="{{ $editarUsuario->rede_social2 ?? '' }}"><br>
+                        <input class = "mb-3" type="text" placeholder="Rede social #3" name="rede_social3" value="{{ $editarUsuario->rede_social3 ?? '' }}"><br>
+                        <input class = "mb-3" type="text" placeholder="Rede social #4" name="rede_social4" value="{{ $editarUsuario->rede_social4 ?? '' }}"><br>
                     </div>
                 </div>
                 <div class="ms-5 d-flex justify-content-center">

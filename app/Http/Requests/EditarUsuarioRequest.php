@@ -27,10 +27,10 @@ class EditarUsuarioRequest extends FormRequest
             'telefone' => 'max:15|sometimes|required|string',
             'area_atuacao' => 'max:40|sometimes|required|string',
             'cpf_cnpj' => 'max:14|sometimes|required|string',
-            'rd1' => 'max:40|sometimes|nullable|string',
-            'rd2' => 'max:40|sometimes|nullable|string',
-            'rd3' => 'max:40|sometimes|nullable|string',
-            'rd4' => 'max:40|sometimes|nullable|string',
+            'rede_social1' => 'max:40|sometimes|nullable|string',
+            'rede_social2' => 'max:40|sometimes|nullable|string',
+            'rede_social3' => 'max:40|sometimes|nullable|string',
+            'rede_social4' => 'max:40|sometimes|nullable|string',
         ];
     }
 }
