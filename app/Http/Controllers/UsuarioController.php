@@ -20,7 +20,13 @@ use Illuminate\Http\JsonResponse;
 class UsuarioController extends Controller {
 
     public function index(ListarUsuarioUseCase $listaUsuarios){
+
         $lista = $listaUsuarios->execute();
+        foreach ($lista as &$usuario) {
+            $formacao = Formacao::find($usuario['area_atuacao']);
+            $usuario['nome_atuacao'] = $formacao ? $formacao->formacao : 'Não definida';
+        }
+        unset($usuario);
         return view('pages.lista-usuarios', compact('lista'));
     }
 
