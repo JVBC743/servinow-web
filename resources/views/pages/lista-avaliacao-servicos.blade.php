@@ -1,9 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Lista de Avaliação dos Servicos</title>
-</head>
+<x-navbar :title="'Lista de Usuários'" />
+
+
 <body>
     <h1>Página com Lista de Avaliação dos Serviços Prestados</h1>
+
+<x-footer />
+
 </body>
 </html>

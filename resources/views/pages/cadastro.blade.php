@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tela de Cadastro</title>
-    <link rel="stylesheet" href="style.css"> </head>
-<body>
+<x-navbar :title="'Lista de Usuários'" />
+
+<x-footer />
+
     <div class="container-principal">
         <div class="container-formulario">
             <div class="logo-area">
