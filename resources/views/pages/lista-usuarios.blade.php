@@ -14,8 +14,8 @@
             <tr>
                 <th class = "px-3 py-3 fs-3 column">ID</th>
                 <th class = "px-3 py-3 fs-3 column">NOME</th>
-                <th class = "px-3 py-3 fs-3 column">E-MAIL</th>
                 <th class = "px-3 py-3 fs-3 column">TELEFONE</th>
+                <th class = "px-3 py-3 fs-3 column">E-MAIL</th>
                 <th class = "px-3 py-3 fs-3 column">CPF/CNPJ</th>
                 <th class = "px-3 py-3 fs-3 column">ATUAÇÃO</th>
             </tr>

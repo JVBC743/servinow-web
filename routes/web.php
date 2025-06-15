@@ -6,9 +6,19 @@ use App\Http\Controllers\UsuarioController;
 Route::view('/login', 'pages.login')->name('login');
 Route::view('/cadastro', 'pages.cadastro')->name('cadastro');
 Route::view('/dashboard', 'pages.dashboard')->name('dashboard');
-// Route::view('/perfil/editar', 'pages.edicao-perfil')->name('edicao-perfil');
 Route::view('/perfil', 'pages.visualizacao-perfil')->name('visualizacao-perfil');
 Route::view('/avaliacoes', 'pages.lista-avaliacao-servicos')->name('lista-avaliacoes');
+
+Route::get('/cadastro-servico', function(){
+    return view('pages/cadastro-servico');
+})->name('cadastro.servico');
+
+Route::get('/edicao-servico', function(){
+    return view('pages/edicao-servico');
+})->name('edicao.servico');
+
+Route::post('/cadastro-servico', [ServicoController::class , 'store'])->name('cadastro.servico.store');
+
 
 Route::get('/sobre-nos', function(){
 
@@ -22,11 +32,7 @@ Route::get('/termos', function(){
 
 })->name('termos');
 
-// Route::get('/lista', function(){
 
-//     return view('pages/lista-usuarios');
-
-// })->name('lista');
 
 
 Route::get('/lista', [UsuarioController::class, 'index'])->name('lista');
