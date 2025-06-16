@@ -1,4 +1,5 @@
 <x-header :title="'Cadastar Serviço'" />
+{{-- <x-navbar /> --}}
 
     <h1 class="text-center emphasis_text my-3">Cadastrar serviço</h1>
     <div class="">
@@ -12,7 +13,7 @@
                         <div>
                             <div class="d-flex mt-3">
                                 <div class="me-5">
-                                    <input alt="Enviar imagem"type="image" class = "img_input" style="width: 150px; height: 30px">
+                                    <input name = "imagem" alt="Enviar imagem"type="image" class = "img_input" style="width: 150px; height: 30px">
                                 </div>
                                 <div class="">
                                     <select name="" id="">
@@ -23,6 +24,9 @@
                                     </select>
                                 </div>
                             </div>
+                        </div>
+                        <div class="mt-5">
+                            <input class ="big_input" type="text" name="descricao_servico" id="" placeholder="Insira a descrição do serviço aqui mesmo">
                         </div>
                     </div>
                     

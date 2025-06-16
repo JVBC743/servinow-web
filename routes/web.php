@@ -17,7 +17,6 @@ Route::get('/edicao-servico', function(){
     return view('pages/edicao-servico');
 })->name('edicao.servico');
 
-Route::post('/cadastro-servico', [ServicoController::class , 'store'])->name('cadastro.servico.store');
 
 
 Route::get('/sobre-nos', function(){
@@ -39,6 +38,12 @@ Route::get('/lista', [UsuarioController::class, 'index'])->name('lista');
 Route::get('/edicao-perfil/{id}', [UsuarioController::class, 'show'])->name('mostrar.edicao');//Mudar essa rota quando for implementado o login.
 Route::put('/edicao-perfil/{id}', [UsuarioController::class ,'edit'])->name('editar.usuario');
 Route::get('/edicao-perfil/{id}', [UsuarioController::class, 'listFormations'])->name('listar.forrmacoes');
+
+
+
+Route::post('/cadastro-servico', [ServicoController::class , 'store'])->name('cadastro.servico.store');
+// Route::put('/cadastro-servico/{id}', [ServicoController::class , 'edit'])->name('cadastro.servico.edit');
+
 
 Route::get('/', function () {
     return view('welcome');

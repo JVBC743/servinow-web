@@ -17,6 +17,7 @@ use App\Application\UseCases\RegisterUsuarioUseCase;
 use App\Http\Requests\RegisterUsuarioRequest;
 use Illuminate\Http\JsonResponse;
 
+
 class UsuarioController extends Controller {
 
     public function index(ListarUsuarioUseCase $listaUsuarios){

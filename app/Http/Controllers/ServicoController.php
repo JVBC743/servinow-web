@@ -27,7 +27,7 @@ class ServicoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

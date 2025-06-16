@@ -1,7 +1,7 @@
 <x-header :title="'Editar Serviço'" />
     <h1 class="text-center emphasis_text my-3">Editar serviço</h1>
     <div>
-        <form action="{{ route('cadastro.servico.store') }}" method="post">
+        <form action="" method="post">
             <div class="mx-5 mb-5">
                 <div class="d-flex flex-wrap justify-content-between">
                     <div class="">
@@ -22,6 +22,19 @@
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="my-4 ">
+                                <input class ="big_input" type="text" name="descricao_servico" id="" placeholder="Insira a descrição do serviço aqui mesmo">
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <div class="mx-5">
+                                    <input type="button" value="Desfazer" class="button_undo">
+                                </div>
+                                <div class="mx-5 justify-content-end">
+                                    <input type="button" value="Excluir" class="button_delete">
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                     
@@ -32,14 +45,18 @@
                                     <img src="" alt="Foto do usuário na tela de edição de perfil." class="profile_image">
                                 </div>
                                 <div class="mb-3">
-
                                 </div>
-                                <div class="photo_name fs-3">
+                                <div class="photo_name fs-3 m">
                                     {{ $nome_foto = "teste" }} PROCURAR CAMINHO AQUI
                                 </div>
-                                <div class="mt-4">
+                                <div class="mt-5">
+                                </div>
+                                <div class="mt-5">
+                                </div>
+                                <div class="mt-5">
                                     <input type="submit" value="Salvar" class="btn btn-primary button_save">
                                 </div>
+
                             </div>
                         </div>
                     </div>

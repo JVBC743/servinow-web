@@ -33,3 +33,17 @@ input{
     border-width: 0px;
 
 }
+
+.big_input{
+
+    width: 600px;
+    height: 200px;
+    position: relative;
+}
+.big_input::placeholder{
+
+    position: absolute;
+    top: 10px;
+    left: 10px;
+
+}
