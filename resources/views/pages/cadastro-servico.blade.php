@@ -1,10 +1,10 @@
 <x-header :title="'Cadastar Serviço'" />
 
     <h1 class="text-center emphasis_text my-3">Cadastrar serviço</h1>
-    <div>
+    <div class="">
         <form action="{{ route('cadastro.servico.store') }}" method="post">
             <div class="mx-5 mb-5">
-                <div class="d-flex justify-content-between">
+                <div class="d-flex flex-wrap justify-content-between">
                     <div class="">
                         <div class="inputs">
                             <input class="mt-5 mb-3" type="text" name="nome_servico" placeholder="Insira o título do servico">
