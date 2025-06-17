@@ -34,13 +34,13 @@ input{
 
 }
 
-.big_input{
+.big_input input{
 
     width: 600px;
     height: 200px;
     position: relative;
 }
-.big_input::placeholder{
+.big_input input::placeholder{
 
     position: absolute;
     top: 10px;

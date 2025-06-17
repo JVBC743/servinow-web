@@ -23,15 +23,15 @@
                                 </div>
                             </div>
 
-                            <div class="my-4 ">
-                                <input class ="big_input" type="text" name="descricao_servico" id="" placeholder="Insira a descrição do serviço aqui mesmo">
+                            <div class="my-4 big_input">
+                                <input class ="" type="text" name="descricao_servico" id="" placeholder="Insira a descrição do serviço aqui mesmo">
                             </div>
-                            <div class="d-flex justify-content-between">
-                                <div class="mx-5">
-                                    <input type="button" value="Desfazer" class="button_undo">
+                            <div class="d-flex justify-content-between div_buttons">
+                                <div class="button_undo mx-5">
+                                    <input type="button" value="Desfazer" class="">
                                 </div>
-                                <div class="mx-5 justify-content-end">
-                                    <input type="button" value="Excluir" class="button_delete">
+                                <div class="button_delete mx-5 justify-content-end">
+                                    <input type="button" value="Excluir" class="">
                                 </div>
                             </div>
                             

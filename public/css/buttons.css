@@ -6,7 +6,7 @@
     background-color: #09A7B1
 }
 
-.button_undo{
+.button_undo input{
 
     width: 150px;
     height: 50px;
@@ -15,7 +15,7 @@
     color: #ffffff;
 }
 
-.button_delete{
+.button_delete input{
 
     width: 150px;
     height: 50px;
