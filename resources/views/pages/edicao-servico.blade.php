@@ -9,11 +9,13 @@
                             <input class="mt-5 mb-3" type="text" name="nome_servico" placeholder="The Bengas">
                         </div>
                         <div>
-                            <div class="d-flex mt-3">
-                                <div class="me-5">
+
+                            
+                            <div class="d-flex mt-3 div_input_edit_service">
+                                <div id = "img_input_edit_service" class="me-5">
                                     <input alt="Enviar imagem"type="image" class = "img_input" style="width: 150px; height: 30px">
                                 </div>
-                                <div class="">
+                                <div id = "select_input_edit_serive" class="">
                                     <select name="" id="">
                                         <option value="">Escolha a categoria</option>
                                         {{-- @foreach ( as )
@@ -22,6 +24,7 @@
                                     </select>
                                 </div>
                             </div>
+
 
                             <div class="my-4 big_input">
                                 <input class ="" type="text" name="descricao_servico" id="" placeholder="Insira a descrição do serviço aqui mesmo">
