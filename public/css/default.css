@@ -34,13 +34,13 @@ input{
 
 }
 
-.big_input input{
+.big_input textarea{
 
     width: 600px;
     height: 200px;
     position: relative;
 }
-.big_input input::placeholder{
+.big_input textarea::placeholder{
 
     position: absolute;
     top: 10px;

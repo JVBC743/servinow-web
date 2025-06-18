@@ -22,7 +22,8 @@ class CreateServicoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'descricao' => 'max:750|required|',
+
         ];
     }
 }

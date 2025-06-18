@@ -47,7 +47,7 @@
                             <input alt="Enviar imagem"type="image" class = "img_input" style="width: 150px; height: 50px">
                         </div>
                         <div>
-                            <textarea type="text" name="descricao" class="my-3 inputs_desc" alt="" placeholder="Adicione aqui a descrição das suas competências"></textarea>
+                            <textarea type="text" name="descricao" class="my-3 inputs_desc" alt="" placeholder="Adicione aqui uma breve descrição das suas competências, seu limite é de 300 caracteres" maxlength="300"></textarea>
                         </div>
                     </div>
                     <div class="my-3 inputs_2">

@@ -25,8 +25,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-5">
-                            <input class ="big_input" type="text" name="descricao_servico" id="" placeholder="Insira a descrição do serviço aqui mesmo">
+                        <div class="mt-5 big_input">
+                            <textarea maxlength="750" class ="" type="text" name="descricao_servico" id="" placeholder="Insira a descrição do serviço aqui mesmo"></textarea>
                         </div>
                     </div>
                     
