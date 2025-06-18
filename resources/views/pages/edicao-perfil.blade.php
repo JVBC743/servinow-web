@@ -46,6 +46,9 @@
                             <p style="font-size: 15px">Anexar imagem</p>
                             <input alt="Enviar imagem"type="image" class = "img_input" style="width: 150px; height: 50px">
                         </div>
+                        <div>
+                            <textarea type="text" name="descricao" class="my-3 inputs_desc" alt="" placeholder="Adicione aqui a descrição das suas competências"></textarea>
+                        </div>
                     </div>
                     <div class="my-3 inputs_2">
                         <input class = "mb-3" type="text" placeholder="Rede social #1" name="rede_social1" value="{{ $editarUsuario->rede_social1 ?? '' }}"><br>

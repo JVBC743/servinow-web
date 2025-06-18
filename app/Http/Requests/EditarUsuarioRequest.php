@@ -25,6 +25,8 @@ class EditarUsuarioRequest extends FormRequest
             'nome' => 'max:50|sometimes|required|string',
             'email' =>'max:80|sometimes|required|string',
             'telefone' => 'max:15|sometimes|required|string',
+            'foto',
+            'descricao' => 'max: 250',
             'area_atuacao' => 'max:40|sometimes|required|string',
             'cpf_cnpj' => 'max:14|sometimes|required|string',
             'rede_social1' => 'max:40|sometimes|nullable|string',

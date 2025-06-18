@@ -9,16 +9,6 @@ Route::view('/dashboard', 'pages.dashboard')->name('dashboard');
 Route::view('/perfil', 'pages.visualizacao-perfil')->name('visualizacao-perfil');
 Route::view('/avaliacoes', 'pages.lista-avaliacao-servicos')->name('lista-avaliacoes');
 
-Route::get('/cadastro-servico', function(){
-    return view('pages/cadastro-servico');
-})->name('cadastro.servico');
-
-Route::get('/edicao-servico', function(){
-    return view('pages/edicao-servico');
-})->name('edicao.servico');
-
-
-
 Route::get('/sobre-nos', function(){
 
     return view('pages/sobre-nos');
@@ -42,7 +32,17 @@ Route::get('/edicao-perfil/{id}', [UsuarioController::class, 'listFormations'])-
 
 
 Route::post('/cadastro-servico', [ServicoController::class , 'store'])->name('cadastro.servico.store');
+
 // Route::put('/cadastro-servico/{id}', [ServicoController::class , 'edit'])->name('cadastro.servico.edit');
+
+Route::get('/cadastro-servico', function(){
+    return view('pages/cadastro-servico');
+})->name('cadastro.servico');
+
+Route::get('/edicao-servico', function(){
+    return view('pages/edicao-servico');
+})->name('edicao.servico');
+
 
 
 Route::get('/', function () {

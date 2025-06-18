@@ -21,9 +21,5 @@ class EloquentServicoRepository implements ServicoRepositoryInterface{
             'descricao' => $servico->desc_servico,
 
         ]);
-
-    }
-
-
-    
+    }    
 }
