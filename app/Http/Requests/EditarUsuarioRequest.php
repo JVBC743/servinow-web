@@ -26,8 +26,8 @@ class EditarUsuarioRequest extends FormRequest
             'email' =>'max:80|sometimes|required|string|email',
             'telefone' => 'max:15|sometimes|required|string',
             'foto' => 'required|image|mimes:png,jpg,jpeg|max:15360',
-            'descricao' => 'max: 300|sometimes|nullable|string  ',
-            'area_atuacao' => 'max:40|sometimes|required|string',
+            'descricao' => 'max:300|sometimes|nullable|string  ',
+            'area_atuacao' => 'sometimes|required|string',
             'cpf_cnpj' => 'max:14|sometimes|required|string',
             'rede_social1' => 'max:40|sometimes|nullable|string',
             'rede_social2' => 'max:40|sometimes|nullable|string',
@@ -46,7 +46,7 @@ class EditarUsuarioRequest extends FormRequest
             'telefone.required' => 'O campo de telefone de usuário é obrigatório',
 
             // 'foto.required' => 'A foto de usuário é obrigatória.', Vou deixar comentado, por enquando.
-            
+
             'foto.image' => 'O arquivo inserido deve ser uma foto em formato PNG, JPG ou JPEG.',
             'foto.mimes' => 'O arquivo inserido deve ser uma foto em formato PNG, JPG ou JPEG.',
             'foto.max' => 'A sua foto não deve possuir exceder de 15 MB de tamanho.',

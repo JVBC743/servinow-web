@@ -8,13 +8,12 @@
                 <div class="d-flex flex-wrap justify-content-between">
                     <div class="">
                         <div class="inputs">
-                            <input class="mt-5 mb-3" type="text" name="nome" placeholder="Insira o título do servico" maxlength="40" required>
-
+                            <input class="mt-5 mb-3" type="text" name="nome" placeholder="Insira o título do servico" maxlength="40" minlength="20" required>
                         </div>
                         <div>
                             <div class="d-flex mt-3">
                                 <div class="me-5">
-                                    <input name = "imagem" alt="Enviar imagem"type="image" class = "img_input" style="width: 150px; height: 30px">
+                                    <input name = "imagem" alt="Enviar imagem"type="image" class = "img_input" style="width: 150px; height: 30px" required >
                                 </div>
                                 <div class="">
                                     <select name="categoria" id="">
@@ -27,7 +26,7 @@
                             </div>
                         </div>
                         <div class="mt-5 big_input">
-                            <textarea maxlength="750" class ="" type="text" name="descricao" id="" placeholder="Insira a descrição do serviço aqui mesmo"></textarea>
+                            <textarea maxlength="750" class ="" type="text" name="descricao" id="" placeholder="Insira a descrição do serviço aqui mesmo" required maxlength="750"></textarea>
                         </div>
                     </div>
                     
@@ -35,7 +34,7 @@
                         <div class="ms-5 d-flex">
                             <div class="text-center fs-5">
                                 <div class="">{{-- procurar saber como referenciar o caminho minio --}}
-                                    <img src="" alt="Foto do usuário na tela de edição de perfil." class="profile_image">
+                                    <img src="" alt="Foto do usuário na tela de edição de perfil." class="profile_image" required>
                                 </div>
                                 <div class="mb-3">
 

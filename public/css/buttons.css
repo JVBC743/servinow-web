@@ -1,9 +1,10 @@
-.button_save{
+.button_save input{
 
     width: 150px;
     height: 50px;
     font-size: 25px;
-    background-color: #09A7B1
+    background-color: #09A7B1;
+    color: #ffffff;
 }
 
 .button_undo input{
