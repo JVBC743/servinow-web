@@ -8,7 +8,8 @@
                 <div class="d-flex flex-wrap justify-content-between">
                     <div class="">
                         <div class="inputs">
-                            <input class="mt-5 mb-3" type="text" name="nome_servico" placeholder="Insira o título do servico">
+                            <input class="mt-5 mb-3" type="text" name="nome" placeholder="Insira o título do servico" maxlength="40" required>
+
                         </div>
                         <div>
                             <div class="d-flex mt-3">
@@ -16,7 +17,7 @@
                                     <input name = "imagem" alt="Enviar imagem"type="image" class = "img_input" style="width: 150px; height: 30px">
                                 </div>
                                 <div class="">
-                                    <select name="" id="">
+                                    <select name="categoria" id="">
                                         <option value="">Escolha a categoria</option>
                                         {{-- @foreach ( as )
                                             
@@ -26,7 +27,7 @@
                             </div>
                         </div>
                         <div class="mt-5 big_input">
-                            <textarea maxlength="750" class ="" type="text" name="descricao_servico" id="" placeholder="Insira a descrição do serviço aqui mesmo"></textarea>
+                            <textarea maxlength="750" class ="" type="text" name="descricao" id="" placeholder="Insira a descrição do serviço aqui mesmo"></textarea>
                         </div>
                     </div>
                     

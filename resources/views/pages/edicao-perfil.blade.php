@@ -28,12 +28,12 @@
                 <div class="d-flex fs-5 flex-wrap me-5">
                     <div class="my-3 mx-5 inputs">
 
-                        <input class = "mb-3" type="text" placeholder="Nome" name="nome" value="{{ $editarUsuario->nome ?? '' }}"><br>
-                        <input class = "mb-3" type="email" placeholder="E-mail" name="email" value="{{ $editarUsuario->email ?? '' }}"><br>
-                        <input class = "mb-3" type="text" placeholder="Telefone" name="telefone" value="{{ $editarUsuario->telefone ?? '' }}"><br>
+                        <input class = "mb-3" type="text" placeholder="Nome" name="nome" value="{{ $editarUsuario->nome ?? '' }}" required><br>
+                        <input class = "mb-3" type="email" placeholder="E-mail" name="email" value="{{ $editarUsuario->email ?? '' }}" required><br>
+                        <input class = "mb-3" type="text" placeholder="Telefone" name="telefone" value="{{ $editarUsuario->telefone ?? '' }}" required><br>
                         {{-- <input class = "mb-3" type="text" placeholder="Área de atuação" name="area_atuacao" value="{{ $editarUsuario->nome_atuacao ?? '' }}"><br> --}}
 
-                        <select name="area_atuacao" id="">
+                        <select name="area_atuacao" id="" required>
                             <option value="">Selecione a sua formação</option>
                             @foreach ($lista as $formacao)
                                 <option value="{{ $formacao['id'] }}" {{$editarUsuario->area_atuacao == $formacao['id'] ? 'selected' : ''}}>
@@ -48,6 +48,7 @@
                         </div>
                         <div>
                             <textarea type="text" name="descricao" class="my-3 inputs_desc" alt="" placeholder="Adicione aqui uma breve descrição das suas competências, seu limite é de 300 caracteres" maxlength="300"></textarea>
+                        
                         </div>
                     </div>
                     <div class="my-3 inputs_2">
