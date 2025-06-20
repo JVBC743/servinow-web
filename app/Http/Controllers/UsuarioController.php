@@ -104,4 +104,10 @@ class UsuarioController extends Controller {
             ],
         ], 201);
     }
+
+    public function destroy(string $id)
+    {
+        
+        
+    }
 }

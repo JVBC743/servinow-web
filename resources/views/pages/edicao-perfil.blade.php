@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Edição do Perfil</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('css/default.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/photos.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/sizes.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/buttons.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/colors.css') }}">
-</head>
-<body id="body">
+
+<x-header :title="'Editar Perfilzz'" />
 
     <h1 class="ms-5 mt-4">Configuração de Conta</h1>
 
@@ -18,6 +7,7 @@
     {{-- 359x727px --}}
     {{-- 330x727px --}}
     {{-- RESPONSIVIDADE VIA MEDIA QUERIES --}}
+    {{-- VERIFICAR O PORQUE A FONTE NÃO PEGA VIA COMPONENTE. --}}
 
     @if($editarUsuario)
         <form action="{{ route('editar.usuario', $editarUsuario->id) }}" method="post">
@@ -66,9 +56,7 @@
                         <div class="photo_name fs-3">
                             {{ $nome_foto = "teste" }} PROCURAR CAMINHO AQUI
                         </div>
-                        <div class="mt-4 button_delete">
-                            <input type="submit" value="Excluir" class="">
-                        </div>
+                        
                         <div class="mt-4 button_save">
                             <input type="submit" value="Salvar" class="">
                         </div>
@@ -76,9 +64,14 @@
                 </div>
             </div>
         </form>
+        <form action="" method="post">
+            @csrf
+            @method('DELETE')
+            <div class="mt-4 button_delete">
+                <button class="">Excluir</button>
+            </div>
+        </form>
     @else
         <h1>Usuário não encontrado, por favor, volte.</h1>
     @endif
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
-</body>
-</html>
+<x-footer />

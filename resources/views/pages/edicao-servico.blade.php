@@ -10,7 +10,6 @@
                         </div>
                         <div>
 
-                            
                             <div class="d-flex mt-3 div_input_edit_service">
                                 <div id = "img_input_edit_service" class="me-5">
                                     <input alt="Enviar imagem"type="image" class = "img_input" style="width: 150px; height: 30px">
@@ -25,7 +24,6 @@
                                 </div>
                             </div>
 
-
                             <div class="my-4 big_input">
                                 <input class ="" type="text" name="descricao_servico" id="" placeholder="Insira a descrição do serviço aqui mesmo">
                             </div>
@@ -34,13 +32,11 @@
                                     <input type="button" value="Desfazer" class="">
                                 </div>
                                 <div class="button_delete mx-5 justify-content-end">
-                                    <input type="button" value="Excluir" class="">
+                                    <button class="">Excluir</button>
                                 </div>
                             </div>
-                            
                         </div>
                     </div>
-                    
                     <div class = "justify-content-end mt-5">
                         <div class="ms-5 d-flex">
                             <div class="text-center fs-5">
@@ -59,15 +55,12 @@
                                 <div class="mt-5">
                                     <input type="submit" value="Salvar" class="btn btn-primary button_save">
                                 </div>
-
                             </div>
                         </div>
                     </div>
-                    
                 </div>
             </div>
         </form>
     </div>
-
 
 <x-footer />

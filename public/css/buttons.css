@@ -16,11 +16,13 @@
     color: #ffffff;
 }
 
-.button_delete input{
+.button_delete button{
 
     width: 150px;
     height: 50px;
     font-size: 25px;
     background-color: #DA0004;
     color: #ffffff;
+    border-style: none;
+    border-radius: 10px;
 }
