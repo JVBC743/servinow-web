@@ -55,7 +55,7 @@ class UsuarioController extends Controller {
 
         $editarUsuario = Usuario::find($id);
 
-        if(!$usr){
+        if(!$editarUsuario){
             return redirect()->back()->with('error', 'Usuário não encontrado.');
         }
         $obj_formacao = Formacao::find($editarUsuario->area_atuacao); //Você só tem que arrumar um jeito de implementar isso sem o método "show".
@@ -63,6 +63,46 @@ class UsuarioController extends Controller {
 
         return view("pages.edicao-perfil", compact('editarUsuario'));
     }
+
+    public function adminShowUserAccount($id, ListarFormacoesUseCase $listaFormacoes, )
+    {
+
+        $editarUsuario = Usuario::find($id);
+        $lista = $listaFormacoes->execute();
+
+
+        if(!$editarUsuario){
+            return redirect()->back()->with('error', 'Usuário não encontrado.');
+        }
+        $obj_formacao = Formacao::find($editarUsuario->area_atuacao); //Você só tem que arrumar um jeito de implementar isso sem o método "show".
+        $editarUsuario->area_atuacao = $obj_formacao->formacao;
+
+        return view("pages.admin-usuario-edit", compact('lista', 'editarUsuario'));
+
+    }
+
+    public function adminUsuarioEdit(EditarUsuarioRequest $request, EditarUsuarioUseCase $useCase, int $id){
+
+        $usr = Usuario::find($id);
+        if(!$usr){
+            return redirect()->back()->with('error', 'Usuário não encontrado.');
+        }
+
+        $lista = (new ListarFormacoesUseCase(app(UsrRepo::class)))->execute();
+
+        $data = $request->validated();
+
+        $editarUsuario = $useCase->execute($id,$data);
+
+        if(!$editarUsuario){
+
+            return redirect()->back()->with('error', 'Erro ao carregar dados do usuário para edição.');
+        }
+
+        return view('pages.admin-usuario-edit', compact('editarUsuario', 'lista'));
+
+    }
+
 
     public function edit(EditarUsuarioRequest $request, EditarUsuarioUseCase $useCase,  int $id){
 

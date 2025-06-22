@@ -25,7 +25,7 @@
                         <div class="d-flex justify-content-between">
                             
                             <div class="ms-5">
-                                <a href="{{ route('admin.usuario.edit') }}">
+                                <a href="{{ route('admin.mostrar.edicao', $usr['id']) }}">
                                     <img class="list_icons" src="{{ asset('images/edit.png') }}" alt="">
                                 </a>
                             </div>

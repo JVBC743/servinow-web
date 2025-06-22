@@ -11,7 +11,8 @@ class AdminUsuarioEditUserCase{
     )
     {}
 
-    public function execute(){
-        
+    public function execute(int $id, array $data){
+        $usuario = $this->usrRepo->editarUsuario($id, $data);
+        return $usuario;
     }
 }

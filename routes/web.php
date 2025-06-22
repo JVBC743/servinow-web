@@ -33,8 +33,7 @@ Route::get('/edicao-perfil/{id}', [UsuarioController::class, 'listFormations'])-
 Route::delete('/edicao-perfil/{id}', [UsuarioController::class, 'destroy'])->name('excluir.conta');
 
 
-
-Route::post('/cadastro-servico', [ServicoController::class , 'store'])->name('cadastro.servico.store');
+// Route::post('/cadastro-servico', [ServicoController::class , 'store'])->name('cadastro.servico.store');
 
 // Route::put('/cadastro-servico/{id}', [ServicoController::class , 'edit'])->name('cadastro.servico.edit');
 
@@ -48,10 +47,11 @@ Route::get('/edicao-servico', function(){
 
 
 
-
-Route::get('/admin-edicao-perfil/', [UsuarioController::class, 'AdminUserEdit'])->name('admin.usuario.edit');
+Route::get('/admin-edicao-perfil/{id}', [UsuarioController::class, 'adminShowUserAccount'])->name('admin.mostrar.edicao');//Mudar essa rota quando for implementado o login.
 
 Route::get('/admin-lista-usuarios', [UsuarioController::class, 'index'])->name('admin.lista.usuarios');
+
+Route::get('/admin-editar-perfil/{id}', [UsuarioController::class, 'adminUsuarioEdit'])->name('admin.usuario.edit');
 
 Route::delete('/admin-excluir-conta/{id}', [UsuarioController::class, 'adminUserDestroy'])->name('admin.excluir.conta');
 
