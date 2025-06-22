@@ -5,16 +5,13 @@ use App\Model\Usuario;
 use App\Model\Formacao;
 use App\Domain\Repositories\UsuarioRepositoryInterface as UsrRepo;
 
-class EditarUsuarioUseCase{
+class AdminUsuarioEditUserCase{
     public function __construct(
         private UsrRepo $usrRepo
     )
     {}
-    public function execute(int $id, array $data){
 
-        $retorno = $this->usrRepo->editarUsuario($id, $data);
-        $usuario = $retorno['usuario'];// obj do Usuario
-
-        return $usuario;
+    public function execute(){
+        
     }
 }

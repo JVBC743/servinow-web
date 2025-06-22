@@ -3,19 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Application\DTOs\CreateUserDTO;
+use App\Application\DTOs\RegisterUsuarioDTO;
+
+use Illuminate\Http\JsonResponse;
+
 use App\Application\UseCases\CreateUserUseCase;
-use Illuminate\Http\Request;
 use App\Application\UseCases\ListarUsuarioUseCase;
 use App\Application\UseCases\EditarUsuarioUseCase;
 use App\Application\UseCases\ListarFormacoesUseCase;
+use App\Application\UseCases\RegisterUsuarioUseCase;
+use App\Application\UseCases\AdminUsuarioDeleteUseCase;
+
 use App\Models\Usuario;
 use App\Models\Formacao;
-use App\Http\Requests\EditarUsuarioRequest;
+
 use App\Domain\Repositories\UsuarioRepositoryInterface as UsrRepo;
-use App\Application\DTOs\RegisterUsuarioDTO;
-use App\Application\UseCases\RegisterUsuarioUseCase;
+
 use App\Http\Requests\RegisterUsuarioRequest;
-use Illuminate\Http\JsonResponse;
+use App\Http\Requests\EditarUsuarioRequest;
+use Illuminate\Http\Request;
+
 
 
 class UsuarioController extends Controller {
@@ -28,7 +35,7 @@ class UsuarioController extends Controller {
             $usuario['nome_atuacao'] = $formacao ? $formacao->formacao : 'Não definida';
         }
         unset($usuario);
-        return view('pages.lista-usuarios', compact('lista'));
+        return view('pages.admin-lista-usuarios', compact('lista'));
     }
 
     public function listFormations(ListarFormacoesUseCase $listaFormacoes, $id){
@@ -95,19 +102,29 @@ class UsuarioController extends Controller {
         return response()->json([
             'message' => 'Usuário criado com sucesso',
             'usuario' => [
-                'id' => $usuario->id,
-                'nome' => $usuario->nome,
-                'email' => $usuario->email,
-                'telefone' => $usuario->telefone,
-                'cpf_cnpj' => $usuario->cpf_cnpj,
-                'area_atuacao' => $usuario->area_atuacao->id,
+            'id' => $usuario->id,
+            'nome' => $usuario->nome,
+            'email' => $usuario->email,
+            'telefone' => $usuario->telefone,
+            'cpf_cnpj' => $usuario->cpf_cnpj,
+            'area_atuacao' => $usuario->area_atuacao->id,
             ],
         ], 201);
     }
 
-    public function destroy(string $id)
+    public function destroy($id)
     {
         
-        
+    }
+
+    public function AdminUserEdit($id)
+    {
+
+    }
+    public function adminUserDestroy(int $id, AdminUsuarioDeleteUseCase $excluir){
+
+        $exclusao = $excluir->execute($id);
+        return redirect()->route('admin.lista.usuarios');
+
     }
 }

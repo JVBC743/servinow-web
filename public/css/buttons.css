@@ -26,3 +26,10 @@
     border-style: none;
     border-radius: 10px;
 }
+
+.delete_icon_button{
+
+    background-color: transparent;
+    border-style: none;
+
+}

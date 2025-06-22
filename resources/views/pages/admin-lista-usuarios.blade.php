@@ -23,15 +23,22 @@
                     {{-- <td>{{ $usr['nome_atuacao'] }} </td> --}}
                     <td>
                         <div class="d-flex justify-content-between">
+                            
                             <div class="ms-5">
-                                <a href="">
+                                <a href="{{ route('admin.usuario.edit') }}">
                                     <img class="list_icons" src="{{ asset('images/edit.png') }}" alt="">
                                 </a>
                             </div>
+
+
                             <div class="me-5 justify-content-end">
-                                <a href="">
-                                    <img class="list_icons" src="{{ asset('images/delete.png') }}" alt="">
-                                </a>
+                                <form action="{{ route('admin.excluir.conta', $usr['id']) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button name="admin_excluir_usuario" type="submit" class="delete_icon_button">
+                                        <img class="list_icons" src="{{ asset('images/delete.png') }}" alt="Excluir conta">
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </td>

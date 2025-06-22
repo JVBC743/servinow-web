@@ -64,13 +64,13 @@
                 </div>
             </div>
         </form>
-        <form action="" method="post">
+        {{-- <form action="" method="post">
             @csrf
             @method('DELETE')
             <div class="mt-4 button_delete">
                 <button class="">Excluir</button>
             </div>
-        </form>
+        </form> --}}
     @else
         <h1>Usuário não encontrado, por favor, volte.</h1>
     @endif

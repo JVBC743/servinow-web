@@ -5,12 +5,38 @@ namespace App\Infrastructure\Persistence;
 use App\Domain\Entities\Usuario as EntityUsuario;
 use App\Domain\Repositories\UsuarioRepositoryInterface;
 use App\Models\Usuario as ModelUsuario;
-use App\Models\Formacao;
+use App\Models\Formacao as ModelFormacao;
+use App\Domain\Entities\Formacao as EntityFormacao;
 
 class EloquentUsuarioRepository implements UsuarioRepositoryInterface {
-    public function findById(int $id): ?EntityUsuario {
-        $model = EloquentUsuario::find($id);
-        return $model ? new EntityUsuario($model->name, $model->email) : null;
+
+    public function findById(int $id): ?EntityUsuario
+    {
+        $model = ModelUsuario::with('formacao')->find($id);
+        if ($model) {
+            $areaAtuacao = $model->formacao
+                ? new EntityFormacao($model->formacao->id, $model->formacao->formacao)
+                : new EntityFormacao(0, 'Sem formação');
+            return new EntityUsuario(
+                $model->id,
+                $model->nome,
+                $model->senha,
+                $model->email,
+                $model->telefone,
+                $model->cpf_cnpj,
+                $areaAtuacao,
+                $model->rede_social1 ?? '',
+                $model->rede_social2 ?? '',
+                $model->rede_social3 ?? '',
+                $model->rede_social4 ?? '',
+            );
+        }
+        return null; //Encontrar uma forma mais fácil de passar a área de atuação
+    }
+
+    public function delete(int $id): bool
+    {
+        return (bool) ModelUsuario::destroy($id);
     }
 
     public function save(EntityUsuario $usuario): void {
@@ -41,7 +67,7 @@ class EloquentUsuarioRepository implements UsuarioRepositoryInterface {
     public function editarUsuario(int $id, array $data){
 
         $usuario = ModelUsuario::find($id);
-        $atuacao = Formacao::find($usuario->area_atuacao); //Retorna o id da área de atuação do prestador
+        $atuacao = ModelFormacao::find($usuario->area_atuacao); //Retorna o id da área de atuação do prestador
 
         if($usuario && $usuario->update($data)){
 
@@ -56,7 +82,7 @@ class EloquentUsuarioRepository implements UsuarioRepositoryInterface {
 
     public function listarFormacoes(){
 
-        return Formacao::all()->map(fn($formacoes) => [
+        return ModelFormacao::all()->map(fn($formacoes) => [
             'id' => $formacoes->id,
             'formacao' => $formacoes->formacao
 
