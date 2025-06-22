@@ -50,9 +50,9 @@ Route::get('/edicao-servico', function(){
 
 Route::get('/admin-edicao-perfil/{id}', [UsuarioController::class, 'adminShowUserAccount'])->name('admin.mostrar.edicao');//Mudar essa rota quando for implementado o login.
 
-Route::get('/admin-lista-usuarios', [UsuarioController::class, 'index'])->name('admin.lista.usuarios');
+Route::put('/admin-editar-perfil/{id}', [UsuarioController::class, 'adminUsuarioEdit'])->name('admin.usuario.edit');
 
-Route::get('/admin-editar-perfil/{id}', [UsuarioController::class, 'adminUsuarioEdit'])->name('admin.usuario.edit');
+Route::get('/admin-lista-usuarios', [UsuarioController::class, 'index'])->name('admin.lista.usuarios');
 
 Route::delete('/admin-excluir-conta/{id}', [UsuarioController::class, 'adminUserDestroy'])->name('admin.excluir.conta');
 

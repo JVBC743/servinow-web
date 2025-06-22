@@ -13,6 +13,7 @@ use App\Application\UseCases\EditarUsuarioUseCase;
 use App\Application\UseCases\ListarFormacoesUseCase;
 use App\Application\UseCases\RegisterUsuarioUseCase;
 use App\Application\UseCases\AdminUsuarioDeleteUseCase;
+use App\Application\UseCases\AdminUsuarioEditUseCase;
 
 use App\Models\Usuario;
 use App\Models\Formacao;
@@ -81,7 +82,7 @@ class UsuarioController extends Controller {
 
     }
 
-    public function adminUsuarioEdit(EditarUsuarioRequest $request, EditarUsuarioUseCase $useCase, int $id){
+    public function adminUsuarioEdit(EditarUsuarioRequest $request, AdminUsuarioEditUseCase $useCase, int $id){
 
         $usr = Usuario::find($id);
         if(!$usr){
@@ -99,7 +100,7 @@ class UsuarioController extends Controller {
             return redirect()->back()->with('error', 'Erro ao carregar dados do usuário para edição.');
         }
 
-        return view('pages.admin-usuario-edit', compact('editarUsuario', 'lista'));
+        return redirect()->route('admin.lista.usuarios')->with('success', 'Usuário atualizado com sucesso!');
 
     }
 
@@ -157,10 +158,6 @@ class UsuarioController extends Controller {
         
     }
 
-    public function AdminUserEdit($id)
-    {
-
-    }
     public function adminUserDestroy(int $id, AdminUsuarioDeleteUseCase $excluir){
 
         $exclusao = $excluir->execute($id);

@@ -1,6 +1,12 @@
 
 <x-header :title="'Editar Perfil'" />
 
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
     <h1 class="ms-5 mt-4">Configuração de Conta</h1>
 
     {{-- 670x727px --}}

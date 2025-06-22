@@ -5,7 +5,7 @@ use App\Model\Usuario;
 use App\Model\Formacao;
 use App\Domain\Repositories\UsuarioRepositoryInterface as UsrRepo;
 
-class AdminUsuarioEditUserCase{
+class AdminUsuarioEditUseCase{
     public function __construct(
         private UsrRepo $usrRepo
     )

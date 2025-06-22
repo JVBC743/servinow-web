@@ -25,7 +25,7 @@ class EditarUsuarioRequest extends FormRequest
             'nome' => 'max:50|sometimes|required|string',
             'email' =>'max:80|sometimes|required|string|email',
             'telefone' => 'max:15|sometimes|required|string',
-            // 'foto' => 'required|image|mimes:png,jpg,jpeg|max:15360',
+            'foto' => 'nullable|image|mimes:png,jpg,jpeg|max:15360',
             'descricao' => 'max:300|sometimes|nullable|string  ',
             'area_atuacao' => 'sometimes|required|string',
             'cpf_cnpj' => 'max:14|sometimes|required|string',

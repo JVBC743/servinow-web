@@ -1,6 +1,12 @@
 
 <x-header :title="'Editar Perfil'" />
 
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
     <h1 class="ms-5 mt-4">Configuração de Conta</h1>
 
     {{-- 670x727px --}}
@@ -10,7 +16,7 @@
     {{-- VERIFICAR O PORQUE A FONTE NÃO PEGA VIA COMPONENTE. --}}
 
     @if($editarUsuario)
-        <form action="{{ route('admin.editar.usuario', $editarUsuario->id) }}" method="post">
+        <form action="{{ route('admin.usuario.edit', $editarUsuario->id) }}" method="post">
             @csrf
             @method('PUT')
             <div class="d-flex flex-wrap justify-content-between">
@@ -33,7 +39,7 @@
 
                         <div>
                             <p style="font-size: 15px">Anexar imagem</p>
-                            <input name="foto" alt="Enviar imagem"type="image" class = "img_input" style="width: 150px; height: 50px">
+                            <input name="foto" alt="Enviar imagem" type="file" class="img_input" style="width: 150px; height: 50px">
                         </div>
                         <div>
                             <textarea type="text" name="descricao" class="my-3 inputs_desc" alt="" placeholder="Adicione aqui uma breve descrição das suas competências, seu limite é de 300 caracteres" maxlength="300"></textarea>
