@@ -3,7 +3,7 @@
 
     <h1 class="text-center emphasis_text my-3">Cadastrar serviço</h1>
     <div class="">
-        <form action="{{ route('cadastro.servico.store') }}" method="post">
+        <form action="{{ route('cadastro.servico.create') }}" method="post">
             <div class="mx-5 mb-5">
                 <div class="d-flex flex-wrap justify-content-between">
                     <div class="">

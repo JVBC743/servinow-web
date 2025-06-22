@@ -25,6 +25,7 @@ class Usuario extends Authenticatable
         'email',
         'cpf_cnpj',
         'area_atuacao',
+        'descricao',
         'caminho_img',
         'rede_social1',
         'rede_social2',

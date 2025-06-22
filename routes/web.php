@@ -34,7 +34,7 @@ Route::get('/edicao-perfil/{id}', [UsuarioController::class, 'listFormations'])-
 Route::delete('/edicao-perfil/{id}', [UsuarioController::class, 'destroy'])->name('excluir.conta');
 
 
-// Route::post('/cadastro-servico', [ServicoController::class , 'store'])->name('cadastro.servico.store');
+Route::post('/cadastro-servico', [ServicoController::class , 'create'])->name('cadastro.servico.create');
 
 // Route::put('/cadastro-servico/{id}', [ServicoController::class , 'edit'])->name('cadastro.servico.edit');
 

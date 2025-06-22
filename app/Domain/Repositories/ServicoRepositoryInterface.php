@@ -7,5 +7,7 @@ use App\Domain\Entities\Servico;
 interface ServicoRepositoryInterface{
 
     public function findById(int $id): ?Servico;
+    public function save(Servico $servico): void;
+
 
 }
