@@ -26,7 +26,8 @@ Route::get('/termos', function(){
 
 
 Route::get('/edicao-perfil/{id}', [UsuarioController::class, 'show'])->name('mostrar.edicao');//Mudar essa rota quando for implementado o login.
-Route::put('/edicao-perfil/{id}', [UsuarioController::class ,'edit'])->name('editar.usuario');
+
+Route::put('/editar-perfil/{id}', [UsuarioController::class ,'edit'])->name('editar.usuario');
 
 
 Route::get('/edicao-perfil/{id}', [UsuarioController::class, 'listFormations'])->name('listar.forrmacoes');
