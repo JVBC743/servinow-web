@@ -27,7 +27,7 @@ class EloquentUserRepository implements UserRepositoryInterface
             'area_atuacao' => $user->area_atuacao->id
         ]);
 
-        $formacao = new Formacao($model->formacao->id, $model->formacao->formacao);
+        $formacao = new Formacao($model->formacao?->id, $model->formacao?->formacao);
         return $model ? new Usuario($model->id, $model->nome, "", $model->telefone, $model->email, $model->cpf_cnpj, $formacao) : null;
     }
 
