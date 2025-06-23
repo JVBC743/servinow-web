@@ -14,7 +14,7 @@ class EloquentServicoRepository implements ServicoRepositoryInterface
     {
         $models = EloquentServico::with('categoria')->get();
 
-        return $models->map(function($model) {
+        return $models->map(function ($model) {
             $categoria = new Categoria(
                 id: $model->categoria->id,
                 categoria: $model->categoria->categoria
@@ -25,11 +25,12 @@ class EloquentServicoRepository implements ServicoRepositoryInterface
                 nome_servico: $model->nome_servico,
                 categoria: $categoria,
                 desc_servico: $model->desc_servico,
-                caminho_img: $model->caminho_img
+                caminho_img: $model->caminho_img,
+                usuario_id: $model->user->id,
             );
         })->all();
     }
-    public function save(Servico $servico): Servico
+    public function save(Servico $servico): ?Servico
     {
         $model = EloquentServico::create([
             'nome_servico' => $servico->nome_servico,
@@ -39,6 +40,31 @@ class EloquentServicoRepository implements ServicoRepositoryInterface
         ]);
 
         $categoria = new Categoria($model->categoria?->id, $model->categoria?->categoria);
-        return $model ? new Servico($model->id, $model->nome_servico, $categoria, $model->desc_servico, $model->caminho_img) : null;
+        return $model ? new Servico($model->id, $model->nome_servico, $categoria, $model->desc_servico, $model->caminho_img, $model->user->id) : null;
+    }
+    public function findServicoByNomeAndUser(int $idUser, string $nomeServico): ?Servico
+    {
+        $model = EloquentServico::where('usuario_id', $idUser)
+            ->whereRaw('LOWER(nome_servico) = ?', [strtolower($nomeServico)])
+            ->with('categoria')
+            ->first();
+
+        if (!$model) {
+            return null;
+        }
+
+        $categoria = new Categoria(
+            id: $model->categoria->id,
+            categoria: $model->categoria->categoria
+        );
+
+        return new Servico(
+            id: $model->id,
+            nome_servico: $model->nome_servico,
+            categoria: $categoria,
+            desc_servico: $model->desc_servico,
+            caminho_img: $model->caminho_img,
+            usuario_id: $model->user->id,
+        );
     }
 }
