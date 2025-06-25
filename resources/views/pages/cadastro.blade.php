@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Seu CSS -->
-    <link href="{{ asset('css/fonts/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
     <div class="container-principal">
@@ -18,68 +16,94 @@
             </div>
             <div class="formulario-area">
                 <h1>Tela de Cadastro</h1>
-                <form action="{{-- {{ route('sua.rota.de.cadastro') }} --}}" method="POST">
-                    @csrf <div class="linha-input">
+
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                @if (session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
+
+                <form action="{{ route('cadastro.store') }}" method="POST">
+                    @csrf
+                    <div class="linha-input">
                         <div class="input-grupo">
                             <label for="nome">Nome*</label>
-                            <input type="text" id="nome" name="nome" required>
+                            <input type="text" id="nome" name="name" value="{{ old('name') }}" required>
+                            @error('name')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                         <div class="input-grupo">
                             <label for="cpf">CPF*</label>
-                            <input type="text" id="cpf" name="cpf" required>
+                            <input type="text" id="cpf" name="cpf" value="{{ old('cpf') }}" required>
+                            @error('cpf')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                         <div class="input-grupo">
                             <label for="data_nascimento">Data de nascimento*</label>
-                            <input type="date" id="data_nascimento" name="data_nascimento" required>
+                            <input type="date" id="data_nascimento" name="data_nascimento" value="{{ old('data_nascimento') }}" required>
+                            @error('data_nascimento')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                     </div>
 
                     <div class="linha-input">
                         <div class="input-grupo input-email">
                             <label for="email">E-mail*</label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" name="email" value="{{ old('email') }}" required>
+                             @error('email')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                         <div class="input-grupo">
                             <label for="celular">Número de celular*</label>
-                            <input type="tel" id="celular" name="celular" required>
+                            <input type="tel" id="celular" name="celular" value="{{ old('celular') }}" required>
+                             @error('celular')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                         <div class="input-grupo">
                             <label for="cep">CEP*</label>
-                            <input type="text" id="cep" name="cep" required>
+                            <input type="text" id="cep" name="cep" value="{{ old('cep') }}" required>
+                            @error('cep')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                     </div>
 
                     <div class="linha-input">
                         <div class="input-grupo input-logradouro">
                             <label for="logradouro">Logradouro*</label>
-                            <input type="text" id="logradouro" name="logradouro" required>
+                            <input type="text" id="logradouro" name="logradouro" value="{{ old('logradouro') }}" required>
+                            @error('logradouro')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                         <div class="input-grupo input-numero">
                             <label for="numero">Número*</label>
-                            <input type="text" id="numero" name="numero" required>
+                            <input type="text" id="numero" name="numero" value="{{ old('numero') }}" required>
+                            @error('numero')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                         <div class="input-grupo input-complemento">
                             <label for="complemento">Complemento</label>
-                            <input type="text" id="complemento" name="complemento">
+                            <input type="text" id="complemento" name="complemento" value="{{ old('complemento') }}">
+                            @error('complemento')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                          <div class="input-grupo input-bairro">
                             <label for="bairro">Bairro*</label>
-                            <input type="text" id="bairro" name="bairro" required>
+                            <input type="text" id="bairro" name="bairro" value="{{ old('bairro') }}" required>
+                            @error('bairro')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                     </div>
 
                     <div class="linha-input">
                         <div class="input-grupo input-cidade">
                             <label for="cidade">Cidade*</label>
-                            <input type="text" id="cidade" name="cidade" required>
+                            <input type="text" id="cidade" name="cidade" value="{{ old('cidade') }}" required>
+                            @error('cidade')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                         <div class="input-grupo input-uf">
                             <label for="uf">UF*</label>
-                            <input type="text" id="uf" name="uf" maxlength="2" required>
+                            <input type="text" id="uf" name="uf" maxlength="2" value="{{ old('uf') }}" required>
+                             @error('uf')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                         <div class="input-grupo">
                             <label for="senha">Senha*</label>
                             <input type="password" id="senha" name="password" required>
+                            @error('password')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                         <div class="input-grupo">
                             <label for="repetir_senha">Repetir senha*</label>
