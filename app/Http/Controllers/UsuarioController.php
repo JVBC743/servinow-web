@@ -16,6 +16,7 @@ use App\Application\DTOs\RegisterUsuarioDTO;
 use App\Application\UseCases\RegisterUsuarioUseCase;
 use App\Http\Requests\RegisterUsuarioRequest;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Storage;
 
 class UsuarioController extends Controller {
 
@@ -102,5 +103,21 @@ class UsuarioController extends Controller {
                 'area_atuacao' => $usuario->area_atuacao->id,
             ],
         ], 201);
+    }
+
+    public function showMinioTest(){
+        $error = session('error');
+        $success = session('success');
+        // dd(Storage::disk('minio')->exists('algum-arquivo.txt'));
+        return view('view-minio', compact('error', 'success'));
+    }
+    public function testeMinio(Request $request){
+        if ($request->hasFile('arquivo')){
+            $file = $request->file('arquivo');
+
+            $path = Storage::disk('minio')->put('uploads', $file);
+            return redirect()->back()->with('success', 'O arquivo foi armazenado com sucesso.');
+        }
+        return redirect()->back()->with('error', 'houve alguma falha.');
     }
 }
