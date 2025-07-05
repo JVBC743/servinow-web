@@ -35,8 +35,8 @@
                         </div>
 
                         <div class="d-flex justify-content-center gap-3">
-                            <a href="" class="btn btn-cadastrar">Cadastrar</a>
-                            <a href="" class="btn btn-entrar">Entrar</a>
+                            <a href="{{ route('cadastro.form') }}" class="btn btn-cadastrar">Cadastrar</a>
+                            <a href="{{ route('dashboard') }}" class="btn btn-entrar">Entrar</a>
                         </div>
                     </form>
                 </div>
