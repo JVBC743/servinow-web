@@ -3,18 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Application\DTOs\CreateUserDTO;
+use App\Application\DTOs\RegisterUsuarioDTO;
+
+use Illuminate\Http\JsonResponse;
+
 use App\Application\UseCases\CreateUserUseCase;
-use Illuminate\Http\Request;
 use App\Application\UseCases\ListarUsuarioUseCase;
 use App\Application\UseCases\EditarUsuarioUseCase;
 use App\Application\UseCases\ListarFormacoesUseCase;
+use App\Application\UseCases\RegisterUsuarioUseCase;
+use App\Application\UseCases\AdminUsuarioDeleteUseCase;
+use App\Application\UseCases\AdminUsuarioEditUseCase;
+
 use App\Models\Usuario;
 use App\Models\Formacao;
-use App\Http\Requests\EditarUsuarioRequest;
+
 use App\Domain\Repositories\UsuarioRepositoryInterface as UsrRepo;
-use App\Application\DTOs\RegisterUsuarioDTO;
-use App\Application\UseCases\RegisterUsuarioUseCase;
+
 use App\Http\Requests\RegisterUsuarioRequest;
+use App\Http\Requests\EditarUsuarioRequest;
+use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
 
@@ -28,7 +36,7 @@ class UsuarioController extends Controller {
             $usuario['nome_atuacao'] = $formacao ? $formacao->formacao : 'Não definida';
         }
         unset($usuario);
-        return view('pages.lista-usuarios', compact('lista'));
+        return view('pages.admin-lista-usuarios', compact('lista'));
     }
 
     public function listFormations(ListarFormacoesUseCase $listaFormacoes, $id){
@@ -48,7 +56,7 @@ class UsuarioController extends Controller {
 
         $editarUsuario = Usuario::find($id);
 
-        if(!$usr){
+        if(!$editarUsuario){
             return redirect()->back()->with('error', 'Usuário não encontrado.');
         }
         $obj_formacao = Formacao::find($editarUsuario->area_atuacao); //Você só tem que arrumar um jeito de implementar isso sem o método "show".
@@ -56,6 +64,46 @@ class UsuarioController extends Controller {
 
         return view("pages.edicao-perfil", compact('editarUsuario'));
     }
+
+    public function adminShowUserAccount($id, ListarFormacoesUseCase $listaFormacoes, )
+    {
+
+        $editarUsuario = Usuario::find($id);
+        $lista = $listaFormacoes->execute();
+
+
+        if(!$editarUsuario){
+            return redirect()->back()->with('error', 'Usuário não encontrado.');
+        }
+        $obj_formacao = Formacao::find($editarUsuario->area_atuacao); //Você só tem que arrumar um jeito de implementar isso sem o método "show".
+        $editarUsuario->area_atuacao = $obj_formacao->formacao;
+
+        return view("pages.admin-usuario-edit", compact('lista', 'editarUsuario'));
+
+    }
+
+    public function adminUsuarioEdit(EditarUsuarioRequest $request, AdminUsuarioEditUseCase $useCase, int $id){
+
+        $usr = Usuario::find($id);
+        if(!$usr){
+            return redirect()->back()->with('error', 'Usuário não encontrado.');
+        }
+
+        $lista = (new ListarFormacoesUseCase(app(UsrRepo::class)))->execute();
+
+        $data = $request->validated();
+
+        $editarUsuario = $useCase->execute($id,$data);
+
+        if(!$editarUsuario){
+
+            return redirect()->back()->with('error', 'Erro ao carregar dados do usuário para edição.');
+        }
+
+        return redirect()->route('admin.lista.usuarios')->with('success', 'Usuário atualizado com sucesso!');
+
+    }
+
 
     public function edit(EditarUsuarioRequest $request, EditarUsuarioUseCase $useCase,  int $id){
 
@@ -95,15 +143,25 @@ class UsuarioController extends Controller {
         return response()->json([
             'message' => 'Usuário criado com sucesso',
             'usuario' => [
-                'id' => $usuario->id,
-                'nome' => $usuario->nome,
-                'email' => $usuario->email,
-                'telefone' => $usuario->telefone,
-                'cpf_cnpj' => $usuario->cpf_cnpj,
-                'area_atuacao' => $usuario->area_atuacao->id,
+            'id' => $usuario->id,
+            'nome' => $usuario->nome,
+            'email' => $usuario->email,
+            'telefone' => $usuario->telefone,
+            'cpf_cnpj' => $usuario->cpf_cnpj,
+            'area_atuacao' => $usuario->area_atuacao->id,
             ],
         ], 201);
     }
+
+    public function destroy($id)
+    {
+        
+    }
+
+    public function adminUserDestroy(int $id, AdminUsuarioDeleteUseCase $excluir){
+
+        $exclusao = $excluir->execute($id);
+        return redirect()->route('admin.lista.usuarios');
 
     public function showMinioTest(){
         $error = session('error');

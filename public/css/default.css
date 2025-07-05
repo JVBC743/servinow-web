@@ -33,3 +33,26 @@ input{
     border-width: 0px;
 
 }
+
+.big_input textarea{
+
+    width: 600px;
+    height: 200px;
+    position: relative;
+}
+.big_input textarea::placeholder{
+
+    position: absolute;
+    top: 10px;
+    left: 10px;
+
+}
+.inputs_desc::placeholder{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.inputs_desc{
+    overflow-y: auto;
+}

@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Domain\Entities;
+namespace App\Application\DTOs;
 
-class Servico {
+class CriarServicoDTO {
     public function __construct(
         public int $id,
         public string $nome_servico,
-        public Categoria $categoria,
+        public $categoria,
         public string $desc_servico,
         public string $caminho_img,
-        public int $usuario_id,
     ) {}
 }
-
