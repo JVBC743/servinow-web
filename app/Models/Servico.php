@@ -14,10 +14,15 @@ class Servico extends Model
         'categoria',
         'desc_servico',
         'caminho_img',
+        'usuario_id',
     ];
 
     public function categoria()
     {
         return $this->belongsTo(Categoria::class, 'categoria');
+    }
+
+    public function user(){
+        return $this->hasOne(Usuario::class, 'usuario_id');
     }
 }

@@ -21,10 +21,7 @@ Route::get('/termos', function(){
 
 })->name('termos');
 
-
-
-
-
+Route::get('/lista', [UsuarioController::class, 'index'])->name('lista');
 Route::get('/edicao-perfil/{id}', [UsuarioController::class, 'show'])->name('mostrar.edicao');//Mudar essa rota quando for implementado o login.
 
 Route::put('/editar-perfil/{id}', [UsuarioController::class ,'edit'])->name('editar.usuario');
@@ -47,7 +44,6 @@ Route::get('/edicao-servico', function(){
 })->name('edicao.servico');
 
 
-
 Route::get('/admin-edicao-perfil/{id}', [UsuarioController::class, 'adminShowUserAccount'])->name('admin.mostrar.edicao');//Mudar essa rota quando for implementado o login.
 
 Route::put('/admin-editar-perfil/{id}', [UsuarioController::class, 'adminUsuarioEdit'])->name('admin.usuario.edit');
@@ -57,7 +53,10 @@ Route::get('/admin-lista-usuarios', [UsuarioController::class, 'index'])->name('
 Route::delete('/admin-excluir-conta/{id}', [UsuarioController::class, 'adminUserDestroy'])->name('admin.excluir.conta');
 
 
+Route::get('/teste-minio', [UsuarioController::class, 'showMinioTest']);
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::post('/teste-minio', [UsuarioController::class, 'testeMinio'])->name('enviar.imagem');
+
+Route::get('/', function () {
+    return view('welcome');
+});

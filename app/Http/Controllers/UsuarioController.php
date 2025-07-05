@@ -23,8 +23,8 @@ use App\Domain\Repositories\UsuarioRepositoryInterface as UsrRepo;
 use App\Http\Requests\RegisterUsuarioRequest;
 use App\Http\Requests\EditarUsuarioRequest;
 use Illuminate\Http\Request;
-
-
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Storage;
 
 class UsuarioController extends Controller {
 
@@ -163,5 +163,19 @@ class UsuarioController extends Controller {
         $exclusao = $excluir->execute($id);
         return redirect()->route('admin.lista.usuarios');
 
+    public function showMinioTest(){
+        $error = session('error');
+        $success = session('success');
+        // dd(Storage::disk('minio')->exists('algum-arquivo.txt'));
+        return view('view-minio', compact('error', 'success'));
+    }
+    public function testeMinio(Request $request){
+        if ($request->hasFile('arquivo')){
+            $file = $request->file('arquivo');
+
+            $path = Storage::disk('minio')->put('uploads', $file);
+            return redirect()->back()->with('success', 'O arquivo foi armazenado com sucesso.');
+        }
+        return redirect()->back()->with('error', 'houve alguma falha.');
     }
 }
