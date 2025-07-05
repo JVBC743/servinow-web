@@ -7,6 +7,7 @@ services:
                 WWWGROUP: 1000
                 MYSQL_CLIENT: mysql-client
                 POSTGRES_VERSION: 16
+                PHP_EXTENSIONS: pdo_mysql # Adiciona a extensão PHP necessária para o MySQL
         image: sail-8.4/app
         ports:
             - '1234:80'
@@ -47,7 +48,7 @@ services:
                 - '12345678'
             retries: 3
             timeout: 5s
-            
+
     minio:
         image: 'minio/minio:RELEASE.2025-05-24T17-08-30Z'
         ports:
