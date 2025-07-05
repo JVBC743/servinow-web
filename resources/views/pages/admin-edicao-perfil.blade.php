@@ -28,13 +28,8 @@
                         <input class = "mb-3" type="text" placeholder="Telefone" name="telefone" value="{{ $editarUsuario->telefone ?? '' }}" required maxlength="15"><br>
                         {{-- <input class = "mb-3" type="text" placeholder="Área de atuação" name="area_atuacao" value="{{ $editarUsuario->nome_atuacao ?? '' }}"><br> --}}
 
-                        <select name="area_atuacao" id="" required>
-                            <option value="">Selecione a sua formação</option>
-                            @foreach ($lista as $formacao)
-                                <option value="{{ $formacao['id'] }}" {{$editarUsuario->area_atuacao == $formacao['id'] ? 'selected' : ''}}>
-                                    {{ $formacao['formacao'] }}
-                            @endforeach
-                            </option>
+                        <select name="area_atuacao" id="">
+                            <option value=""></option>
                         </select>
 
                         <div>
