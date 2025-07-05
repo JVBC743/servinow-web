@@ -1,0 +1,35 @@
+.button_save input{
+
+    width: 150px;
+    height: 50px;
+    font-size: 25px;
+    background-color: #09A7B1;
+    color: #ffffff;
+}
+
+.button_undo input{
+
+    width: 150px;
+    height: 50px;
+    font-size: 25px;
+    background-color: #A8A8A8;
+    color: #ffffff;
+}
+
+.button_delete button{
+
+    width: 150px;
+    height: 50px;
+    font-size: 25px;
+    background-color: #DA0004;
+    color: #ffffff;
+    border-style: none;
+    border-radius: 10px;
+}
+
+.delete_icon_button{
+
+    background-color: transparent;
+    border-style: none;
+
+}

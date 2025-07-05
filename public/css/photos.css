@@ -1,4 +1,4 @@
-img{
+.div_img img{
 
     width:8cm;
     height: 8cm;
@@ -10,4 +10,16 @@ img{
     border-width: 1cm;
     border-radius: 100%;
     border-color: rgb(2, 140, 150);
+}
+
+.profile_img{
+
+    height: 200px;
+    width: 200px;
+}
+
+.list_icons{
+    width: 30px;
+    height: 30px;
+    
 }

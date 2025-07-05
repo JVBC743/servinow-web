@@ -9,7 +9,7 @@ use App\Models\StatusAgendamento;
 
 class Agendamento extends Model
 {
-    protected $table = 'agendamentos';
+    protected $table = 'Agendamento';
 
     protected $fillable = [
         'id_cliente',

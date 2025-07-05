@@ -11,12 +11,7 @@ class Usuario extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    /**
-     * A tabela associada a este model.
-     * Precisamos definir isso porque o nome da classe 'Usuario' não corresponde à tabela 'users'.
-     * @var string
-     */
-    protected $table = 'users';
+    protected $table = 'Usuario';
 
     /**
      * Os atributos que podem ser preenchidos em massa.
@@ -37,7 +32,15 @@ class Usuario extends Authenticatable
         'bairro',
         'cidade',
         'uf',
+        'descricao',
+        'caminho_img',
+        'rede_social1',
+        'rede_social2',
+        'rede_social3',
+        'rede_social4',
+
     ];
+
 
     /**
      * Os atributos que devem ser ocultados na serialização (ex: ao retornar como JSON).
@@ -60,11 +63,11 @@ class Usuario extends Authenticatable
         ];
     }
 
-    /**
-      * ATENÇÃO: Verifique se esta relação ainda é necessária.
-      * Se for, você precisará adicionar a coluna 'formacao_id' (ou similar)
-      * à sua migration 'create_users_table'.
-      */
+    public function getAuthPassword()
+    {
+        return $this->senha;
+    }
+
     public function formacao()
     {
         // O segundo argumento 'area_atuacao' pode precisar ser alterado para 'formacao_id'

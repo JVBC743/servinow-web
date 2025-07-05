@@ -19,3 +19,40 @@
     font-family: LeagueSpartan;
     text-align: justify;
 }
+
+input{
+    border-style: solid;
+    border-radius: 7px;
+    border-width: 0px;
+}
+
+.img_input{
+
+    border-style: solid;
+    border-width: 1px;
+    border-width: 0px;
+
+}
+
+.big_input textarea{
+
+    width: 600px;
+    height: 200px;
+    position: relative;
+}
+.big_input textarea::placeholder{
+
+    position: absolute;
+    top: 10px;
+    left: 10px;
+
+}
+.inputs_desc::placeholder{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.inputs_desc{
+    overflow-y: auto;
+}

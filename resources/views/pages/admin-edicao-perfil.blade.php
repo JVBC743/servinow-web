@@ -16,9 +16,9 @@
     {{-- VERIFICAR O PORQUE A FONTE NÃO PEGA VIA COMPONENTE. --}}
 
     @if($editarUsuario)
-        <form action="{{ route('editar.usuario', $editarUsuario->id) }}" method="post">
+        <form action="{{ route('admin.usuario.edit', $editarUsuario->id) }}" method="post">
             @csrf
-            @METHOD('PUT')
+            @method('PUT')
             <div class="d-flex flex-wrap justify-content-between">
                 <div class="d-flex fs-5 flex-wrap me-5">
                     <div class="my-3 mx-5 inputs">
@@ -39,10 +39,10 @@
 
                         <div>
                             <p style="font-size: 15px">Anexar imagem</p>
-                            <input name="foto" alt="Enviar imagem"type="image" class = "img_input" style="width: 150px; height: 50px">
+                            <input name="foto" alt="Enviar imagem" type="file" class="img_input" style="width: 150px; height: 50px">
                         </div>
                         <div>
-                            <textarea type="text" name="descricao" class="my-3 inputs_desc" alt="" placeholder="Adicione aqui uma breve descrição das suas competências, seu limite é de 300 caracteres" maxlength="300">{{ $editarUsuario->descricao }}</textarea>
+                            <textarea type="text" name="descricao" class="my-3 inputs_desc" alt="" placeholder="Adicione aqui uma breve descrição das suas competências, seu limite é de 300 caracteres" maxlength="300"></textarea>
                         
                         </div>
                     </div>
@@ -70,13 +70,13 @@
                 </div>
             </div>
         </form>
-        <form action="" method="post">
+        {{-- <form action="" method="post">
             @csrf
             @method('DELETE')
             <div class="mt-4 button_delete">
                 <button class="">Excluir</button>
             </div>
-        </form>
+        </form> --}}
     @else
         <h1>Usuário não encontrado, por favor, volte.</h1>
     @endif

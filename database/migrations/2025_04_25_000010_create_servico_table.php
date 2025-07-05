@@ -16,6 +16,7 @@ return new class extends Migration
                 $table->id();
                 $table->string('nome_servico', length: 40);
                 $table->text('desc_servico');
+                $table->string('caminho_foto', 40);
                 $table->unsignedBigInteger('categoria');
                 $table->timestamps();
 
