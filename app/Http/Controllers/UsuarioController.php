@@ -26,9 +26,11 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
 
-class UsuarioController extends Controller {
+class UsuarioController extends Controller
+{
 
-    public function index(ListarUsuarioUseCase $listaUsuarios){
+    public function index(ListarUsuarioUseCase $listaUsuarios)
+    {
 
         $lista = $listaUsuarios->execute();
         foreach ($lista as &$usuario) {
@@ -39,7 +41,8 @@ class UsuarioController extends Controller {
         return view('pages.admin-lista-usuarios', compact('lista'));
     }
 
-    public function listFormations(ListarFormacoesUseCase $listaFormacoes, $id){
+    public function listFormations(ListarFormacoesUseCase $listaFormacoes, $id)
+    {
 
         $lista = $listaFormacoes->execute();
 
@@ -48,15 +51,15 @@ class UsuarioController extends Controller {
         if (!$editarUsuario) {
             return redirect()->back()->with('error', 'Usuário não encontrado.');
         }
-        return view ('pages.edicao-perfil', compact('lista', 'editarUsuario'));
-
+        return view('pages.edicao-perfil', compact('lista', 'editarUsuario'));
     }
 
-    public function show($id){ //método para passar o id do usuário pela URL para simular um login. Se quiser tirar para implementar o login, pode tirar
+    public function show($id)
+    { //método para passar o id do usuário pela URL para simular um login. Se quiser tirar para implementar o login, pode tirar
 
         $editarUsuario = Usuario::find($id);
 
-        if(!$editarUsuario){
+        if (!$editarUsuario) {
             return redirect()->back()->with('error', 'Usuário não encontrado.');
         }
         $obj_formacao = Formacao::find($editarUsuario->area_atuacao); //Você só tem que arrumar um jeito de implementar isso sem o método "show".
@@ -65,27 +68,27 @@ class UsuarioController extends Controller {
         return view("pages.edicao-perfil", compact('editarUsuario'));
     }
 
-    public function adminShowUserAccount($id, ListarFormacoesUseCase $listaFormacoes, )
+    public function adminShowUserAccount($id, ListarFormacoesUseCase $listaFormacoes,)
     {
 
         $editarUsuario = Usuario::find($id);
         $lista = $listaFormacoes->execute();
 
 
-        if(!$editarUsuario){
+        if (!$editarUsuario) {
             return redirect()->back()->with('error', 'Usuário não encontrado.');
         }
         $obj_formacao = Formacao::find($editarUsuario->area_atuacao); //Você só tem que arrumar um jeito de implementar isso sem o método "show".
         $editarUsuario->area_atuacao = $obj_formacao->formacao;
 
         return view("pages.admin-usuario-edit", compact('lista', 'editarUsuario'));
-
     }
 
-    public function adminUsuarioEdit(EditarUsuarioRequest $request, AdminUsuarioEditUseCase $useCase, int $id){
+    public function adminUsuarioEdit(EditarUsuarioRequest $request, AdminUsuarioEditUseCase $useCase, int $id)
+    {
 
         $usr = Usuario::find($id);
-        if(!$usr){
+        if (!$usr) {
             return redirect()->back()->with('error', 'Usuário não encontrado.');
         }
 
@@ -93,22 +96,22 @@ class UsuarioController extends Controller {
 
         $data = $request->validated();
 
-        $editarUsuario = $useCase->execute($id,$data);
+        $editarUsuario = $useCase->execute($id, $data);
 
-        if(!$editarUsuario){
+        if (!$editarUsuario) {
 
             return redirect()->back()->with('error', 'Erro ao carregar dados do usuário para edição.');
         }
 
         return redirect()->route('admin.lista.usuarios')->with('success', 'Usuário atualizado com sucesso!');
-
     }
 
 
-    public function edit(EditarUsuarioRequest $request, EditarUsuarioUseCase $useCase,  int $id){
+    public function edit(EditarUsuarioRequest $request, EditarUsuarioUseCase $useCase,  int $id)
+    {
 
         $usr = Usuario::find($id);
-        if(!$usr){
+        if (!$usr) {
             return redirect()->back()->with('error', 'Usuário não encontrado.');
         }
 
@@ -116,15 +119,14 @@ class UsuarioController extends Controller {
 
         $data = $request->validated();
 
-        $editarUsuario = $useCase->execute($id,$data);
+        $editarUsuario = $useCase->execute($id, $data);
 
-        if(!$editarUsuario){
+        if (!$editarUsuario) {
 
             return redirect()->back()->with('error', 'Erro ao carregar dados do usuário para edição.');
         }
 
         return view('pages.edicao-perfil', compact('editarUsuario', 'lista'));
-
     }
 
     public function store(RegisterUsuarioRequest $request, RegisterUsuarioUseCase $useCase): JsonResponse
@@ -143,34 +145,34 @@ class UsuarioController extends Controller {
         return response()->json([
             'message' => 'Usuário criado com sucesso',
             'usuario' => [
-            'id' => $usuario->id,
-            'nome' => $usuario->nome,
-            'email' => $usuario->email,
-            'telefone' => $usuario->telefone,
-            'cpf_cnpj' => $usuario->cpf_cnpj,
-            'area_atuacao' => $usuario->area_atuacao->id,
+                'id' => $usuario->id,
+                'nome' => $usuario->nome,
+                'email' => $usuario->email,
+                'telefone' => $usuario->telefone,
+                'cpf_cnpj' => $usuario->cpf_cnpj,
+                'area_atuacao' => $usuario->area_atuacao->id,
             ],
         ], 201);
     }
 
-    public function destroy($id)
-    {
-        
-    }
+    public function destroy($id) {}
 
-    public function adminUserDestroy(int $id, AdminUsuarioDeleteUseCase $excluir){
+    public function adminUserDestroy(int $id, AdminUsuarioDeleteUseCase $excluir)
+    {
 
         $exclusao = $excluir->execute($id);
         return redirect()->route('admin.lista.usuarios');
-
-    public function showMinioTest(){
+    }
+    public function showMinioTest()
+    {
         $error = session('error');
         $success = session('success');
         // dd(Storage::disk('minio')->exists('algum-arquivo.txt'));
         return view('view-minio', compact('error', 'success'));
     }
-    public function testeMinio(Request $request){
-        if ($request->hasFile('arquivo')){
+    public function testeMinio(Request $request)
+    {
+        if ($request->hasFile('arquivo')) {
             $file = $request->file('arquivo');
 
             $path = Storage::disk('minio')->put('uploads', $file);
