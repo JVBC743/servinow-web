@@ -2,10 +2,10 @@
 
 namespace App\Domain\Services;
 
-use App\Domain\Entities\User;
+use App\Domain\Entities\Usuario;
 
-class UserValidator {
-    public function isValidEmail(User $user): bool {
+class ValidadorUsuario {
+    public function isValidEmail(Usuario $user): bool {
         return filter_var($user->email, FILTER_VALIDATE_EMAIL) !== false;
     }
 }

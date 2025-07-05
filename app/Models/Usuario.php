@@ -11,8 +11,13 @@ class Usuario extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    protected $table = "Usuario";
+    protected $table = 'Usuario';
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var list<string>
+     */
     protected $fillable = [
         'nome',
         'senha',
@@ -20,8 +25,21 @@ class Usuario extends Authenticatable
         'email',
         'cpf_cnpj',
         'area_atuacao',
+        'caminho_img',
+        'rede_social1',
+        'rede_social2',
+        'rede_social3',
+        'rede_social4',
+
     ];
 
+
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var list<string>
+     */
     protected $hidden = [
         'senha',
     ];

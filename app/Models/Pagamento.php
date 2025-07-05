@@ -9,7 +9,7 @@ use App\Models\MetodoPagamento;
 
 class Pagamento extends Model
 {
-    protected $table = 'pagamentos';
+    protected $table = 'Pagamento';
 
     protected $fillable = [
         'id_agendamento',

@@ -1,0 +1,55 @@
+@media(max-width: 1057px){
+
+    .inputs_2 input{
+
+        margin-left: 48px;
+
+    }
+
+}
+
+@media(max-width: 670px){
+
+    .inputs input{
+        width: 500px;
+
+    }
+
+}
+
+@media(max-width: 566px){
+
+    .inputs input{
+        width: 400px;
+
+
+    }
+
+}
+
+@media(max-width: 466px){
+
+    .inputs input{
+        width: 300px;
+
+
+    }
+
+}
+
+@media(max-width: 398px){
+
+    .profile_image{
+
+        width: 250px;
+        height: 250px;
+    }
+
+
+}
+/*  {{-- 670x727px --}}
+    {{-- 359x727px --}}
+    {{-- 330x727px --}}
+    {{-- RESPONSIVIDADE VIA MEDIA QUERIES --}} 
+    387px
+*/

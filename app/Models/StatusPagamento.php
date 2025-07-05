@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class StatusPagamento extends Model
 {
-    protected $table = 'status_pagamentos';
+    protected $table = 'Status_Pagamento';
 
     protected $fillable = [
         'status',
