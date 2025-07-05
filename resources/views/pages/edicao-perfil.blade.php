@@ -24,7 +24,7 @@
         <form action="{{ route('editar.usuario', $editarUsuario->id) }}" method="post">
             @csrf
             @METHOD('PUT')
-            <div class="d-flex flex-wrap">
+            <div class="d-flex flex-wrap justify-content-between">
                 <div class="d-flex fs-5 flex-wrap me-5">
                     <div class="my-3 mx-5 inputs">
 
@@ -54,7 +54,7 @@
                         <input class = "mb-3" type="text" placeholder="Rede social #4" name="rede_social4" value="{{ $editarUsuario->rede_social4 ?? '' }}"><br>
                     </div>
                 </div>
-                <div class="ms-5 d-flex justify-content-center">
+                <div class="justify-content-end mx-5">
                     <div class="text-center fs-5">
                         <div class="">{{-- procurar saber como referenciar o caminho minio --}}
                             <img src="{{ $editarUsuario->caminho_img }}" alt="Foto do usuário na tela de edição de perfil." class="profile_image">
