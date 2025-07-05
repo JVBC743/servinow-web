@@ -1,0 +1,217 @@
+/* Reset básico e configurações globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif; /* Escolha uma fonte mais próxima da imagem se desejar */
+}
+
+body {
+    background-color: #ADD8E6; /* Um azul claro de fundo, ajuste conforme a imagem */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px; /* Para evitar que o formulário cole nas bordas em telas menores */
+}
+
+.container-principal {
+    background-color: #6C92C8; /* Cor de fundo principal da área do formulário */
+    padding: 30px; /* Espaçamento interno */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 1200px; /* Largura máxima do container azul */
+}
+
+.container-formulario {
+    display: flex;
+    background-color: #FFFFFF; /* Fundo branco do formulário e logo */
+    border-radius: 8px;
+    overflow: hidden; /* Para que os cantos arredondados da logo funcionem bem */
+}
+
+/* Área da Logo (Esquerda) */
+.logo-area {
+    background-color: #FFFFFF; /* Fundo branco para a área da logo */
+    padding: 40px;
+    flex-basis: 30%; /* Define a largura base da área da logo */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-right: 1px solid #EEE; /* Linha divisória sutil, se desejar */
+}
+
+.logo-placeholder {
+    background-color: #F0F0F0; /* Cor de fundo do placeholder da logo */
+    width: 150px; /* Ajuste conforme sua logo */
+    height: 100px; /* Ajuste conforme sua logo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    border-radius: 8px; /* Arredondamento para o placeholder */
+    margin-bottom: 20px; /* Espaço abaixo da logo */
+    /* Se for usar uma imagem:
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    */
+}
+
+.texto-logo {
+    font-size: 16px;
+    color: #555;
+}
+
+/* Área do Formulário (Direita) */
+.formulario-area {
+    padding: 30px 40px;
+    flex-basis: 70%; /* Define a largura base da área do formulário */
+    background-color: #6C92C8; /* Fundo azul da área do formulário (conforme imagem) */
+    color: #FFFFFF; /* Cor do texto dos labels e título */
+}
+
+.formulario-area h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaço entre as linhas de input e outros elementos */
+}
+
+.linha-input {
+    display: flex;
+    gap: 15px; /* Espaço entre os inputs na mesma linha */
+    flex-wrap: wrap; /* Permite que os inputs quebrem para a próxima linha se não couberem */
+}
+
+.input-grupo {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Faz com que os grupos de input tentem ocupar espaço igual */
+    min-width: 150px; /* Largura mínima para cada campo antes de quebrar */
+}
+
+.input-grupo label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.input-grupo input {
+    padding: 10px;
+    border: 1px solid #DDE3E8; /* Borda sutil dos inputs */
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #F3F6F9; /* Fundo cinza claro dos inputs */
+    color: #333;
+}
+
+.input-grupo input:focus {
+    outline: none;
+    border-color: #007BFF; /* Borda azul ao focar */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Ajustes de largura específicos para alguns campos, conforme a imagem */
+.input-email { flex-grow: 2; } /* E-mail pode ser mais largo */
+.input-logradouro { flex-grow: 2.5; } /* Logradouro pode ser mais largo */
+.input-cidade { flex-grow: 2; }
+.input-numero, .input-uf, .input-bairro { flex-grow: 0.5; } /* Campos menores */
+
+
+.termos {
+    font-size: 12px;
+    color: #F0F0F0; /* Cor mais clara para os termos */
+    text-align: left;
+    margin-top: 10px;
+    line-height: 1.5;
+}
+
+.termos a {
+    color: #B0E0E6; /* Cor azul clara para os links nos termos */
+    text-decoration: none;
+}
+
+.termos a:hover {
+    text-decoration: underline;
+}
+
+.btn-cadastrar {
+    background-color: #00BCD4; /* Cor do botão de cadastrar */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 20px; /* Botão mais arredondado */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: center; /* Centraliza o botão */
+    margin-top: 15px;
+    width: 200px; /* Largura fixa para o botão */
+}
+
+.btn-cadastrar:hover {
+    background-color: #0097A7; /* Cor do botão ao passar o mouse */
+}
+
+/* Responsividade: Ajustes para telas menores */
+@media (max-width: 992px) {
+    .container-formulario {
+        flex-direction: column; /* Empilha a logo e o formulário */
+    }
+
+    .logo-area {
+        flex-basis: auto; /* Remove a largura base fixa */
+        border-right: none;
+        border-bottom: 1px solid #EEE; /* Linha divisória abaixo da logo */
+        padding: 30px;
+    }
+
+    .formulario-area {
+        flex-basis: auto; /* Remove a largura base fixa */
+    }
+}
+
+@media (max-width: 768px) {
+    .formulario-area h1 {
+        font-size: 24px;
+    }
+
+    .linha-input {
+        flex-direction: column; /* Empilha os inputs em telas muito pequenas */
+        gap: 15px;
+    }
+
+    .input-grupo {
+        width: 100%; /* Faz cada input ocupar a largura total */
+    }
+
+    .btn-cadastrar {
+        width: 100%; /* Botão ocupa largura total */
+    }
+}
+
+@media (max-width: 480px) {
+    .container-principal {
+        padding: 15px;
+    }
+    .formulario-area {
+        padding: 20px;
+    }
+    .formulario-area h1 {
+        font-size: 20px;
+    }
+}
