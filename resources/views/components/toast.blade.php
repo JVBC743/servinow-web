@@ -1,4 +1,4 @@
-<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1100;">
+<div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1100;">
     @if ($errors->any())
         @foreach ($errors->all() as $error)
             <div class="toast align-items-center text-white bg-danger border-0 mb-2" role="alert" aria-live="assertive"

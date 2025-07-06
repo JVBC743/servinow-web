@@ -39,7 +39,7 @@ class AuthController extends Controller
     {
         $usuario = Usuario::create([
             'nome' => $request->nome,
-            'senha' => Hash::make($request->senha),
+            'senha' => Hash::make($request->password),
             'telefone' => $request->telefone,
             'email' => $request->email,
             'cpf_cnpj' => $request->cpf_cnpj,

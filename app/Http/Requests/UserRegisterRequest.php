@@ -15,10 +15,10 @@ class UserRegisterRequest extends FormRequest
     {
         return [
             'nome' => 'required|string|max:50',
-            'senha' => 'required|string|min:8|confirmed',
+            'password' => 'required|string|min:8|confirmed',
             'telefone' => 'required|string|max:50',
-            'email' => 'required|email|max:80|unique:usuarios,email',
-            'cpf_cnpj' => 'required|string|size:14|unique:usuarios,cpf_cnpj',
+            'email' => 'required|email|max:80|unique:Usuario,email',
+            'cpf_cnpj' => 'required|string|size:14|unique:Usuario,cpf_cnpj',
             'area_atuacao' => 'required|integer|exists:areas,id',
 
             'descricao' => 'nullable|string',
