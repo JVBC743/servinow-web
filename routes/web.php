@@ -10,6 +10,8 @@ Route::view('/', 'welcome');
 
 // Autenticação
 Route::view('/login', 'pages.login')->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('loginPost');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::prefix('cadastro')->controller(AuthController::class)->group(function () {
     Route::view('/', 'pages.cadastro')->name('cadastro.form');
