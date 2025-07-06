@@ -24,13 +24,19 @@
                         Sobre nós
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-5 {{ request()->routeIs('admin.lista.usuarios') ? 'active' : '' }}"
+                        href="{{ route('admin.lista.usuarios') }}">
+                        Lista de Usuários
+                    </a>
+                </li>
             </ul>
 
             <!-- Icons -->
             <div class="d-flex align-items-center nav-icon">
-                <a href="#" class="nav-link text-white fs-5 me-3">
+                {{-- <a href="#" class="nav-link text-white fs-5 me-3">
                     <i class="fa-solid fa-bell"></i>
-                </a>
+                </a> --}}
                 <a href="{{ route('mostrar.edicao', ['id' => auth()->id()]) }}"
                     class="nav-link text-white fs-5 {{ request()->routeIs('mostrar.edicao') ? 'active' : '' }}">
                     <i class="fa-solid fa-user"></i>

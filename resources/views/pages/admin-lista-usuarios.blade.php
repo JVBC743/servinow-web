@@ -1,51 +1,54 @@
-<x-header :title="'Lista de Usuários'" />
+@extends('layouts.autenticado')
 
-<body>
-    
-    <div>
-        <table class="table text-center">
-            <tr>
-                <th class = "px-3 py-3 fs-3 column">ID</th>
-                <th class = "px-3 py-3 fs-3 column">NOME</th>
-                <th class = "px-3 py-3 fs-3 column">TELEFONE</th>
-                <th class = "px-3 py-3 fs-3 column">E-MAIL</th>
-                <th class = "px-3 py-3 fs-3 column">CPF/CNPJ</th>
-                <th class = "px-3 py-3 fs-3 column">AÇÕES</th>
-            </tr>
+@section('title', 'Lista de Usuários')
 
-            @foreach ($lista as $usr)
-                <tr id="rows" class="">
-                    <td>{{ $usr->id }}</td>
-                    <td>{{ $usr->nome }}</td>
-                    <td>{{ $usr->telefone }} </td>
-                    <td>{{ $usr->email }} </td>
-                    <td>{{ $usr->cpf_cnpj }} </td>
-                    {{-- <td>{{ $usr['nome_atuacao'] }} </td> --}}
-                    <td>
-                        <div class="d-flex justify-content-between">
-                            
-                            <div class="ms-5">
-                                <a href="{{ route('admin.mostrar.edicao', $usr->id) }}">
-                                    <img class="list_icons" src="{{ asset('images/edit.png') }}" alt="">
-                                </a>
-                            </div>
+@section('content')
+    <div class="container-fluid d-flex justify-content-center align-items-center py-5">
+        <div class="card p-4 shadow w-100" style="max-width: 1200px">
 
+            <h1 class="text-center mb-4">Lista de Usuários</h1>
 
-                            <div class="me-5 justify-content-end">
-                                <form action="{{ route('admin.excluir.conta', $usr['id']) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button name="admin_excluir_usuario" type="submit" class="delete_icon_button">
-                                        <img class="list_icons" src="{{ asset('images/delete.png') }}" alt="Excluir conta">
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </td>
-                   
-                </tr>
-            @endforeach
-        </table>
+            <table class="table table-bordered text-center align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>E-mail</th>
+                        <th>CPF/CNPJ</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($lista as $usr)
+                        <tr>
+                            <td>{{ $usr->id }}</td>
+                            <td>{{ $usr->nome }}</td>
+                            <td>{{ $usr->telefone }}</td>
+                            <td>{{ $usr->email }}</td>
+                            <td>{{ $usr->cpf_cnpj }}</td>
+                            <td>
+                                <div class="d-flex justify-content-center gap-3">
+                                    <a href="{{ route('admin.mostrar.edicao', $usr->id) }}">
+                                        <img class="list_icons" src="{{ asset('images/edit.png') }}" alt="Editar">
+                                    </a>
+                                    <form action="{{ route('admin.excluir.conta', $usr->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="delete_icon_button bg-transparent border-0 p-0">
+                                            <img class="list_icons" src="{{ asset('images/delete.png') }}" alt="Excluir conta">
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6" class="text-center">Nenhum usuário encontrado.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
     </div>
-    
-<x-footer />
+@endsection

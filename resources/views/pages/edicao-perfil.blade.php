@@ -89,7 +89,7 @@
                                     @if($imagem_url)
                                         <img src="{{ $imagem_url }}" alt="Foto do usuário" class="profile_img mb-3" style="width: 400px">
                                     @else
-                                        <img src="{{ asset('images/user-icon.png') }}" alt="Usuário sem foto" class="profile_img mb-3" style="width: 300px">
+                                        <img src="{{ asset('images/user-icon.png') }}" alt="Usuário sem foto" class="profile_img mb-3" style="width: 400px">
                                     @endif
                                     <input type="file" name="foto" accept="image/*" class="form-control w-100" style="max-width: 150px;">
                                     <small class="text-muted mt-1">Anexar nova imagem</small>
