@@ -57,42 +57,49 @@ class UsuarioController extends Controller
     public function show($id)
     { //método para passar o id do usuário pela URL para simular um login. Se quiser tirar para implementar o login, pode tirar
 
-        $editarUsuario = Usuario::find($id);
+        $usr = Usuario::find($id);
 
         $lista = Formacao::all();
 
-        if ($editarUsuario->caminho_img) {
+        if ($usr->caminho_img) {
             $imagem_url = Storage::disk('minio')->temporaryUrl(
-            $editarUsuario->caminho_img,
+            $usr->caminho_img,
             now()->addSecond(5)
         );
         } else {
             $imagem_url = null;
         }
 
-        if (!$editarUsuario) {
+        if (!$usr) {
             return redirect()->back()->with('error', 'Usuário não encontrado.');
         }
 
-        return view("pages.edicao-perfil", compact('editarUsuario', 'lista', 'imagem_url'));
+        return view("pages.edicao-perfil", compact('usr', 'lista', 'imagem_url'));
     }
 
     public function edit(EditarUsuarioRequest $request, int $id)
     {
 
         $usr = Usuario::find($id);
+        $lista = Formacao::all();
+
         if (!$usr) {
             return redirect()->back()->with('error', 'Usuário não encontrado.');
         }
 
-        $data = $request->validated();
-        $editarUsuario = $usr->update($data);
-
-        if (!$editarUsuario){
-            return redirect()->back()->with('error', 'Não foi possível editar o usuário.');
+        if ($usr->caminho_img) {
+            $imagem_url = Storage::disk('minio')->temporaryUrl(
+            $usr->caminho_img,
+            now()->addSecond(5)
+        );
+        } else {
+            $imagem_url = null;
         }
 
-        return view('pages.edicao-perfil', compact('editarUsuario'));
+        $data = $request->validated();
+        $usr->update($data);
+
+        return view("pages.edicao-perfil", compact('usr', 'lista', 'imagem_url'));
     }
 
     public function adminShowUserAccount($id)

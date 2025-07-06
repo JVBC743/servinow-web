@@ -13,7 +13,7 @@ class Servico extends Model
         'nome_servico',
         'categoria',
         'desc_servico',
-        'caminho_img',
+        'caminho_foto',
         'usuario_id',
     ];
 

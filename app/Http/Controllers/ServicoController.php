@@ -36,11 +36,10 @@ class ServicoController extends Controller
         $request->validate([
             'nome' => 'required|string|max:40|min:3',
             'descricao' => 'required|string|max:750',
-            'categoria' => 'required|string|max:50',
-            'imagem' => 'required|image|max:2048', // máximo 2MB
+            'categoria' => 'required|integer|exists:Categoria,id',
+            'imagem' => 'required|image|max:2048',
         ]);
 
-        // Upload da imagem para MinIO (configurado em filesystem)
         if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
             $path = $request->file('imagem')->store('servicos', 'minio');
         } else {
@@ -49,10 +48,11 @@ class ServicoController extends Controller
 
         // Criação do serviço
         Servico::create([
-            'nome' => $request->nome,
-            'descricao' => $request->descricao,
+            'nome_servico' => $request->nome,
+            'desc_servico' => $request->descricao,
             'categoria' => $request->categoria,
-            'imagem' => $path, // caminho salvo no storage minio
+            'caminho_foto' => $path,
+            // 'usuario_id' => auth()->id() ?? 1, // opcional: se tiver autenticação
         ]);
 
         return redirect()->route('servico.index')->with('success', 'Serviço cadastrado com sucesso!');
