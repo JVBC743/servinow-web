@@ -1,9 +1,8 @@
 @extends ('layouts.autenticado')
 @section('title', 'Login')
 @section('content')
-    <div id="div-1" class="mx-5 mb-5 mt-5">
+    <div id="div-1" class="mb-5 mt-5">
         <h2 class="fs-1 mb-4 text-center">Sobre Nós</h2>
-
         <p class="fs-4">Olá! Somos um grupo sem fins lucrativos, afinal, o que importa para nós é aquela nota boa que
             devemos ter no final do semestre! Brincadeiras a parte, buscamos oferecer os melhores sistemas para cada
             contexto que os nossos clientes (no caso, o professor) solicitarem. Além disso, se quiser, revise os
