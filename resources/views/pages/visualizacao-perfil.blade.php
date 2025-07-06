@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Visualização</title>
-</head>
-<body>
-    <h1>Página Para Visualizar Perfil</h1>
-</body>
-</html>
+@extends ('layouts.autenticado')
+@section('title', 'Perfil')
+@section('content')
+<h1>Vizulização de Perfil</h1>
+@endsection

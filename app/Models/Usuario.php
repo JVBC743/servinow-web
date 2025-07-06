@@ -39,7 +39,6 @@ class Usuario extends Authenticatable
         'rede_social2',
         'rede_social3',
         'rede_social4',
-
     ];
 
     /**

@@ -81,13 +81,16 @@ class UsuarioController extends Controller
 
         $obj_formacao = Formacao::find($editarUsuario->area_atuacao);
 
-        if($editarUsuario->caminho_img){
-            $editarUsuario->imagem_bucket = Storage::disk('minio')->temporaryUrl($editarUsuario->caminho_img, Carbon::now()->addMinutes(5));
+        if ($editarUsuario->caminho_img) {
+            $imagem_url = Storage::disk('minio')->temporaryUrl(
+            $editarUsuario->caminho_img,
+            now()->addMinutes(5)
+        );
+        } else {
+            $imagem_url = null;
         }
-
-        // $editarUsuario->area_atuacao = $obj_formacao->formacao;
-
-        return view("pages.admin-edicao-perfil", compact('lista', 'editarUsuario'));
+        // dd($imagem_url);
+        return view("pages.admin-edicao-perfil", compact('lista', 'editarUsuario', 'imagem_url'));
     }
 
     public function adminUsuarioEdit(EditarUsuarioRequest $request, int $id)
@@ -99,26 +102,39 @@ class UsuarioController extends Controller
         }
         $data = $request->validated();
         
-        if ($request->file('foto')) {
+        if ($request->hasFile('foto') && $request->file('foto')->isValid()) {
+            // Deleta imagem antiga
+            if ($usr->caminho_img && Storage::disk('minio')->exists($usr->caminho_img)) {
+                Storage::disk('minio')->delete($usr->caminho_img);
+            }   
+
+            // Upload da nova imagem
+            $filename = time() . '_' . $request->file('foto')->getClientOriginalName();
+            $path = $request->file('foto')->store('usuarios', 'minio');
+            dd($path);     
+
             
-            $file = $request->file('foto');
-            $filename = time() . '_' . $file->getClientOriginalName();
-
-            $path = Storage::disk('minio')->put('usuarios/' . $filename, file_get_contents($request->file('foto')));
-            dd($path);
-            // Storage::disk('s3')->put('imagens/foto_usuario_123.jpg', file_get_contents($request->file('imagem')));
-
+            // dd($path);       
             $data['caminho_img'] = $path;
         }
 
-        $editarUsuario = $usr->update($data);
-        // dd($editarUsuario);
+        $usr->update($data);
+        $usr->refresh();  // Atualiza o objeto com os dados do banco
 
-        if (!$editarUsuario) {
-            return redirect()->back()->with('error', 'Erro ao carregar dados do usuário para edição.');
+        if (!empty($usr->caminho_img)) {
+            $imagem_url = Storage::disk('minio')->temporaryUrl($usr->caminho_img, now()->addSecond(5));
+        } else {
+            $imagem_url = null;
         }
 
-        return redirect()->back()->with('success', 'Usuário editado com sucesso!');
+        // dd($usr);
+        // dd($imagem_url);
+
+        return view('pages.admin-edicao-perfil', [
+            'editarUsuario' => $usr,
+            'lista' => Formacao::all(),
+            'imagem_url' => $imagem_url,
+        ]);
     }
 
 

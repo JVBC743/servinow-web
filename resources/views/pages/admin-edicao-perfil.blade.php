@@ -71,10 +71,10 @@
                 </div>
                 <div class="justify-content-end mx-5">
                     <div class="text-center fs-5">
-                        @if($editarUsuario->caminho_img)
+                        @if($imagem_url)
 
                             <div class="">{{-- procurar saber como referenciar o caminho minio --}}
-                                <img src="{{ $editarUsuario->imagem_bucket }}" alt="Foto do usuário na tela de edição de perfil." class="profile_img">
+                                <img src="{{ $imagem_url }}" alt="Foto do usuário na tela de edição de perfil." class="profile_img">
                             </div>
                         @else
 

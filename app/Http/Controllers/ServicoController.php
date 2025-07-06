@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateServicoRequest;
 use App\Models\Categoria;
-use Illuminate\Http\Request;
 use App\Models\Servico;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ServicoController extends Controller
 {
@@ -14,28 +14,17 @@ class ServicoController extends Controller
      */
     public function index()
     {
-        
+        $servicos = Servico::paginate(10); // paginação de 10 por página
+        return view('pages.lista-servicos', compact('servicos'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function showCadastro(){
-
-        $listaCategorias = Categoria::all();
-        
-        return view ('pages.cadastro-servico', compact('listaCategorias'));
-
-    }
-    public function create(CreateServicoRequest $request)
-    {   
-        $data = $request->validated();
-        // dd($data);
-
-        $servico = Servico::create($data);
-
-        return redirect()->back()->with('success', 'Serviço cadastrado com sucesso.');
-        
+    public function create()
+    {
+        $categorias = Categoria::all(); // pega todas as categorias
+        return view('pages.cadastro-servico', compact('categorias'));
     }
 
     /**
@@ -43,7 +32,30 @@ class ServicoController extends Controller
      */
     public function store(Request $request)
     {
-        
+        // Validação
+        $request->validate([
+            'nome' => 'required|string|max:40|min:3',
+            'descricao' => 'required|string|max:750',
+            'categoria' => 'required|string|max:50',
+            'imagem' => 'required|image|max:2048', // máximo 2MB
+        ]);
+
+        // Upload da imagem para MinIO (configurado em filesystem)
+        if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
+            $path = $request->file('imagem')->store('servicos', 'minio');
+        } else {
+            return back()->withErrors(['imagem' => 'Imagem inválida'])->withInput();
+        }
+
+        // Criação do serviço
+        Servico::create([
+            'nome' => $request->nome,
+            'descricao' => $request->descricao,
+            'categoria' => $request->categoria,
+            'imagem' => $path, // caminho salvo no storage minio
+        ]);
+
+        return redirect()->route('servico.index')->with('success', 'Serviço cadastrado com sucesso!');
     }
 
     /**
@@ -51,7 +63,8 @@ class ServicoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $servico = Servico::findOrFail($id);
+        return view('pages.detalhe-servico', compact('servico'));
     }
 
     /**
@@ -59,7 +72,8 @@ class ServicoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $servico = Servico::findOrFail($id);
+        return view('pages.edicao-servico', compact('servico'));
     }
 
     /**
@@ -67,7 +81,35 @@ class ServicoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $servico = Servico::findOrFail($id);
+
+        // Validação
+        $request->validate([
+            'nome' => 'required|string|max:40|min:3',
+            'descricao' => 'required|string|max:750',
+            'categoria' => 'required|string|max:50',
+            'imagem' => 'nullable|image|max:2048', // imagem é opcional na edição
+        ]);
+
+        // Se tiver imagem nova, faz upload e apaga a antiga
+        if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
+            // Deleta imagem antiga
+            if ($servico->imagem && Storage::disk('minio')->exists($servico->imagem)) {
+                Storage::disk('minio')->delete($servico->imagem);
+            }
+            // Upload nova imagem
+            $path = $request->file('imagem')->store('servicos', 'minio');
+            $servico->imagem = $path;
+        }
+
+        // Atualiza dados
+        $servico->nome = $request->nome;
+        $servico->descricao = $request->descricao;
+        $servico->categoria = $request->categoria;
+
+        $servico->save();
+
+        return redirect()->route('servico.index')->with('success', 'Serviço atualizado com sucesso!');
     }
 
     /**
@@ -75,6 +117,15 @@ class ServicoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $servico = Servico::findOrFail($id);
+
+        // Deleta imagem do MinIO
+        if ($servico->imagem && Storage::disk('minio')->exists($servico->imagem)) {
+            Storage::disk('minio')->delete($servico->imagem);
+        }
+
+        $servico->delete();
+
+        return redirect()->route('servico.index')->with('success', 'Serviço excluído com sucesso!');
     }
 }

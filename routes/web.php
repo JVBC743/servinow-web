@@ -1,75 +1,63 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\UsuarioController;
-use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ServicoController;
 
+// Página inicial
+Route::view('/', 'welcome');
+
+// Autenticação
 Route::view('/login', 'pages.login')->name('login');
+
+Route::prefix('cadastro')->controller(AuthController::class)->group(function () {
+    Route::view('/', 'pages.cadastro')->name('cadastro.form');
+    Route::post('/', 'register')->name('cadastro.store');
+});
+
+// Dashboard e perfil
 Route::view('/dashboard', 'pages.dashboard')->name('dashboard');
-
-// --- REMOVA ESTA LINHA ANTIGA ---
-// Route::view('/cadastro', 'pages.cadastro')->name('cadastro');
-
-// --- ADICIONE ESTAS DUAS NOVAS ROTAS PARA O CADASTRO ---
-// Rota GET: Apenas MOSTRA o formulário de cadastro.
-Route::view('/cadastro', 'pages.cadastro')->name('cadastro.form');
-
-// Rota POST: PROCESSA os dados do formulário, enviando para o seu Controller.
-Route::post('/cadastro', [RegisterController::class, 'store'])->name('cadastro.store');
-// --- FIM DAS ADIÇÕES ---
-
 Route::view('/perfil', 'pages.visualizacao-perfil')->name('visualizacao-perfil');
 
+// Informações públicas
 Route::view('/avaliacoes', 'pages.lista-avaliacao-servicos')->name('lista-avaliacoes');
+Route::view('/sobre-nos', 'pages.sobre-nos')->name('sobre.nos');
+Route::view('/termos', 'pages.termos-uso-privacidade')->name('termos');
 
-Route::get('/sobre-nos', function(){
-    return view('pages/sobre-nos');
-})->name('sobre.nos');
+// Usuário (perfil pessoal)
+Route::prefix('perfil')->controller(UsuarioController::class)->group(function () {
+    Route::get('/lista', 'index')->name('lista');
 
-Route::get('/termos', function(){
-    return view('pages/termos-uso-privacidade');
-})->name('termos');
+    Route::get('/edicao/{id}', 'show')->name('mostrar.edicao');
+    Route::get('/formacoes/{id}', 'listFormations')->name('listar.formacoes');
 
-Route::get('/lista', [UsuarioController::class, 'index'])->name('lista');
-//Mudar essa rota quando for implementado o login.
+    Route::put('/editar/{id}', 'edit')->name('editar.usuario');
+    Route::delete('/excluir/{id}', 'destroy')->name('excluir.conta');
+});
 
-Route::put('/editar-perfil/{id}', [UsuarioController::class ,'edit'])->name('editar.usuario');
-
-Route::get('/edicao-perfil/{id}', [UsuarioController::class, 'show'])->name('mostrar.edicao');
-
-Route::get('/edicao-perfil/{id}', [UsuarioController::class, 'listFormations'])->name('listar.forrmacoes');
-
-Route::delete('/edicao-perfil/{id}', [UsuarioController::class, 'destroy'])->name('excluir.conta');
-
-
-Route::post('/cadastrar-servico', [ServicoController::class , 'create'])->name('cadastro.servico.create');
-
-
-// Route::get('/cadastro-servico', function(){
-//     return view('pages/cadastro-servico');
-// })->name('cadastro.servico');
-
-Route::get('/cadastro-servico', [ServicoController::class , 'showCadastro'])->name('cadastro.servico');
+// Serviço
+Route::prefix('servico')->controller(ServicoController::class)->group(function () {
+    Route::get('/', 'index')->name('servico.index');                   // Lista todos os serviços
+    Route::get('/create', 'create')->name('servico.create');          // Formulário de cadastro
+    Route::post('/', 'store')->name('servico.store');                 // Salva novo serviço
+    Route::get('/{servico}', 'show')->name('servico.show');          // Detalhes de um serviço
+    Route::get('/{servico}/edit', 'edit')->name('servico.edit');     // Formulário de edição
+    Route::put('/{servico}', 'update')->name('servico.update');      // Atualiza serviço
+    Route::delete('/{servico}', 'destroy')->name('servico.destroy'); // Exclui serviço
+});
 
 
-Route::get('/edicao-servico/{id}', function(){
-    return view('pages/edicao-servico');
-})->name('edicao.servico');
+// Admin
+Route::prefix('admin')->controller(UsuarioController::class)->group(function () {
+    Route::get('/usuarios', 'index')->name('admin.lista.usuarios');
+    Route::get('/edicao/{id}', 'adminShowUserAccount')->name('admin.mostrar.edicao');
+    Route::put('/editar/{id}', 'adminUsuarioEdit')->name('admin.usuario.edit');
+    Route::delete('/excluir/{id}', 'adminUserDestroy')->name('admin.excluir.conta');
+});
 
-Route::get('/admin-lista-usuarios', [UsuarioController::class, 'index'])->name('admin.lista.usuarios');
-
-Route::get('/admin-edicao-perfil/{id}', [UsuarioController::class, 'adminShowUserAccount'])->name('admin.mostrar.edicao');
-
-Route::put('/admin-editar-perfil/{id}', [UsuarioController::class, 'adminUsuarioEdit'])->name('admin.usuario.edit');
-
-Route::delete('/admin-excluir-conta/{id}', [UsuarioController::class, 'adminUserDestroy'])->name('admin.excluir.conta');
-
-
-Route::get('/teste-minio', [UsuarioController::class, 'showMinioTest']);
-
-Route::post('/teste-minio', [UsuarioController::class, 'testeMinio'])->name('enviar.imagem');
-
-Route::get('/', function () {
-    return view('welcome');
+// Testes e uploads
+Route::controller(UsuarioController::class)->group(function () {
+    Route::get('/teste-minio', 'showMinioTest');
+    Route::post('/teste-minio', 'testeMinio')->name('enviar.imagem');
 });

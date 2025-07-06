@@ -1,9 +1,58 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Lista de Avaliação dos Servicos</title>
-</head>
-<body>
-    <h1>Página com Lista de Avaliação dos Serviços Prestados</h1>
-</body>
-</html>
+@extends ('layouts.autenticado')
+@section('title', 'Lista de Serviços')
+@section('content')
+
+    <div>
+        <h3 class="txt-center" style="margin: 15px 0px">
+            <b>Lista de Avaliação de Serviços</b>
+        </h3>
+    </div>
+    <br>
+    <div class="container-fluid" style="width: 95vw;">
+        <div class="row">
+            <div class="col-4 both-align">
+                <br>
+                <b class="fs-4">Avaliações</b>
+                <div>
+                    [Colocar as estrelas aki]
+                    <br>
+                    ★★★★☆
+                </div>
+                <div>
+                    [Colocar a quant. de avaliações aki]
+                    <br>
+                    <i>
+                        27 Avaliações
+                    </i>
+                </div>
+                <br>
+
+                <b class="fs-6">Avalie este produto</b>
+                <p>Compartilhe seu pensamento com outros clientes.</p>
+
+                <div class="h-align" style="display: flex;">
+                    <button type="button" class="btn-avaliacao" onclick="alert('Em breve: modal de avaliação!')">
+                        Escreva uma Avaliação
+                </div>
+
+            </div>
+            <div class="col-8">
+                <h5 class="txt-center">
+                    <b>Principais avaliações de Serviços</b>
+                </h5>
+                <div>
+                    criar componente do card de avaliações para por aqui futuramente
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </main>
+    <x-footer />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+@endsection

@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Dashboard</title>
-</head>
-<body>
-    <h1>Página de Dashboard</h1>
-</body>
-</html>
+@extends ('layouts.autenticado')
+@section('title', 'Dashboard')
+@section('content')
+<h1>Dashboard</h1>
+@endsection
