@@ -43,8 +43,6 @@ class AuthController extends Controller
             'telefone' => $request->telefone,
             'email' => $request->email,
             'cpf_cnpj' => $request->cpf_cnpj,
-            // 'area_atuacao' => $request->area_atuacao,
-
             'data_nascimento' => $request->data_nascimento,
             'cep' => $request->cep,
             'logradouro' => $request->logradouro,
@@ -53,15 +51,7 @@ class AuthController extends Controller
             'bairro' => $request->bairro,
             'cidade' => $request->cidade,
             'uf' => $request->uf,
-
-            'descricao' => $request->descricao,
-            'caminho_img' => $request->caminho_img,
-            'rede_social1' => $request->rede_social1,
-            'rede_social2' => $request->rede_social2,
-            'rede_social3' => $request->rede_social3,
-            'rede_social4' => $request->rede_social4,
         ]);
-
 
         Auth::login($usuario);
 

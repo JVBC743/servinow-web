@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="{{ asset('css/card-avaliacao.css') }}">
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/search.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/search-bar.css') }}">
 
     @yield('styles')
 </head>
