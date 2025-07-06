@@ -70,7 +70,7 @@ class UsuarioController extends Controller
 
     public function adminShowUserAccount($id)
     {
-        
+
         $editarUsuario = Usuario::find($id);
 
         $lista = Formacao::all();
@@ -96,7 +96,7 @@ class UsuarioController extends Controller
     public function adminUsuarioEdit(EditarUsuarioRequest $request, int $id)
     {
         $usr = Usuario::find($id);
-        
+
         if (!$usr) {
             return redirect()->back()->with('error', 'Usuário não encontrado.');
         }

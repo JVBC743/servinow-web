@@ -2,12 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Formacao;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Usuario>
  */
 class UsuarioFactory extends Factory
 {
@@ -24,33 +24,40 @@ class UsuarioFactory extends Factory
     public function definition(): array
     {
         return [
-            'nome' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            //'email_verified_at' => now(),
+            'nome' => $this->faker->name(),
             'senha' => static::$password ??= Hash::make('password'),
-            'telefone' => fake()->phoneNumber(),
-            'cpf_cnpj' => fake()->randomNumber(8),
-            'area_atuacao' => \App\Models\Formacao::inRandomOrder()->first()->id,
+            'descricao' => $this->faker->optional()->paragraph(),
+            'telefone' => $this->faker->phoneNumber(),
+            'email' => $this->faker->unique()->safeEmail(),
 
-            //'remember_token' => Str::random(10),
+            // Geração condicional de CPF (11) ou CNPJ (14)
+            'cpf_cnpj' => $this->faker->boolean(70)
+                ? $this->faker->numerify('###########')       // CPF
+                : $this->faker->numerify('##############'),   // CNPJ
 
-        // public int $id,
-        // public string $nome,
-        // public string $senha,
-        // public string $telefone,
-        // public string $email,
-        // public string $cpf_cnpj,
-        // public Formacao $area_atuacao,
+            // Verifica se há registros em Formacao antes de pegar um id
+            'area_atuacao' => function () {
+                $formacao = Formacao::inRandomOrder()->first();
+                return $formacao ? $formacao->id : Formacao::factory()->create()->id;
+            },
+
+            'caminho_img' => $this->faker->optional()->imageUrl(640, 480),
+            'rede_social1' => $this->faker->optional()->userName(),
+            'rede_social2' => $this->faker->optional()->userName(),
+            'rede_social3' => $this->faker->optional()->userName(),
+            'rede_social4' => $this->faker->optional()->userName(),
+
+            'cep' => $this->faker->postcode(),
+            'logradouro' => $this->faker->streetName(),
+            'numero' => $this->faker->buildingNumber(),
+            'complemento' => $this->faker->optional()->secondaryAddress(),
+            'bairro' => $this->faker->citySuffix(),
+            'cidade' => $this->faker->city(),
+            'uf' => $this->faker->randomElement([
+                'AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT',
+                'MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO',
+                'RR','SC','SP','SE','TO'
+            ]),
         ];
-    }
-
-    /**
-     * Indicate that the model's email address should be unverified.
-     */
-    public function unverified(): static
-    {
-        return $this->state(fn (array $attributes) => [
-            'email_verified_at' => null,
-        ]);
     }
 }
