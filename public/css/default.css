@@ -25,12 +25,23 @@ input{
     border-radius: 7px;
     border-width: 0px;
 }
+.inputs_desc{
+    overflow-y: auto;
+    border-style: none;
+    border-radius: 7px;
 
-.img_input{
+}
+.select{
+    width: 270px;
+    height: 50px;
+}
+
+.img_input input{
 
     border-style: solid;
     border-width: 1px;
-    border-width: 0px;
+    width: 150px !important;
+    height: 50px;
 
 }
 
@@ -51,8 +62,4 @@ input{
     position: absolute;
     top: 10px;
     left: 10px;
-}
-
-.inputs_desc{
-    overflow-y: auto;
 }

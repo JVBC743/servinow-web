@@ -16,7 +16,21 @@
     {{-- VERIFICAR O PORQUE A FONTE NÃO PEGA VIA COMPONENTE. --}}
 
     @if($editarUsuario)
-        <form action="{{ route('admin.usuario.edit', $editarUsuario->id) }}" method="post">
+    {{-- @if ($error)
+    <h1>{{ $error }}</h1>
+    @endif --}}
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <form action="{{ route('admin.usuario.edit', $editarUsuario->id) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="d-flex flex-wrap justify-content-between">
@@ -27,18 +41,25 @@
                         <input class = "mb-3" type="email" placeholder="E-mail" name="email" value="{{ $editarUsuario->email ?? '' }}" required maxlength="80"><br>
                         <input class = "mb-3" type="text" placeholder="Telefone" name="telefone" value="{{ $editarUsuario->telefone ?? '' }}" required maxlength="15"><br>
                         {{-- <input class = "mb-3" type="text" placeholder="Área de atuação" name="area_atuacao" value="{{ $editarUsuario->nome_atuacao ?? '' }}"><br> --}}
+                        
+                        <p style="font-size: 15px">Anexar imagem</p>
+                        <div class="d-flex justify-content-between flex-wrap align-items-start">
+                            <div>
+                                <input name="foto" alt="Enviar imagem"type="file" class = "img_input" style="width: 150px; height: 50px">
+                            </div>
+                            <select class="select" name="area_atuacao" required>
 
-                        <select name="area_atuacao" id="">
-                            <option value=""></option>
-                        </select>
+                                <option value="">Selecione a sua formação</option>
 
-                        <div>
-                            <p style="font-size: 15px">Anexar imagem</p>
-                            <input name="foto" alt="Enviar imagem" type="file" class="img_input" style="width: 150px; height: 50px">
+                                @foreach ($lista as $formacoes)
+                                    <option value="{{ $formacoes->id }}" {{ $editarUsuario->area_atuacao == $formacoes->id ? 'selected' : '' }}>
+                                        {{ $formacoes->formacao }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
                         <div>
-                            <textarea type="text" name="descricao" class="my-3 inputs_desc" alt="" placeholder="Adicione aqui uma breve descrição das suas competências, seu limite é de 300 caracteres" maxlength="300"></textarea>
-                        
+                            <textarea name="descricao" class="my-3 inputs_desc" placeholder="Adicione aqui uma breve descrição das suas competências, seu limite é de 300 caracteres" maxlength="300">{{ old('descricao', $editarUsuario->descricao) }}</textarea>
                         </div>
                     </div>
                     <div class="my-3 inputs_2">
@@ -50,14 +71,20 @@
                 </div>
                 <div class="justify-content-end mx-5">
                     <div class="text-center fs-5">
-                        <div class="">{{-- procurar saber como referenciar o caminho minio --}}
-                            <img src="{{ $editarUsuario->caminho_img }}" alt="Foto do usuário na tela de edição de perfil." class="profile_image">
-                        </div>
-                        <div class="mb-3"></div>
-                        <div class="photo_name fs-3">
-                            {{ $nome_foto = "teste" }} PROCURAR CAMINHO AQUI
-                        </div>
-                        
+                        @if($editarUsuario->caminho_img)
+
+                            <div class="">{{-- procurar saber como referenciar o caminho minio --}}
+                                <img src="{{ $editarUsuario->caminho_img }}" alt="Foto do usuário na tela de edição de perfil." class="profile_image">
+                            </div>
+                        @else
+
+                            {{-- <div class="">{{-- procurar saber como referenciar o caminho minio --}}
+                                <img src=" {{ asset('') }} " alt="Foto do usuário na tela de edição de perfil." class="profile_image">
+                            </div> --}}
+
+                        @endif
+
+                        <div class="mb-3"></div>                       
                         <div class="mt-4 button_save">
                             <input type="submit" value="Salvar" class="">
                         </div>

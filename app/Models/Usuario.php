@@ -19,12 +19,13 @@ class Usuario extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nome',
         'email',
         'senha',
-        'cpf',
+        'cpf_cnpj',
         'data_nascimento',
-        'celular',
+        'telefone',
+        'area_atuacao',
         'cep',
         'logradouro',
         'numero',
@@ -40,7 +41,6 @@ class Usuario extends Authenticatable
         'rede_social4',
 
     ];
-
 
     /**
      * Os atributos que devem ser ocultados na serialização (ex: ao retornar como JSON).

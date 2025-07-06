@@ -22,14 +22,25 @@ class UsuarioController extends Controller
 
     public function index()
     {
-
         $lista = Usuario::all();
         return view('pages.admin-lista-usuarios', compact('lista'));
     }
 
+    public function adminListFormations($id)
+    {
+        $lista = Formacao::all();
+
+        $editarUsuario = Usuario::find($id);
+
+        if (!$editarUsuario) {
+            return redirect()->back()->with('error', 'Usuário não encontrado.');
+        }
+
+        return redirect()->back()->with('success', 'O usuário foi editado com sucesso.');
+    }
+
     public function listFormations($id)
     {
-
         $lista = Formacao::all();
 
         $editarUsuario = Usuario::find($id);
@@ -56,8 +67,11 @@ class UsuarioController extends Controller
 
     public function adminShowUserAccount($id)
     {
+        
 
         $editarUsuario = Usuario::find($id);
+
+        $lista = Formacao::all();
 
         if (!$editarUsuario) {
              return redirect()->back()->with('error', 'Usuário não encontrado.');
@@ -65,9 +79,9 @@ class UsuarioController extends Controller
 
         $obj_formacao = Formacao::find($editarUsuario->area_atuacao);
 
-        $editarUsuario->area_atuacao = $obj_formacao->formacao;
+        // $editarUsuario->area_atuacao = $obj_formacao->formacao;
 
-        return view("pages.admin-edicao-perfil", compact('editarUsuario'));
+        return view("pages.admin-edicao-perfil", compact('lista', 'editarUsuario'));
     }
 
     public function adminUsuarioEdit(EditarUsuarioRequest $request, int $id)
@@ -79,6 +93,7 @@ class UsuarioController extends Controller
         }
 
         $data = $request->validated();
+        // dd($data);
 
         $editarUsuario = $usr->update($data);
 
@@ -87,7 +102,7 @@ class UsuarioController extends Controller
             return redirect()->back()->with('error', 'Erro ao carregar dados do usuário para edição.');
         }
 
-        return redirect()->route('admin.lista.usuarios')->with('success', 'Usuário atualizado com sucesso!');
+        return redirect()->back()->with('success', 'Usuário editado com sucesso!');
     }
 
 
@@ -149,7 +164,7 @@ class UsuarioController extends Controller
 
         return redirect()->back()->with('success','Usuário excluído com sucesso!');
     }
-    
+
     public function showMinioTest()
     {
         $error = session('error');
@@ -167,4 +182,6 @@ class UsuarioController extends Controller
         }
         return redirect()->back()->with('error', 'houve alguma falha.');
     }
+
+    
 }

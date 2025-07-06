@@ -15,17 +15,17 @@
 
             @foreach ($lista as $usr)
                 <tr id="rows" class="">
-                    <td>{{ $usr['id'] }}</td>
-                    <td>{{ $usr['nome'] }}</td>
-                    <td>{{ $usr['telefone'] }} </td>
-                    <td>{{ $usr['email'] }} </td>
-                    <td>{{ $usr['cpf_cnpj'] }} </td>
+                    <td>{{ $usr->id }}</td>
+                    <td>{{ $usr->nome }}</td>
+                    <td>{{ $usr->telefone }} </td>
+                    <td>{{ $usr->email }} </td>
+                    <td>{{ $usr->cpf_cnpj }} </td>
                     {{-- <td>{{ $usr['nome_atuacao'] }} </td> --}}
                     <td>
                         <div class="d-flex justify-content-between">
                             
                             <div class="ms-5">
-                                <a href="{{ route('admin.mostrar.edicao', $usr['id']) }}">
+                                <a href="{{ route('admin.mostrar.edicao', $usr->id) }}">
                                     <img class="list_icons" src="{{ asset('images/edit.png') }}" alt="">
                                 </a>
                             </div>
