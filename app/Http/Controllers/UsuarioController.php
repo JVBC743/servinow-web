@@ -70,7 +70,7 @@ class UsuarioController extends Controller
 
     public function adminShowUserAccount($id)
     {
-        
+
         $editarUsuario = Usuario::find($id);
 
         $lista = Formacao::all();
@@ -82,9 +82,8 @@ class UsuarioController extends Controller
         $obj_formacao = Formacao::find($editarUsuario->area_atuacao);
 
         if($editarUsuario->caminho_img){
-            $editarUsuario->imagem_bucket = Storage::disk('minio')->temporaryUrl($editarUsuario->caminho_img, Carbon::now()->addMinutes(5));
+            $editarUsuario->imagem_bucket = Storage::disk('miniobusca')->temporaryUrl($editarUsuario->caminho_img, Carbon::now()->addMinutes(5));
         }
-
         // $editarUsuario->area_atuacao = $obj_formacao->formacao;
 
         return view("pages.admin-edicao-perfil", compact('lista', 'editarUsuario'));
@@ -93,22 +92,20 @@ class UsuarioController extends Controller
     public function adminUsuarioEdit(EditarUsuarioRequest $request, int $id)
     {
         $usr = Usuario::find($id);
-        
+
         if (!$usr) {
             return redirect()->back()->with('error', 'Usuário não encontrado.');
         }
         $data = $request->validated();
-        
+
         if ($request->file('foto')) {
-            
+
             $file = $request->file('foto');
             $filename = time() . '_' . $file->getClientOriginalName();
 
-            $path = Storage::disk('minio')->put('usuarios/' . $filename, file_get_contents($request->file('foto')));
-            dd($path);
-            // Storage::disk('s3')->put('imagens/foto_usuario_123.jpg', file_get_contents($request->file('imagem')));
+            $path = Storage::disk('minio')->put($filename, file_get_contents($request->file('foto')));
 
-            $data['caminho_img'] = $path;
+            $data['caminho_img'] = $filename;
         }
 
         $editarUsuario = $usr->update($data);

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ServicoController;
 
 Route::view('/login', 'pages.login')->name('login');
 Route::view('/dashboard', 'pages.dashboard')->name('dashboard');
