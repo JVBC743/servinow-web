@@ -56,7 +56,7 @@ h6 {
 
 
 .bg-gradient {
-    background: linear-gradient(to bottom, #4879BF, #7FBFC9);
+    background: linear-gradient(to bottom, #4879BF, #7FBFC9) !important;
     padding: 30px;
 }
 
@@ -104,7 +104,7 @@ h6 {
     text-decoration: none;
     font-size: 0.9rem;
     color: rgb(0, 0, 255);
-    text-decoration: underline; 
+    text-decoration: underline;
 }
 
 .esqueci-senha:hover {
@@ -120,6 +120,7 @@ h6 {
 .btn-entrar {
     width: 120px;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .btn-cadastrar {
@@ -136,7 +137,6 @@ h6 {
 
 .btn-entrar {
     background-color: #21a7a7;
-    box-shadow: 0 4px 6px rgba(37, 99, 235, 0.3);
     color: black;
     border: 1px solid black;
 }
@@ -151,45 +151,58 @@ h6 {
 
 
 .container-principal {
-    background-color: transparent; /* Cor de fundo principal da área do formulário */
-    padding: 30px; /* Espaçamento interno */
+    background-color: transparent;
+    /* Cor de fundo principal da área do formulário */
+    padding: 30px;
+    /* Espaçamento interno */
     border-radius: 10px;
     width: 100%;
-    max-width: 1200px; /* Largura máxima do container azul */
+    max-width: 1200px;
+    /* Largura máxima do container azul */
 }
 
 .container-formulario {
     display: flex;
-    background-color: transparent; /* Fundo branco do formulário e logo */
+    background-color: transparent;
+    /* Fundo branco do formulário e logo */
     border-radius: 8px;
-    overflow: hidden; /* Para que os cantos arredondados da logo funcionem bem */
+    overflow: hidden;
+    /* Para que os cantos arredondados da logo funcionem bem */
 }
 
 /* Área da Logo (Esquerda) */
 .logo-area {
-    background-color: #FFFFFF; /* Fundo branco para a área da logo */
+    background-color: #FFFFFF;
+    /* Fundo branco para a área da logo */
     padding: 40px;
-    flex-basis: 30%; /* Define a largura base da área da logo */
+    flex-basis: 30%;
+    /* Define a largura base da área da logo */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    border-right: 1px solid #EEE; /* Linha divisória sutil, se desejar */
+    border-right: 1px solid #EEE;
+    /* Linha divisória sutil, se desejar */
 }
 
 .logo-placeholder {
-    background-color: #F0F0F0; /* Cor de fundo do placeholder da logo */
-    width: 150px; /* Ajuste conforme sua logo */
-    height: 100px; /* Ajuste conforme sua logo */
+    background-color: #F0F0F0;
+    /* Cor de fundo do placeholder da logo */
+    width: 150px;
+    /* Ajuste conforme sua logo */
+    height: 100px;
+    /* Ajuste conforme sua logo */
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 24px;
     font-weight: bold;
     color: #333;
-    border-radius: 8px; /* Arredondamento para o placeholder */
-    margin-bottom: 20px; /* Espaço abaixo da logo */
+    border-radius: 8px;
+    /* Arredondamento para o placeholder */
+    margin-bottom: 20px;
+    /* Espaço abaixo da logo */
     /* Se for usar uma imagem:
     img {
         max-width: 100%;
@@ -206,9 +219,12 @@ h6 {
 /* Área do Formulário (Direita) */
 .formulario-area {
     padding: 30px 40px;
-    flex-basis: 70%; /* Define a largura base da área do formulário */
-    background-color: transparent; /* Fundo azul da área do formulário (conforme imagem) */
-    color: #FFFFFF; /* Cor do texto dos labels e título */
+    flex-basis: 70%;
+    /* Define a largura base da área do formulário */
+    background-color: transparent;
+    /* Fundo azul da área do formulário (conforme imagem) */
+    color: #FFFFFF;
+    /* Cor do texto dos labels e título */
 }
 
 .formulario-area h1 {
@@ -221,20 +237,25 @@ h6 {
 form {
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Espaço entre as linhas de input e outros elementos */
+    gap: 15px;
+    /* Espaço entre as linhas de input e outros elementos */
 }
 
 .linha-input {
     display: flex;
-    gap: 15px; /* Espaço entre os inputs na mesma linha */
-    flex-wrap: wrap; /* Permite que os inputs quebrem para a próxima linha se não couberem */
+    gap: 15px;
+    /* Espaço entre os inputs na mesma linha */
+    flex-wrap: wrap;
+    /* Permite que os inputs quebrem para a próxima linha se não couberem */
 }
 
 .input-grupo {
     display: flex;
     flex-direction: column;
-    flex: 1; /* Faz com que os grupos de input tentem ocupar espaço igual */
-    min-width: 150px; /* Largura mínima para cada campo antes de quebrar */
+    flex: 1;
+    /* Faz com que os grupos de input tentem ocupar espaço igual */
+    min-width: 150px;
+    /* Largura mínima para cada campo antes de quebrar */
 }
 
 .input-grupo label {
@@ -245,36 +266,58 @@ form {
 
 .input-grupo input {
     padding: 10px;
-    border: 1px solid #DDE3E8; /* Borda sutil dos inputs */
+    border: 1px solid #DDE3E8;
+    /* Borda sutil dos inputs */
     border-radius: 5px;
     font-size: 14px;
-    background-color: #F3F6F9; /* Fundo cinza claro dos inputs */
+    background-color: #F3F6F9;
+    /* Fundo cinza claro dos inputs */
     color: #333;
 }
 
 .input-grupo input:focus {
     outline: none;
-    border-color: #007BFF; /* Borda azul ao focar */
+    border-color: #007BFF;
+    /* Borda azul ao focar */
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
 /* Ajustes de largura específicos para alguns campos, conforme a imagem */
-.input-email { flex-grow: 2; } /* E-mail pode ser mais largo */
-.input-logradouro { flex-grow: 2.5; } /* Logradouro pode ser mais largo */
-.input-cidade { flex-grow: 2; }
-.input-numero, .input-uf, .input-bairro { flex-grow: 0.5; } /* Campos menores */
+.input-email {
+    flex-grow: 2;
+}
+
+/* E-mail pode ser mais largo */
+.input-logradouro {
+    flex-grow: 2.5;
+}
+
+/* Logradouro pode ser mais largo */
+.input-cidade {
+    flex-grow: 2;
+}
+
+.input-numero,
+.input-uf,
+.input-bairro {
+    flex-grow: 0.5;
+}
+
+/* Campos menores */
 
 
 .termos {
     font-size: 16px;
-    color: #F0F0F0; /* Cor mais clara para os termos */
+    color: #F0F0F0;
+    /* Cor mais clara para os termos */
     text-align: left;
     margin-top: 10px;
     line-height: 1.5;
 }
 
 .termos a {
-    color: #B0E0E6; /* Cor azul clara para os links nos termos */
+    color: #B0E0E6;
+    /* Cor azul clara para os links nos termos */
     text-decoration: none;
 }
 
@@ -286,18 +329,22 @@ form {
 /* Responsividade: Ajustes para telas menores */
 @media (max-width: 992px) {
     .container-formulario {
-        flex-direction: column; /* Empilha a logo e o formulário */
+        flex-direction: column;
+        /* Empilha a logo e o formulário */
     }
 
     .logo-area {
-        flex-basis: auto; /* Remove a largura base fixa */
+        flex-basis: auto;
+        /* Remove a largura base fixa */
         border-right: none;
-        border-bottom: 1px solid #EEE; /* Linha divisória abaixo da logo */
+        border-bottom: 1px solid #EEE;
+        /* Linha divisória abaixo da logo */
         padding: 30px;
     }
 
     .formulario-area {
-        flex-basis: auto; /* Remove a largura base fixa */
+        flex-basis: auto;
+        /* Remove a largura base fixa */
     }
 }
 
@@ -307,12 +354,14 @@ form {
     }
 
     .linha-input {
-        flex-direction: column; /* Empilha os inputs em telas muito pequenas */
+        flex-direction: column;
+        /* Empilha os inputs em telas muito pequenas */
         gap: 15px;
     }
 
     .input-grupo {
-        width: 100%; /* Faz cada input ocupar a largura total */
+        width: 100%;
+        /* Faz cada input ocupar a largura total */
     }
 
 }
@@ -321,9 +370,11 @@ form {
     .container-principal {
         padding: 15px;
     }
+
     .formulario-area {
         padding: 20px;
     }
+
     .formulario-area h1 {
         font-size: 20px;
     }
