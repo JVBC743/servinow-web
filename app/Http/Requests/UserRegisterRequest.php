@@ -21,6 +21,15 @@ class UserRegisterRequest extends FormRequest
             'cpf_cnpj' => 'required|string|size:14|unique:Usuario,cpf_cnpj',
             'area_atuacao' => 'required|integer|exists:areas,id',
 
+            'data_nascimento' => 'required|date',
+            'cep' => 'required|string|max:10',
+            'logradouro' => 'required|string|max:100',
+            'numero' => 'required|string|max:10',
+            'complemento' => 'nullable|string|max:50',
+            'bairro' => 'required|string|max:50',
+            'cidade' => 'required|string|max:50',
+            'uf' => 'required|string|size:2',
+
             'descricao' => 'nullable|string',
             'caminho_img' => 'nullable|string|max:60',
 
@@ -30,6 +39,7 @@ class UserRegisterRequest extends FormRequest
             'rede_social4' => 'nullable|string|max:40',
         ];
     }
+
 
     public function messages()
     {
@@ -77,6 +87,36 @@ class UserRegisterRequest extends FormRequest
 
             'rede_social4.string' => 'O campo rede social 4 deve ser um texto.',
             'rede_social4.max' => 'A rede social 4 não pode ter mais de 40 caracteres.',
+            'data_nascimento.required' => 'A data de nascimento é obrigatória.',
+            'data_nascimento.date' => 'A data de nascimento deve ser uma data válida.',
+
+            'cep.required' => 'O CEP é obrigatório.',
+            'cep.string' => 'O CEP deve ser um texto.',
+            'cep.max' => 'O CEP não pode ter mais de 10 caracteres.',
+
+            'logradouro.required' => 'O logradouro é obrigatório.',
+            'logradouro.string' => 'O logradouro deve ser um texto.',
+            'logradouro.max' => 'O logradouro não pode ter mais de 100 caracteres.',
+
+            'numero.required' => 'O número é obrigatório.',
+            'numero.string' => 'O número deve ser um texto.',
+            'numero.max' => 'O número não pode ter mais de 10 caracteres.',
+
+            'complemento.string' => 'O complemento deve ser um texto.',
+            'complemento.max' => 'O complemento não pode ter mais de 50 caracteres.',
+
+            'bairro.required' => 'O bairro é obrigatório.',
+            'bairro.string' => 'O bairro deve ser um texto.',
+            'bairro.max' => 'O bairro não pode ter mais de 50 caracteres.',
+
+            'cidade.required' => 'A cidade é obrigatória.',
+            'cidade.string' => 'A cidade deve ser um texto.',
+            'cidade.max' => 'A cidade não pode ter mais de 50 caracteres.',
+
+            'uf.required' => 'A UF é obrigatória.',
+            'uf.string' => 'A UF deve ser um texto.',
+            'uf.size' => 'A UF deve ter exatamente 2 caracteres.',
+
         ];
     }
 }

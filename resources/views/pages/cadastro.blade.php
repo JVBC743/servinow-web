@@ -28,12 +28,12 @@
                         <div class="linha-input">
                             <div class="input-grupo">
                                 <label for="nome">Nome*</label>
-                                <input type="text" id="nome" name="name" value="{{ old('name') }}" required>
+                                <input type="text" id="nome" name="nome" value="{{ old('name') }}" required>
                                 @error('name')<span class="text-danger">{{ $message }}</span>@enderror
                             </div>
                             <div class="input-grupo">
                                 <label for="cpf">CPF*</label>
-                                <input type="text" id="cpf" name="cpf" value="{{ old('cpf') }}" required>
+                                <input type="text" id="cpf" name="cpf_cnpj" value="{{ old('cpf') }}" required>
                                 @error('cpf')<span class="text-danger">{{ $message }}</span>@enderror
                             </div>
                             <div class="input-grupo">
@@ -51,8 +51,8 @@
                                 @error('email')<span class="text-danger">{{ $message }}</span>@enderror
                             </div>
                             <div class="input-grupo">
-                                <label for="celular">Número de celular*</label>
-                                <input type="tel" id="celular" name="celular" value="{{ old('celular') }}" required>
+                                <label for="celular">Número de telefone*</label>
+                                <input type="tel" id="celular" name="telefone" value="{{ old('celular') }}" required>
                                 @error('celular')<span class="text-danger">{{ $message }}</span>@enderror
                             </div>
                             <div class="input-grupo">
