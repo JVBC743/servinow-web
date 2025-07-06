@@ -1,4 +1,4 @@
-@extends ('layouts.app')
+@extends ('layouts.nao-autenticado')
 @section('title', 'Login')
 @section('content')
     <div class="container-fluid bg-gradient d-flex justify-content-center align-items-center min-vh-100">
@@ -6,7 +6,7 @@
             <!-- Coluna Esquerda -->
             <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
                 <div class="login-box text-center">
-                    <h1 class="login-title">Login</h1>
+                    <h1 class="login-title fs-2">Login</h1>
                     <br>
                     <hr class="divisor">
                     <br>
@@ -36,7 +36,7 @@
             <!-- Coluna Direita -->
             <div class="col-12 col-md-6 d-flex flex-column justify-content-center align-items-center text-center p-4">
                 <img src="{{ asset('images/logo.png') }}" class="img-fluid mb-3" style="width: 90%;" alt="Logo">
-                <p class="descricao">
+                <p class="fs-5">
                     ServiNow é a ponte entre quem precisa e quem faz. Uma plataforma segura, acessível e intuitiva que
                     conecta clientes a prestadores de serviços de diversas áreas. Agende com facilidade, atenda com
                     eficiência, tudo em um só lugar.

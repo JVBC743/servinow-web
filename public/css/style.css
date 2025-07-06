@@ -2,9 +2,6 @@
     --cor-padrao: #7DCCD8;
 }
 
-.body-navbar {
-    padding: 4rem 0rem;
-}
 
 body,
 html {
@@ -119,11 +116,6 @@ h6 {
     background-color: #ccc !important;
 }
 
-.descricao {
-    color: #000;
-    max-width: 90%;
-    font-size: 1rem;
-}
 
 .btn-cadastrar,
 .btn-entrar {
