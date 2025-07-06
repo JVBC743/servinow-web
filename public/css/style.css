@@ -1,32 +1,167 @@
-/* Reset básico e configurações globais */
-* {
+:root {
+    --cor-padrao: #7DCCD8;
+}
+
+
+body,
+html {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: sans-serif; /* Escolha uma fonte mais próxima da imagem se desejar */
+    height: 100%;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    font-size: 16px;
 }
 
-body {
-    background-color: #ADD8E6; /* Um azul claro de fundo, ajuste conforme a imagem */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--cor-padrao);
+}
+
+.txt-center {
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px; /* Para evitar que o formulário cole nas bordas em telas menores */
 }
 
+.both-align {
+    align-items: center;
+    justify-content: center;
+}
+
+.v-align {
+    align-items: center;
+}
+
+.h-align {
+    justify-content: center;
+}
+
+.btn-avaliacao {
+    background-color: rgb(175, 175, 175);
+    color: rgb(0, 0, 0);
+    border: 2px solid rgb(175, 175, 175);
+    border-radius: 15px;
+    width: 70%;
+    padding: 5px;
+}
+
+.btn-avaliacao:hover {
+    background-color: rgb(139, 139, 139);
+    cursor: pointer;
+    border: 2px solid rgb(139, 139, 139);
+}
+
+
+.bg-gradient {
+    background: linear-gradient(to bottom, #4879BF, #7FBFC9) !important;
+    padding: 30px;
+}
+
+.main-box {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 75px;
+    width: 90vw;
+    height: 90vh;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+.login-box {
+    background-color: white;
+    width: 70%;
+    aspect-ratio: 3 / 3;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+}
+
+.login-title {
+    background: linear-gradient(to bottom, #4879BF, #7FBFC9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-top: 0;
+}
+
+.divisor {
+    border: 1px solid #888;
+    width: 100%;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.esqueci-senha {
+    text-decoration: none;
+    font-size: 0.9rem;
+    color: rgb(0, 0, 255);
+    text-decoration: underline; 
+}
+
+.esqueci-senha:hover {
+    color: #333;
+}
+
+.bg-lightgray {
+    background-color: #ccc !important;
+}
+
+
+.btn-cadastrar,
+.btn-entrar {
+    width: 120px;
+    transition: all 0.3s ease;
+}
+
+.btn-cadastrar {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}
+
+.btn-cadastrar:hover {
+    background-color: #ccc;
+    color: black;
+    border: 1px solid black;
+}
+
+.btn-entrar {
+    background-color: #21a7a7;
+    box-shadow: 0 4px 6px rgba(37, 99, 235, 0.3);
+    color: black;
+    border: 1px solid black;
+}
+
+.btn-entrar:hover {
+    background-color: #006e92;
+    color: black;
+    border: 1px solid black;
+}
+
+
+
+
 .container-principal {
-    background-color: #6C92C8; /* Cor de fundo principal da área do formulário */
+    background-color: transparent; /* Cor de fundo principal da área do formulário */
     padding: 30px; /* Espaçamento interno */
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     width: 100%;
     max-width: 1200px; /* Largura máxima do container azul */
 }
 
 .container-formulario {
     display: flex;
-    background-color: #FFFFFF; /* Fundo branco do formulário e logo */
+    background-color: transparent; /* Fundo branco do formulário e logo */
     border-radius: 8px;
     overflow: hidden; /* Para que os cantos arredondados da logo funcionem bem */
 }
@@ -73,7 +208,7 @@ body {
 .formulario-area {
     padding: 30px 40px;
     flex-basis: 70%; /* Define a largura base da área do formulário */
-    background-color: #6C92C8; /* Fundo azul da área do formulário (conforme imagem) */
+    background-color: transparent; /* Fundo azul da área do formulário (conforme imagem) */
     color: #FFFFFF; /* Cor do texto dos labels e título */
 }
 
@@ -132,7 +267,7 @@ form {
 
 
 .termos {
-    font-size: 12px;
+    font-size: 16px;
     color: #F0F0F0; /* Cor mais clara para os termos */
     text-align: left;
     margin-top: 10px;
@@ -148,24 +283,6 @@ form {
     text-decoration: underline;
 }
 
-.btn-cadastrar {
-    background-color: #00BCD4; /* Cor do botão de cadastrar */
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 20px; /* Botão mais arredondado */
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    align-self: center; /* Centraliza o botão */
-    margin-top: 15px;
-    width: 200px; /* Largura fixa para o botão */
-}
-
-.btn-cadastrar:hover {
-    background-color: #0097A7; /* Cor do botão ao passar o mouse */
-}
 
 /* Responsividade: Ajustes para telas menores */
 @media (max-width: 992px) {
@@ -199,9 +316,6 @@ form {
         width: 100%; /* Faz cada input ocupar a largura total */
     }
 
-    .btn-cadastrar {
-        width: 100%; /* Botão ocupa largura total */
-    }
 }
 
 @media (max-width: 480px) {
