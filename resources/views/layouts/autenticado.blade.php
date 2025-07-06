@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="{{ asset('css/colors.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/card-servico.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/card-avaliacao.css') }}">
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/search.css') }}">
