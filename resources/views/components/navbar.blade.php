@@ -12,22 +12,20 @@
 
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link fs-5 {{ request()->routeIs('dashboard') ? 'active' : '' }}"
-                            href="{{ route('dashboard') }}">
-                            Início
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fs-5 {{ request()->routeIs('sobre.nos') ? 'active' : '' }}"
-                            href="{{ route('sobre.nos') }}">
-                            Sobre nós
-                        </a>
-                    </li>
-                </ul>
-
+                <li class="nav-item">
+                    <a class="nav-link fs-5 {{ request()->routeIs('dashboard') ? 'active' : '' }}"
+                        href="{{ route('dashboard') }}">
+                        Início
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-5 {{ request()->routeIs('sobre.nos') ? 'active' : '' }}"
+                        href="{{ route('sobre.nos') }}">
+                        Sobre nós
+                    </a>
+                </li>
             </ul>
+
             <!-- Icons -->
             <div class="d-flex align-items-center nav-icon">
                 <a href="#" class="nav-link text-white fs-5 me-3">
@@ -37,10 +35,7 @@
                     class="nav-link text-white fs-5 {{ request()->routeIs('visualizacao-perfil') ? 'active' : '' }}">
                     <i class="fa-solid fa-user"></i>
                 </a>
-
-
             </div>
-
         </div>
     </div>
 </nav>
