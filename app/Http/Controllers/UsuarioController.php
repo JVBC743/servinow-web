@@ -7,14 +7,6 @@ use App\Application\DTOs\RegisterUsuarioDTO;
 
 use Illuminate\Http\JsonResponse;
 
-use App\Application\UseCases\CreateUserUseCase;
-use App\Application\UseCases\ListarUsuarioUseCase;
-use App\Application\UseCases\EditarUsuarioUseCase;
-use App\Application\UseCases\ListarFormacoesUseCase;
-use App\Application\UseCases\RegisterUsuarioUseCase;
-use App\Application\UseCases\AdminUsuarioDeleteUseCase;
-use App\Application\UseCases\AdminUsuarioEditUseCase;
-
 use App\Models\Usuario;
 use App\Models\Formacao;
 
@@ -23,28 +15,33 @@ use App\Domain\Repositories\UsuarioRepositoryInterface as UsrRepo;
 use App\Http\Requests\RegisterUsuarioRequest;
 use App\Http\Requests\EditarUsuarioRequest;
 use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
 
 class UsuarioController extends Controller
 {
 
-    public function index(ListarUsuarioUseCase $listaUsuarios)
+    public function index()
     {
-
-        $lista = $listaUsuarios->execute();
-        foreach ($lista as &$usuario) {
-            $formacao = Formacao::find($usuario['area_atuacao']);
-            $usuario['nome_atuacao'] = $formacao ? $formacao->formacao : 'Não definida';
-        }
-        unset($usuario);
+        $lista = Usuario::all();
         return view('pages.admin-lista-usuarios', compact('lista'));
     }
 
-    public function listFormations(ListarFormacoesUseCase $listaFormacoes, $id)
+    public function adminListFormations($id)
     {
+        $lista = Formacao::all();
 
-        $lista = $listaFormacoes->execute();
+        $editarUsuario = Usuario::find($id);
+
+        if (!$editarUsuario) {
+            return redirect()->back()->with('error', 'Usuário não encontrado.');
+        }
+
+        return redirect()->back()->with('success', 'O usuário foi editado com sucesso.');
+    }
+
+    public function listFormations($id)
+    {
+        $lista = Formacao::all();
 
         $editarUsuario = Usuario::find($id);
 
@@ -68,23 +65,26 @@ class UsuarioController extends Controller
         return view("pages.edicao-perfil", compact('editarUsuario'));
     }
 
-    public function adminShowUserAccount($id, ListarFormacoesUseCase $listaFormacoes,)
+    public function adminShowUserAccount($id)
     {
+        
 
         $editarUsuario = Usuario::find($id);
-        $lista = $listaFormacoes->execute();
 
+        $lista = Formacao::all();
 
         if (!$editarUsuario) {
-            return redirect()->back()->with('error', 'Usuário não encontrado.');
+             return redirect()->back()->with('error', 'Usuário não encontrado.');
         }
-        $obj_formacao = Formacao::find($editarUsuario->area_atuacao); //Você só tem que arrumar um jeito de implementar isso sem o método "show".
-        $editarUsuario->area_atuacao = $obj_formacao->formacao;
 
-        return view("pages.admin-usuario-edit", compact('lista', 'editarUsuario'));
+        $obj_formacao = Formacao::find($editarUsuario->area_atuacao);
+
+        // $editarUsuario->area_atuacao = $obj_formacao->formacao;
+
+        return view("pages.admin-edicao-perfil", compact('lista', 'editarUsuario'));
     }
 
-    public function adminUsuarioEdit(EditarUsuarioRequest $request, AdminUsuarioEditUseCase $useCase, int $id)
+    public function adminUsuarioEdit(EditarUsuarioRequest $request, int $id)
     {
 
         $usr = Usuario::find($id);
@@ -92,22 +92,21 @@ class UsuarioController extends Controller
             return redirect()->back()->with('error', 'Usuário não encontrado.');
         }
 
-        $lista = (new ListarFormacoesUseCase(app(UsrRepo::class)))->execute();
-
         $data = $request->validated();
+        // dd($data);
 
-        $editarUsuario = $useCase->execute($id, $data);
+        $editarUsuario = $usr->update($data);
 
         if (!$editarUsuario) {
 
             return redirect()->back()->with('error', 'Erro ao carregar dados do usuário para edição.');
         }
 
-        return redirect()->route('admin.lista.usuarios')->with('success', 'Usuário atualizado com sucesso!');
+        return redirect()->back()->with('success', 'Usuário editado com sucesso!');
     }
 
 
-    public function edit(EditarUsuarioRequest $request, EditarUsuarioUseCase $useCase,  int $id)
+    public function edit(EditarUsuarioRequest $request, int $id)
     {
 
         $usr = Usuario::find($id);
@@ -115,18 +114,14 @@ class UsuarioController extends Controller
             return redirect()->back()->with('error', 'Usuário não encontrado.');
         }
 
-        $lista = (new ListarFormacoesUseCase(app(UsrRepo::class)))->execute();
-
         $data = $request->validated();
+        $editarUsuario = $usr->update($data);
 
-        $editarUsuario = $useCase->execute($id, $data);
-
-        if (!$editarUsuario) {
-
-            return redirect()->back()->with('error', 'Erro ao carregar dados do usuário para edição.');
+        if (!$editarUsuario){
+            return redirect()->back()->with('error', 'Não foi possível editar o usuário.');
         }
 
-        return view('pages.edicao-perfil', compact('editarUsuario', 'lista'));
+        return view('pages.edicao-perfil', compact('editarUsuario'));
     }
 
     public function store(RegisterUsuarioRequest $request, RegisterUsuarioUseCase $useCase): JsonResponse
@@ -157,12 +152,19 @@ class UsuarioController extends Controller
 
     public function destroy($id) {}
 
-    public function adminUserDestroy(int $id, AdminUsuarioDeleteUseCase $excluir)
+    public function adminUserDestroy(int $id)
     {
+        $usr = Usuario::find($id);
 
-        $exclusao = $excluir->execute($id);
-        return redirect()->route('admin.lista.usuarios');
+        if(!$usr){
+            return redirect()->back()->with('error', 'Usuário não encontrado.');
+        }
+
+        $usr->destroy($id);
+
+        return redirect()->back()->with('success','Usuário excluído com sucesso!');
     }
+
     public function showMinioTest()
     {
         $error = session('error');
@@ -180,4 +182,6 @@ class UsuarioController extends Controller
         }
         return redirect()->back()->with('error', 'houve alguma falha.');
     }
+
+    
 }
