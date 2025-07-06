@@ -23,7 +23,7 @@
 </head>
 
 <body>
-
+    <x-navbar />
     <main>
         @yield('content')
     </main>

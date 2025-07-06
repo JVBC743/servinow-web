@@ -6,7 +6,7 @@
             <!-- Coluna Esquerda -->
             <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
                 <div class="login-box text-center">
-                    <h1 class="login-title fs-2">Login</h1>
+                    <h1 class="login-title fs-1">Login</h1>
                     <br>
                     <hr class="divisor">
                     <br>
@@ -27,7 +27,7 @@
 
                         <div class="d-flex justify-content-center gap-3">
                             <a href="{{ route('cadastro.form') }}" class="btn btn-cadastrar">Cadastrar</a>
-                            <a href="{{ route('dashboard') }}" class="btn btn-entrar">Entrar</a>
+                            <a href="{{ route('lista-avaliacoes') }}" class="btn btn-entrar">Entrar</a>
                         </div>
                     </form>
                 </div>
