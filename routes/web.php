@@ -37,20 +37,16 @@ Route::prefix('perfil')->controller(UsuarioController::class)->group(function ()
 });
 
 // Serviço
-Route::prefix('servico')->group(function () {
-    Route::get('/cadastro', function () {
-        return view('pages.cadastro-servico');
-    })->name('cadastro.servico');
-
-    Route::controller(ServicoController::class)->group(function () {
-        Route::post('/cadastro', 'create')->name('cadastro.servico.create');
-        // Route::put('/cadastro/{id}', 'edit')->name('cadastro.servico.edit'); // Ainda comentado
-    });
-
-    Route::get('/edicao', function () {
-        return view('pages.edicao-servico');
-    })->name('edicao.servico');
+Route::prefix('servico')->controller(ServicoController::class)->group(function () {
+    Route::get('/', 'index')->name('servico.index');                   // Lista todos os serviços
+    Route::get('/create', 'create')->name('servico.create');          // Formulário de cadastro
+    Route::post('/', 'store')->name('servico.store');                 // Salva novo serviço
+    Route::get('/{servico}', 'show')->name('servico.show');          // Detalhes de um serviço
+    Route::get('/{servico}/edit', 'edit')->name('servico.edit');     // Formulário de edição
+    Route::put('/{servico}', 'update')->name('servico.update');      // Atualiza serviço
+    Route::delete('/{servico}', 'destroy')->name('servico.destroy'); // Exclui serviço
 });
+
 
 // Admin
 Route::prefix('admin')->controller(UsuarioController::class)->group(function () {
