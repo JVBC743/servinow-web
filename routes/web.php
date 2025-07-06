@@ -16,6 +16,9 @@ Route::prefix('cadastro')->controller(AuthController::class)->group(function () 
     Route::post('/', 'register')->name('cadastro.store');
 });
 
+// Route::view('/servico/teste', 'pages.servico')->name('servico');
+
+
 // Dashboard e perfil
 Route::view('/dashboard', 'pages.dashboard')->name('dashboard');
 Route::view('/perfil', 'pages.visualizacao-perfil')->name('visualizacao-perfil');
@@ -45,8 +48,8 @@ Route::prefix('servico')->controller(ServicoController::class)->group(function (
     Route::get('/{servico}/edit', 'edit')->name('servico.edit');     // Formulário de edição
     Route::put('/{servico}', 'update')->name('servico.update');      // Atualiza serviço
     Route::delete('/{servico}', 'destroy')->name('servico.destroy'); // Exclui serviço
-});
 
+});
 
 // Admin
 Route::prefix('admin')->controller(UsuarioController::class)->group(function () {

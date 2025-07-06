@@ -33,7 +33,7 @@
             </div>
             <div class="mx-3">
                 <div class="div_img">
-                    <a href="" target="_blank">
+                    <a href="https://www.canva.com/design/DAGnLa3ishI/ic-hL6dDyn-07pl2zaVH1w/edit?utm_content=DAGnLa3ishI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">
                         <img src="{{ asset('images/manoel.png') }}" class="rounded-circle" alt="Foto do Manoel Aguiar">
                     </a><br>
                 </div>

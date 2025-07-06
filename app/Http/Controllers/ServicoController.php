@@ -59,9 +59,12 @@ class ServicoController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-        $servico = Servico::findOrFail($id);
-        return view('pages.detalhe-servico', compact('servico'));
+    {  
+
+        // $usr = Usuario::find($id);
+        
+        $servico = Servico::findOrFail($id);    
+        return view('pages.servico', compact('servico'));
     }
 
     /**
