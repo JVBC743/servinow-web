@@ -1,86 +1,109 @@
+    @extends('layouts.autenticado')
 
-<x-header :title="'Editar Perfil'" />
+    @section('title', 'Editar Perfil')
 
-@if(session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
-@endif
+    @section('content')
+        <div class="container-fluid d-flex justify-content-center align-items-center py-5">
+            <div class="card p-4 shadow w-100" style="max-width: 900px">
 
-    <h1 class="ms-5 mt-4">Configuração de Conta</h1>
+                <h1 class="text-center mb-4">Editar Perfil</h1>
 
-    {{-- 670x727px --}}
-    {{-- 359x727px --}}
-    {{-- 330x727px --}}
-    {{-- RESPONSIVIDADE VIA MEDIA QUERIES --}}
-    {{-- VERIFICAR O PORQUE A FONTE NÃO PEGA VIA COMPONENTE. --}}
+                @if(session('error'))
+                    <div class="alert alert-danger">{{ session('error') }}</div>
+                @endif
 
-    @if($editarUsuario)
-        <form action="{{ route('editar.usuario', $editarUsuario->id) }}" method="post">
-            @csrf
-            @METHOD('PUT')
-            <div class="d-flex flex-wrap justify-content-between">
-                <div class="d-flex fs-5 flex-wrap me-5">
-                    <div class="my-3 mx-5 inputs">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
-                        <input class = "mb-3" type="text" placeholder="Nome" name="nome" value="{{ $editarUsuario->nome ?? '' }}" required maxlength="50"><br>
-                        <input class = "mb-3" type="email" placeholder="E-mail" name="email" value="{{ $editarUsuario->email ?? '' }}" required maxlength="80"><br>
-                        <input class = "mb-3" type="text" placeholder="Telefone" name="telefone" value="{{ $editarUsuario->telefone ?? '' }}" required maxlength="15"><br>
-                        {{-- <input class = "mb-3" type="text" placeholder="Área de atuação" name="area_atuacao" value="{{ $editarUsuario->nome_atuacao ?? '' }}"><br> --}}
-                                
-                        <p style="font-size: 15px">Anexar imagem</p>
-                        <div class="d-flex justify-content-between flex-wrap align-items-start">
-                            <div>
-                                <input name="foto" alt="Enviar imagem"type="image" class = "img_input" style="width: 150px; height: 50px">
+                @if($usr)
+                    <form action="{{ route('editar.usuario', $usr->id) }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+
+                        <div class="row">
+                            {{-- Nome --}}
+                            <div class="col-md-6 mb-3">
+                                <label for="nome" class="form-label">Nome*</label>
+                                <input type="text" name="nome" id="nome" class="form-control" value="{{ old('nome', $usr->nome) }}" maxlength="50" required>
                             </div>
-                            <select class="select" name="area_atuacao" id="" required>
-                                <option value="">Selecione a sua formação</option>
-                                    {{-- @foreach ($lista as $formacao)
-                                        <option value="{{ $formacao['id'] }}" {{$editarUsuario->area_atuacao == $formacao['id'] ? 'selected' : ''}}>
-                                            {{ $formacao['formacao'] }}
-                                    @endforeach --}}
-                                </option>
-                            </select>
-                        </div>
-                            
-                        <div>
-                            <textarea type="text" name="descricao" class="my-3 inputs_desc" alt="" placeholder="Adicione aqui uma breve descrição das suas competências, seu limite é de 300 caracteres" maxlength="300">{{ $editarUsuario->descricao }}</textarea>
-                        
-                        </div>
-                    </div>
-                    <div class="my-3 inputs_2">
-                        <input class = "mb-3" type="text" placeholder="Rede social #1" name="rede_social1" value="{{ $editarUsuario->rede_social1 ?? '' }}" maxlength="40"><br>
-                        <input class = "mb-3" type="text" placeholder="Rede social #2" name="rede_social2" value="{{ $editarUsuario->rede_social2 ?? '' }}" maxlength="40"><br>
-                        <input class = "mb-3" type="text" placeholder="Rede social #3" name="rede_social3" value="{{ $editarUsuario->rede_social3 ?? '' }}" maxlength="40"><br>
-                        <input class = "mb-3" type="text" placeholder="Rede social #4" name="rede_social4" value="{{ $editarUsuario->rede_social4 ?? '' }}" maxlength="40"><br>
-                    </div>
-                </div>
 
-                <div class="justify-content-end mx-5">
-                    <div class="text-center fs-5">
-                        <div class="">{{-- procurar saber como referenciar o caminho minio --}}
-                            <img src="{{ $editarUsuario->caminho_img }}" alt="Foto do usuário na tela de edição de perfil." class="profile_image">
+                            {{-- E-mail --}}
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">E-mail*</label>
+                                <input type="email" name="email" id="email" class="form-control" value="{{ old('email', $usr->email) }}" maxlength="80" required>
+                            </div>
+
+                            {{-- Telefone --}}
+                            <div class="col-md-6 mb-3">
+                                <label for="telefone" class="form-label">Telefone*</label>
+                                <input type="text" name="telefone" id="telefone" class="form-control" value="{{ old('telefone', $usr->telefone) }}" maxlength="15" required>
+                            </div>
+
+                            {{-- Área de Atuação --}}
+                            <div class="col-md-6 mb-3">
+                                <label for="area_atuacao" class="form-label">Área de Atuação*</label>
+                                <select name="area_atuacao" id="area_atuacao" class="form-select" required>
+                                    <option value="">Selecione a sua formação</option>
+                                    @foreach ($lista as $formacao)
+                                        <option value="{{ $formacao->id }}" {{ old('area_atuacao', $usr->area_atuacao) == $formacao->id ? 'selected' : '' }}>
+                                            {{ $formacao->formacao }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            {{-- Descrição --}}
+                            <div class="col-12 mb-3">
+                                <label for="descricao" class="form-label">Descrição (max 300 caracteres)</label>
+                                <textarea name="descricao" id="descricao" class="form-control" maxlength="300" rows="4" placeholder="Adicione uma breve descrição das suas competências">{{ old('descricao', $usr->descricao) }}</textarea>
+                            </div>
+
+                            {{-- Redes sociais --}}
+                            <div class="col-md-6 mb-3">
+                                <label for="rede_social1" class="form-label">Rede social #1</label>
+                                <input type="text" name="rede_social1" id="rede_social1" class="form-control" maxlength="40" value="{{ old('rede_social1', $usr->rede_social1) }}">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="rede_social2" class="form-label">Rede social #2</label>
+                                <input type="text" name="rede_social2" id="rede_social2" class="form-control" maxlength="40" value="{{ old('rede_social2', $usr->rede_social2) }}">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="rede_social3" class="form-label">Rede social #3</label>
+                                <input type="text" name="rede_social3" id="rede_social3" class="form-control" maxlength="40" value="{{ old('rede_social3', $usr->rede_social3) }}">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="rede_social4" class="form-label">Rede social #4</label>
+                                <input type="text" name="rede_social4" id="rede_social4" class="form-control" maxlength="40" value="{{ old('rede_social4', $usr->rede_social4) }}">
+                            </div>
+
+                            {{-- Imagem --}}
+                            <div class="d-flex justify-content-center mt-5 mb-3">
+                                <div class="d-flex flex-column align-items-center" style="width: 200px;">
+                                    @if($imagem_url)
+                                        <img src="{{ $imagem_url }}" alt="Foto do usuário" class="profile_img mb-3" style="width: 400px">
+                                    @else
+                                        <img src="{{ asset('images/user-icon.png') }}" alt="Usuário sem foto" class="profile_img mb-3" style="width: 300px">
+                                    @endif
+                                    <input type="file" name="foto" accept="image/*" class="form-control w-100" style="max-width: 150px;">
+                                    <small class="text-muted mt-1">Anexar nova imagem</small>
+                                </div>
+                            </div>
                         </div>
-                        <div class="mb-3"></div>
-                        <div class="photo_name fs-3">
-                            {{ $nome_foto = "teste" }} PROCURAR CAMINHO AQUI
+
+                        <div class="d-flex justify-content-center mt-4 w-100">
+                            <button type="submit" class="btn btn-primary px-5">Salvar</button>
                         </div>
-                        
-                        <div class="mt-4 button_save">
-                            <input type="submit" value="Salvar" class="">
-                        </div>
-                    </div><br>
-                </div>
+                    </form>
+                @else
+                    <h3 class="text-center text-danger">Usuário não encontrado, por favor, volte.</h3>
+                @endif
             </div>
-        </form>
-        <form action="" method="post">
-            @csrf
-            @method('DELETE')
-            <div class="mt-4 button_delete">
-                <button class="">Excluir</button>
-            </div>
-        </form>
-    @else
-        <h1>Usuário não encontrado, por favor, volte.</h1>
-    @endif
-<x-footer />
+        </div>
+    @endsection

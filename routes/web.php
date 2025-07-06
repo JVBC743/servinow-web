@@ -3,10 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ServicoController;
-
-// Página inicial
-Route::view('/', 'welcome');
 
 // Autenticação
 Route::view('/login', 'pages.login')->name('login');
