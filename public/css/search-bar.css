@@ -1,7 +1,6 @@
 .search-bar-container {
     width: 100%;
     display: flex;
-    /* Adicionado */
     flex-wrap: nowrap;
 }
 
@@ -14,7 +13,6 @@
     align-items: center;
     flex-wrap: nowrap;
     width: 100%;
-    /* Garante que ocupa todo o espaço */
 }
 
 
@@ -24,13 +22,13 @@
     font-size: 16px;
     border-radius: 24px;
     padding-left: 16px;
-
+    background-color: white;
     flex-grow: 1;
     min-width: 0;
 }
 
 .search-bar button {
-    background: #30e0e0;
+    background: linear-gradient(to bottom, #21a7a7, #006e92);
     color: white;
     border: none;
     padding: 8px;
@@ -41,9 +39,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-     flex-shrink: 0;
+    flex-shrink: 0;
 }
 
 .search-bar button:hover {
-    background: linear-gradient(135deg, #30e0e0, #006e92);
+    background: linear-gradient(to bottom, #126b6b, #0389b6);
 }
