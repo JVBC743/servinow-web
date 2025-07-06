@@ -1,5 +1,6 @@
 @extends ('layouts.nao-autenticado')
 @section('title', 'Login')
+
 @section('content')
     <div class="container-fluid bg-gradient d-flex justify-content-center align-items-center min-vh-100">
         <div class="main-box d-flex flex-wrap">
@@ -10,24 +11,27 @@
                     <br>
                     <hr class="divisor">
                     <br>
-                    <form>
+
+                    <form action="{{ route('loginPost') }}" method="POST">
+                        @csrf
+
                         <div class="input-group mb-3">
                             <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-                            <input type="email" class="form-control" placeholder="Email">
+                            <input type="email" name="email" class="form-control" placeholder="Email" required>
                         </div>
 
                         <div class="input-group mb-2">
                             <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
-                            <input type="password" class="form-control" placeholder="Senha">
+                            <input type="password" name="password" class="form-control" placeholder="Senha" required>
                         </div>
 
                         <div class="mb-3 text-end">
-                            <a href="" class="esqueci-senha">Esqueci minha senha?</a>
+                            <a href="#" class="esqueci-senha">Esqueci minha senha?</a>
                         </div>
 
                         <div class="d-flex justify-content-center gap-3">
                             <a href="{{ route('cadastro.form') }}" class="btn btn-cadastrar">Cadastrar</a>
-                            <a href="{{ route('lista-avaliacoes') }}" class="btn btn-entrar">Entrar</a>
+                            <button type="submit" class="btn btn-entrar">Entrar</button>
                         </div>
                     </form>
                 </div>

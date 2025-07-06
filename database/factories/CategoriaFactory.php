@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+<<<<<<< HEAD
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Categoria>
@@ -30,6 +31,19 @@ class CategoriaFactory extends Factory
         
         ]),
 
+=======
+use App\Models\Categoria;
+
+class CategoriaFactory extends Factory
+{
+    protected $model = Categoria::class;
+
+    public function definition()
+    {
+        return [
+            // Usando campo 'categoria' conforme seu model
+            'nome' => $this->faker->word(),
+>>>>>>> e4fa30f861af16f6742b9b73339e6610ebe0a8d9
         ];
     }
 }

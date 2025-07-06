@@ -5,22 +5,19 @@ namespace Database\Factories;
 use App\Models\Formacao;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
+<<<<<<< HEAD
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Usuario>
  */
+=======
+use App\Models\Formacao;
+
+>>>>>>> e4fa30f861af16f6742b9b73339e6610ebe0a8d9
 class UsuarioFactory extends Factory
 {
-    /**
-     * The current password being used by the factory.
-     */
-    protected static ?string $password;
+    protected static ?string $password = null;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         return [
@@ -29,6 +26,7 @@ class UsuarioFactory extends Factory
             'descricao' => $this->faker->optional()->paragraph(),
             'telefone' => $this->faker->phoneNumber(),
             'email' => $this->faker->unique()->safeEmail(),
+<<<<<<< HEAD
 
             // Geração condicional de CPF (11) ou CNPJ (14)
             'cpf_cnpj' => $this->faker->boolean(70)
@@ -47,17 +45,35 @@ class UsuarioFactory extends Factory
             'rede_social3' => $this->faker->optional()->userName(),
             'rede_social4' => $this->faker->optional()->userName(),
 
+=======
+            'cpf_cnpj' => $this->faker->numerify('###########'), // até 14 dígitos
+            'area_atuacao' => Formacao::inRandomOrder()->first()?->id ?? 1, // previne erro se não houver dados
+            'caminho_img' => 'imagens/usuarios/' . $this->faker->uuid() . '.jpg',
+
+            'rede_social1' => $this->faker->optional()->url(),
+            'rede_social2' => $this->faker->optional()->url(),
+            'rede_social3' => $this->faker->optional()->url(),
+            'rede_social4' => $this->faker->optional()->url(),
+
+>>>>>>> e4fa30f861af16f6742b9b73339e6610ebe0a8d9
             'cep' => $this->faker->postcode(),
             'logradouro' => $this->faker->streetName(),
             'numero' => $this->faker->buildingNumber(),
             'complemento' => $this->faker->optional()->secondaryAddress(),
             'bairro' => $this->faker->citySuffix(),
             'cidade' => $this->faker->city(),
+<<<<<<< HEAD
             'uf' => $this->faker->randomElement([
                 'AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT',
                 'MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO',
                 'RR','SC','SP','SE','TO'
             ]),
+=======
+            'uf' => $this->faker->stateAbbr(),
+
+            'created_at' => now(),
+            'updated_at' => now(),
+>>>>>>> e4fa30f861af16f6742b9b73339e6610ebe0a8d9
         ];
     }
 }

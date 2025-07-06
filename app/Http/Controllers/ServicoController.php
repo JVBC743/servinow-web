@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use App\Models\Servico;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ServicoController extends Controller
@@ -32,30 +33,26 @@ class ServicoController extends Controller
      */
     public function store(Request $request)
     {
-        // Validação
-        $request->validate([
-            'nome' => 'required|string|max:40|min:3',
+        $validatedData = $request->validate([
+            'nome' => 'required|string|min:20|max:40',
+            'imagem' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'categoria' => 'required|exists:Categoria,id',
             'descricao' => 'required|string|max:750',
-            'categoria' => 'required|integer|exists:Categoria,id',
-            'imagem' => 'required|image|max:2048',
         ]);
 
-        if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
-            $path = $request->file('imagem')->store('servicos', 'minio');
-        } else {
-            return back()->withErrors(['imagem' => 'Imagem inválida'])->withInput();
-        }
+        // Upload da imagem para MinIO (supondo disco minio configurado)
+        $path = $request->file('imagem')->store('imagens/servicos', 'minio');
 
-        // Criação do serviço
+        // Criar serviço com usuário logado
         Servico::create([
-            'nome_servico' => $request->nome,
-            'desc_servico' => $request->descricao,
-            'categoria' => $request->categoria,
+            'nome_servico' => $validatedData['nome'],
+            'categoria' => $validatedData['categoria'],
+            'desc_servico' => $validatedData['descricao'],
             'caminho_foto' => $path,
-            // 'usuario_id' => auth()->id() ?? 1, // opcional: se tiver autenticação
+            'usuario_id' => Auth::id(),
         ]);
 
-        return redirect()->route('servico.index')->with('success', 'Serviço cadastrado com sucesso!');
+        return redirect()->route('servico.index')->with('success', 'Serviço criado com sucesso.');
     }
 
     /**
@@ -73,7 +70,14 @@ class ServicoController extends Controller
     public function edit(string $id)
     {
         $servico = Servico::findOrFail($id);
-        return view('pages.edicao-servico', compact('servico'));
+        $categorias = Categoria::all();
+
+        // Gera a URL da imagem (caso exista)
+        $imagemUrl = $servico->caminho_foto
+            ? Storage::disk('miniobusca')->temporaryUrl($servico->caminho_foto, now()->addMinutes(5))
+            : null;
+
+        return view('pages.edicao-servico', compact('servico', 'categorias', 'imagemUrl'));
     }
 
     /**
@@ -83,34 +87,32 @@ class ServicoController extends Controller
     {
         $servico = Servico::findOrFail($id);
 
-        // Validação
-        $request->validate([
-            'nome' => 'required|string|max:40|min:3',
+        $validatedData = $request->validate([
+            'nome' => 'required|string|min:20|max:40',
+            'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'categoria' => 'required|exists:Categoria,id',
             'descricao' => 'required|string|max:750',
-            'categoria' => 'required|string|max:50',
-            'imagem' => 'nullable|image|max:2048', // imagem é opcional na edição
         ]);
 
-        // Se tiver imagem nova, faz upload e apaga a antiga
-        if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
-            // Deleta imagem antiga
-            if ($servico->imagem && Storage::disk('minio')->exists($servico->imagem)) {
-                Storage::disk('minio')->delete($servico->imagem);
-            }
-            // Upload nova imagem
-            $path = $request->file('imagem')->store('servicos', 'minio');
-            $servico->imagem = $path;
-        }
+        $servico->nome_servico = $validatedData['nome'];
+        $servico->categoria = $validatedData['categoria'];
+        $servico->desc_servico = $validatedData['descricao'];
 
-        // Atualiza dados
-        $servico->nome = $request->nome;
-        $servico->descricao = $request->descricao;
-        $servico->categoria = $request->categoria;
+        if ($request->hasFile('imagem')) {
+            if ($servico->caminho_img) {
+                // Apaga imagem antiga
+                Storage::disk('minio')->delete($servico->caminho_foto);
+            }
+
+            $path = $request->file('imagem')->store('imagens/servicos', 'minio');
+            $servico->caminho_foto = $path;
+        }
 
         $servico->save();
 
-        return redirect()->route('servico.index')->with('success', 'Serviço atualizado com sucesso!');
+        return redirect()->route('servico.index')->with('success', 'Serviço atualizado com sucesso.');
     }
+
 
     /**
      * Remove the specified resource from storage.

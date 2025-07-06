@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Categoria;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Servico extends Model
 {
+    use HasFactory;
+
     protected $table = 'Servico';
 
     protected $fillable = [

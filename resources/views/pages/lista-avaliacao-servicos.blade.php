@@ -41,10 +41,14 @@
                     <b>Principais avaliações de Serviços</b>
                 </h5>
                 <div>
-                    criar componente do card de avaliações para por aqui futuramente
-
-
-
+                   
+                    <!-- EXEMPLO DE COMPONENTE, FALTA ADICIONAR GRID DE DUAS COLUNAS COM OVERLOW Y  -->
+<x-card-avaliacao 
+    profileImage="images/claion.png"
+    userName="José"
+    rating="5"
+    description="Excelente profissional, pontual e muito educado!"
+/>
 
                 </div>
             </div>
