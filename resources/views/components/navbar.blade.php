@@ -31,8 +31,8 @@
                 <a href="#" class="nav-link text-white fs-5 me-3">
                     <i class="fa-solid fa-bell"></i>
                 </a>
-                <a href="{{ route('visualizacao-perfil') }}"
-                    class="nav-link text-white fs-5 {{ request()->routeIs('visualizacao-perfil') ? 'active' : '' }}">
+                <a href="{{ route('mostrar.edicao', ['id' => auth()->id()]) }}"
+                    class="nav-link text-white fs-5 {{ request()->routeIs('mostrar.edicao') ? 'active' : '' }}">
                     <i class="fa-solid fa-user"></i>
                 </a>
             </div>
