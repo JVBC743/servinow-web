@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ServicoController;
 
 Route::view('/login', 'pages.login')->name('login');
 Route::view('/dashboard', 'pages.dashboard')->name('dashboard');
@@ -15,7 +17,7 @@ Route::view('/dashboard', 'pages.dashboard')->name('dashboard');
 Route::view('/cadastro', 'pages.cadastro')->name('cadastro.form');
 
 // Rota POST: PROCESSA os dados do formulário, enviando para o seu Controller.
-Route::post('/cadastro', [RegisterController::class, 'store'])->name('cadastro.store');
+Route::post('/cadastro', [AuthController::class, 'register'])->name('cadastro.store');
 // --- FIM DAS ADIÇÕES ---
 
 Route::view('/perfil', 'pages.visualizacao-perfil')->name('visualizacao-perfil');
