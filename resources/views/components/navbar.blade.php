@@ -25,6 +25,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link fs-5 {{ request()->routeIs('termos') ? 'active' : '' }}"
+                        href="{{ route('termos') }}">
+                        Uso e Privacidade
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link fs-5 {{ request()->routeIs('admin.lista.usuarios') ? 'active' : '' }}"
                         href="{{ route('admin.lista.usuarios') }}">
                         Lista de Usuários
