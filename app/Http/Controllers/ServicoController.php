@@ -48,7 +48,7 @@ class ServicoController extends Controller
             'nome_servico' => $validatedData['nome'],
             'categoria' => $validatedData['categoria'],
             'desc_servico' => $validatedData['descricao'],
-            'caminho_img' => $path,
+            'caminho_foto' => $path,
             'usuario_id' => Auth::id(),
         ]);
 
