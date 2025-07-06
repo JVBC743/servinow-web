@@ -22,10 +22,10 @@ class CreateServicoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nome' => 'max:40|min:20|required',
-            'descricao' => 'max:750',
+            'nome_servico' => 'max:40|min:20|required',
+            'desc_servico' => 'max:750',
             'categoria' => 'required',
-            'foto' => 'required|image|mimes:png,jpg,jpeg|max:15360',
+            'foto' => 'nullable|image|mimes:png,jpg,jpeg|max:15360',
 
         ];
     }

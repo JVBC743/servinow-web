@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateServicoRequest;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
+use App\Models\Servico;
 
 class ServicoController extends Controller
 {
@@ -17,8 +20,21 @@ class ServicoController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
+    public function showCadastro(){
+
+        $listaCategorias = Categoria::all();
+        
+        return view ('pages.cadastro-servico', compact('listaCategorias'));
+
+    }
+    public function create(CreateServicoRequest $request)
+    {   
+        $data = $request->validated();
+        // dd($data);
+
+        $servico = Servico::create($data);
+
+        return redirect()->back()->with('success', 'Serviço cadastrado com sucesso.');
         
     }
 

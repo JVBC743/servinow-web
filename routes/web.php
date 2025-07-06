@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ServicoController;
 
 Route::view('/login', 'pages.login')->name('login');
 Route::view('/dashboard', 'pages.dashboard')->name('dashboard');
@@ -42,15 +43,17 @@ Route::get('/edicao-perfil/{id}', [UsuarioController::class, 'listFormations'])-
 Route::delete('/edicao-perfil/{id}', [UsuarioController::class, 'destroy'])->name('excluir.conta');
 
 
-Route::post('/cadastro-servico', [ServicoController::class , 'create'])->name('cadastro.servico.create');
+Route::post('/cadastrar-servico', [ServicoController::class , 'create'])->name('cadastro.servico.create');
 
-// Route::put('/cadastro-servico/{id}', [ServicoController::class , 'edit'])->name('cadastro.servico.edit');
 
-Route::get('/cadastro-servico', function(){
-    return view('pages/cadastro-servico');
-})->name('cadastro.servico');
+// Route::get('/cadastro-servico', function(){
+//     return view('pages/cadastro-servico');
+// })->name('cadastro.servico');
 
-Route::get('/edicao-servico', function(){
+Route::get('/cadastro-servico', [ServicoController::class , 'showCadastro'])->name('cadastro.servico');
+
+
+Route::get('/edicao-servico/{id}', function(){
     return view('pages/edicao-servico');
 })->name('edicao.servico');
 
