@@ -1,8 +1,11 @@
-body {
+.navbar body {
     padding: 4rem;
     margin: 0;
     font-family: Arial, sans-serif;
 }
+
+
+
 
 .navbar {
     position: fixed;
