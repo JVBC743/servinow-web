@@ -43,7 +43,7 @@ class AuthController extends Controller
             'telefone' => $request->telefone,
             'email' => $request->email,
             'cpf_cnpj' => $request->cpf_cnpj,
-            'area_atuacao' => $request->area_atuacao,
+            // 'area_atuacao' => $request->area_atuacao,
 
             'data_nascimento' => $request->data_nascimento,
             'cep' => $request->cep,

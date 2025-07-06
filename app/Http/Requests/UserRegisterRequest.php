@@ -19,7 +19,7 @@ class UserRegisterRequest extends FormRequest
             'telefone' => 'required|string|max:50',
             'email' => 'required|email|max:80|unique:Usuario,email',
             'cpf_cnpj' => 'required|string|size:14|unique:Usuario,cpf_cnpj',
-            'area_atuacao' => 'required|integer|exists:areas,id',
+            // 'area_atuacao' => 'required|integer|exists:areas,id',
 
             'data_nascimento' => 'required|date',
             'cep' => 'required|string|max:10',
