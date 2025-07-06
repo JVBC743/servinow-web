@@ -1,5 +1,4 @@
 <x-header :title="'Cadastar Serviço'" />
-{{-- <x-navbar /> --}}
 
     <h1 class="text-center emphasis_text my-3">Cadastrar serviço</h1>
     <div class="">
@@ -26,7 +25,7 @@
                             </div>
                         </div>
                         <div class="mt-5 big_input">
-                            <textarea maxlength="750" class ="" type="text" name="descricao" id="" placeholder="Insira a descrição do serviço aqui mesmo" required maxlength="750"></textarea>
+                            <textarea maxlength="750" class ="inputs_desc" type="text" name="descricao" id="" placeholder="Insira a descrição do serviço aqui mesmo" required maxlength="750"></textarea>
                         </div>
                     </div>
                     
@@ -42,8 +41,8 @@
                                 <div class="photo_name fs-3">
                                     {{ $nome_foto = "teste" }} PROCURAR CAMINHO AQUI
                                 </div>
-                                <div class="mt-4">
-                                    <input type="submit" value="Salvar" class="btn btn-primary button_save">
+                                <div class="mt-4 button_save">
+                                    <input type="submit" value="Salvar" class="">
                                 </div>
                             </div>
                         </div>

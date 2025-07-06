@@ -16,9 +16,23 @@
     {{-- VERIFICAR O PORQUE A FONTE NÃO PEGA VIA COMPONENTE. --}}
 
     @if($editarUsuario)
-        <form action="{{ route('editar.usuario', $editarUsuario->id) }}" method="post">
+    {{-- @if ($error)
+    <h1>{{ $error }}</h1>
+    @endif --}}
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <form action="{{ route('admin.usuario.edit', $editarUsuario->id) }}" method="post" enctype="multipart/form-data">
             @csrf
-            @METHOD('PUT')
+            @method('PUT')
             <div class="d-flex flex-wrap justify-content-between">
                 <div class="d-flex fs-5 flex-wrap me-5">
                     <div class="my-3 mx-5 inputs">
@@ -27,25 +41,25 @@
                         <input class = "mb-3" type="email" placeholder="E-mail" name="email" value="{{ $editarUsuario->email ?? '' }}" required maxlength="80"><br>
                         <input class = "mb-3" type="text" placeholder="Telefone" name="telefone" value="{{ $editarUsuario->telefone ?? '' }}" required maxlength="15"><br>
                         {{-- <input class = "mb-3" type="text" placeholder="Área de atuação" name="area_atuacao" value="{{ $editarUsuario->nome_atuacao ?? '' }}"><br> --}}
-                                
+                        
                         <p style="font-size: 15px">Anexar imagem</p>
                         <div class="d-flex justify-content-between flex-wrap align-items-start">
                             <div>
-                                <input name="foto" alt="Enviar imagem"type="image" class = "img_input" style="width: 150px; height: 50px">
+                                <input name="foto" alt="Enviar imagem" type="file" class = "img_input" style="width: 150px; height: 50px">
                             </div>
-                            <select class="select" name="area_atuacao" id="" required>
+                            <select class="select" name="area_atuacao" required>
+
                                 <option value="">Selecione a sua formação</option>
-                                    {{-- @foreach ($lista as $formacao)
-                                        <option value="{{ $formacao['id'] }}" {{$editarUsuario->area_atuacao == $formacao['id'] ? 'selected' : ''}}>
-                                            {{ $formacao['formacao'] }}
-                                    @endforeach --}}
-                                </option>
+
+                                @foreach ($lista as $formacoes)
+                                    <option value="{{ $formacoes->id }}" {{ $editarUsuario->area_atuacao == $formacoes->id ? 'selected' : '' }}>
+                                        {{ $formacoes->formacao }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
-                            
                         <div>
-                            <textarea type="text" name="descricao" class="my-3 inputs_desc" alt="" placeholder="Adicione aqui uma breve descrição das suas competências, seu limite é de 300 caracteres" maxlength="300">{{ $editarUsuario->descricao }}</textarea>
-                        
+                            <textarea name="descricao" class="my-3 inputs_desc" placeholder="Adicione aqui uma breve descrição das suas competências, seu limite é de 300 caracteres" maxlength="300">{{ old('descricao', $editarUsuario->descricao) }}</textarea>
                         </div>
                     </div>
                     <div class="my-3 inputs_2">
@@ -55,17 +69,22 @@
                         <input class = "mb-3" type="text" placeholder="Rede social #4" name="rede_social4" value="{{ $editarUsuario->rede_social4 ?? '' }}" maxlength="40"><br>
                     </div>
                 </div>
-
                 <div class="justify-content-end mx-5">
                     <div class="text-center fs-5">
-                        <div class="">{{-- procurar saber como referenciar o caminho minio --}}
-                            <img src="{{ $editarUsuario->caminho_img }}" alt="Foto do usuário na tela de edição de perfil." class="profile_image">
-                        </div>
-                        <div class="mb-3"></div>
-                        <div class="photo_name fs-3">
-                            {{ $nome_foto = "teste" }} PROCURAR CAMINHO AQUI
-                        </div>
-                        
+                        @if($editarUsuario->caminho_img)
+
+                            <div class="">{{-- procurar saber como referenciar o caminho minio --}}
+                                <img src="{{ $editarUsuario->imagem_bucket }}" alt="Foto do usuário na tela de edição de perfil." class="profile_img">
+                            </div>
+                        @else
+
+                            <div class="">
+                                <img src=" {{ asset('images/user-icon.png') }} " alt="Foto do usuário na tela de edição de perfil." class="profile_img">
+                            </div>
+
+                        @endif
+
+                        <div class="mb-3"></div>                       
                         <div class="mt-4 button_save">
                             <input type="submit" value="Salvar" class="">
                         </div>
@@ -73,13 +92,13 @@
                 </div>
             </div>
         </form>
-        <form action="" method="post">
+        {{-- <form action="" method="post">
             @csrf
             @method('DELETE')
             <div class="mt-4 button_delete">
                 <button class="">Excluir</button>
             </div>
-        </form>
+        </form> --}}
     @else
         <h1>Usuário não encontrado, por favor, volte.</h1>
     @endif

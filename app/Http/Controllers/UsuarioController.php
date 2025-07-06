@@ -15,6 +15,9 @@ use App\Domain\Repositories\UsuarioRepositoryInterface as UsrRepo;
 use App\Http\Requests\RegisterUsuarioRequest;
 use App\Http\Requests\EditarUsuarioRequest;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Carbon;
+
 use Illuminate\Support\Facades\Storage;
 
 class UsuarioController extends Controller
@@ -68,7 +71,6 @@ class UsuarioController extends Controller
     public function adminShowUserAccount($id)
     {
         
-
         $editarUsuario = Usuario::find($id);
 
         $lista = Formacao::all();
@@ -79,6 +81,10 @@ class UsuarioController extends Controller
 
         $obj_formacao = Formacao::find($editarUsuario->area_atuacao);
 
+        if($editarUsuario->caminho_img){
+            $editarUsuario->imagem_bucket = Storage::disk('minio')->temporaryUrl($editarUsuario->caminho_img, Carbon::now()->addMinutes(5));
+        }
+
         // $editarUsuario->area_atuacao = $obj_formacao->formacao;
 
         return view("pages.admin-edicao-perfil", compact('lista', 'editarUsuario'));
@@ -86,24 +92,36 @@ class UsuarioController extends Controller
 
     public function adminUsuarioEdit(EditarUsuarioRequest $request, int $id)
     {
-
         $usr = Usuario::find($id);
+        
         if (!$usr) {
             return redirect()->back()->with('error', 'Usuário não encontrado.');
         }
-
         $data = $request->validated();
-        // dd($data);
+        
+        if ($request->file('foto')) {
+            
+            $file = $request->file('foto');
+            $filename = time() . '_' . $file->getClientOriginalName();
+
+            $path = Storage::disk('minio')->put('usuarios/' . $filename, file_get_contents($request->file('foto')));
+            dd($path);
+            // Storage::disk('s3')->put('imagens/foto_usuario_123.jpg', file_get_contents($request->file('imagem')));
+
+            $data['caminho_img'] = $path;
+        }
 
         $editarUsuario = $usr->update($data);
+        // dd($editarUsuario);
 
         if (!$editarUsuario) {
-
             return redirect()->back()->with('error', 'Erro ao carregar dados do usuário para edição.');
         }
 
         return redirect()->back()->with('success', 'Usuário editado com sucesso!');
     }
+
+
 
 
     public function edit(EditarUsuarioRequest $request, int $id)
@@ -182,6 +200,4 @@ class UsuarioController extends Controller
         }
         return redirect()->back()->with('error', 'houve alguma falha.');
     }
-
-    
 }

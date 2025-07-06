@@ -45,7 +45,7 @@
                         <p style="font-size: 15px">Anexar imagem</p>
                         <div class="d-flex justify-content-between flex-wrap align-items-start">
                             <div>
-                                <input name="foto" alt="Enviar imagem"type="file" class = "img_input" style="width: 150px; height: 50px">
+                                <input name="foto" alt="Enviar imagem" type="file" class = "img_input" style="width: 150px; height: 50px">
                             </div>
                             <select class="select" name="area_atuacao" required>
 
@@ -74,13 +74,13 @@
                         @if($editarUsuario->caminho_img)
 
                             <div class="">{{-- procurar saber como referenciar o caminho minio --}}
-                                <img src="{{ $editarUsuario->caminho_img }}" alt="Foto do usuário na tela de edição de perfil." class="profile_image">
+                                <img src="{{ $editarUsuario->imagem_bucket }}" alt="Foto do usuário na tela de edição de perfil." class="profile_img">
                             </div>
                         @else
 
-                            {{-- <div class="">{{-- procurar saber como referenciar o caminho minio --}}
-                                <img src=" {{ asset('') }} " alt="Foto do usuário na tela de edição de perfil." class="profile_image">
-                            </div> --}}
+                            <div class="">
+                                <img src=" {{ asset('images/user-icon.png') }} " alt="Foto do usuário na tela de edição de perfil." class="profile_img">
+                            </div>
 
                         @endif
 
