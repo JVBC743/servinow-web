@@ -59,13 +59,40 @@ class UsuarioController extends Controller
 
         $editarUsuario = Usuario::find($id);
 
+        $lista = Formacao::all();
+
+        if ($editarUsuario->caminho_img) {
+            $imagem_url = Storage::disk('minio')->temporaryUrl(
+            $editarUsuario->caminho_img,
+            now()->addSecond(5)
+        );
+        } else {
+            $imagem_url = null;
+        }
+
         if (!$editarUsuario) {
             return redirect()->back()->with('error', 'Usuário não encontrado.');
         }
-        $obj_formacao = Formacao::find($editarUsuario->area_atuacao); //Você só tem que arrumar um jeito de implementar isso sem o método "show".
-        $editarUsuario->area_atuacao = $obj_formacao->formacao;
 
-        return view("pages.edicao-perfil", compact('editarUsuario'));
+        return view("pages.edicao-perfil", compact('editarUsuario', 'lista', 'imagem_url'));
+    }
+
+    public function edit(EditarUsuarioRequest $request, int $id)
+    {
+
+        $usr = Usuario::find($id);
+        if (!$usr) {
+            return redirect()->back()->with('error', 'Usuário não encontrado.');
+        }
+
+        $data = $request->validated();
+        $editarUsuario = $usr->update($data);
+
+        if (!$editarUsuario){
+            return redirect()->back()->with('error', 'Não foi possível editar o usuário.');
+        }
+
+        return view('pages.edicao-perfil', compact('editarUsuario'));
     }
 
     public function adminShowUserAccount($id)
@@ -79,7 +106,7 @@ class UsuarioController extends Controller
              return redirect()->back()->with('error', 'Usuário não encontrado.');
         }
 
-        $obj_formacao = Formacao::find($editarUsuario->area_atuacao);
+        // $obj_formacao = Formacao::find($editarUsuario->area_atuacao);
 
         if ($editarUsuario->caminho_img) {
             $imagem_url = Storage::disk('minio')->temporaryUrl(
@@ -137,26 +164,7 @@ class UsuarioController extends Controller
         ]);
     }
 
-
-
-
-    public function edit(EditarUsuarioRequest $request, int $id)
-    {
-
-        $usr = Usuario::find($id);
-        if (!$usr) {
-            return redirect()->back()->with('error', 'Usuário não encontrado.');
-        }
-
-        $data = $request->validated();
-        $editarUsuario = $usr->update($data);
-
-        if (!$editarUsuario){
-            return redirect()->back()->with('error', 'Não foi possível editar o usuário.');
-        }
-
-        return view('pages.edicao-perfil', compact('editarUsuario'));
-    }
+    
 
     public function store(RegisterUsuarioRequest $request, RegisterUsuarioUseCase $useCase): JsonResponse
     {

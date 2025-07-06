@@ -43,7 +43,7 @@
 
     {{-- Conteúdo principal --}}
     <main class="py-4" style="min-height: 80vh;">
-        <div class="container">
+        <div class="container-fluid">
             @yield('content')
         </div>
     </main>
