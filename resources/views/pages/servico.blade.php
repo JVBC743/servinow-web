@@ -3,18 +3,18 @@
 @section('title', 'ServiNow - Agendar Serviço')
 
 @section('content')
-            <div class="row shadow mt-5" style="height: 70vh">
+            <div class="row shadow mt-5" style="height: 100%; min-height: 700px">
                 <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
                     <div class="text-center margin_div_servico">
                         <div>
                             <img src="{{ asset('images/logo-dark.png') }}" alt="Foto do serviço" class="" style="width: 300px; height: 100px">
                         </div>
 
+                        
                         <label for="data" class="form-label fw-bold">Selecione a Data:</label>
+                        <input type="date" id="data" name="data" class="form-control mb-5 text-cente" style="">
 
-                        <input type="date" id="data" name="data" class="form-control mb-5 text-center" style="">
-
-                        <button class="btn btn-info text-white px-4">Agendar</button>
+                        <button class="btn btn-info text-white px-4 my-5">Agendar</button>
                     </div>
                 </div>
 
@@ -44,9 +44,7 @@
                                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
                             </p>
                         </div>
-                        
                     </div>
-                    
                 </div>
             </div>
 @endsection
