@@ -30,6 +30,12 @@
                         Uso e Privacidade
                     </a>
                 </li>
+                        <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle fs-5"
+                        href="#" id="navbarDropdownServicos" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Serviços
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link fs-5 {{ request()->routeIs('admin.lista.usuarios') ? 'active' : '' }}"
                         href="{{ route('admin.lista.usuarios') }}">

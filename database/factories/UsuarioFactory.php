@@ -34,7 +34,6 @@ class UsuarioFactory extends Factory
             'bairro' => $this->faker->citySuffix(),
             'cidade' => $this->faker->city(),
             'uf' => $this->faker->stateAbbr(),
-
             'created_at' => now(),
             'updated_at' => now(),
         ];
