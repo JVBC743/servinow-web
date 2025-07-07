@@ -3,7 +3,7 @@
 @section('title', 'Agendar Serviço')
 
 @section('content')
-            <div class="row shadow mt-5" style="height: 100%; min-height: 700px">
+            <div class="row shadow my-5" style="height: 100%; min-height: 700px">
                 <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
                     <div class="text-center margin_div_servico">
                         <div>
