@@ -36,6 +36,12 @@
                         Lista de Usuários
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-5 {{ request()->routeIs('lista') ? 'active' : '' }}"
+                        href="{{ route('lista') }}">
+                        Serviços
+                    </a>
+                </li>
             </ul>
 
             <!-- Icons -->
