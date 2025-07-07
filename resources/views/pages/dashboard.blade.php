@@ -3,12 +3,33 @@
 @section('content')
 
 
-<div class="d-flex align-items-center justify-content-between gap-2"> 
-    <h1 class="m-0">Serviços Disponíveis</h1>
-    <div class="flex-grow-1 ms-3" style="max-width: 400px;">
-        <x-search-bar />
+    <div class="d-flex align-items-center justify-content-between gap-2">
+        <h1 class="m-0">Serviços Disponíveis</h1>
+        <div class="flex-grow-1 ms-3" style="max-width: 400px;">
+            <x-search-bar />
+        </div>
     </div>
-</div>
+
+    <hr>
+
+    <div class="d-flex flex-wrap justify-content-center" style="gap: 20px;">
+        <x-card-servico />
+        <x-card-servico
+            imageUrl="https://static.wixstatic.com/media/1233ff_ca96ec225309492dbd2cef0b7ca9938f~mv2.jpg/v1/fill/w_740,h_493,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/1233ff_ca96ec225309492dbd2cef0b7ca9938f~mv2.jpg"
+            title="Eletricista" 
+            description="Concerto tomada."
+            />
+
+        <x-card-servico
+            imageUrl="https://atreus-prd.qconcursos.com/articles/images/7411e111-3128-4c86-a12a-d49f6368cccd/policia-federal-agencia-brasil.jpg"
+            title="Ator Policial" />
+
+        <x-card-servico />
+
+    </div>
+
+
+
 
 
 

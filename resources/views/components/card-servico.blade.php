@@ -1,9 +1,9 @@
 @props([
-    'imageUrl' => '',
+    'imageUrl' => 'https://secohtuh-es.org.br/wp-content/uploads/2024/04/Seguranca-no-Trabalho-Secohtuh.png',
     'price' => 'R$ 00,00',
     'title' => 'Título do serviço',
     'description' => 'Descrição básica sobre o tipo do serviço a ser agendado, da disponibilidade e outras especificações.',
-    'buttonText' => 'Contratar',
+    'buttonText' => 'Agendar',
     'buttonUrl' => '#'
 ])
 
