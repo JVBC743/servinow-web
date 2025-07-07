@@ -6,7 +6,9 @@
             <div class="row shadow mt-5" style="height: 70vh">
                 <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
                     <div class="text-center margin_div_servico">
-                        <img src="{{ asset('images/service-icon.png') }}" alt="Foto do serviço" class="" style="">
+                        <div>
+                            <img src="{{ asset('images/logo-dark.png') }}" alt="Foto do serviço" class="" style="width: 300px; height: 100px">
+                        </div>
 
                         <label for="data" class="form-label fw-bold">Selecione a Data:</label>
 
