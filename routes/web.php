@@ -18,6 +18,11 @@ Route::prefix('cadastro')->controller(AuthController::class)->group(function () 
 
 Route::view('/servico/teste', 'pages.servico')->name('servico');
 
+Route::view('cliente/agendamento/teste', 'pages.historico-agendamento-cliente')->name('historico.agendamento.cliente');
+Route::view('prestador/agendamento/teste', 'pages.historico-agendamento-cliente')->name('historico.agendamento.prestador');
+
+
+
 
 // Dashboard e perfil
 Route::view('/dashboard', 'pages.dashboard')->name('dashboard');
@@ -49,6 +54,11 @@ Route::prefix('servico')->controller(ServicoController::class)->group(function (
     Route::put('/{servico}', 'update')->name('servico.update');      // Atualiza serviço
     Route::delete('/{servico}', 'destroy')->name('servico.destroy'); // Exclui serviço
 
+});
+
+Route::prefix('agendamento')->controller(ServicoController::class)->group(function () {
+
+    // Route::get('/', 'index')->name('')
 });
 
 // Admin
