@@ -16,7 +16,7 @@ Route::prefix('cadastro')->controller(AuthController::class)->group(function () 
     Route::post('/', 'register')->name('cadastro.store');
 });
 
-// Route::view('/servico/teste', 'pages.servico')->name('servico');
+Route::view('/servico/teste', 'pages.servico')->name('servico');
 
 
 // Dashboard e perfil
