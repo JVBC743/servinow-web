@@ -1,4 +1,4 @@
-.div_img img{
+/* .div_img img{
 
     width:8cm;
     height: 8cm;
@@ -22,4 +22,83 @@
     width: 30px;
     height: 30px;
     
+} */
+
+.div_img_container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.div_img {
+  position: relative;
+  width: 8cm;
+  height: 8cm;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: 0.4s;
+}
+
+.div_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: 0.4s ease;
+}
+
+.div_img:hover img {
+  filter: brightness(0.7) blur(1px);
+  transform: scale(1.02);
+}
+
+.hover_links {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 1em;
+  opacity: 0;
+  transition: 0.4s ease-in-out;
+  z-index: 2;
+}
+
+.div_img:hover .hover_links {
+  opacity: 1;
+}
+
+.icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+.icon:hover {
+  transform: scale(1.15);
+}
+
+/* Cores específicas */
+.icon.github:hover {
+  background-color: black;
+  color: white;
+}
+
+.icon.instagram:hover {
+  background: radial-gradient(circle at 30% 30%, #feda75, #d62976, #962fbf);
+  color: white;
+}
+
+.icon.curriculo:hover {
+  background-color: #494949;
+  color: white;
 }

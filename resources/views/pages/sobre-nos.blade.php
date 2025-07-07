@@ -14,14 +14,36 @@
 
     <div id="div-2" class="text-center fs-4">
         <div class="d-flex flex-wrap justify-content-center">
+
+
             <div class="mx-3">
-                <div class="div_img">
-                    <a href="https://github.com/KarmaWT" target="_blank">
-                        <img src="{{ asset('images/pantoja.png') }}" class="rounded-circle" alt="Foto do Matheus Pantoja">
-                    </a><br>
+                <div class="div_img_container">
+                    <div class="div_img">
+                        <a href="https://github.com/KarmaWT" target="_blank">
+                            <img src="{{ asset('images/matheus.jpg') }}" class="rounded-circle"
+                                alt="Foto do Matheus Pantoja">
+                        </a>
+                        <div class="hover_links">
+                            <a href="https://github.com/KarmaWT" target="_blank" class="icon github" title="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://www.instagram.com/math__wt" target="_blank" class="icon instagram"
+                                title="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://www.canva.com/design/DAGUUxX7zaI/UE0C7cubMNa5LDGTNDlgdw/edit?utm_content=DAGUUxX7zaI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
+                                target="_blank" class="icon curriculo" title="Curriculo">
+                                <i class="fas fa-file"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <p class="text-center mt-2">Matheus Pantoja de Morais</p>
                 </div>
-                <p>Matheus Pantoja de Morais</p>
             </div>
+
+
+
+
             <div class="mx-3">
                 <div class="div_img">
                     <a href="https://github.com/JClaion" target="_blank">
@@ -33,7 +55,8 @@
             </div>
             <div class="mx-3">
                 <div class="div_img">
-                    <a href="https://www.canva.com/design/DAGnLa3ishI/ic-hL6dDyn-07pl2zaVH1w/edit?utm_content=DAGnLa3ishI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">
+                    <a href="https://www.canva.com/design/DAGnLa3ishI/ic-hL6dDyn-07pl2zaVH1w/edit?utm_content=DAGnLa3ishI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
+                        target="_blank">
                         <img src="{{ asset('images/manoel.png') }}" class="rounded-circle" alt="Foto do Manoel Aguiar">
                     </a><br>
                 </div>
