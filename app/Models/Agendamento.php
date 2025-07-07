@@ -6,9 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Usuario;
 use App\Models\Servico;
 use App\Models\StatusAgendamento;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Agendamento extends Model
 {
+
+    use HasFactory;
+
+
     protected $table = 'Agendamento';
 
     protected $fillable = [

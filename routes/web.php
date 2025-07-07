@@ -22,8 +22,6 @@ Route::view('cliente/agendamento/teste', 'pages.historico-agendamento-cliente')-
 Route::view('prestador/agendamento/teste', 'pages.historico-agendamento-cliente')->name('historico.agendamento.prestador');
 
 
-
-
 // Dashboard e perfil
 Route::view('/dashboard', 'pages.dashboard')->name('dashboard');
 Route::view('/perfil', 'pages.visualizacao-perfil')->name('visualizacao-perfil');

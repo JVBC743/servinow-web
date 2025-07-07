@@ -17,8 +17,7 @@ class ServicoFactory extends Factory
             'nome_servico' => $this->faker->sentence(3),
             'categoria' => Categoria::factory(),
             'desc_servico' => $this->faker->paragraph(),
-            'caminho_foto' => 'imagens/servicos/' . $this->faker->image('storage/app/public/imagens/servicos', 640, 480, null, false),
-            // Aqui pega um usuário aleatório existente
+            'caminho_foto' => $this->faker->imageUrl(640, 480, 'technics'),
             'usuario_id' => Usuario::inRandomOrder()->first()->id ?? Usuario::factory(),
         ];
     }

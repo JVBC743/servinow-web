@@ -17,7 +17,7 @@ class CategoriaFactory extends Factory
     public function definition(): array
     {
         return [
-            'categoria' => fake()->randomElement(['
+            'nome' => fake()->randomElement(['
             Esportes', 
             'Tecnologia',
             'Moda', 
@@ -25,7 +25,7 @@ class CategoriaFactory extends Factory
             'Educação', 
             'Música', 
             'Conserto', 
-            'Mercenaria'
+            'Mercenario'
         ]),
         ];
     }
