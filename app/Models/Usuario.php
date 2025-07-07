@@ -22,6 +22,7 @@ class Usuario extends Authenticatable
         'nome',
         'email',
         'senha',
+        'is_admin',
         'cpf_cnpj',
         'data_nascimento',
         'telefone',

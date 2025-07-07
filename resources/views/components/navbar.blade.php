@@ -30,24 +30,35 @@
                         Uso e Privacidade
                     </a>
                 </li>
-                        <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle fs-5"
-                        href="#" id="navbarDropdownServicos" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Serviços
-                    </a>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link fs-5 {{ request()->routeIs('admin.lista.usuarios') ? 'active' : '' }}"
                         href="{{ route('admin.lista.usuarios') }}">
                         Lista de Usuários
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link fs-5 {{ request()->routeIs('lista') ? 'active' : '' }}"
-                        href="{{ route('lista') }}">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle fs-5 {{ request()->routeIs('historico.agendamento.cliente')}}"
+                        href="{{ route('historico.agendamento.cliente') }}" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
                         Serviços
                     </a>
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item {{ request()->routeIs('historico.agendamento.cliente') ? 'active' : '' }}"
+                                href="{{ route('historico.agendamento.cliente') }}">
+                                Serviços Prestados
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item {{ request()->routeIs('historico.agendamento.prestador') ? 'active' : '' }}"
+                                href="{{ route('historico.agendamento.prestador') }}">
+                                Serviços Recebidos
+                            </a>
+                        </li>
+                    </ul>
                 </li>
+
             </ul>
 
             <!-- Icons -->
