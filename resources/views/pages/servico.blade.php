@@ -1,6 +1,6 @@
 @extends('layouts.autenticado')
 
-@section('title', 'ServiNow - Agendar Serviço')
+@section('title', 'Agendar Serviço')
 
 @section('content')
             <div class="row shadow mt-5" style="height: 100%; min-height: 700px">
@@ -9,12 +9,12 @@
                         <div>
                             <img src="{{ asset('images/logo-dark.png') }}" alt="Foto do serviço" class="" style="width: 300px; height: 100px">
                         </div>
+                        <div class="my-5">
+                            <label for="data" class="form-label fw-bold">Selecione a Data:</label>
+                            <input type="date" id="data" name="data" class="form-control text-cente" style="">
+                        </div>
 
-                        
-                        <label for="data" class="form-label fw-bold">Selecione a Data:</label>
-                        <input type="date" id="data" name="data" class="form-control mb-5 text-cente" style="">
-
-                        <button class="btn btn-info text-white px-4 my-5">Agendar</button>
+                        <button class="btn btn-info text-white px-4 my-3">Agendar</button>
                     </div>
                 </div>
 
