@@ -47,13 +47,13 @@
     <ul class="dropdown-menu">
         <li>
             <a class="dropdown-item {{ request()->routeIs('historico.agendamento.cliente') ? 'active' : '' }}"
-                href="{{ route('agendamento.cliente') }}">
+                href="{{ route('agendamento.prestador') }}">
                 Serviços Prestados
             </a>
         </li>
         <li>
             <a class="dropdown-item {{ request()->routeIs('historico.agendamento.prestador') ? 'active' : '' }}"
-                href="{{ route('agendamento.prestador') }}">
+                href="{{ route('agendamento.cliente') }}">
                 Serviços Recebidos
             </a>
         </li>

@@ -14,20 +14,22 @@
                         <th>ID</th>
                         <th>Cliente</th>
                         <th>Serviço</th>
-                        <th>Data</th>
-                        <th>Hora</th>
+                        <th>Data/Hora</th>
                         <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>TESTE</td>
-                        <td>TESTE</td>
-                        <td>TESTE</td>
-                        <td>TESTE</td>
-                        <td>TESTE</td>
-                        <td>TESTE</td>
-                    </tr>
+                    <tbody>
+                        @foreach ($agendamento as $item)
+                            <tr>
+                                <td> {{ $item->id }} </td>
+                                <td> {{ $item->id_prestador ? $item->prestador->nome : 'Status não encontrado.'}} </td>
+                                <td> {{ $item->id_servico ? $item->servico->nome_servico : 'Status não encontrado.'}} </td>
+                                <td> {{ $item->data_agendamento }} </td>
+                                <td>{{  $item->status ? $item->statusAgendamento->status : 'Status desconhecido' }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
                 </tbody>
             </table>
         </div>

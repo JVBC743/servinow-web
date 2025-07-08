@@ -19,12 +19,13 @@
                     </tr>
                 </thead>
                 <tbody>
+
                     <tbody>
                         @foreach ($agendamento as $item)
                             <tr>
                                 <td> {{ $item->id }} </td>
-                                <td> {{ $item->id_prestador ? $item->prestador->nome : 'Status não encontrado.'}} </td>
-                                <td> {{ $item->id_servico ? $item->servico->nome_servico : 'Status não encontrado.'}} </td>
+                                <td> {{ $item->id_prestador ? $item->prestador->nome : 'Cliente inexistente.'}} </td>
+                                <td> {{ $item->id_servico ? $item->servico->nome_servico : 'Serviço inexistente.'}} </td>
                                 <td> {{ $item->data_agendamento }} </td>
                                 <td>{{  $item->status ? $item->statusAgendamento->status : 'Status desconhecido' }}</td>
                             </tr>

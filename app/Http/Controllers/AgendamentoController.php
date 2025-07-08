@@ -14,9 +14,18 @@ class AgendamentoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function indexPrestador($id)
+    public function indexPrestador()
     {
+        $id = Auth::id();
+
+        $prestador = Usuario::find($id); //auth
+        $agendamento = Agendamento::with(['cliente', 'servico', 'statusAgendamento'])
+            ->where('id_prestador', $prestador->id)
+            ->get();
+        return view('pages.agendamento-prestador', compact('prestador', 'agendamento'));
+
     }
+
     public function indexCliente()
     {
         $id = Auth::id();

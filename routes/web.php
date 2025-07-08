@@ -45,7 +45,7 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('agendamento')->controller(AgendamentoController::class)->group(function () {
         Route::get('cliente', 'indexCliente')->name('agendamento.cliente');
-        Route::get('prestador', 'pages.agendamento-cliente')->name('agendamento.prestador');
+        Route::get('prestador', 'indexPrestador')->name('agendamento.prestador');
     });
     
     // Perfil do usuário
