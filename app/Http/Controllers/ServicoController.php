@@ -22,10 +22,20 @@ class ServicoController extends Controller
         return view('pages.lista-servicos', compact('servicos'));
     }
 
-    public function dashboard()
+    public function dashboard(Request $request)
     {
-        $servicos = Servico::all();
-        return view('pages.dashboard', compact('servicos'));
+        $pesquisa = $request->input('search');
+
+        $query = Servico::query();
+
+        if($pesquisa){
+                $query->where('nome_servico', 'like', "%{$pesquisa}%");
+
+        }
+
+        $servicos = $query->get();
+
+        return view('pages.dashboard', compact('servicos', 'pesquisa'));
 
     }
 

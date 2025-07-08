@@ -6,7 +6,9 @@
     <div class="d-flex align-items-center justify-content-between gap-2">
         <h1 class="m-0">Serviços Disponíveis</h1>
         <div class="flex-grow-1 ms-3" style="max-width: 400px;">
-            <x-search-bar />
+            <x-search-bar 
+                action="{{ route('dashboard') }}" :search="$pesquisa ?? ''"
+            />
         </div>
     </div>
 
