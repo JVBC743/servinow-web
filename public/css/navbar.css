@@ -154,4 +154,11 @@ body {
     background-color: #d9f1f5;
 }
 
+.navbar .dropdown-menu-end {
+    right: 0;
+    left: auto;
+}
 
+.nav-icon .dropdown-toggle::after {
+    display: none !important;
+}
