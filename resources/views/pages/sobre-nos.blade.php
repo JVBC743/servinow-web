@@ -19,17 +19,14 @@
             <div class="mx-3">
                 <div class="div_img_container">
                     <div class="div_img">
-                        <a href="https://github.com/KarmaWT" target="_blank">
+                        <a href="https://www.canva.com/design/DAGUUxX7zaI/UE0C7cubMNa5LDGTNDlgdw/edit?utm_content=DAGUUxX7zaI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
+                            target="_blank">
                             <img src="{{ asset('images/matheus.jpg') }}" class="rounded-circle"
-                                alt="Foto do Matheus Pantoja">
+                                alt="Foto do Matheus Pantoja de Morais">
                         </a>
                         <div class="hover_links">
                             <a href="https://github.com/KarmaWT" target="_blank" class="icon github" title="GitHub">
                                 <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://www.instagram.com/math__wt" target="_blank" class="icon instagram"
-                                title="Instagram">
-                                <i class="fab fa-instagram"></i>
                             </a>
                             <a href="https://www.canva.com/design/DAGUUxX7zaI/UE0C7cubMNa5LDGTNDlgdw/edit?utm_content=DAGUUxX7zaI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
                                 target="_blank" class="icon curriculo" title="Curriculo">
@@ -43,34 +40,59 @@
 
 
 
-
             <div class="mx-3">
-                <div class="div_img">
-                    <a href="https://github.com/JClaion" target="_blank">
-                        <img src="{{ asset('images/claion.png') }}" class="rounded-circle" alt="Foto do José Claion">
-                    </a><br>
+                <div class="div_img_container">
+                    <div class="div_img">
+                        <a href="https://www.canva.com/design/DAGnLa3ishI/ic-hL6dDyn-07pl2zaVH1w/edit?utm_content=DAGnLa3ishI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
+                            target="_blank">
+                            <img src="{{ asset('images/manoel.png') }}" class="rounded-circle"
+                                alt="Foto do Manoel de Jesus Moreira de Aguiar">
+                        </a>
+                        <div class="hover_links">
+                            <a href="https://www.canva.com/design/DAGnLa3ishI/ic-hL6dDyn-07pl2zaVH1w/edit?utm_content=DAGnLa3ishI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
+                                target="_blank" class="icon curriculo" title="Curriculo">
+                                <i class="fas fa-file"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <p class="text-center mt-2">Manoel de Jesus Moreira de Aguiar</p>
                 </div>
-
-                <p>José Claion Martins de Sousa</p>
             </div>
-            <div class="mx-3">
-                <div class="div_img">
-                    <a href="https://www.canva.com/design/DAGnLa3ishI/ic-hL6dDyn-07pl2zaVH1w/edit?utm_content=DAGnLa3ishI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
-                        target="_blank">
-                        <img src="{{ asset('images/manoel.png') }}" class="rounded-circle" alt="Foto do Manoel Aguiar">
-                    </a><br>
-                </div>
-                <p>Manoel de Jesus Moreira de Aguiar</p>
-            </div>
-            <div class="mx-3">
-                <div class="div_img">
-                    <a href="https://www.canva.com/design/DAF-2lbgVCA/ImVa15Jxaakq0Ii2Zk2tag/edit?utm_content=DAF-2lbgVCA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
-                        target="_blank">
-                        <img src="{{ asset('images/joao.png') }}" class="rounded-circle" alt="Foto do João Victor">
-                    </a>
-                </div>
-                <p>João Victor Brum de Castro</p>
 
+            <div class="mx-3">
+                <div class="div_img_container">
+                    <div class="div_img">
+                        <a href="https://github.com/JClaion" target="_blank">
+                            <img src="{{ asset('images/claion.png') }}" class="rounded-circle"
+                                alt="Foto do José Claion Martins de Sousa">
+                        </a>
+                        <div class="hover_links">
+                            <a href="https://github.com/JClaion" target="_blank" class="icon github" title="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <p class="text-center mt-2">José Claion Martins de Sousa</p>
+                </div>
+            </div>
+
+            <div class="mx-3">
+                <div class="div_img_container">
+                    <div class="div_img">
+                        <a href="https://www.canva.com/design/DAF-2lbgVCA/ImVa15Jxaakq0Ii2Zk2tag/edit?utm_content=DAF-2lbgVCA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
+                            target="_blank">
+                            <img src="{{ asset('images/joao.png') }}" class="rounded-circle"
+                                alt="Foto do João Victor Brum de Castro">
+                        </a>
+                        <div class="hover_links">
+                            <a href="https://www.canva.com/design/DAF-2lbgVCA/ImVa15Jxaakq0Ii2Zk2tag/edit?utm_content=DAF-2lbgVCA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
+                                target="_blank" class="icon curriculo" title="Curriculo">
+                                <i class="fas fa-file"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <p class="text-center mt-2">João Victor Brum de Castro</p>
+                </div>
             </div>
         </div>
     </div>
