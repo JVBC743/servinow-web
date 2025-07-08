@@ -30,18 +30,35 @@
                         Uso e Privacidade
                     </a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle fs-5"
-                        href="#" id="navbarDropdownServicos" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Serviços
-                    </a>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link fs-5 {{ request()->routeIs('admin.lista.usuarios') ? 'active' : '' }}"
                         href="{{ route('admin.lista.usuarios') }}">
                         Lista de Usuários
                     </a>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle fs-5 {{ request()->routeIs('historico.agendamento.cliente')}}"
+                        {{-- href="{{ route('agendamento.cliente') }}" role="button" data-bs-toggle="dropdown" --}}
+                        aria-expanded="false">
+                        Serviços
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item {{ request()->routeIs('agendamento.cliente') ? 'active' : '' }}"
+                                href="{{ route('agendamento.cliente') }}">
+                                Serviços Prestados
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item {{ request()->routeIs('agendamento.prestador') ? 'active' : '' }}"
+                                href="{{ route('agendamento.prestador') }}">
+                                Serviços Recebidos
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
             </ul>
 
             <!-- Icons -->

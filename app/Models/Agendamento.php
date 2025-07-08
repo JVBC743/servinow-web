@@ -44,8 +44,8 @@ class Agendamento extends Model
         return $this->belongsTo(Servico::class, 'id_servico');
     }
 
-    public function status()
+    public function statusAgendamento()
     {
-        return $this->belongsTo(StatusAgendamento::class, 'status');
+        return $this->belongsTo(StatusAgendamento::class, 'status', 'id');
     }
 }

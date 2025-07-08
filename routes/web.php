@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AgendamentoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\UsuarioController;
@@ -41,11 +42,12 @@ Route::middleware('auth')->group(function () {
     Route::view('/dashboard', 'pages.dashboard')->name('dashboard');
     Route::view('/perfil', 'pages.visualizacao-perfil')->name('visualizacao-perfil');
 
-    // Visualizações de teste (autenticadas)
-    Route::view('/servico/teste', 'pages.servico')->name('servico');
-    Route::view('cliente/agendamento/teste', 'pages.historico-agendamento-cliente')->name('historico.agendamento.cliente');
-    Route::view('prestador/agendamento/teste', 'pages.historico-agendamento-cliente')->name('historico.agendamento.prestador');
 
+    Route::prefix('agendamento')->controller(AgendamentoController::class)->group(function () {
+        Route::get('cliente', 'indexCliente')->name('agendamento.cliente');
+        Route::get('prestador', 'pages.agendamento-cliente')->name('agendamento.prestador');
+    });
+    
     // Perfil do usuário
     Route::prefix('perfil')->controller(UsuarioController::class)->group(function () {
         Route::get('/lista', 'index')->name('lista');
@@ -58,6 +60,7 @@ Route::middleware('auth')->group(function () {
     // Serviços
     Route::prefix('servico')->controller(ServicoController::class)->group(function () {
         Route::get('/', 'index')->name('servico.index');
+        Route::view('/teste', 'pages.servico')->name('servico'); //ROTA DE TESTE PARA A VIEW DE SERVIÇO
         Route::get('/create', 'create')->name('servico.create');
         Route::post('/', 'store')->name('servico.store');
         Route::get('/{servico}', 'show')->name('servico.show');
