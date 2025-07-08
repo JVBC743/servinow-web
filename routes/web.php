@@ -47,7 +47,7 @@ Route::middleware('auth')->group(function () {
         Route::get('cliente', 'indexCliente')->name('agendamento.cliente');
         Route::get('prestador', 'indexPrestador')->name('agendamento.prestador');
     });
-    
+
     // Perfil do usuário
     Route::prefix('perfil')->controller(UsuarioController::class)->group(function () {
         Route::get('/lista', 'index')->name('lista');
@@ -62,7 +62,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/', 'index')->name('servico.index');
         Route::get('/dashboard', 'dashboard')->name('dashboard');
 
-        Route::get('/{id}', 'show')->name('servico'); //ROTA DE TESTE PARA A VIEW DE SERVIÇO
+        Route::get('/{id}/show', 'show')->name('servico'); //ROTA DE TESTE PARA A VIEW DE SERVIÇO
 
         Route::get('/create', 'create')->name('servico.create');
         Route::post('/', 'store')->name('servico.store');
