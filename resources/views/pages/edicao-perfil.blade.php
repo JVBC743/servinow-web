@@ -85,13 +85,13 @@
 
                             {{-- Imagem --}}
                             <div class="d-flex justify-content-center mt-5 mb-3">
-                                <div class="d-flex flex-column align-items-center" style="width: 200px;">
+                                <div class="d-flex flex-column align-items-center">
                                     @if($imagem_url)
                                         <img src="{{ $imagem_url }}" alt="Foto do usuário" class="profile_img mb-3" style="width: 400px">
                                     @else
                                         <img src="{{ asset('images/user-icon.png') }}" alt="Usuário sem foto" class="profile_img mb-3" style="width: 400px">
                                     @endif
-                                    <input type="file" name="foto" accept="image/*" class="form-control w-100" style="max-width: 150px;">
+                                    <input type="file" name="foto" accept="image/*" class="form-control w-100">
                                     <small class="text-muted mt-1">Anexar nova imagem</small>
                                 </div>
                             </div>
