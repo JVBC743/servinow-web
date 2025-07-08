@@ -62,10 +62,10 @@ class UsuarioController extends Controller
         $lista = Formacao::all();
 
         if ($usr->caminho_img) {
-            $imagem_url = Storage::disk('minio')->temporaryUrl(
-            $usr->caminho_img,
-            now()->addSecond(5)
-        );
+            $imagem_url = Storage::disk('miniobusca')->temporaryUrl(
+                $usr->caminho_img,
+                now()->addMinute(5)
+            );
         } else {
             $imagem_url = null;
         }
@@ -81,25 +81,31 @@ class UsuarioController extends Controller
     {
 
         $usr = Usuario::find($id);
-        $lista = Formacao::all();
 
         if (!$usr) {
             return redirect()->back()->with('error', 'Usuário não encontrado.');
         }
 
-        if ($usr->caminho_img) {
-            $imagem_url = Storage::disk('minio')->temporaryUrl(
-            $usr->caminho_img,
-            now()->addSecond(5)
-        );
-        } else {
-            $imagem_url = null;
+        $data = $request->validated();
+        if ($request->hasFile('foto')) {
+            if ($usr->caminho_img) {
+                // Apaga imagem antiga
+                Storage::disk('minio')->delete($usr->caminho_img);
+            }
+
+            $path = $request->file('foto')->store('imagens/usuario', 'minio');
+            $data["caminho_img"] = $path;
         }
 
-        $data = $request->validated();
-        $usr->update($data);
+        if ($usr->update($data)) {
+            return redirect()
+                ->route('mostrar.edicao', ['id' => $id])
+                ->with('success', 'Perfil atualizado com sucesso!');
+        }
 
-        return view("pages.edicao-perfil", compact('usr', 'lista', 'imagem_url'));
+        return redirect()
+            ->back()
+            ->with('error', 'Falha ao salvar!');
     }
 
     public function adminShowUserAccount($id)
@@ -110,16 +116,16 @@ class UsuarioController extends Controller
         $lista = Formacao::all();
 
         if (!$editarUsuario) {
-             return redirect()->back()->with('error', 'Usuário não encontrado.');
+            return redirect()->back()->with('error', 'Usuário não encontrado.');
         }
 
         // $obj_formacao = Formacao::find($editarUsuario->area_atuacao);
 
         if ($editarUsuario->caminho_img) {
-            $imagem_url = Storage::disk('minio')->temporaryUrl(
-            $editarUsuario->caminho_img,
-            now()->addMinutes(5)
-        );
+            $imagem_url = Storage::disk('miniobusca')->temporaryUrl(
+                $editarUsuario->caminho_img,
+                now()->addMinutes(5)
+            );
         } else {
             $imagem_url = null;
         }
@@ -135,68 +141,27 @@ class UsuarioController extends Controller
             return redirect()->back()->with('error', 'Usuário não encontrado.');
         }
         $data = $request->validated();
-        
+
         if ($request->hasFile('foto') && $request->file('foto')->isValid()) {
             // Deleta imagem antiga
-            if ($usr->caminho_img && Storage::disk('minio')->exists($usr->caminho_img)) {
+            if ($usr->caminho_img) {
                 Storage::disk('minio')->delete($usr->caminho_img);
-            }   
+            }
 
             // Upload da nova imagem
-            $filename = time() . '_' . $request->file('foto')->getClientOriginalName();
             $path = $request->file('foto')->store('usuarios', 'minio');
-            dd($path);     
-
-            
-            // dd($path);       
             $data['caminho_img'] = $path;
         }
 
-        $usr->update($data);
-        $usr->refresh();  // Atualiza o objeto com os dados do banco
-
-        if (!empty($usr->caminho_img)) {
-            $imagem_url = Storage::disk('minio')->temporaryUrl($usr->caminho_img, now()->addSecond(5));
-        } else {
-            $imagem_url = null;
+        if ($usr->update($data)) {
+            return redirect()
+                ->route('admin.mostrar.edicao', ['id' => $id])
+                ->with('success', 'Usuário editado com sucesso!');
         }
 
-        // dd($usr);
-        // dd($imagem_url);
-
-        return view('pages.admin-edicao-perfil', [
-            'editarUsuario' => $usr,
-            'lista' => Formacao::all(),
-            'imagem_url' => $imagem_url,
-        ]);
-    }
-
-    
-
-    public function store(RegisterUsuarioRequest $request, RegisterUsuarioUseCase $useCase): JsonResponse
-    {
-        $dto = new RegisterUsuarioDTO(
-            nome: $request->input('nome'),
-            email: $request->input('email'),
-            senha: $request->input('senha'),
-            telefone: $request->input('telefone'),
-            cpf_cnpj: $request->input('cpf_cnpj'),
-            area_atuacao_id: (int) $request->input('area_atuacao_id')
-        );
-
-        $usuario = $useCase->execute($dto);
-
-        return response()->json([
-            'message' => 'Usuário criado com sucesso',
-            'usuario' => [
-                'id' => $usuario->id,
-                'nome' => $usuario->nome,
-                'email' => $usuario->email,
-                'telefone' => $usuario->telefone,
-                'cpf_cnpj' => $usuario->cpf_cnpj,
-                'area_atuacao' => $usuario->area_atuacao->id,
-            ],
-        ], 201);
+        return redirect()
+            ->back()
+            ->with('error', 'Falha ao salvar!');
     }
 
     public function destroy($id) {}
@@ -205,13 +170,13 @@ class UsuarioController extends Controller
     {
         $usr = Usuario::find($id);
 
-        if(!$usr){
+        if (!$usr) {
             return redirect()->back()->with('error', 'Usuário não encontrado.');
         }
 
         $usr->destroy($id);
 
-        return redirect()->back()->with('success','Usuário excluído com sucesso!');
+        return redirect()->back()->with('success', 'Usuário excluído com sucesso!');
     }
 
     public function showMinioTest()
