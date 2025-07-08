@@ -22,8 +22,8 @@
                 </div>
             @endif
 
-            @if($editarUsuario)
-                <form action="{{ route('admin.usuario.edit', $editarUsuario->id) }}" method="post" enctype="multipart/form-data">
+            @if($usr)
+                <form action="{{ route('admin.usuario.edit', $usr->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
@@ -31,19 +31,19 @@
                         {{-- Nome --}}
                         <div class="col-md-6 mb-3">
                             <label for="nome" class="form-label">Nome*</label>
-                            <input type="text" name="nome" id="nome" class="form-control" value="{{ old('nome', $editarUsuario->nome) }}" maxlength="50" required>
+                            <input type="text" name="nome" id="nome" class="form-control" value="{{ old('nome', $usr->nome) }}" maxlength="50" required>
                         </div>
 
                         {{-- E-mail --}}
                         <div class="col-md-6 mb-3">
                             <label for="email" class="form-label">E-mail*</label>
-                            <input type="email" name="email" id="email" class="form-control" value="{{ old('email', $editarUsuario->email) }}" maxlength="80" required>
+                            <input type="email" name="email" id="email" class="form-control" value="{{ old('email', $usr->email) }}" maxlength="80" required>
                         </div>
 
                         {{-- Telefone --}}
                         <div class="col-md-6 mb-3">
                             <label for="telefone" class="form-label">Telefone*</label>
-                            <input type="text" name="telefone" id="telefone" class="form-control" value="{{ old('telefone', $editarUsuario->telefone) }}" maxlength="15" required>
+                            <input type="text" name="telefone" id="telefone" class="form-control" value="{{ old('telefone', $usr->telefone) }}" maxlength="15" required>
                         </div>
 
                         {{-- Área de Atuação --}}
@@ -52,7 +52,7 @@
                             <select name="area_atuacao" id="area_atuacao" class="form-select" required>
                                 <option value="">Selecione a sua formação</option>
                                 @foreach ($lista as $formacao)
-                                    <option value="{{ $formacao->id }}" {{ old('area_atuacao', $editarUsuario->area_atuacao) == $formacao->id ? 'selected' : '' }}>
+                                    <option value="{{ $formacao->id }}" {{ old('area_atuacao', $usr->area_atuacao) == $formacao->id ? 'selected' : '' }}>
                                         {{ $formacao->formacao }}
                                     </option>
                                 @endforeach
@@ -62,25 +62,25 @@
                         {{-- Descrição --}}
                         <div class="col-12 mb-3">
                             <label for="descricao" class="form-label">Descrição (max 300 caracteres)</label>
-                            <textarea name="descricao" id="descricao" class="form-control" maxlength="300" rows="4" placeholder="Adicione uma breve descrição das suas competências">{{ old('descricao', $editarUsuario->descricao) }}</textarea>
+                            <textarea name="descricao" id="descricao" class="form-control" maxlength="300" rows="4" placeholder="Adicione uma breve descrição das suas competências">{{ old('descricao', $usr->descricao) }}</textarea>
                         </div>
 
                         {{-- Redes sociais --}}
                         <div class="col-md-6 mb-3">
                             <label for="rede_social1" class="form-label">Rede social #1</label>
-                            <input type="text" name="rede_social1" id="rede_social1" class="form-control" maxlength="40" value="{{ old('rede_social1', $editarUsuario->rede_social1) }}">
+                            <input type="text" name="rede_social1" id="rede_social1" class="form-control" maxlength="40" value="{{ old('rede_social1', $usr->rede_social1) }}">
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="rede_social2" class="form-label">Rede social #2</label>
-                            <input type="text" name="rede_social2" id="rede_social2" class="form-control" maxlength="40" value="{{ old('rede_social2', $editarUsuario->rede_social2) }}">
+                            <input type="text" name="rede_social2" id="rede_social2" class="form-control" maxlength="40" value="{{ old('rede_social2', $usr->rede_social2) }}">
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="rede_social3" class="form-label">Rede social #3</label>
-                            <input type="text" name="rede_social3" id="rede_social3" class="form-control" maxlength="40" value="{{ old('rede_social3', $editarUsuario->rede_social3) }}">
+                            <input type="text" name="rede_social3" id="rede_social3" class="form-control" maxlength="40" value="{{ old('rede_social3', $usr->rede_social3) }}">
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="rede_social4" class="form-label">Rede social #4</label>
-                            <input type="text" name="rede_social4" id="rede_social4" class="form-control" maxlength="40" value="{{ old('rede_social4', $editarUsuario->rede_social4) }}">
+                            <input type="text" name="rede_social4" id="rede_social4" class="form-control" maxlength="40" value="{{ old('rede_social4', $usr->rede_social4) }}">
                         </div>
 
                         {{-- Imagem --}}

@@ -33,9 +33,9 @@ class UsuarioController extends Controller
     {
         $lista = Formacao::all();
 
-        $editarUsuario = Usuario::find($id);
+        $usr = Usuario::find($id);
 
-        if (!$editarUsuario) {
+        if (!$usr) {
             return redirect()->back()->with('error', 'Usuário não encontrado.');
         }
 
@@ -46,12 +46,12 @@ class UsuarioController extends Controller
     {
         $lista = Formacao::all();
 
-        $editarUsuario = Usuario::find($id);
+        $usr = Usuario::find($id);
 
-        if (!$editarUsuario) {
+        if (!$usr) {
             return redirect()->back()->with('error', 'Usuário não encontrado.');
         }
-        return view('pages.edicao-perfil', compact('lista', 'editarUsuario'));
+        return view('pages.edicao-perfil', compact('lista', 'usr'));
     }
 
     public function show($id)
@@ -117,26 +117,26 @@ class UsuarioController extends Controller
     public function adminShowUserAccount($id)
     {
 
-        $editarUsuario = Usuario::find($id);
+        $usr = Usuario::find($id);
 
         $lista = Formacao::all();
 
-        if (!$editarUsuario) {
+        if (!$usr) {
             return redirect()->back()->with('error', 'Usuário não encontrado.');
         }
 
         // $obj_formacao = Formacao::find($editarUsuario->area_atuacao);
 
-        if ($editarUsuario->caminho_img) {
+        if ($usr->caminho_img) {
             $imagem_url = Storage::disk('miniobusca')->temporaryUrl(
-                $editarUsuario->caminho_img,
+                $usr->caminho_img,
                 now()->addMinutes(5)
             );
         } else {
             $imagem_url = null;
         }
         // dd($imagem_url);
-        return view("pages.admin-edicao-perfil", compact('lista', 'editarUsuario', 'imagem_url'));
+        return view("pages.admin-edicao-perfil", compact('lista', 'usr', 'imagem_url'));
     }
 
     public function adminUsuarioEdit(EditarUsuarioRequest $request, int $id)

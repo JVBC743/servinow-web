@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
     // Dashboard e perfil
-    Route::view('/dashboard', 'pages.dashboard')->name('dashboard');
+    // Route::view('/dashboard', 'pages.dashboard')->name('dashboard');
     Route::view('/perfil', 'pages.visualizacao-perfil')->name('visualizacao-perfil');
 
 
@@ -60,6 +60,7 @@ Route::middleware('auth')->group(function () {
     // Serviços
     Route::prefix('servico')->controller(ServicoController::class)->group(function () {
         Route::get('/', 'index')->name('servico.index');
+        Route::get('/dashboard', 'dashboard')->name('dashboard');
         Route::view('/teste', 'pages.servico')->name('servico'); //ROTA DE TESTE PARA A VIEW DE SERVIÇO
         Route::get('/create', 'create')->name('servico.create');
         Route::post('/', 'store')->name('servico.store');

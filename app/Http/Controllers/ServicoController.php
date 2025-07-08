@@ -19,6 +19,13 @@ class ServicoController extends Controller
         return view('pages.lista-servicos', compact('servicos'));
     }
 
+    public function dashboard()
+    {
+        $servicos = Servico::all();
+        return view('pages.dashboard', compact('servicos'));
+
+    }
+
     /**
      * Show the form for creating a new resource.
      */

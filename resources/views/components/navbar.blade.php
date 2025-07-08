@@ -31,12 +31,14 @@
                         Uso e Privacidade
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link fs-5 {{ request()->routeIs('admin.lista.usuarios') ? 'active' : '' }}"
-                        href="{{ route('admin.lista.usuarios') }}">
-                        Lista de Usuários
-                    </a>
-                </li>
+                {{-- @if($usr->admin == true) --}}
+                    <li class="nav-item">
+                        <a class="nav-link fs-5 {{ request()->routeIs('admin.lista.usuarios') ? 'active' : '' }}"
+                            href="{{ route('admin.lista.usuarios') }}">
+                            Lista de Usuários
+                        </a>
+                    </li>
+                {{-- @endif --}}
 
                 <!-- Dropdown Serviços -->
                 <li class="nav-item dropdown">
