@@ -132,9 +132,9 @@ body {
 }
 
 .navbar .dropdown-item {
-    padding: 2px;
+    padding: 14px;
     color: #333;
-    font-size: 14px;
+    font-size: 16px;
     text-decoration: none;
     transition: background 0.3s;
 }
@@ -149,8 +149,9 @@ body {
     background-color: #d9f1f5;
 }
 
-.navbar .dropdown-toggle::after {
-    content: '';
-    margin-left: 2px;
+.navbar .dropdown-menu.active {
+    color: #006e92;
+    background-color: #d9f1f5;
 }
+
 
