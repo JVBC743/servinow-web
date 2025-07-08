@@ -39,7 +39,7 @@
                 <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle fs-5
         {{ request()->routeIs('historico.agendamento.cliente', 'historico.agendamento.prestador') ? 'active' : '' }}"
-        href="{{ route('historico.agendamento.cliente') }}" role="button" data-bs-toggle="dropdown"
+        href="{{ route('agendamento.cliente') }}" role="button" data-bs-toggle="dropdown"
         aria-expanded="false">
         Serviços
     </a>
@@ -47,13 +47,13 @@
     <ul class="dropdown-menu">
         <li>
             <a class="dropdown-item {{ request()->routeIs('historico.agendamento.cliente') ? 'active' : '' }}"
-                href="{{ route('historico.agendamento.cliente') }}">
+                href="{{ route('agendamento.cliente') }}">
                 Serviços Prestados
             </a>
         </li>
         <li>
             <a class="dropdown-item {{ request()->routeIs('historico.agendamento.prestador') ? 'active' : '' }}"
-                href="{{ route('historico.agendamento.prestador') }}">
+                href="{{ route('agendamento.prestador') }}">
                 Serviços Recebidos
             </a>
         </li>
