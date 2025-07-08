@@ -61,10 +61,12 @@ Route::middleware('auth')->group(function () {
     Route::prefix('servico')->controller(ServicoController::class)->group(function () {
         Route::get('/', 'index')->name('servico.index');
         Route::get('/dashboard', 'dashboard')->name('dashboard');
-        Route::get('/{id}', 'servico')->name('servico'); //ROTA DE TESTE PARA A VIEW DE SERVIÇO
+
+        Route::get('/{id}', 'show')->name('servico'); //ROTA DE TESTE PARA A VIEW DE SERVIÇO
+
         Route::get('/create', 'create')->name('servico.create');
         Route::post('/', 'store')->name('servico.store');
-        Route::get('/{servico}', 'show')->name('servico.show');
+        // Route::get('/{servico}', 'show')->name('servico.show');
         Route::get('/{servico}/edit', 'edit')->name('servico.edit');
         Route::put('/{servico}', 'update')->name('servico.update');
         Route::delete('/{servico}', 'destroy')->name('servico.destroy');

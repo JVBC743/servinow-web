@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use App\Models\Servico;
+use App\Models\Agendamento;
+use App\Models\Usuario;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -65,12 +68,10 @@ class ServicoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
 
-        // $usr = Usuario::find($id);
-
-        $servico = Servico::find($id);
+        $servico = Servico::with('prestador')->findOrFail($id);        
         return view('pages.servico', compact('servico'));
     }
 

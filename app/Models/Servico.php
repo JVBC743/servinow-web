@@ -25,7 +25,7 @@ class Servico extends Model
         return $this->belongsTo(Categoria::class, 'categoria');
     }
 
-    public function user(){
-        return $this->hasOne(Usuario::class, 'usuario_id');
+    public function prestador(){
+        return $this->belongsTo(Usuario::class, 'usuario_id');
     }
 }

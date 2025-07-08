@@ -18,7 +18,7 @@
                 imageUrl="https://static.wixstatic.com/media/1233ff_ca96ec225309492dbd2cef0b7ca9938f~mv2.jpg/v1/fill/w_740,h_493,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/1233ff_ca96ec225309492dbd2cef0b7ca9938f~mv2.jpg"
                 title='{{ $item->nome_servico }}' 
                 description=" {{ $item->desc_servico }} "
-                {{-- buttonUrl=" {{ route('servico/' . $item->id) }} " --}}
+                buttonUrl=" {{ route('servico', ['id' => $item->id]) }}"
                 />
         @endforeach
     </div>
