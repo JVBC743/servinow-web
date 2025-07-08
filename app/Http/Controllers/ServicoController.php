@@ -70,7 +70,7 @@ class ServicoController extends Controller
 
         // $usr = Usuario::find($id);
 
-        $servico = Servico::findOrFail($id);
+        $servico = Servico::find($id);
         return view('pages.servico', compact('servico'));
     }
 

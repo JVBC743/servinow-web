@@ -61,7 +61,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('servico')->controller(ServicoController::class)->group(function () {
         Route::get('/', 'index')->name('servico.index');
         Route::get('/dashboard', 'dashboard')->name('dashboard');
-        Route::view('/teste', 'pages.servico')->name('servico'); //ROTA DE TESTE PARA A VIEW DE SERVIÇO
+        Route::get('/{id}', 'servico')->name('servico'); //ROTA DE TESTE PARA A VIEW DE SERVIÇO
         Route::get('/create', 'create')->name('servico.create');
         Route::post('/', 'store')->name('servico.store');
         Route::get('/{servico}', 'show')->name('servico.show');

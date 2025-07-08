@@ -4,10 +4,12 @@
 
 @section('content')
             <div class="row shadow my-5" style="height: 100%; min-height: 700px">
+
+                <h1> {{ $servico->nome_servico }} </h1>
                 <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
                     <div class="text-center margin_div_servico">
                         <div>
-                            <img src="{{ asset('images/logo-dark.png') }}" alt="Foto do serviço" class="" style="width: 300px; height: 100px">
+                            <img src="https://static.wixstatic.com/media/1233ff_ca96ec225309492dbd2cef0b7ca9938f~mv2.jpg/v1/fill/w_740,h_493,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/1233ff_ca96ec225309492dbd2cef0b7ca9938f~mv2.jpg" alt="Foto do serviço" class="" style="width: 300px; height: 100px">
                         </div>
                         <div class="my-5">
                             <label for="data" class="form-label fw-bold">Selecione a Data:</label>
@@ -21,27 +23,26 @@
                 <div class="col-12 col-md-4 text-center p-5 margin_div_servico">
                     <h4 class="fw-bold mt-3">Descrição do serviço:</h4>
                     <p class="text-justify">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sit amet porta eros.
-                        Cras porttitor nulla in cursus accumsan. Cras id imperdiet odio, a ultrices felis. 
-                        Quisque a tellus sed massa vulputate viverra vel aliquet risus. Donec tristique metus
-                        nulla, eu ultrices neque mollis et. Phasellus ullamcorper laoreet tempus. 
-                        Fusce elementum nunc nec arcu tempus, quis auctor odio laoreet.
+                        {{ $servico->desc_servico }}
                     </p>
                 </div>
 
                 <div class="col-12 col-md-4 margin_div_servico d-flex justify-content-center align-items-center">
                     <div>
-                        <div class="d-flex justify-content-center">
-                            <div class="img_div">
-                                <img src="{{ asset('images/user-icon.png') }}" alt="Prestador" class=" mb-2">
+                        <a href=" "> <!-- LINK PARA O PERFIL DO PRESTADOR -->
+                            <div class="d-flex justify-content-center">
+                                <div class="img_div">
+                                    <img src="{{ asset('images/user-icon.png') }}" alt="Prestador" class="mb-2">
+                                </div>
                             </div>
-                        </div>
+                        </a>
                         
-                        <h3 class="fw-bold text-center my-4">Nome do prestador</h3>
+                        
+                        <h3 class="fw-bold text-center my-4"> {{ $servico->prestador->nome }} </h3>
                         <div class=" px-5 mx-5">
                             <p class="text-center">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+                               
+                                {{ $servico->prestador->descricao }}
                             </p>
                         </div>
                     </div>
