@@ -31,14 +31,6 @@
                         Uso e Privacidade
                     </a>
                 </li>
-                {{-- @if($usr->admin == true) --}}
-                    <li class="nav-item">
-                        <a class="nav-link fs-5 {{ request()->routeIs('admin.lista.usuarios') ? 'active' : '' }}"
-                            href="{{ route('admin.lista.usuarios') }}">
-                            Lista de Usuários
-                        </a>
-                    </li>
-                {{-- @endif --}}
 
                 <!-- Dropdown Serviços -->
                 <li class="nav-item dropdown">
@@ -60,10 +52,20 @@
                                 Serviços Recebidos
                             </a>
                         </li>
+                        
                     </ul>
                 </li>
-            </ul>
-
+                @auth
+                    @if(auth()->user()->is_admin)
+                        <li class="nav-item">
+                            <a class="nav-link fs-5 {{ request()->routeIs('admin.lista.usuarios') ? 'active' : '' }}"
+                                href="{{ route('admin.lista.usuarios') }}">
+                                Lista de Usuários
+                            </a>
+                        </li>
+                    @endif
+                @endauth
+            </ul>            
             <!-- Ícone do usuário com dropdown -->
             <ul class="navbar-nav">
                 <li class="nav-item dropdown nav-icon">
