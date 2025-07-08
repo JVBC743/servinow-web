@@ -43,7 +43,7 @@
                             <option value="">Escolha a categoria</option>
                             @foreach ($categorias as $categoria)
                                 <option value="{{ $categoria->id }}">
-                                    {{ $categoria->categoria }}
+                                    {{ $categoria->nome }}
                                 </option>
                             @endforeach
                         </select>
