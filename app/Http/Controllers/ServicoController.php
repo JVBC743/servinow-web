@@ -22,6 +22,18 @@ class ServicoController extends Controller
         return view('pages.lista-servicos', compact('servicos'));
     }
 
+    public function indexPrestador()
+    {
+        $id = Auth::id();
+
+        $prestador = Usuario::find($id); //auth
+        $agendamento = Agendamento::with(['cliente', 'servico', 'statusAgendamento'])
+            ->where('id_prestador', $prestador->id)
+            ->get();
+        return view('pages.agendamento-prestador', compact('prestador', 'agendamento'));
+
+    }
+
     public function dashboard(Request $request)
     {
         $pesquisa = $request->input('search');
