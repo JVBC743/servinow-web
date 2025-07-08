@@ -6,7 +6,7 @@
     <div class="container-fluid d-flex justify-content-center align-items-center py-5">
         <div class="card p-4 shadow w-100" style="max-width: 1200px">
 
-            <h1 class="text-center mb-4">Seus serviços agendados como prestador</h1>
+            <h1 class="text-center mb-4">Seus serviços cadastrados</h1>
 
             <table class="table table-bordered text-center align-middle">
                 <thead class="table-light">

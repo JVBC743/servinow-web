@@ -18,6 +18,7 @@ class Servico extends Model
         'desc_servico',
         'caminho_foto',
         'usuario_id',
+        'avaliacao_id'
     ];
 
     public function categoria()
