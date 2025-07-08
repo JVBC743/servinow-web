@@ -6,9 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Usuario;
 use App\Models\Servico;
 use App\Models\StatusAgendamento;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Agendamento extends Model
 {
+
+    use HasFactory;
+
+
     protected $table = 'Agendamento';
 
     protected $fillable = [
@@ -39,8 +44,8 @@ class Agendamento extends Model
         return $this->belongsTo(Servico::class, 'id_servico');
     }
 
-    public function status()
+    public function statusAgendamento()
     {
-        return $this->belongsTo(StatusAgendamento::class, 'status');
+        return $this->belongsTo(StatusAgendamento::class, 'status', 'id');
     }
 }
