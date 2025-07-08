@@ -57,6 +57,9 @@ class UsuarioController extends Controller
     public function show($id)
     { //método para passar o id do usuário pela URL para simular um login. Se quiser tirar para implementar o login, pode tirar
 
+        if (auth()->id() !== (int) $id && !auth()->user()->is_admin) {
+            abort(403, 'Acesso não autorizado.');
+        }
         $usr = Usuario::find($id);
 
         $lista = Formacao::all();
@@ -80,6 +83,9 @@ class UsuarioController extends Controller
     public function edit(EditarUsuarioRequest $request, int $id)
     {
 
+        if (auth()->id() !== (int) $id && !auth()->user()->is_admin) {
+            abort(403, 'Acesso não autorizado.');
+        }
         $usr = Usuario::find($id);
 
         if (!$usr) {
