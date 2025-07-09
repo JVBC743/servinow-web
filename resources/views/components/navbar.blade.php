@@ -42,6 +42,12 @@
                     <ul class="dropdown-menu">
                         <li>
                             <a class="dropdown-item {{ request()->routeIs('historico.agendamento.cliente') ? 'active' : '' }}"
+                                href="{{ route('servico.create') }}">
+                                Cadastrar Serviço
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item {{ request()->routeIs('historico.agendamento.cliente') ? 'active' : '' }}"
                                 href="{{ route('agendamento.cliente') }}">
                                 Serviços Recebidos
                             </a>
