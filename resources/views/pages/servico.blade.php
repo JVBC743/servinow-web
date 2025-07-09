@@ -3,9 +3,9 @@
 @section('title', 'Agendar Serviço')
 
 @section('content')
-            <div class="row shadow my-5" style="height: 100%; min-height: 700px">
+            <div class="row shadow mt-3 mb-5" style="height: 100%; min-height: 700px">
 
-                <h1> {{ $servico->nome_servico }} </h1>
+                <h1 class="text-center mt-5"> {{ $servico->nome_servico }} </h1>
                 <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
                     <div class="text-center margin_div_servico">
                         <div>
@@ -36,8 +36,7 @@
                                 </div>
                             </div>
                         </a>
-                        
-                        
+
                         <h3 class="fw-bold text-center my-4"> {{ $servico->prestador->nome }} </h3>
                         <div class=" px-5 mx-5">
                             <p class="text-center">
@@ -47,5 +46,18 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <h1 class="text-center">Avaliações</h1>
+            <div class=" row shadow my-5">
+                <div class="my-5 col-md-3 ms-5 shadow">
+                    <div class="d-flex justify-content-center align-items-center gap-4 mt-3">
+                        <h3 class="m-0">Titulo da avaliação</h3>
+                        <h3 class="m-0">X X X X X</h3>
+                    </div>
+                    
+                    <hr>
+                    <p class="ms-4">Comentário da avaliação  </p>
+                </div>
+                
             </div>
 @endsection
