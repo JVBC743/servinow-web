@@ -26,12 +26,9 @@ class ServicoController extends Controller
     {
         $id = Auth::id();
 
-        $prestador = Usuario::find($id); //auth
-        $agendamento = Agendamento::with(['cliente', 'servico', 'statusAgendamento'])
-            ->where('id_prestador', $prestador->id)
-            ->get();
-        return view('pages.agendamento-prestador', compact('prestador', 'agendamento'));
+        $servicos = Servico::where('usuario_id', $id)->get();
 
+        return view('pages.servicos-cadastrados', compact('servicos'));
     }
 
     public function dashboard(Request $request)

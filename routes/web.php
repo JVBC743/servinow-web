@@ -45,7 +45,7 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('agendamento')->controller(AgendamentoController::class)->group(function () {
         Route::get('cliente', 'indexCliente')->name('agendamento.cliente');
-        Route::get('prestador', 'indexPrestador')->name('agendamento.prestador');
+        // Route::get('prestador', 'indexPrestador')->name('agendamento.prestador');
     });
 
     // Perfil do usuário
@@ -59,14 +59,13 @@ Route::middleware('auth')->group(function () {
 
     // Serviços
     Route::prefix('servico')->controller(ServicoController::class)->group(function () {
-        Route::get('/', 'index')->name('servico.index');
+        Route::get('/cadastrados', 'indexPrestador')->name('servicos.cadastrados');
         Route::get('/dashboard', 'dashboard')->name('dashboard');
 
         Route::get('/{id}/show', 'show')->name('servico'); //ROTA DE TESTE PARA A VIEW DE SERVIÇO
 
         Route::get('/create', 'create')->name('servico.create');
         Route::post('/', 'store')->name('servico.store');
-        // Route::get('/{servico}', 'show')->name('servico.show');
         Route::get('/{servico}/edit', 'edit')->name('servico.edit');
         Route::put('/{servico}', 'update')->name('servico.update');
         Route::delete('/{servico}', 'destroy')->name('servico.destroy');

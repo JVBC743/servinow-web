@@ -48,7 +48,7 @@
                         </li>
                         <li>
                             <a class="dropdown-item {{ request()->routeIs('historico.agendamento.prestador') ? 'active' : '' }}"
-                                href="{{ route('agendamento.prestador') }}">
+                                href="{{ route('servicos.cadastrados') }}">
                                 Serviços Cadastrados
                             </a>
                         </li>
