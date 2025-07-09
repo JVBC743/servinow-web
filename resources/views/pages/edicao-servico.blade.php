@@ -77,7 +77,7 @@
 
                     <div class="col-md-12 d-flex justify-content-between mt-4">
                         {{-- Botão desfazer (voltar à lista) --}}
-                        <a href="{{ route('servico.index') }}" class="btn btn-secondary">Desfazer</a>
+                        <a href="{{ route('servicos.cadastrados') }}" class="btn btn-secondary">Desfazer</a>
 
                         {{-- Botão salvar --}}
                         <button type="submit" class="btn btn-primary">Salvar</button>

@@ -13,7 +13,8 @@
                     <tr>
                         <th>ID</th>
                         <th>Serviço</th>
-                        <th>Data/Hora</th>
+                        <th>Criado em</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -22,13 +23,13 @@
                             <tr>
                                 <td> {{ $item->id }} </td>
                                 <td> {{ $item->nome_servico ? $item->nome_servico : 'Status não encontrado.'}} </td>
-                                <td> {{ $item->created_at->format('d/m/Y H:i') }} </td>
+                                <td> {{ $item->created_at->format('d/m/Y')}} {{ $as = "as" }}  {{ $item->created_at->format('H:i') }}</td>
                                 <td>
                                 <div class="d-flex justify-content-center gap-3">
-                                    <a href="">
+                                    <a href=" {{ route('servico.edit', ['servico' => $item->id]) }} ">
                                         <img class="list_icons" src="{{ asset('images/edit.png') }}" alt="Editar">
                                     </a>
-                                    <form action="" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir?')">
+                                    <form action=" {{ route('servico.destroy', ['servico' => $item->id]) }} " method="POST" onsubmit="return confirm('Tem certeza que deseja excluir?')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="delete_icon_button bg-transparent border-0 p-0">
