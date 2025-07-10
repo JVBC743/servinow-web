@@ -26,7 +26,7 @@
                         </div>
 
                         <div class="mb-3 text-end">
-                            <a href="#" class="esqueci-senha">Esqueci minha senha?</a>
+                            <a href="{{ route('recuperacao.senha') }}" class="esqueci-senha">Esqueci minha senha?</a>
                         </div>
 
                         <div class="d-flex justify-content-center gap-3">
