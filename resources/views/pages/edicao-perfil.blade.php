@@ -48,7 +48,7 @@
                             {{-- Telefone --}}
                             <div class="col-md-6 mb-3">
                                 <label for="telefone" class="form-label">Telefone*</label>
-                                <input type="text" name="telefone" id="telefone" class="form-control" value="{{ old('telefone', $usr->telefone) }}" maxlength="15" required>
+                                <input type="text" name="telefone" id="celular" class="form-control" value="{{ old('telefone', $usr->telefone) }}" maxlength="15" required>
                             </div>
 
                             {{-- Área de Atuação --}}
