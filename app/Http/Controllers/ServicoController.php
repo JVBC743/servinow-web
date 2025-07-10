@@ -6,6 +6,7 @@ use App\Models\Categoria;
 use App\Models\Servico;
 use App\Models\Agendamento;
 use App\Models\Usuario;
+use App\Models\Avaliacao;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -94,9 +95,10 @@ class ServicoController extends Controller
      */
     public function show($id)
     {
-
+        
         $servico = Servico::with('prestador')->findOrFail($id);        
-        return view('pages.servico', compact('servico'));
+        $avaliacoes = Avaliacao::where('id_servico', $id)->delete();
+        return view('pages.servico', compact('servico', 'avaliacoes'));
     }
 
     public function showPrestador($id)

@@ -74,25 +74,20 @@
             style="gap: 20px; padding: 10px; max-height: 400px; overflow-y: auto;">
 
             <x-card-avaliacao 
-            profileImage="{{ asset('images/claion.png') }}" 
-            title="Me dá licença" 
-            userName="José"
-            rating="5" 
-            description="Esse serviço foi horrorosso, faltou arquitetura limpa." 
+            @if ($avaliacoes->cliente->caminho_img)
+                profileImage="{{ asset('images/claion.png') }}" 
+            @else
+                profileImage={{ $avaliacoes->cliente->caminho_img }}
+            @endif
+                
+            @endif
+                title="Me dá licença" 
+                userName="José"
+                rating="5" 
+                description="Esse serviço foi horrorosso, faltou arquitetura limpa." 
             />
 
         </div>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-   
-
-
-
-
-
+    
 @endsection
