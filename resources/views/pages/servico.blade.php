@@ -41,7 +41,7 @@
                     </p>
                 </div>
 
-                <div class="col-12 col-md-4 margin_div_servico d-flex justify-content-center align-items-center">
+                <div class="col-12 col-md-4 margin_div_servico d-flex justify-content-center align-items-center mb-5">
                     <div>
                         <a href="{{ route('show.perfil.prestador', $servico->usuario_id) }}"> <!-- LINK PARA O PERFIL DO PRESTADOR -->
 

@@ -43,12 +43,12 @@
                 <div>
                    
                     <!-- EXEMPLO DE COMPONENTE, FALTA ADICIONAR GRID DE DUAS COLUNAS COM OVERLOW Y  -->
-<x-card-avaliacao 
-    profileImage="images/claion.png"
-    userName="José"
-    rating="5"
-    description="Excelente profissional, pontual e muito educado!"
-/>
+            <x-card-avaliacao 
+                profileImage="images/claion.png"
+                userName="José"
+                rating="5"
+                description="Excelente profissional, pontual e muito educado!"
+            />
 
                 </div>
             </div>
