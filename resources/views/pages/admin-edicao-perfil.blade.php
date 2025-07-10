@@ -105,7 +105,7 @@
                     </div>
 
                     <div class="d-flex justify-content-center mt-4 w-100">
-                        <button type="submit" class="btn btn-primary px-5">Salvar</button>
+                        <button type="submit" class="btn btn-primary btn-geral px-5">Salvar</button>
                     </div>
                 </form>
             @else

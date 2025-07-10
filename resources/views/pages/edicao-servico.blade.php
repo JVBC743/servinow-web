@@ -80,7 +80,7 @@
                         <a href="{{ route('servicos.cadastrados') }}" class="btn btn-secondary">Desfazer</a>
 
                         {{-- Botão salvar --}}
-                        <button type="submit" class="btn btn-primary">Salvar</button>
+                        <button type="submit" class="btn btn-primary btn-geral">Salvar</button>
                     </div>
                 </div>
             </form>

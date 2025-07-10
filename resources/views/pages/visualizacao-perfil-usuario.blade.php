@@ -102,7 +102,7 @@
             </table>
             
             <div class="text-end">
-                <a href="{{ route('mostrar.edicao', ['id' => auth()->id()]) }}" class="btn btn-primary">
+                <a href="{{ route('mostrar.edicao', ['id' => auth()->id()]) }}" class="btn btn-primary btn-geral">
                     Editar Perfil
                 </a>
             </div>
