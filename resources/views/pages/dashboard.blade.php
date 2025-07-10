@@ -3,11 +3,13 @@
 @section('content')
 
 
-    <div class="d-flex align-items-center justify-content-between gap-2">
+    <div class="d-flex align-items-center justify-content-between gap-2" style="max-width: 100%">
         <h1 class="m-0">Serviços Disponíveis</h1>
-        <div class="flex-grow-1 ms-3" style="max-width: 400px;">
+        <div class="flex-grow-1 ms-3" style="">
             <x-search-bar 
-                action="{{ route('dashboard') }}" :search="$pesquisa ?? ''"
+                :action="route('dashboard')" 
+                :search="$pesquisa ?? ''" 
+                :categorias="$categorias"
             />
         </div>
     </div>
@@ -25,12 +27,5 @@
         @endforeach
     </div>
 
-    <x-card-avaliacao 
-    profileImage="{{ asset('images/claion.png') }}"
-    title="Me dá licença"
-    userName="José"
-    rating="5"
-    description="Preciso rever minhas amizades."
-    />
 
 @endsection

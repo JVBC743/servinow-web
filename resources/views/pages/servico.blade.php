@@ -3,6 +3,7 @@
 @section('title', 'Agendar Serviço')
 
 @section('content')
+
             <div class="row shadow mt-3 mb-5" style="height: 100%; min-height: 700px">
 
                 <h1 class="text-center mt-5"> {{ $servico->nome_servico }} </h1>
@@ -29,7 +30,8 @@
 
                 <div class="col-12 col-md-4 margin_div_servico d-flex justify-content-center align-items-center">
                     <div>
-                        <a href= {{ route('show.perfil.prestador', $servico->usuario_id ) }} "> <!-- LINK PARA O PERFIL DO PRESTADOR -->
+                        <a href="{{ route('show.perfil.prestador', $servico->usuario_id) }}"> <!-- LINK PARA O PERFIL DO PRESTADOR -->
+
                             <div class="d-flex justify-content-center">
                                 <div class="img_div">
                                     <img src="{{ asset('images/user-icon.png') }}" alt="Prestador" class="mb-2">
@@ -54,7 +56,11 @@
 
                 
                     <x-card-avaliacao 
-                    
+                    profileImage="{{ asset('images/claion.png') }}"
+                    title="Me dá licença"
+                    userName="José"
+                    rating="5"
+                    description="Preciso rever minhas amizades."
                     />
 
             </div>

@@ -34,17 +34,22 @@ class ServicoController extends Controller
     public function dashboard(Request $request)
     {
         $pesquisa = $request->input('search');
+        $id_categoria = $request->input('categoria_id');
 
         $query = Servico::query();
 
         if($pesquisa){
-                $query->where('nome_servico', 'like', "%{$pesquisa}%");
+            $query->where('nome_servico', 'like', "%{$pesquisa}%");
+        }
 
+        if($id_categoria){
+            $query->where('categoria', $id_categoria);
         }
 
         $servicos = $query->get();
+        $categorias = Categoria::all();
 
-        return view('pages.dashboard', compact('servicos', 'pesquisa'));
+        return view('pages.dashboard', compact('servicos', 'pesquisa', 'categorias'));
 
     }
 
@@ -97,8 +102,8 @@ class ServicoController extends Controller
     public function showPrestador($id)
     {
         
-        $servico = Servico::with('prestador')->findOrFail($id);        
-        return view('pages.visualizacao-perfil-prestador', compact('servico'));
+        $usr = Usuario::findOrFail($id);        
+        return view('pages.visualizacao-perfil-prestador', compact('usr'));
     }
 
     /**
