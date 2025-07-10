@@ -73,7 +73,6 @@
         <div class="d-flex flex-wrap justify-content-center"
             style="gap: 20px; padding: 10px; max-height: 400px; overflow-y: auto;">
 
-
             <x-card-avaliacao 
             profileImage="{{ asset('images/claion.png') }}" 
             title="Me dá licença" 
@@ -81,35 +80,6 @@
             rating="5" 
             description="Esse serviço foi horrorosso, faltou arquitetura limpa." 
             />
-            <x-card-avaliacao 
-            profileImage="{{ asset('images/claion.png') }}" 
-            title="Me dá licença" 
-            userName="José"
-            rating="5" 
-            description="Esse serviço foi horrorosso, faltou arquitetura limpa." 
-            />
-            <x-card-avaliacao 
-            profileImage="{{ asset('images/claion.png') }}" 
-            title="Me dá licença" 
-            userName="José"
-            rating="5" 
-            description="Esse serviço foi horrorosso, faltou arquitetura limpa." 
-            />
-            <x-card-avaliacao 
-            profileImage="{{ asset('images/claion.png') }}" 
-            title="Me dá licença" 
-            userName="José"
-            rating="5" 
-            description="Esse serviço foi horrorosso, faltou arquitetura limpa." 
-            />
-            <x-card-avaliacao 
-            profileImage="{{ asset('images/claion.png') }}" 
-            title="Me dá licença" 
-            userName="José"
-            rating="5" 
-            description="Esse serviço foi horrorosso, faltou arquitetura limpa." 
-            />
-
 
         </div>
     </div>

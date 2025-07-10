@@ -5,15 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Usuario;
 use App\Models\Servico;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class Avaliacao extends Model
 {
+
+    use HasFactory;
+    
     protected $table = 'Avaliacao';
 
     protected $fillable = [
         'id_cliente',
         'id_servico',
-        'data_avaliacao',
         'nota',
         'comentario',
     ];

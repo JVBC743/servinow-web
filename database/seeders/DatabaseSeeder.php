@@ -7,6 +7,7 @@ use App\Models\Usuario;
 use App\Models\Servico;
 use App\Models\Agendamento;
 use App\Models\StatusAgendamento;
+use App\Models\Avaliacao;
 
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -30,5 +31,6 @@ class DatabaseSeeder extends Seeder
         Usuario::factory()->count(50)->create();
         Servico::factory()->count(50)->create();
         Agendamento::factory()->count(20)->create();
+        Avaliacao::factory()->count(20)->create();
     }
 }
