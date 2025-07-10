@@ -31,7 +31,7 @@
                     <input type="date" id="data" name="data" class="form-control text-cente" style="">
                 </div>
 
-                <button class="btn btn-info text-white px-4 my-3">Agendar</button>
+                <button class="btn btn-info btn-geral text-white px-4 my-3">Agendar</button>
             </div>
         </div>
 
@@ -65,13 +65,12 @@
         </div>
     </div>
     <h1 class="text-center">Avaliações</h1>
-    <button class="btn btn-info text-white">Enviar avaliação</button>
+    <button class="btn btn-info btn-geral text-white">Enviar avaliação</button>
     {{-- MODAL AQUI --}}
 
-    <div class="mt-2 ml-1 mr-1">
+    <div class="mt-2 ml-1 mr-1 mb-1">
 
-        <div class="d-flex flex-wrap justify-content-center"
-            style="gap: 20px; padding: 10px; max-height: 400px; overflow-y: auto;">
+        <div class="d-flex flex-wrap justify-content-center div-avaliacoes">
 
 
             <x-card-avaliacao 
@@ -113,12 +112,6 @@
 
         </div>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
    
 
 

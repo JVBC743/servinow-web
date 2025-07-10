@@ -1,5 +1,6 @@
 :root {
     --cor-padrao: #7DCCD8;
+    --cor-escuro: #006e92;
 }
 
 
@@ -379,4 +380,23 @@ form {
     .formulario-area h1 {
         font-size: 20px;
     }
+}
+
+
+.div-avaliacoes {
+    gap: 20px;
+    padding: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+
+.btn-geral {
+    background: #7DCCD8;
+    transition: background 0.4s ease-in-out;
+}
+
+.btn-geral:hover {
+    background: #1f96b7;
 }
