@@ -40,9 +40,20 @@
                 <h5 class="txt-center">
                     <b>Principais avaliações de Serviços</b>
                 </h5>
-                <div>
-                   
+                    <div class="d-flex flex-wrap justify-content-center" style="gap: 20px;">
+
                     <!-- EXEMPLO DE COMPONENTE, FALTA ADICIONAR GRID DE DUAS COLUNAS COM OVERLOW Y  -->
+                    <x-card-avaliacao profileImage="{{ asset('images/claion.png') }}" title="Me dá licença" userName="José"
+                        rating="5" description="Preciso rever minhas amizades." />
+
+                    <x-card-avaliacao profileImage="{{ asset('images/claion.png') }}" title="Me dá licença" userName="José"
+                        rating="5" description="Preciso rever minhas amizades." />
+
+                    <x-card-avaliacao profileImage="{{ asset('images/claion.png') }}" title="Me dá licença" userName="José"
+                        rating="5" description="Preciso rever minhas amizades." />
+
+
+
             <x-card-avaliacao 
                 profileImage="images/claion.png"
                 userName="José"
@@ -55,7 +66,6 @@
         </div>
     </div>
     </main>
-    <x-footer />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
