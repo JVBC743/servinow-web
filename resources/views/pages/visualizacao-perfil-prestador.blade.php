@@ -15,11 +15,19 @@
 
                     @if($usr->caminho_img)
                         <img src="
-                        {{ $usr->caminho_img ?? asset('images/user-icon.png') }}
-                        "
+                        {{ $usr->caminho_img }}
+
                             alt="Foto do Prestador"
                             class="rounded-circle shadow"
                             style="width: 150px; height: 150px; object-fit: cover;">
+                    @else
+                        <img src="
+                        {{ asset('images/user-icon.png') }}"
+
+                                alt="Foto do Prestador"
+                                class="rounded-circle shadow"
+                                style="width: 150px; height: 150px; object-fit: cover;">
+
                     @endif
                 </div>
 
@@ -28,7 +36,7 @@
                         {{ $usr->nome }}
                     </h4>
                     <p class="mb-1"><strong>Especialidade:</strong> 
-                        {{ $usr->formacao->nome ?? 'Não informada' }} <!-- VERIFICAR SE NÃO TÁ ERRADO. -->
+                        {{ $usr->formacao->formacao ?? 'Não informada' }} <!-- VERIFICAR SE NÃO TÁ ERRADO. -->
                     </p>
                     <p><strong>Descrição:</strong> 
                         {{ $usr->descricao ?? '—' }}

@@ -1,5 +1,5 @@
 @extends ('layouts.autenticado')
-@section('title', 'Login')
+@section('title', 'Sobre Nós')
 @section('content')
     <div id="div-1" class="mb-5 mt-5">
         <h2 class="fs-1 mb-4 text-center">Sobre Nós</h2>
@@ -14,7 +14,6 @@
 
     <div id="div-2" class="text-center fs-4">
         <div class="d-flex flex-wrap justify-content-center">
-
 
             <div class="mx-3">
                 <div class="div_img_container">

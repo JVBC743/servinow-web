@@ -17,7 +17,7 @@
                      " alt="Foto de perfil"
                         class="rounded-circle shadow" style="width: 120px; height: 120px; object-fit: cover;">
                 @else
-                    <img src="https://via.placeholder.com/120" alt="Foto padrão"
+                    <img src="{{ asset('images/user-icon.png') }}" alt="Foto padrão"
                         class="rounded-circle shadow">
                 @endif
             </div>
