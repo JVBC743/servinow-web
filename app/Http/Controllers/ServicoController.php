@@ -168,8 +168,10 @@ class ServicoController extends Controller
             Storage::disk('minio')->delete($servico->imagem);
         }
 
+        Agendamento::where('id_servico', $servico->id)->delete();
+
         $servico->delete();
 
-        return redirect()->route('servico.index')->with('success', 'Serviço excluído com sucesso!');
+        return redirect()->route('servicos.cadastrados')->with('success', 'Serviço excluído com sucesso!');
     }
 }

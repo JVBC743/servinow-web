@@ -5,6 +5,11 @@
 @section('content')
     <div class="container-fluid d-flex justify-content-center align-items-center py-5">
         <div class="card p-4 shadow w-100" style="max-width: 1200px">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
 
             <h1 class="text-center mb-4">Seus serviços cadastrados</h1>
 

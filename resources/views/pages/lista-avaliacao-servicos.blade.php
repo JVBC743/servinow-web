@@ -54,6 +54,12 @@
 
 
 
+            <x-card-avaliacao 
+                profileImage="images/claion.png"
+                userName="José"
+                rating="5"
+                description="Excelente profissional, pontual e muito educado!"
+            />
 
                 </div>
             </div>
