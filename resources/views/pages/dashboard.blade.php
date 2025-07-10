@@ -24,4 +24,13 @@
                 />
         @endforeach
     </div>
+
+    <x-card-avaliacao 
+    profileImage="{{ asset('images/claion.png') }}"
+    title="Me dá licença"
+    userName="José"
+    rating="5"
+    description="Preciso rever minhas amizades."
+    />
+
 @endsection
