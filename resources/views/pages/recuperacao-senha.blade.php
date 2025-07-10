@@ -13,7 +13,7 @@
                 </div>
             @endif
 
-            <form method="POST" action="
+            <form method="get" action="
             {{-- {{ route('password.email') }} --}}
              ">
                 @csrf
@@ -23,7 +23,7 @@
                     <input id="email" type="email"
                         class="form-control @error('email') is-invalid @enderror"
                         name="email" value="{{ old('email') }}"
-                        required autocomplete="email" autofocus
+                        autocomplete="email" autofocus
                         placeholder="exemplo@email.com">
 
                     @error('email')
@@ -32,11 +32,15 @@
                         </span>
                     @enderror
                 </div>
-
-                <div class="d-grid">
+                <div class="d-flex">
                     <button type="submit" class="btn btn-success w-100">
                         Enviar link de redefinição
                     </button>
+                    <a href="{{ route('login') }}"> <!-- TROCAR A ROTA -->
+                        <button class="btn btn-secondary">
+                            Voltar
+                        </button>
+                    </a>
                 </div>
             </form>
         </div>
