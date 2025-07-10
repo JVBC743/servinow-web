@@ -33,3 +33,12 @@
     border-style: none;
 
 }
+
+.button_save{
+
+    width: 150px;
+    height: 50px;
+    font-size: 25px;
+    background-color: #09A7B1;
+    color: #ffffff;
+}
