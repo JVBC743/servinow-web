@@ -43,6 +43,13 @@
   margin-bottom: 12px;
 }
 
+.service-category {
+  color: #015470;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
 .card-text {
   color: #64748b;
   line-height: 1.6;
