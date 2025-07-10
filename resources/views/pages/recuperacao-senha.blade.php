@@ -13,18 +13,14 @@
                 </div>
             @endif
 
-            <form method="get" action="
+            <form method="post" action="
             {{-- {{ route('password.email') }} --}}
              ">
                 @csrf
 
                 <div class="form-group mb-3">
-                    <label for="email">E-mail</label>
-                    <input id="email" type="email"
-                        class="form-control @error('email') is-invalid @enderror"
-                        name="email" value="{{ old('email') }}"
-                        autocomplete="email" autofocus
-                        placeholder="exemplo@email.com">
+                    <label for="telefone">Telefone (WhatsApp)</label>
+                    <input id="telefone" type="text" name="telefone" class="form-control" placeholder="(99) 99999-9999">
 
                     @error('email')
                         <span class="invalid-feedback d-block mt-1" role="alert">
@@ -32,7 +28,7 @@
                         </span>
                     @enderror
                 </div>
-                <div class="d-flex">
+                <div class="d-flex gap-2">
                     <button type="submit" class="btn btn-success w-100">
                         Enviar link de redefinição
                     </button>
