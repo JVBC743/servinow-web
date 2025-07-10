@@ -29,7 +29,7 @@
 
                 <div class="col-12 col-md-4 margin_div_servico d-flex justify-content-center align-items-center">
                     <div>
-                        <a href=" "> <!-- LINK PARA O PERFIL DO PRESTADOR -->
+                        <a href= {{ route('show.perfil.prestador', $servico->usuario_id ) }} "> <!-- LINK PARA O PERFIL DO PRESTADOR -->
                             <div class="d-flex justify-content-center">
                                 <div class="img_div">
                                     <img src="{{ asset('images/user-icon.png') }}" alt="Prestador" class="mb-2">
@@ -50,42 +50,13 @@
             <h1 class="text-center">Avaliações</h1>
             <button class="btn btn-info text-white">Enviar avaliação</button>
             {{-- MODAL AQUI --}}
-            <div class="container-fluid">
-                <div class="row justify-content-center shadow my-5">
-                    <div class="col-11 col-sm-10 col-md-8 col-lg-6 col-xl-4 my-4 shadow rounded p-3 bg-white">
+            <div class="container-fluid shadow">
 
-                        <!-- Título e Estrelas -->
-                        <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-2 mb-3">
-                            <h3 class="m-0 text-center">Título da avaliação</h3>
-                            <h3 class="m-0 text-center">X X X X X</h3>
-                        </div>
+                
+                    <x-card-avaliacao 
+                    
+                    />
 
-                        <hr>
-
-                        <!-- Avatar e Nome -->
-                        <div class="d-flex align-items-center gap-3 px-2 mb-3">
-                            <img src="https://static.wixstatic.com/media/1233ff_ca96ec225309492dbd2cef0b7ca9938f~mv2.jpg/v1/fill/w_740,h_493,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/1233ff_ca96ec225309492dbd2cef0b7ca9938f~mv2.jpg"
-                                alt=""
-                                style="height: 40px; width: 40px; object-fit: cover; border-radius: 50%;">
-                            <span class="fw-semibold">{{ $cliente = "Nome de Teste" }}</span>
-                        </div>
-
-                        <hr>
-
-                        <!-- Comentário alinhado à esquerda -->
-                        <div class="px-2">
-                            <p class="m-0">
-                                Comentário da avaliação
-                            </p>
-                        </div>
-
-                        <!-- Data alinhada à direita -->
-                        <div class="text-end pe-2 mt-2">
-                            <small class="text-muted">{{ $data = "XX/XX/XXXX" }}</small>
-                        </div>
-
-                    </div>
-                </div>
             </div>
 
 

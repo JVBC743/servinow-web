@@ -2,17 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Application\DTOs\CreateUserDTO;
-use App\Application\DTOs\RegisterUsuarioDTO;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\JsonResponse;
 
 use App\Models\Usuario;
 use App\Models\Formacao;
 
-use App\Domain\Repositories\UsuarioRepositoryInterface as UsrRepo;
-
-use App\Http\Requests\RegisterUsuarioRequest;
 use App\Http\Requests\EditarUsuarioRequest;
 use Illuminate\Http\Request;
 
@@ -40,6 +36,15 @@ class UsuarioController extends Controller
         }
 
         return redirect()->back()->with('success', 'O usuário foi editado com sucesso.');
+    }
+
+    public function showPerfil(){
+
+        $id = Auth::id();
+
+        $usr = Usuario::find($id);
+
+        return view('pages.visualizacao-perfil-usuario', compact('usr'));
     }
 
     public function listFormations($id)

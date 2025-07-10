@@ -96,10 +96,15 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="d-flex justify-content-center mt-4 w-100">
-                            <button type="submit" class="btn btn-primary px-5">Salvar</button>
+                        <div class="d-flex">
+                            <div class="d-flex justify-content-center mt-4 w-100">
+                                <a href="{{ route('visualizacao.perfil')  }}" class="btn btn-secondary px-5">Desfazer</a>
+                            </div>
+                            <div class="d-flex justify-content-center mt-4 w-100">
+                                <button type="submit" class="btn btn-primary px-5">Salvar</button>
+                            </div>
                         </div>
+                        
                     </form>
                 @else
                     <h3 class="text-center text-danger">Usuário não encontrado, por favor, volte.</h3>

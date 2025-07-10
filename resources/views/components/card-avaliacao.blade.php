@@ -12,7 +12,7 @@
             <h5 class="card-title mb-0">{{ $userName }}</h5>
         </div>
 
-        <div class="mb-2">
+        <div class="mb-2 ">
             @for ($i = 1; $i <= 5; $i++)
                 @if ($i <= $rating)
                     <i class="fas fa-star text-warning"></i>
@@ -23,5 +23,7 @@
         </div>
 
         <p class="card-text fs-6">{{ $description }}</p>
+
+        <p></p>
     </div>
 

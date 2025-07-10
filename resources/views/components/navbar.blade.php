@@ -83,16 +83,16 @@
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li>
                             <a class="dropdown-item {{ request()->routeIs('visualizacao-perfil') ? 'active' : '' }}"
-                                href="{{ route('visualizacao-perfil') }}">
+                                href="{{ route('visualizacao.perfil') }}">
                                 Perfil
                             </a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a class="dropdown-item {{ request()->routeIs('mostrar.edicao') ? 'active' : '' }}"
                                 href="{{ route('mostrar.edicao', ['id' => auth()->id()]) }}">
                                 Editar Perfil
                             </a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a class="dropdown-item" href="{{ route('logout') }}">
                                 Logout

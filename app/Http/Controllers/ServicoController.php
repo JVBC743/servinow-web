@@ -89,9 +89,16 @@ class ServicoController extends Controller
      */
     public function show($id)
     {
-        
+
         $servico = Servico::with('prestador')->findOrFail($id);        
         return view('pages.servico', compact('servico'));
+    }
+
+    public function showPrestador($id)
+    {
+        
+        $servico = Servico::with('prestador')->findOrFail($id);        
+        return view('pages.visualizacao-perfil-prestador', compact('servico'));
     }
 
     /**

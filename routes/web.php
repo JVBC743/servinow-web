@@ -40,7 +40,6 @@ Route::middleware('auth')->group(function () {
 
     // Dashboard e perfil
     // Route::view('/dashboard', 'pages.dashboard')->name('dashboard');
-    Route::view('/perfil', 'pages.visualizacao-perfil')->name('visualizacao-perfil');
 
 
     Route::prefix('agendamento')->controller(AgendamentoController::class)->group(function () {
@@ -51,6 +50,8 @@ Route::middleware('auth')->group(function () {
     // Perfil do usuário
     Route::prefix('perfil')->controller(UsuarioController::class)->group(function () {
         Route::get('/lista', 'index')->name('lista');
+        Route::get('/visualizacao', 'showPerfil')->name('visualizacao.perfil');
+
         Route::get('/edicao/{id}', 'show')->name('mostrar.edicao');
         Route::get('/formacoes/{id}', 'listFormations')->name('listar.formacoes');
         Route::put('/editar/{id}', 'edit')->name('editar.usuario');
@@ -62,7 +63,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/cadastrados', 'indexPrestador')->name('servicos.cadastrados');
         Route::get('/dashboard', 'dashboard')->name('dashboard');
 
-        Route::get('/{id}/show', 'show')->name('servico'); //ROTA DE TESTE PARA A VIEW DE SERVIÇO
+        Route::get('/{id}/show', 'show')->name('servico');
+        Route::get('/prestador/{id}', 'showPrestador')->name('show.perfil.prestador');
 
         Route::get('/create', 'create')->name('servico.create');
         Route::post('/', 'store')->name('servico.store');
