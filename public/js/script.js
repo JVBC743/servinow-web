@@ -41,20 +41,33 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    if (celularInput) {
-        celularInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length > 2) {
-                value = `(${value.substring(0,2)}) ${value.substring(2)}`;
+   if (celularInput) {
+    celularInput.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+
+        if (value.length > 2) {
+            value = `(${value.substring(0,2)}) ${value.substring(2)}`;
+        }
+
+        value = value.replace(/\D/g, '');
+
+        if (value.length > 2) {
+            const ddd = value.substring(0, 2);
+            const num = value.substring(2);
+
+            if (num.length <= 4) {
+                value = `(${ddd}) ${num}`;
+            } else if (num.length <= 8) {
+                value = `(${ddd}) ${num.substring(0, 4)}-${num.substring(4)}`;
+            } else {
+                value = `(${ddd}) ${num.substring(0, 5)}-${num.substring(5, 9)}`;
             }
-            if (value.length > 9 && value.length <= 13) { // (XX) XXXXX-XXXX (com 9 dígitos)
-                 value = value.replace(/(\d{5})(\d)/, '$1-$2');
-            } else if (value.length > 9) { // (XX) XXXXX-XXXX (com 8 dígitos)
-                 value = value.replace(/(\d{4})(\d)/, '$1-$2');
-            }
-            e.target.value = value.slice(0, 15); // Limita (XX) XXXXX-XXXX
-        });
-    }
+        }
+
+        e.target.value = value;
+    });
+}
+
 
     // Funcionalidade para buscar CEP (exemplo usando ViaCEP)
     if (cepInput) {
