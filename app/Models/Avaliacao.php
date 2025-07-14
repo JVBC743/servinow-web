@@ -29,7 +29,7 @@ class Avaliacao extends Model
 
     public function cliente()
     {
-        return $this->belongsTo(Usuario::class, 'id');
+        return $this->belongsTo(Usuario::class, 'id_cliente');
     }
 
     public function servico()

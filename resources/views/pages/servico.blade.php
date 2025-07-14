@@ -5,6 +5,20 @@
 @section('content')
     {{-- {{ dd($servico->caminho_foto) }} --}}
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $erro)
+                    <li>{{ $erro }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    @if (session('success'))
+        <div class="alert alert-success me-5">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <div class="row shadow mt-3 mb-5 me-5" style="height: 100%; min-height: 700px;">
 
@@ -84,18 +98,21 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="nota" class="form-label">Titulo</label>
-                            <input minlength="10" maxlength="33" class="form-control" type="text" name="titulo" placeholder="Insira o título da sua avaliacao" required>
+                            <input minlength="10" maxlength="25" class="form-control" type="text" name="titulo" placeholder="Insira o título da sua avaliacao" required>
                         </div>
 
                         <div class="mb-3">
-                            <label for="nota" class="form-label">Nota (1 a 5)</label>
+                            <label for="nota" class="form-label">Quantas estrelas?</label>
                             <select name="nota" id="nota" class="form-select" required>
                                 @for ($i = 1; $i <= 5; $i++)
-                                    <option value="{{ $i }}">{{ $i }}</option>
+                                    <option value="{{ $i }}">
+                                        {{ str_repeat('★', $i) . str_repeat('☆', 5 - $i) }}
+                                    </option>
                                 @endfor
                             </select>
                         </div>
-                        
+
+
                         <div class="mb-3">
                             <label for="comentario" class="form-label">Comentário</label>
                             <textarea minlength="30" maxlength="100" name="comentario" id="comentario" class="form-control"

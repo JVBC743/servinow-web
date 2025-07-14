@@ -30,6 +30,7 @@ class AvaliacaoController extends Controller
     public function store(CreateAvaliacaoRequest $request)
     {
         $data = $request->validated();
+
         $data['id_cliente'] = auth()->id();
 
         Avaliacao::create($data);

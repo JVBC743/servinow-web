@@ -23,20 +23,25 @@ class CreateAvaliacaoRequest extends FormRequest
     {
         return [
             'id_servico' => 'required',
-            'titulo' => 'max:33|min:10',
+            'titulo' => 'required|max:25|min:10',
             'nota' => 'required',
-            'comentario' => 'min:30|max:100',
+            'comentario' => 'min:30|required|max:100',
         ];
     }
 
     public function messages(): array
     {
         return [
-            'id_servico' => 'Serviço não encontrado',
-            'titulo' => 'O título deve ser ',
-            'nota' => 'A nota deve ser obrigatória na avaliação',
-            'comentario' => 'O comentário deve ser obrigatório',
-        ];
-            
+            'id_servico.required' => 'Serviço não encontrado.',
+
+            'titulo.max' => 'O título deve ter, no máximo, 33 digitos.',
+            'titulo.min' => 'O título deve ter, no mínimo, 10 digitos.',
+            'titulo.required' => 'O título é obrigatório.',
+
+            'nota.required' => 'A nota deve ser obrigatória na avaliação',
+            'comentario.required' => 'O comentário deve ser obrigatório',
+            'comentario.max' => 'O comentário deve ter, no máximo, 100 digitos.',
+            'comentario.min' => 'O comentário deve ter, no mínimo, 30 digitos.',
+        ];    
     }
 }
