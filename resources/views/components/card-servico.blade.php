@@ -8,15 +8,17 @@
     'buttonUrl' => '#'
 ])
 
+
 <div class="custom-card" {{ $attributes }}>
     <div class="card-img-container">
         <img src="{{ $imageUrl }}" alt="{{ $title }}" class="card-img-top">
     </div>
     <div class="card-body">
-        <h5 class="card-title">{{ $title }}</h5>
-        <h5 class="service-category">{{ $category }}</h5>
-        <p class="card-text">{{ $description }}</p>
-    </div>
+    <h5 class="card-title">{{ $title }}</h5>
+        <h6 class="text-muted">{{ $category }}</h6>
+    <p class="card-text">{{ $description }}</p>
+</div>
+
     <div class="card-footer">
         <a href="{{ $buttonUrl }}" class="btn-custom">{{ $buttonText }}</a>
     </div>
