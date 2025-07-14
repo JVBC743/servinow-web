@@ -12,12 +12,13 @@ class Avaliacao extends Model
 {
 
     use HasFactory;
-    
+
     protected $table = 'Avaliacao';
 
     protected $fillable = [
         'id_cliente',
         'id_servico',
+        'titulo',
         'nota',
         'comentario',
     ];
@@ -28,11 +29,11 @@ class Avaliacao extends Model
 
     public function cliente()
     {
-        return $this->belongsTo(Usuario::class, 'id_cliente');
+        return $this->belongsTo(Usuario::class, 'id');
     }
 
     public function servico()
     {
-        return $this->belongsTo(Servico::class, 'id_servico');
+        return $this->belongsTo(Servico::class, 'id');
     }
 }

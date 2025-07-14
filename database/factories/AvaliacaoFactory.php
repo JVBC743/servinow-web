@@ -26,8 +26,9 @@ class AvaliacaoFactory extends Factory
         return [
             'nota' => $this->faker->numberBetween(1, 5),
             'comentario' => $this->faker->sentence(),
+            'titulo' => $this->faker->sentence(3),
             'id_cliente' => Usuario::factory(),
-            'id_servico' => Servico::factory(),
+            'id_servico' => Servico::inRandomOrder()->first()->id,
         ];
     }
 }

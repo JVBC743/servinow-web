@@ -97,8 +97,8 @@ class ServicoController extends Controller
     {
         
         $servico = Servico::with('prestador')->findOrFail($id);        
-        $avaliacoes = Avaliacao::where('id_servico', $id)->delete();
-        return view('pages.servico', compact('servico', 'avaliacoes'));
+        $avaliacoes = Avaliacao::where('id_servico', $id)->with('cliente')->get();
+        return view('pages.servico', compact('servico','avaliacoes'));
     }
 
     public function showPrestador($id)

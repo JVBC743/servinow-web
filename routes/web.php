@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ServicoController;
+use App\Http\Controllers\AvaliacaoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +60,10 @@ Route::middleware('auth')->group(function () {
     });
 
     // Serviços
+    Route::prefix('avaliacao')->controller(AvaliacaoController::class)->group(function () {
+        Route::post('/registrar', 'store')->name('registrar.avaliacao');
+    });
+
     Route::prefix('servico')->controller(ServicoController::class)->group(function () {
         Route::get('/cadastrados', 'indexPrestador')->name('servicos.cadastrados');
         Route::get('/dashboard', 'dashboard')->name('dashboard');

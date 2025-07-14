@@ -16,7 +16,7 @@
                     <div>
                         <img class="service_photo" src="{{ asset("$servico->caminho_foto") }}" alt="Foto do serviço">
                         <!-- TIRAR O ASSET PARA PUXAR O CAMIHNO DO MINIO
-                                                                                                                                                                                        A CONSULTA NO BANCO TÁ CERTA -->
+                                  A CONSULTA NO BANCO TÁ CERTA -->
                     </div>
                 @else
                     <div>
@@ -31,7 +31,7 @@
                     <input type="date" id="data" name="data" class="form-control text-cente" style="">
                 </div>
 
-                <button class="btn btn-info text-white px-4 my-3">Agendar</button>
+                <button class="btn btn-info btn-geral text-white px-4 my-3">Agendar</button>
             </div>
         </div>
 
@@ -65,29 +65,78 @@
         </div>
     </div>
     <h1 class="text-center">Avaliações</h1>
-    <button class="btn btn-info text-white">Enviar avaliação</button>
-    {{-- MODAL AQUI --}}
+    <!-- Botão que abre a modal -->
+<button class="btn btn-info btn-geral text-white" data-bs-toggle="modal" data-bs-target="#modalAvaliacao">
+    Enviar avaliação
+</button>
 
-    <div class="mt-2 ml-1 mr-1">
+<!-- Modal -->
+<div class="modal fade" id="modalAvaliacao" tabindex="-1" aria-labelledby="modalAvaliacaoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form method="POST" action="
+            {{ route('registrar.avaliacao') }}
+             ">
+                @csrf
+                <input type="hidden" name="id_servico" value="
+                {{ $servico->id }}
+                 ">
 
-        <div class="d-flex flex-wrap justify-content-center"
-            style="gap: 20px; padding: 10px; max-height: 400px; overflow-y: auto;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalAvaliacaoLabel">Nova Avaliação</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
 
-            <x-card-avaliacao 
-            @if ($avaliacoes->cliente->caminho_img)
-                profileImage="{{ asset('images/claion.png') }}" 
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="nota" class="form-label"></label>
+                        <input class="form-control" type="text" name="titulo" placeholder="Insira o título da sua avaliacao" required>
+                        
+                    </div>
+                    <div class="mb-3">
+                        <label for="nota" class="form-label">Nota (1 a 5)</label>
+                        <select name="nota" id="nota" class="form-select" required>
+                            @for ($i = 1; $i <= 5; $i++)
+                                <option value="{{ $i }}">{{ $i }}</option>
+                            @endfor
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="comentario" class="form-label">Comentário</label>
+                        <textarea name="comentario" id="comentario" class="form-control" rows="3" required></textarea>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Enviar Avaliação</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+    <div class="mt-2 ml-1 mr-1 mb-1">
+        <div class="d-flex flex-wrap justify-content-center div-avaliacoes">
+            @if ($avaliacoes->isNotEmpty())
+                @foreach ($avaliacoes as $avaliacao)
+                    <x-card-avaliacao 
+                        profileImage="{{ $avaliacao->cliente->caminho_img ?? asset('images/user-icon.png') }}"
+
+                        title="{{ $avaliacao->titulo }}"
+                        userName="{{ $avaliacao->cliente->nome ?? 'Anônimo' }}"
+                        rating="{{ $avaliacao->nota }}"
+                        description="{{ $avaliacao->comentario }}"
+                    />
+                @endforeach
             @else
-                profileImage={{ $avaliacoes->cliente->caminho_img }}
+
+                <h1>Não há avaliações para esse serviço.</h1>
+
             @endif
-                
-            @endif
-                title="Me dá licença" 
-                userName="José"
-                rating="5" 
-                description="Esse serviço foi horrorosso, faltou arquitetura limpa." 
-            />
 
         </div>
     </div>
-    
 @endsection
