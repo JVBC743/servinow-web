@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Avaliacao;
+use App\Http\Requests\CreateAvaliacaoRequest;
 
 class AvaliacaoController extends Controller
 {
@@ -26,18 +27,14 @@ class AvaliacaoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateAvaliacaoRequest $request)
     {
-        
-        $id_servico = $request->input('id_servico');
-        $titulo = $request->input('titulo');
-        $nota = $request->input('nota');
-        $comentario = $request->input('comentario');
-        
-        // Avaliacao::create([
-        //     'id_servico' => $,
-        // ]);
+        $data = $request->validated();
+        $data['id_cliente'] = auth()->id();
 
+        Avaliacao::create($data);
+
+        return redirect()->back()->with('success', 'Avaliação inserida com sucesso!');
     }
 
     /**

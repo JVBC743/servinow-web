@@ -130,15 +130,16 @@ class UsuarioController extends Controller
             return redirect()->back()->with('error', 'Usuário não encontrado.');
         }
 
-        // $obj_formacao = Formacao::find($editarUsuario->area_atuacao);
-
         if ($usr->caminho_img) {
             $imagem_url = Storage::disk('miniobusca')->temporaryUrl(
                 $usr->caminho_img,
                 now()->addMinutes(5)
             );
+
         } else {
+
             $imagem_url = null;
+            
         }
         // dd($imagem_url);
         return view("pages.admin-edicao-perfil", compact('lista', 'usr', 'imagem_url'));

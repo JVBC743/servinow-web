@@ -22,9 +22,7 @@
                     <div>
                         <img class="service_photo" src="{{ asset('images/servico-nulo.png') }}" alt="Não há foto de serviço">
                     </div>
-
                 @endif
-
 
                 <div class="my-5">
                     <label for="data" class="form-label fw-bold">Selecione a Data:</label>
@@ -57,66 +55,62 @@
                 <h3 class="fw-bold text-center my-4"> {{ $servico->prestador->nome }} </h3>
                 <div class=" px-5 mx-5">
                     <p class="text-center">
-
                         {{ $servico->prestador->descricao }}
                     </p>
                 </div>
             </div>
         </div>
     </div>
+
     <h1 class="text-center">Avaliações</h1>
     <!-- Botão que abre a modal -->
-<button class="btn btn-info btn-geral text-white" data-bs-toggle="modal" data-bs-target="#modalAvaliacao">
-    Enviar avaliação
-</button>
+    <button class="mb-3 btn btn-info btn-geral text-white" data-bs-toggle="modal" data-bs-target="#modalAvaliacao">
+        Enviar avaliação
+    </button>
 
-<!-- Modal -->
-<div class="modal fade" id="modalAvaliacao" tabindex="-1" aria-labelledby="modalAvaliacaoLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <form method="POST" action="
-            {{ route('registrar.avaliacao') }}
-             ">
-                @csrf
-                <input type="hidden" name="id_servico" value="
-                {{ $servico->id }}
-                 ">
+    <!-- Modal -->
+    <div class="modal fade" id="modalAvaliacao" tabindex="-1" aria-labelledby="modalAvaliacaoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form method="POST" action="{{ route('registrar.avaliacao') }}">
+                    @csrf
+                    <input type="hidden" name="id_servico" value="{{ $servico->id }}">
 
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalAvaliacaoLabel">Nova Avaliação</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                </div>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalAvaliacaoLabel">Nova Avaliação</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
 
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="nota" class="form-label"></label>
-                        <input class="form-control" type="text" name="titulo" placeholder="Insira o título da sua avaliacao" required>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="nota" class="form-label">Titulo</label>
+                            <input minlength="10" maxlength="33" class="form-control" type="text" name="titulo" placeholder="Insira o título da sua avaliacao" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="nota" class="form-label">Nota (1 a 5)</label>
+                            <select name="nota" id="nota" class="form-select" required>
+                                @for ($i = 1; $i <= 5; $i++)
+                                    <option value="{{ $i }}">{{ $i }}</option>
+                                @endfor
+                            </select>
+                        </div>
                         
-                    </div>
-                    <div class="mb-3">
-                        <label for="nota" class="form-label">Nota (1 a 5)</label>
-                        <select name="nota" id="nota" class="form-select" required>
-                            @for ($i = 1; $i <= 5; $i++)
-                                <option value="{{ $i }}">{{ $i }}</option>
-                            @endfor
-                        </select>
+                        <div class="mb-3">
+                            <label for="comentario" class="form-label">Comentário</label>
+                            <textarea minlength="30" maxlength="100" name="comentario" id="comentario" class="form-control"
+                            placeholder="Comentário com, no mínimo, 30 letras e com no máximo 100 letras." rows="3" required></textarea>
+                        </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="comentario" class="form-label">Comentário</label>
-                        <textarea name="comentario" id="comentario" class="form-control" rows="3" required></textarea>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Enviar Avaliação</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     </div>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">Enviar Avaliação</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-
 
     <div class="mt-2 ml-1 mr-1 mb-1">
         <div class="d-flex flex-wrap justify-content-center div-avaliacoes">
@@ -132,11 +126,8 @@
                     />
                 @endforeach
             @else
-
                 <h1>Não há avaliações para esse serviço.</h1>
-
             @endif
-
         </div>
     </div>
 @endsection
