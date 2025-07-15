@@ -49,7 +49,7 @@
                         <li>
                             <a class="dropdown-item {{ request()->routeIs('historico.agendamento.cliente') ? 'active' : '' }}"
                                 href="{{ route('agendamento.cliente') }}">
-                                Serviços Recebidos
+                                Agendamentos
                             </a>
                         </li>
                         <li>
@@ -58,9 +58,9 @@
                                 Serviços Cadastrados
                             </a>
                         </li>
-                        
                     </ul>
                 </li>
+                
                 @auth
                     @if(auth()->user()->is_admin)
                         <li class="nav-item">
@@ -71,8 +71,8 @@
                         </li>
                     @endif
                 @endauth
-            </ul>            
-            <!-- Ícone do usuário com dropdown -->
+            </ul>   
+
             <ul class="navbar-nav">
                 <li class="nav-item dropdown nav-icon">
                     <a class="nav-link dropdown-toggle
@@ -87,12 +87,6 @@
                                 Perfil
                             </a>
                         </li>
-                        {{-- <li>
-                            <a class="dropdown-item {{ request()->routeIs('mostrar.edicao') ? 'active' : '' }}"
-                                href="{{ route('mostrar.edicao', ['id' => auth()->id()]) }}">
-                                Editar Perfil
-                            </a>
-                        </li> --}}
                         <li>
                             <a class="dropdown-item" href="{{ route('logout') }}">
                                 Logout

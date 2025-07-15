@@ -44,6 +44,10 @@
                                 <img src="{{ $imagemUrl }}" alt="Imagem do Serviço" class="img-fluid mx-auto d-block"
                                     style="max-height: 200px;">
                             </div>
+                        @else
+                            <div class="mt-3 text-center">
+                                <p>Não há imagem</p>
+                            </div>
                         @endif
 
                     </div>

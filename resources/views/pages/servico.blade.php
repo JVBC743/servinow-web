@@ -42,12 +42,9 @@
                     </div>
                 @endif
 
-                <div class="my-5">
-                    <label for="data" class="form-label fw-bold">Selecione a Data:</label>
-                    <input type="date" id="data" name="data" class="form-control text-cente" style="">
-                </div>
-
-                <button class="btn btn-info btn-geral text-white px-4 my-3">Agendar</button>
+                <button style="width: 200px; height: 50px" class="btn btn-info btn-geral text-white px-4 my-3" data-bs-toggle="modal" data-bs-target="#modalAgendamento">
+                    Agendar
+                </button>
             </div>
         </div>
 
@@ -79,14 +76,44 @@
             </div>
         </div>
     </div>
+    
+    {{-- AGENDAMENTO --}}
+    <div class="modal fade" id="modalAgendamento" tabindex="-1" aria-labelledby="modalAgendamentoabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form method="POST" action="{{ route('agendar') }}">
+                    @csrf
+                    <input type="hidden" name="id_servico" value="{{ $servico->id }}">
 
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalAvaliacaoLabel">Novo Agendamento</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="data" class="form-label">Selecione a data</label>
+                            <input type="date" class="form-control" name="data">
+                        </div>
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Avaliar</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{-- AVALIACAO --}}
     <h1 class="text-center">Avaliações</h1>
-    <!-- Botão que abre a modal -->
     <button class="mb-3 btn btn-info btn-geral text-white" data-bs-toggle="modal" data-bs-target="#modalAvaliacao">
         Enviar avaliação
     </button>
 
-    <!-- Modal -->
     <div class="modal fade" id="modalAvaliacao" tabindex="-1" aria-labelledby="modalAvaliacaoLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -125,7 +152,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success">Enviar Avaliação</button>
+                        <button type="submit" class="btn btn-success">Avaliar</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     </div>
                 </form>

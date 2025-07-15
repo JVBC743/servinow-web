@@ -96,9 +96,10 @@ class ServicoController extends Controller
     public function show($id)
     {
         
-        $servico = Servico::with('prestador')->findOrFail($id);        
+        $servico = Servico::with('prestador')->findOrFail($id);
+        $agendamento = new Agendamento();
         $avaliacoes = Avaliacao::where('id_servico', $id)->with('cliente')->get();
-        return view('pages.servico', compact('servico','avaliacoes'));
+        return view('pages.servico', compact('servico','avaliacoes', 'agendamento'));
     }
 
     public function showPrestador($id)

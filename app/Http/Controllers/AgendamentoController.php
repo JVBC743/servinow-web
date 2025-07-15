@@ -41,7 +41,7 @@ class AgendamentoController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -49,7 +49,7 @@ class AgendamentoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
