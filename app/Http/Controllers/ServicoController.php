@@ -87,7 +87,7 @@ class ServicoController extends Controller
             'usuario_id' => Auth::id(),
         ]);
 
-        return redirect()->route('servico.index')->with('success', 'Serviço criado com sucesso.');
+        return redirect()->route('servicos.cadastrados')->with('success', 'Serviço criado com sucesso.');
     }
 
     /**
@@ -95,16 +95,16 @@ class ServicoController extends Controller
      */
     public function show($id)
     {
-        
-        $servico = Servico::with('prestador')->findOrFail($id);        
+
+        $servico = Servico::with('prestador')->findOrFail($id);
         $avaliacoes = Avaliacao::where('id_servico', $id)->with('cliente')->get();
         return view('pages.servico', compact('servico','avaliacoes'));
     }
 
     public function showPrestador($id)
     {
-        
-        $usr = Usuario::findOrFail($id);        
+
+        $usr = Usuario::findOrFail($id);
         return view('pages.visualizacao-perfil-prestador', compact('usr'));
     }
 
@@ -154,7 +154,7 @@ class ServicoController extends Controller
 
         $servico->save();
 
-        return redirect()->route('servico.index')->with('success', 'Serviço atualizado com sucesso.');
+        return redirect()->route('servicos.cadastrados')->with('success', 'Serviço atualizado com sucesso.');
     }
 
 
