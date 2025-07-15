@@ -22,9 +22,13 @@
 
     <div class="row shadow mt-3 mb-5 me-5" style="height: 100%; min-height: 700px;">
 
-        <h1 class="text-center mt-5"> {{ $servico->nome_servico }} </h1>
+        <div class="d-flex justify-content-center align-items-center text-center" style="height: 150px">
+            <h1 class=""> {{ $servico->nome_servico }} </h1>
+        </div>
+
+
         <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
-            <div class="text-center margin_div_servico">
+            <div class="text-center">
 
                 @if($servico->caminho_foto)
                     <div>
