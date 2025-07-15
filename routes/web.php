@@ -3,6 +3,7 @@
 use App\Http\Controllers\AgendamentoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\RecuperacaoSenhaController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ServicoController;
 use App\Http\Controllers\AvaliacaoController;
@@ -28,7 +29,12 @@ Route::middleware('guest')->group(function () {
 Route::view('/avaliacoes', 'pages.lista-avaliacao-servicos')->name('lista-avaliacoes');
 Route::view('/sobre-nos', 'pages.sobre-nos')->name('sobre.nos');
 Route::view('/termos', 'pages.termos-uso-privacidade')->name('termos');
-Route::view('/recuperacao', 'pages.recuperacao-senha')->name('recuperacao.senha');
+Route::prefix('PasswordReset')->controller(RecuperacaoSenhaController::class)->group(function () {
+    Route::get('', 'mostrarFormularioSolicitacao')->name('recuperacao.senha');
+    Route::post('', 'enviarLinkRecuperacao')->name('post.recuperacao.senha');
+    Route::get('/recuperar-senha/redefinir/{token}', 'mostrarFormularioRedefinicao')->name('redefinir.senha.form');
+    Route::post('/recuperar-senha/redefinir', 'redefinirSenha')->name('post.redefinir.senha');
+});
 /*
 |--------------------------------------------------------------------------
 | Rotas protegidas (usuário autenticado)

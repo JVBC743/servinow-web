@@ -9,33 +9,39 @@
 
             @if (session('status'))
                 <div class="alert alert-success text-center">
-                    {{-- {{ session('status') }} --}}
+                    {{ session('status') }}
                 </div>
             @endif
 
-            <form method="post" action="
-            {{-- {{ route('password.email') }} --}}
-             ">
+            <form method="POST" action="{{ route('post.recuperacao.senha') }}">
                 @csrf
 
                 <div class="form-group mb-3">
                     <label for="telefone">Telefone (WhatsApp)</label>
-                    <input id="telefone" type="text" name="telefone" class="form-control" placeholder="(99) 99999-9999">
+                    <input
+                        id="telefone"
+                        type="text"
+                        name="telefone"
+                        class="form-control @error('telefone') is-invalid @enderror"
+                        placeholder="(99) 99999-9999"
+                        value="{{ old('telefone') }}"
+                        required
+                        autocomplete="tel"
+                    >
 
-                    @error('email')
+                    @error('telefone')
                         <span class="invalid-feedback d-block mt-1" role="alert">
-                            {{-- <strong>{{ $message }}</strong> --}}
+                            <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
+
                 <div class="d-flex gap-2">
                     <button type="submit" class="btn btn-success w-100">
                         Enviar link de redefinição
                     </button>
-                    <a href="{{ route('login') }}"> <!-- TROCAR A ROTA -->
-                        <button class="btn btn-secondary">
-                            Voltar
-                        </button>
+                    <a href="{{ route('login') }}" class="btn btn-secondary">
+                        Voltar
                     </a>
                 </div>
             </form>
