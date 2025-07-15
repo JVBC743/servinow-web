@@ -53,6 +53,7 @@ Route::middleware('auth')->group(function () {
         Route::get('cliente', 'indexCliente')->name('agendamento.cliente');
         // Route::get('prestador', 'indexPrestador')->name('agendamento.prestador');
         Route::post('agendar', 'store')->name('agendar');
+        Route::get('solicitacoes', 'indexSolicitacoes')->name('agendamento.solicitacoes');
     });
 
     // Perfil do usuário

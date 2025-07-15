@@ -28,57 +28,25 @@
                             @if($item->status != 4)
                                 <td class="d-flex justify-content-between">
                                     {{  $item->status ? $item->statusAgendamento->status : 'Status desconhecido' }}
-                                    <img class="list_icons" src="{{ asset('images/redirecionar.png') }}" alt="">
+                                    <a href="{{ route('servico', ['id' => $item->id_servico]) }}">
+                                        <img class="list_icons" src="{{ asset('images/redirecionar.png') }}" alt="">
+                                    </a>
                                 </td>
                             @else
                                 <td class="d-flex justify-content-between">
                                     {{  $item->status ? $item->statusAgendamento->status : 'Status desconhecido' }}
-                                     <img data-bs-toggle="modal" data-bs-target="#modalAgendamento" class="list_icons ms-1 border border-black rounded" src="{{ asset('images/verificar.png') }}" alt="Olho aberto, símbolo de verificação de solicitação de agendamento.">
+                                    <div>
+                                        <a href="{{ route('servico', ['id' => $item->id_servico]) }}">
+                                            <img class="list_icons" src="{{ asset('images/redirecionar.png') }}" alt="">
+                                        </a>
+                                        <img class="list_icons" src="{{ asset('images/ampulheta.png') }}" alt="Olho aberto, símbolo de verificação de solicitação de agendamento.">
+                                    </div>
                                 </td>
                             @endif
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-        </div>
-    </div>
-
-    <div class="modal fade" id="modalAgendamento" tabindex="-1" aria-labelledby="modalAgendamentoLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                {{-- <form method="POST" action="{{ route('registrar.avaliacao') }}"> --}}
-                    @csrf
-                    {{-- <input type="hidden" name="id_agendamento" value="{{ $servico->id }}"> --}}
-
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalAgendamentoLabel">Nova Solicitação</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                    </div>
-
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            {{-- {{ TITULO DO SERVIÇO }} --}}
-                        </div>
-
-                        <div class="mb-3">
-                           
-                        </div>
-
-
-                        <div class="mb-3">
-                            <label for="comentario" class="form-label">Descrição</label>
-                            <h3>
-                                {{-- {{ DESCRICAO DA SOLICITAÇÃO }} --}}
-                            </h3>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <img class="list_icons" src="{{ asset('images/confirmar.png') }}" alt="Botão para aceitar a solicitação de agendamento.">
-                        <img class="list_icons" data-bs-dismiss="modal" src="{{ asset('images/negar.png') }}" alt="Botão para negar a solicitação de agendamento">
-                    </div>
-                </form>
-            </div>
         </div>
     </div>
 @endsection

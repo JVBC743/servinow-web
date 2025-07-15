@@ -34,7 +34,18 @@ class AgendamentoController extends Controller
         $agendamento = Agendamento::with(['prestador', 'servico', 'statusAgendamento'])
             ->where('id_cliente', $cliente->id)
             ->get();
+
         return view('pages.agendamento-cliente', compact('cliente', 'agendamento'));
+    }
+
+    public function indexSolicitacoes(){
+        $id = Auth::id();
+        $agendamento = Agendamento::with(['cliente', 'servico', 'statusAgendamento'])
+            ->where('id_prestador', $id)
+            ->get();
+
+        return view('pages.solicitacoes-agendamento', compact('agendamento'));
+
     }
     /**
      * Show the form for creating a new resource.
