@@ -6,11 +6,22 @@
         <div class="card p-4 shadow w-100" style="max-width: 900px">
             <h1 class="text-center mb-4">Editar Serviço</h1>
 
-            @if (session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
             @endif
-            @if (session('error'))
+            @if(session('error'))
                 <div class="alert alert-danger">{{ session('error') }}</div>
+            @endif
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
             @endif
 
             {{-- Formulário principal: edição --}}
@@ -43,6 +54,10 @@
                                 <p>Imagem atual:</p>
                                 <img src="{{ $imagemUrl }}" alt="Imagem do Serviço" class="img-fluid mx-auto d-block"
                                     style="max-height: 200px;">
+                            </div>
+                        @else
+                            <div class="mt-3 text-center">
+                                <p>Não há imagem</p>
                             </div>
                         @endif
 

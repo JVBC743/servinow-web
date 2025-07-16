@@ -56,8 +56,6 @@
     }
 }
 
-
-
 @media(max-width: 466px){
 
     .inputs input{
@@ -84,8 +82,7 @@
     #img_input_edit_service{
         margin: 0px !important;
         
-    }
-    
+    }   
 }
 
 @media(max-width: 398px){

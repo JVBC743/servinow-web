@@ -53,6 +53,10 @@ Route::middleware('auth')->group(function () {
     Route::prefix('agendamento')->controller(AgendamentoController::class)->group(function () {
         Route::get('cliente', 'indexCliente')->name('agendamento.cliente');
         // Route::get('prestador', 'indexPrestador')->name('agendamento.prestador');
+        Route::post('agendar', 'store')->name('agendar');
+        Route::get('solicitacoes', 'indexSolicitacoes')->name('agendamento.solicitacoes');
+        Route::put('/aceitar', 'acceptSolicicatao')->name('aceitacao.solicitacao');
+        Route::delete('/negar','destroySolicitacao')->name('negacao.solicitacao');
     });
 
     // Perfil do usuário

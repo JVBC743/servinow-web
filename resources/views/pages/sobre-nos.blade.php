@@ -1,6 +1,25 @@
 @extends ('layouts.autenticado')
 @section('title', 'Sobre Nós')
 @section('content')
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    @if(session('error'))
+        <div class="alert alert-danger">{{ session('error') }}</div>
+    @endif
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <div id="div-1" class="mb-5 mt-5">
         <h2 class="fs-1 mb-4 text-center">Sobre Nós</h2>
         <p class="fs-4">Olá! Somos um grupo sem fins lucrativos, afinal, o que importa para nós é aquela nota boa que

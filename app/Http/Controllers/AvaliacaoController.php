@@ -69,4 +69,11 @@ class AvaliacaoController extends Controller
     {
         //
     }
+
+    public function acceptSolicicatao($id){
+
+    }
+    public function destroySolicitacao($id){
+        
+    }
 }

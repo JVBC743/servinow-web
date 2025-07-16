@@ -23,6 +23,7 @@ class Agendamento extends Model
         'data_agendamento',
         'status',
         'notificacao',
+        'descricao',
     ];
 
     protected $casts = [
