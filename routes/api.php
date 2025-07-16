@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthApiController;
 use App\Http\Controllers\Api\AgendamentoApiController;
 use App\Http\Controllers\Api\AvaliacaoApiController;
+use App\Http\Controllers\Api\ServicoApiController;
 
 Route::prefix('v1')->group(function () {
 
@@ -26,7 +27,10 @@ Route::prefix('v1')->group(function () {
         Route::post('/avaliacoes', [AvaliacaoApiController::class, 'store']);
 
         Route::post('/logout', [AuthApiController::class, 'logout']);
+
+        Route::get('/servicos', [ServicoApiController::class, 'index']);
+        // Route::post('/servicos', [ServicoApiController::class, 'store']);
+        Route::get('/servicos/{id}', [ServicoApiController::class, 'show']);
+        Route::get('/prestador/{id}', [ServicoApiController::class, 'showPrestador']);
     });
-
 });
-
