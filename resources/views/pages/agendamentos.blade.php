@@ -100,25 +100,14 @@
                                         <a href="{{ route('servico', ['id' => $item->id_servico]) }}">
                                             <img class="list_icons" src="{{ asset('images/redirecionar.png') }}" alt="">
                                         </a>
-                                    </td>
-                                @else
-                                    <td class="d-flex justify-content-between">
-                                        {{  $item->status ? $item->statusAgendamento->status : 'Status desconhecido' }}
-                                        <div>
-                                            <a href="{{ route('servico', ['id' => $item->id_servico]) }}">
-                                                <img class="list_icons" src="{{ asset('images/redirecionar.png') }}" alt="">
-                                            </a>
-                                            <img class="list_icons" src="{{ asset('images/ampulheta.png') }}"
-                                                alt="Olho aberto, símbolo de verificação de solicitação de agendamento.">
-                                        </div>
-                                    </td>
-                                @endif
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                <small class="d-md-none text-muted">Deslize para o lado para ver mais →</small>
-            </div>
+                                        <img class="list_icons" src="{{ asset('images/ampulheta.png') }}" alt="Olho aberto, símbolo de verificação de solicitação de agendamento.">
+                                    </div>
+                                </td>
+                            @endif
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 @endsection
