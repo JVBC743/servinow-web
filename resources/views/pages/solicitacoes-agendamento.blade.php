@@ -59,37 +59,38 @@
                             <div class="modal fade" id="modalSolicitacao{{ $item->id }}" tabindex="-1" aria-labelledby="modalSolicitacaoLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
-                                        {{-- <form method="POST" action="{{ route('registrar.avaliacao') }}"> --}}
-                                            @csrf
-                                            {{-- <input type="hidden" name="id_agendamento" value="{{ $servico->id }}"> --}}
+                                        <input type="hidden" name="id_agendamento" value="{{ $servico->id }}">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalAgendamentoLabel">Nova Solicitação</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                                        </div>
 
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="modalAgendamentoLabel">Nova Solicitação</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                                        <div class="modal-body">
+                                        
+                                            <div class="mb-3">
+                                                <h1>Solicitante:</h1>
+                                                <h2>
+                                                    {{ $item->id_cliente ? $item->cliente->nome : 'Cliente inexistente.' }}
+                                                </h2>
                                             </div>
 
-                                            <div class="modal-body">
-                                            
-                                                <div class="mb-3">
-                                                    <h1>Solicitante:</h1>
-                                                    <h2>
-                                                        {{ $item->id_cliente ? $item->cliente->nome : 'Cliente inexistente.' }}
-                                                    </h2>
-                                                </div>
-
-                                                <div class="mb-3">
-                                                    <label for="comentario" class="form-label">Descrição</label>
-                                                    <h3>
-                                                        {{ $item->descricao }}
-                                                    </h3>
-                                                </div>
+                                            <div class="mb-3">
+                                                <label for="comentario" class="form-label">Descrição</label>
+                                                <h3>
+                                                    {{ $item->descricao }}
+                                                </h3>
                                             </div>
+                                        </div>
 
-                                            <div class="modal-footer">
+                                        <div class="modal-footer">
+                                            <form action="{{ route('aceitacao.solicitacao') }}">
                                                 <img class="list_icons" src="{{ asset('images/confirmar.png') }}" alt="Botão para aceitar a solicitação de agendamento.">
+                                            </form>
+                                            <form action="{{ route('negacao.solicitacao') }}">
                                                 <img class="list_icons" data-bs-dismiss="modal" src="{{ asset('images/negar.png') }}" alt="Botão para negar a solicitação de agendamento">
-                                            </div>
-                                        </form>
+
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
