@@ -33,7 +33,7 @@
                         <th>ID</th>
                         <th>Solicitante</th>
                         <th>Serviço</th>
-                        <th>Data/Hora</th>
+                        <th>Data</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
