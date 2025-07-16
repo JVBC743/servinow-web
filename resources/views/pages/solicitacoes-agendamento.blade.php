@@ -106,7 +106,6 @@
                                                 </div>
                                             </div>
 
-<<<<<<< HEAD
                                         <div class="modal-footer">
                                             <form action="{{ route('aceitacao.solicitacao') }}" method="POST">
                                                 @csrf
@@ -125,20 +124,6 @@
                                                     <img class="list_icons" data-bs-dismiss="modal" src="{{ asset('images/negar.png') }}" alt="Botão para negar a solicitação de agendamento">
                                                 </button>
                                             </form>
-=======
-                                            <div class="modal-footer">
-                                                <form action="{{ route('aceitacao.solicitacao') }}">
-                                                    <img class="list_icons" src="{{ asset('images/confirmar.png') }}"
-                                                        alt="Botão para aceitar a solicitação de agendamento.">
-                                                </form>
-                                                <form action="{{ route('negacao.solicitacao') }}">
-                                                    <img class="list_icons" data-bs-dismiss="modal"
-                                                        src="{{ asset('images/negar.png') }}"
-                                                        alt="Botão para negar a solicitação de agendamento">
-
-                                                </form>
-                                            </div>
->>>>>>> 39ee59b489a614a35d301c48b56691fc5cb143cd
                                         </div>
                                     </div>
                                 </div>
@@ -150,8 +135,4 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
 @endsection
-=======
-@endsection
->>>>>>> 39ee59b489a614a35d301c48b56691fc5cb143cd
