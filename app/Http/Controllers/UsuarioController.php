@@ -15,10 +15,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
 use Illuminate\Support\Facades\Storage;
+use Laravel\Sanctum\HasApiTokens;
 
 class UsuarioController extends Controller
 {
-
     public function index()
     {
         $lista = Usuario::all();
@@ -43,7 +43,7 @@ class UsuarioController extends Controller
         $id = Auth::id();
 
         $usr = Usuario::find($id);
-
+        $usr->url_foto = Storage::disk('miniobusca')->temporaryUrl($usr->caminho_img, now()->addMinutes(5));
         return view('pages.visualizacao-perfil-usuario', compact('usr'));
     }
 
@@ -139,7 +139,7 @@ class UsuarioController extends Controller
         } else {
 
             $imagem_url = null;
-            
+
         }
         // dd($imagem_url);
         return view("pages.admin-edicao-perfil", compact('lista', 'usr', 'imagem_url'));
@@ -178,6 +178,9 @@ class UsuarioController extends Controller
 
     public function destroy($id) {}
 
+    public function gerarRelatorio(){
+
+    }
     public function adminUserDestroy(int $id)
     {
         $usr = Usuario::find($id);

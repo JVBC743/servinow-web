@@ -101,12 +101,12 @@
             </form>
 
             {{-- Formulário de exclusão separado --}}
-            <form action="{{ route('servico.destroy', $servico->id) }}" method="POST" class="mt-3 text-end"
+            {{-- <form action="{{ route('servico.destroy', $servico->id) }}" method="POST" class="mt-3 text-end"
                 onsubmit="return confirm('Tem certeza que deseja excluir este serviço?');">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger">Excluir</button>
             </form>
-        </div>
+        </div> --}}
     </div>
 @endsection

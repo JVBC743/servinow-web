@@ -6,10 +6,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class Usuario extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasApiTokens;
 
     protected $table = 'Usuario';
 
@@ -72,5 +73,10 @@ class Usuario extends Authenticatable
     {
         // O segundo argumento 'area_atuacao' pode precisar ser alterado para 'formacao_id'
         return $this->belongsTo(Formacao::class, 'area_atuacao');
+    }
+
+    public function servicos()
+    {
+        return $this->hasMany(Servico::class, 'usuario_id');
     }
 }

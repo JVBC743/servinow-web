@@ -3,25 +3,6 @@
 @section('title', 'Perfil do Prestador')
 
 @section('content')
-
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-    @if(session('error'))
-        <div class="alert alert-danger">{{ session('error') }}</div>
-    @endif
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-
     <div class="container py-5">
         <div class="card shadow mx-auto" style="max-width: 900px;">
             <div class="card-header bg-info text-light text-center">
@@ -32,21 +13,14 @@
                 <div class="row align-items-center">
                     <div class="col-md-4 text-center mb-3 mb-md-0">
 
-                        @if($usr->caminho_img)
+                        @if ($usr->url_foto)
                             <img src="
-                            {{ $usr->caminho_img }}
-
-                                alt="Foto do Prestador"
-                                class="rounded-circle shadow"
-                                style="width: 150px; height: 150px; object-fit: cover;">
+                        {{ $usr->url_foto }}" alt="Foto do Prestador"
+                                class="rounded-circle shadow" style="width: 150px; height: 150px; object-fit: cover;">
                         @else
                             <img src="
-                            {{ asset('images/user-icon.png') }}"
-
-                                    alt="Foto do Prestador"
-                                    class="rounded-circle shadow"
-                                    style="width: 150px; height: 150px; object-fit: cover;">
-
+                        {{ asset('images/user-icon.png') }}" alt="Foto do Prestador"
+                                class="rounded-circle shadow" style="width: 150px; height: 150px; object-fit: cover;">
                         @endif
                     </div>
 
@@ -54,10 +28,10 @@
                         <h4 class="fw-bold">
                             {{ $usr->nome }}
                         </h4>
-                        <p class="mb-1"><strong>Especialidade:</strong> 
+                        <p class="mb-1"><strong>Especialidade:</strong>
                             {{ $usr->formacao->formacao ?? 'Não informada' }} <!-- VERIFICAR SE NÃO TÁ ERRADO. -->
                         </p>
-                        <p><strong>Descrição:</strong> 
+                        <p><strong>Descrição:</strong>
                             {{ $usr->descricao ?? '—' }}
                         </p>
                     </div>
@@ -73,14 +47,14 @@
                             <br>
                             {{ $usr->bairro }} - {{ $usr->cidade }}/{{ $usr->uf }}
                             <br>
-                            CEP: 
+                            CEP:
                             {{ $usr->cep }}
                         </p>
                     </div>
 
                     <div class="col-md-6 text-md-end mt-3 mt-md-0">
                         <p><strong>Contatos:</strong></p>
-                        <p class="mb-0"> Telefone: 
+                        <p class="mb-0"> Telefone:
                             {{ $usr->telefone }}
                         </p>
                         <p class="mb-0"> E-mail:

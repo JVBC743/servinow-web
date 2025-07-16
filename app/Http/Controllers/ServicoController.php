@@ -48,10 +48,16 @@ class ServicoController extends Controller
         }
 
         $servicos = $query->get();
+        $servicos = $servicos->map(function ($servico) {
+            if($servico->caminho_foto)
+                $servico->url_foto = Storage::disk('miniobusca')->temporaryUrl($servico->caminho_foto, now()->addMinutes(5));
+            else
+                $servico->url_foto = "https://static.wixstatic.com/media/1233ff_ca96ec225309492dbd2cef0b7ca9938f~mv2.jpg/v1/fill/w_740,h_493,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/1233ff_ca96ec225309492dbd2cef0b7ca9938f~mv2.jpg";
+            return $servico;
+        });
         $categorias = Categoria::all();
 
         return view('pages.dashboard', compact('servicos', 'pesquisa', 'categorias'));
-
     }
 
     /**
@@ -87,7 +93,7 @@ class ServicoController extends Controller
             'usuario_id' => Auth::id(),
         ]);
 
-        return redirect()->route('servico.index')->with('success', 'Serviço criado com sucesso.');
+        return redirect()->route('servicos.cadastrados')->with('success', 'Serviço criado com sucesso.');
     }
 
     /**
@@ -95,17 +101,26 @@ class ServicoController extends Controller
      */
     public function show($id)
     {
-        
         $servico = Servico::with('prestador')->findOrFail($id);
-        $agendamento = new Agendamento();
+        $servico->url_foto = Storage::disk('miniobusca')->temporaryUrl($servico->caminho_foto, now()->addMinutes(5));
+        $servico->prestador->url_foto = Storage::disk('miniobusca')->temporaryUrl($servico->prestador->caminho_img, now()->addMinutes(5));
         $avaliacoes = Avaliacao::where('id_servico', $id)->with('cliente')->get();
-        return view('pages.servico', compact('servico','avaliacoes', 'agendamento'));
+        $avaliacoes = $avaliacoes->map(function ($avaliacao) {
+            if($avaliacao->cliente->caminho_img){
+                $avaliacao->cliente->url_foto = Storage::disk('miniobusca')->temporaryUrl($avaliacao->cliente->caminho_img, now()->addMinutes(5));
+            } else {
+                $avaliacao->cliente->url_foto = asset('images/user-icon.png');
+            }
+            return $avaliacao;
+        });
+        return view('pages.servico', compact('servico','avaliacoes'));
     }
 
     public function showPrestador($id)
     {
-        
-        $usr = Usuario::findOrFail($id);        
+
+        $usr = Usuario::findOrFail($id);
+        $usr->url_foto = Storage::disk('miniobusca')->temporaryUrl($usr->caminho_img, now()->addMinutes(5));
         return view('pages.visualizacao-perfil-prestador', compact('usr'));
     }
 
@@ -155,7 +170,7 @@ class ServicoController extends Controller
 
         $servico->save();
 
-        return redirect()->route('servico.index')->with('success', 'Serviço atualizado com sucesso.');
+        return redirect()->route('servicos.cadastrados')->with('success', 'Serviço atualizado com sucesso.');
     }
 
 
