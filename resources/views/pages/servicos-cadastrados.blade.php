@@ -37,40 +37,43 @@
                 </a>
             </div>
 
+            <div class="table-responsive">
 
-            <table class="table table-bordered text-center align-middle">
-                <thead class="table-light">
-                    <tr>
-                        <th>ID</th>
-                        <th>Serviço</th>
-                        <th>Criado em</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    @foreach ($servicos as $item)
+                <table class="table table-bordered text-center align-middle">
+                    <thead class="table-light">
                         <tr>
-                            <td>{{ $item->id }}</td>
-                            <td>{{ $item->nome_servico ?? 'Status não encontrado.' }}</td>
-                            <td>{{ $item->created_at->format('d/m/Y') }} às {{ $item->created_at->format('H:i') }}</td>
-                            <td>
-                                <div class="d-flex justify-content-center gap-3">
-                                    <a href="{{ route('servico.edit', ['servico' => $item->id]) }}">
-                                        <img class="list_icons" src="{{ asset('images/edit.png') }}" alt="Editar">
-                                    </a>
-
-                                    <button class="delete_icon_button bg-transparent border-0 p-0" data-bs-toggle="modal"
-                                        data-bs-target="#modalConfirmDelete" data-servico-id="{{ $item->id }}">
-                                        <img class="list_icons" src="{{ asset('images/delete.png') }}" alt="Excluir conta">
-                                    </button>
-                                </div>
-                            </td>
+                            <th>ID</th>
+                            <th>Serviço</th>
+                            <th>Criado em</th>
+                            <th>Ações</th>
                         </tr>
-                    @endforeach
-                </tbody>
+                    </thead>
 
-            </table>
+                    <tbody>
+                        @foreach ($servicos as $item)
+                            <tr>
+                                <td>{{ $item->id }}</td>
+                                <td>{{ $item->nome_servico ?? 'Status não encontrado.' }}</td>
+                                <td>{{ $item->created_at->format('d/m/Y') }} às {{ $item->created_at->format('H:i') }}</td>
+                                <td>
+                                    <div class="d-flex justify-content-center gap-3">
+                                        <a href="{{ route('servico.edit', ['servico' => $item->id]) }}">
+                                            <img class="list_icons" src="{{ asset('images/edit.png') }}" alt="Editar">
+                                        </a>
+
+                                        <button class="delete_icon_button bg-transparent border-0 p-0" data-bs-toggle="modal"
+                                            data-bs-target="#modalConfirmDelete" data-servico-id="{{ $item->id }}">
+                                            <img class="list_icons" src="{{ asset('images/delete.png') }}" alt="Excluir conta">
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+
+                </table>
+                <small class="d-md-none text-muted">Deslize para o lado para ver mais →</small>
+            </div>
         </div>
     </div>
 
@@ -103,7 +106,7 @@
         const modal = document.getElementById('modalConfirmDelete');
         const form = document.getElementById('form-delete-servico');
 
-        modal.addEventListener('show.bs.modal', function(event) {
+        modal.addEventListener('show.bs.modal', function (event) {
             const button = event.relatedTarget;
             const servicoId = button.getAttribute('data-servico-id');
             const action = "{{ route('servico.destroy', ['servico' => '__id__']) }}".replace('__id__', servicoId);

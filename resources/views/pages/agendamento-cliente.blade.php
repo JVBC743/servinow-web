@@ -26,7 +26,7 @@
         <div class="card p-4 shadow w-100" style="max-width: 1200px">
 
             <h1 class="text-center mb-4">Seus serviços agendados como cliente</h1>
-            
+
             <div class="table-responsive">
                 <table class="table table-bordered text-center align-middle">
                     <thead class="table-light">
@@ -68,6 +68,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                <small class="d-md-none text-muted">Deslize para o lado para ver mais →</small>
             </div>
         </div>
     </div>
