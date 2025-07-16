@@ -34,16 +34,6 @@
 
     <div class="d-flex flex-wrap justify-content-center" style="gap: 20px;">
 
-        <x-card-servico />
-        <x-card-servico />
-        <x-card-servico />
-        <x-card-servico />
-        <x-card-servico />
-        <x-card-servico />
-        <x-card-servico />
-        <x-card-servico />
-
-
         @foreach($servicos as $item)
             <x-card-servico
                 :imageUrl="$item->url_foto"

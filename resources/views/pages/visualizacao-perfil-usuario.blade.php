@@ -4,18 +4,20 @@
 
 @section('content')
 
-        <div class="card-body">
-            <div class="text-center mb-4">
-                @if($usr->url_foto)
-                    <img src="
-                    {{ $usr->url_foto }}
-                     " alt="Foto de perfil"
-                        class="rounded-circle shadow" style="width: 120px; height: 120px; object-fit: cover;">
-                @else
-                    <img src="{{ asset('images/user-icon.png') }}" alt="Foto padrão"
-                        class="rounded-circle shadow">
-                @endif
-            </div>
+    <div class="card-body">
+        <div class="text-center mb-4">
+            @if($usr->url_foto)
+                <img src="
+                                    {{ $usr->url_foto }}
+                                     " alt="Foto de perfil" class="rounded-circle shadow"
+                    style="width: 120px; height: 120px; object-fit: cover;">
+            @else
+                <img src="{{ asset('images/user-icon.png') }}" alt="Foto padrão" class="rounded-circle shadow">
+            @endif
+        </div>
+
+
+        <div class="table-responsive">
 
             <table class="table table-bordered">
                 <tbody>
@@ -72,7 +74,7 @@
                     <tr>
                         <th>Redes Sociais</th>
                         <td>
-                             @php
+                            @php
                                 $rs = [
                                     auth()->user()->rede_social1,
                                     auth()->user()->rede_social2,
@@ -95,12 +97,14 @@
                     </tr>
                 </tbody>
             </table>
-
-            <div class="text-end">
-                <a href="{{ route('mostrar.edicao', ['id' => auth()->id()]) }}" class="btn btn-primary btn-geral">
-                    Editar Perfil
-                </a>
-            </div>
+            <small class="d-md-none text-muted">Deslize para o lado para ver mais →</small>
         </div>
+
+        <div class="text-end">
+            <a href="{{ route('mostrar.edicao', ['id' => auth()->id()]) }}" class="btn btn-primary btn-geral">
+                Editar Perfil
+            </a>
+        </div>
+    </div>
     </div>
 @endsection

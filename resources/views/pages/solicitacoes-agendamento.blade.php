@@ -26,6 +26,20 @@
         <div class="card p-4 shadow w-100" style="max-width: 1200px">
 
             <h1 class="text-center mb-4">Solicitações de agendamento pelos seus serviços</h1>
+            <div class="table-responsive">
+                <table class="table table-bordered text-center align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Solicitante</th>
+                            <th>Serviço</th>
+                            <th>Data/Hora</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($agendamento as $item)
+                            @if($item->id_prestador == auth()->id() && $item->statusAgendamento->status == 'Aguardando confirmação')
 
             <table class="table table-bordered text-center align-middle">
                 <thead class="table-light">
@@ -75,14 +89,24 @@
                                                 </h2>
                                             </div>
 
-                                            <div class="mb-3">
-                                                <label for="comentario" class="form-label">Descrição</label>
-                                                <h3>
-                                                    {{ $item->descricao }}
-                                                </h3>
-                                            </div>
-                                        </div>
+                                            <div class="modal-body">
 
+                                                <div class="mb-3">
+                                                    <h1>Solicitante:</h1>
+                                                    <h2>
+                                                        {{ $item->id_cliente ? $item->cliente->nome : 'Cliente inexistente.' }}
+                                                    </h2>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="comentario" class="form-label">Descrição</label>
+                                                    <h3>
+                                                        {{ $item->descricao }}
+                                                    </h3>
+                                                </div>
+                                            </div>
+
+<<<<<<< HEAD
                                         <div class="modal-footer">
                                             <form action="{{ route('aceitacao.solicitacao') }}" method="POST">
                                                 @csrf
@@ -101,14 +125,33 @@
                                                     <img class="list_icons" data-bs-dismiss="modal" src="{{ asset('images/negar.png') }}" alt="Botão para negar a solicitação de agendamento">
                                                 </button>
                                             </form>
+=======
+                                            <div class="modal-footer">
+                                                <form action="{{ route('aceitacao.solicitacao') }}">
+                                                    <img class="list_icons" src="{{ asset('images/confirmar.png') }}"
+                                                        alt="Botão para aceitar a solicitação de agendamento.">
+                                                </form>
+                                                <form action="{{ route('negacao.solicitacao') }}">
+                                                    <img class="list_icons" data-bs-dismiss="modal"
+                                                        src="{{ asset('images/negar.png') }}"
+                                                        alt="Botão para negar a solicitação de agendamento">
+
+                                                </form>
+                                            </div>
+>>>>>>> 39ee59b489a614a35d301c48b56691fc5cb143cd
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endif
-                    @endforeach
-                </tbody>
-            </table>
+                            @endif
+                        @endforeach
+                    </tbody>
+                </table>
+                <small class="d-md-none text-muted">Deslize para o lado para ver mais →</small>
+            </div>
         </div>
     </div>
+<<<<<<< HEAD
 @endsection
+=======
+@endsection
+>>>>>>> 39ee59b489a614a35d301c48b56691fc5cb143cd
