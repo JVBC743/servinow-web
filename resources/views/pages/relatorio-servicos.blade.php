@@ -1,26 +1,44 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Relatório de Serviços</title>
     <style>
-        body { font-family: DejaVu Sans, sans-serif; font-size: 12px; }
-        h1, h2 { text-align: center; }
+        body {
+            font-family: DejaVu Sans, sans-serif;
+            font-size: 12px;
+        }
+
+        h1,
+        h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin: 4px 0;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
         }
-        th, td {
+
+        th,
+        td {
             border: 1px solid #444;
             padding: 8px;
             text-align: left;
         }
+
         .table-header {
             background-color: #f2f2f2;
         }
     </style>
 </head>
+
 <body>
     <h1>Relatório de Serviços</h1>
     <h2>{{ $usuario->nome }}</h2>
@@ -36,6 +54,7 @@
                 <th>Categoria</th>
                 <th>Descrição</th>
                 <th>Data de Criação</th>
+                <th>Média de Avaliação</th>
             </tr>
         </thead>
         <tbody>
@@ -46,9 +65,37 @@
                     <td>{{ $servico->categoriaR->nome ?? 'Não informada' }}</td>
                     <td>{{ $servico->desc_servico }}</td>
                     <td>{{ $servico->created_at->format('d/m/Y') }}</td>
+                    <td>{{ number_format($servico->media_nota, 1) }}/5</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+
+    <h2>Agendamentos por Mês</h2>
+    @forelse ($agendamentosPorMes as $mes => $dados)
+        <h4>{{ $mes }}</h4>
+        <p><strong>Total de agendamentos:</strong> {{ $dados['total'] }}</p>
+
+        <table>
+            <thead class="table-header">
+                <tr>
+                    <th>Serviço</th>
+                    <th>Agendamentos</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($dados['servicos'] as $nome => $quantidade)
+                    <tr>
+                        <td>{{ $nome }}</td>
+                        <td>{{ $quantidade }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    @empty
+        <p>Nenhum agendamento encontrado.</p>
+    @endforelse
+
 </body>
+
 </html>
