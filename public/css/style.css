@@ -359,7 +359,6 @@ form {
 
 .table-scroll-vertical {
     max-height: 400px;
-    /* ajuste como quiser */
     overflow-y: auto;
 }
 
@@ -367,7 +366,6 @@ form {
     position: sticky;
     top: 0;
     background: #f8f9fa;
-    /* cor do thead (table-light) */
     z-index: 1;
 }
 
