@@ -357,6 +357,47 @@ form {
     border: 1px solid #7DCCD8;
 }
 
+.table-scroll-vertical {
+    max-height: 400px;
+    /* ajuste como quiser */
+    overflow-y: auto;
+}
+
+.table-scroll-vertical thead th {
+    position: sticky;
+    top: 0;
+    background: #f8f9fa;
+    /* cor do thead (table-light) */
+    z-index: 1;
+}
+
+
+.del-icon {
+    color: black;
+    font-size: 30px;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.edit-icon {
+    color: black;
+    font-size: 30px;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.del-icon:hover {
+    color: red;
+    transform: scale(1.1);
+}
+
+.edit-icon:hover {
+    color: rgb(0, 132, 255);
+    transform: scale(1.1);
+}
+
+
+
 @media (max-width: 425px) {
     main {
         padding-left: 1rem !important;
