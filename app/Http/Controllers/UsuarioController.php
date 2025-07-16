@@ -43,7 +43,8 @@ class UsuarioController extends Controller
         $id = Auth::id();
 
         $usr = Usuario::find($id);
-        $usr->url_foto = Storage::disk('miniobusca')->temporaryUrl($usr->caminho_img, now()->addMinutes(5));
+        if($usr->caminho_img)
+            $usr->url_foto = Storage::disk('miniobusca')->temporaryUrl($usr->caminho_img, now()->addMinutes(5));
         return view('pages.visualizacao-perfil-usuario', compact('usr'));
     }
 

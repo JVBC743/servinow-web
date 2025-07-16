@@ -20,16 +20,30 @@
         </div>
     @endif
 
-    <div class="d-flex align-items-center justify-content-between gap-2" style="max-width: 100%">
-        <h1 class="m-0">Serviços Disponíveis</h1>
-        <div class="flex-grow-1 ms-3" style="">
+    <div class="row g-2 align-items-center">
+        <div class="col-12 col-md-auto">
+            <h1 class="m-0 fs-2 text-center text-md-start">Serviços Disponíveis</h1>
+        </div>
+        <div class="col-12 col-md">
             <x-search-bar :action="route('dashboard')" :search="$pesquisa ?? ''" :categorias="$categorias" />
         </div>
     </div>
 
+
     <hr>
 
     <div class="d-flex flex-wrap justify-content-center" style="gap: 20px;">
+
+        <x-card-servico />
+        <x-card-servico />
+        <x-card-servico />
+        <x-card-servico />
+        <x-card-servico />
+        <x-card-servico />
+        <x-card-servico />
+        <x-card-servico />
+
+
         @foreach($servicos as $item)
             <x-card-servico
                 :imageUrl="$item->url_foto"

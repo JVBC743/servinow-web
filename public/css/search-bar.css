@@ -1,7 +1,7 @@
 .search-bar-container {
     width: 100%;
-    display: flex;
-    flex-wrap: nowrap;
+    /* display: flex;
+    flex-wrap: nowrap; */
 }
 
 .search-bar {
@@ -44,4 +44,13 @@
 
 .search-bar button:hover {
     background: linear-gradient(to bottom, #126b6b, #0389b6);
+}
+
+@media (max-width: 425px) {
+.search-bar-container {
+    width: 80%;
+    /* display: flex;
+    flex-wrap: nowrap; */
+}
+
 }

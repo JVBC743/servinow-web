@@ -22,7 +22,7 @@ class CreateAvaliacaoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id_servico' => 'required',
+            'id_servico' => 'required,exists:Servico,id',
             'titulo' => 'required|max:25|min:10',
             'nota' => 'required',
             'comentario' => 'min:30|required|max:100',
@@ -42,6 +42,6 @@ class CreateAvaliacaoRequest extends FormRequest
             'comentario.required' => 'O comentário deve ser obrigatório',
             'comentario.max' => 'O comentário deve ter, no máximo, 100 digitos.',
             'comentario.min' => 'O comentário deve ter, no mínimo, 30 digitos.',
-        ];    
+        ];
     }
 }
