@@ -41,6 +41,7 @@ class AgendamentoController extends Controller
 
     public function indexSolicitacoes(){
         $id = Auth::id();
+
         $agendamento = Agendamento::with(['cliente', 'servico', 'statusAgendamento'])
             ->where('id_prestador', $id)
             ->get();
@@ -110,5 +111,43 @@ class AgendamentoController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function acceptSolicitacao(Request $request)
+    {
+        $id_agendamento = $request->input('id_agendamento');
+
+        if(!$id_agendamento){
+            return redirect()->back()->with('error', 'A solicitação não foi encontrada.');
+        }
+
+        $agendamento = Agendamento::find($id_agendamento);
+
+        if(!$agendamento){
+            return redirect()->back()->with('error', 'A solicitação não foi encontrada no banco.');
+        }
+
+        $agendamento->update([
+            'status' => 1,
+        ]);
+        return redirect()->back()->with('success', 'A solicitação foi aceitada.');
+    }
+
+    public function destroySolicitacao(Request $request){
+
+        $id_agendamento = $request->input('id_agendamento');
+
+        if(!$id_agendamento){
+            return redirect()->back()->with('error', 'A solicitação não foi encontrada pela solicitação de exclusão.');
+        }
+
+        $agendamento = Agendamento::find($id_agendamento);
+        if(!$agendamento){
+            return redirect()->back()->with('error', 'A solicitação não foi encontrada no banco.');
+        }
+
+        $agendamento->delete();
+
+        return redirect()->back()->with('success', 'A solicitação foi excluída com sucesso.');
+
     }
 }

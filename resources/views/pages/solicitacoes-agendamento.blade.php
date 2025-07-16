@@ -56,17 +56,18 @@
                                     </div>
                                 </td>
                             </tr>
+
                             <div class="modal fade" id="modalSolicitacao{{ $item->id }}" tabindex="-1" aria-labelledby="modalSolicitacaoLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
-                                        <input type="hidden" name="id_agendamento" value="{{ $servico->id }}">
+                                        <input type="hidden" name="id_servico" value="{{ $item->id_servico}}">
+                                        <input type="hidden" name="id_agendamento" value="{{ $item->id }}">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="modalAgendamentoLabel">Nova Solicitação</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                                         </div>
 
                                         <div class="modal-body">
-                                        
                                             <div class="mb-3">
                                                 <h1>Solicitante:</h1>
                                                 <h2>
@@ -83,12 +84,22 @@
                                         </div>
 
                                         <div class="modal-footer">
-                                            <form action="{{ route('aceitacao.solicitacao') }}">
-                                                <img class="list_icons" src="{{ asset('images/confirmar.png') }}" alt="Botão para aceitar a solicitação de agendamento.">
+                                            <form action="{{ route('aceitacao.solicitacao') }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="hidden" name="id_agendamento" value="{{ $item->id }}">
+                                                <button name="aceitar">
+                                                    <img class="list_icons" src="{{ asset('images/confirmar.png') }}" alt="Botão para aceitar a solicitação de agendamento.">
+                                                </button>
                                             </form>
-                                            <form action="{{ route('negacao.solicitacao') }}">
-                                                <img class="list_icons" data-bs-dismiss="modal" src="{{ asset('images/negar.png') }}" alt="Botão para negar a solicitação de agendamento">
-
+    
+                                            <form action="{{ route('negacao.solicitacao') }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <input type="hidden" name="id_agendamento" value="{{ $item->id }}">
+                                                <button name="negar">
+                                                    <img class="list_icons" data-bs-dismiss="modal" src="{{ asset('images/negar.png') }}" alt="Botão para negar a solicitação de agendamento">
+                                                </button>
                                             </form>
                                         </div>
                                     </div>
@@ -100,6 +111,4 @@
             </table>
         </div>
     </div>
-
-    
 @endsection

@@ -55,7 +55,7 @@ Route::middleware('auth')->group(function () {
         // Route::get('prestador', 'indexPrestador')->name('agendamento.prestador');
         Route::post('agendar', 'store')->name('agendar');
         Route::get('solicitacoes', 'indexSolicitacoes')->name('agendamento.solicitacoes');
-        Route::put('/aceitar', 'acceptSolicicatao')->name('aceitacao.solicitacao');
+        Route::put('/aceitar', 'acceptSolicitacao')->name('aceitacao.solicitacao');
         Route::delete('/negar','destroySolicitacao')->name('negacao.solicitacao');
     });
 
