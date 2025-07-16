@@ -3,6 +3,25 @@
 @section('title', 'Recuperar senha')
 
 @section('content')
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    @if(session('error'))
+        <div class="alert alert-danger">{{ session('error') }}</div>
+    @endif
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh;">
         <div class="card shadow p-4" style="width: 100%; max-width: 450px;">
             <h4 class="mb-4 text-center">Recuperar Senha</h4>

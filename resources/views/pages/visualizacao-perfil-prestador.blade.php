@@ -3,82 +3,101 @@
 @section('title', 'Perfil do Prestador')
 
 @section('content')
-<div class="container py-5">
-    <div class="card shadow mx-auto" style="max-width: 900px;">
-        <div class="card-header bg-info text-light text-center">
-            <h3 class="mb-0">Perfil do Prestador</h3>
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
+    @endif
+    @if(session('error'))
+        <div class="alert alert-danger">{{ session('error') }}</div>
+    @endif
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
-        <div class="card-body">
-            <div class="row align-items-center">
-                <div class="col-md-4 text-center mb-3 mb-md-0">
+    <div class="container py-5">
+        <div class="card shadow mx-auto" style="max-width: 900px;">
+            <div class="card-header bg-info text-light text-center">
+                <h3 class="mb-0">Perfil do Prestador</h3>
+            </div>
 
-                    @if($usr->caminho_img)
-                        <img src="
-                        {{ $usr->caminho_img }}
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-md-4 text-center mb-3 mb-md-0">
 
-                            alt="Foto do Prestador"
-                            class="rounded-circle shadow"
-                            style="width: 150px; height: 150px; object-fit: cover;">
-                    @else
-                        <img src="
-                        {{ asset('images/user-icon.png') }}"
+                        @if($usr->caminho_img)
+                            <img src="
+                            {{ $usr->caminho_img }}
 
                                 alt="Foto do Prestador"
                                 class="rounded-circle shadow"
                                 style="width: 150px; height: 150px; object-fit: cover;">
+                        @else
+                            <img src="
+                            {{ asset('images/user-icon.png') }}"
 
-                    @endif
+                                    alt="Foto do Prestador"
+                                    class="rounded-circle shadow"
+                                    style="width: 150px; height: 150px; object-fit: cover;">
+
+                        @endif
+                    </div>
+
+                    <div class="col-md-8">
+                        <h4 class="fw-bold">
+                            {{ $usr->nome }}
+                        </h4>
+                        <p class="mb-1"><strong>Especialidade:</strong> 
+                            {{ $usr->formacao->formacao ?? 'Não informada' }} <!-- VERIFICAR SE NÃO TÁ ERRADO. -->
+                        </p>
+                        <p><strong>Descrição:</strong> 
+                            {{ $usr->descricao ?? '—' }}
+                        </p>
+                    </div>
                 </div>
 
-                <div class="col-md-8">
-                    <h4 class="fw-bold">
-                        {{ $usr->nome }}
-                    </h4>
-                    <p class="mb-1"><strong>Especialidade:</strong> 
-                        {{ $usr->formacao->formacao ?? 'Não informada' }} <!-- VERIFICAR SE NÃO TÁ ERRADO. -->
-                    </p>
-                    <p><strong>Descrição:</strong> 
-                        {{ $usr->descricao ?? '—' }}
-                    </p>
+                <hr>
+
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <p><strong>Localização:</strong></p>
+                        <p class="mb-0">
+                            {{ $usr->logradouro }}, {{ $usr->numero }}
+                            <br>
+                            {{ $usr->bairro }} - {{ $usr->cidade }}/{{ $usr->uf }}
+                            <br>
+                            CEP: 
+                            {{ $usr->cep }}
+                        </p>
+                    </div>
+
+                    <div class="col-md-6 text-md-end mt-3 mt-md-0">
+                        <p><strong>Contatos:</strong></p>
+                        <p class="mb-0"> Telefone: 
+                            {{ $usr->telefone }}
+                        </p>
+                        <p class="mb-0"> E-mail:
+                            {{ $usr->email }}
+
+                        </p>
+                    </div>
                 </div>
-            </div>
 
-            <hr>
+                <hr>
 
-            <div class="row mt-4">
-                <div class="col-md-6">
-                    <p><strong>Localização:</strong></p>
-                    <p class="mb-0">
-                        {{ $usr->logradouro }}, {{ $usr->numero }}
-                        <br>
-                        {{ $usr->bairro }} - {{ $usr->cidade }}/{{ $usr->uf }}
-                        <br>
-                        CEP: 
-                        {{ $usr->cep }}
-                    </p>
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+                    <a href="#" class="btn btn-primary btn-geral">Enviar mensagem</a>
+                    {{-- <button class="btn btn-warning">Reportar</button> Avaliar se vai ser necessário trocar para um contato de e-mail. --}}
                 </div>
-
-                <div class="col-md-6 text-md-end mt-3 mt-md-0">
-                    <p><strong>Contatos:</strong></p>
-                    <p class="mb-0"> Telefone: 
-                        {{ $usr->telefone }}
-                    </p>
-                    <p class="mb-0"> E-mail:
-                        {{ $usr->email }}
-
-                    </p>
-                </div>
-            </div>
-
-            <hr>
-
-            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
-                <a href="#" class="btn btn-primary btn-geral">Enviar mensagem</a>
-                {{-- <button class="btn btn-warning">Reportar</button> Avaliar se vai ser necessário trocar para um contato de e-mail. --}}
             </div>
         </div>
     </div>
-</div>
 
 @endsection

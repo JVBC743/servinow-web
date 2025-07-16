@@ -7,15 +7,18 @@
 
     @if ($errors->any())
         <div class="alert alert-danger">
-            <ul class="mb-0">
-                @foreach ($errors->all() as $erro)
-                    <li>{{ $erro }}</li>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
                 @endforeach
             </ul>
         </div>
     @endif
+    @if(session('error'))
+        <div class="alert alert-danger">{{ session('error') }}</div>
+    @endif
     @if (session('success'))
-        <div class="alert alert-success me-5">
+        <div class="alert alert-success">
             {{ session('success') }}
         </div>
     @endif
@@ -25,7 +28,6 @@
         <div class="d-flex justify-content-center align-items-center text-center" style="height: 150px">
             <h1 class=""> {{ $servico->nome_servico }} </h1>
         </div>
-
 
         <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
             <div class="text-center">
@@ -84,6 +86,7 @@
                 <form method="POST" action="{{ route('agendar') }}">
                     @csrf
                     <input type="hidden" name="id_servico" value="{{ $servico->id }}">
+                    
 
                     <div class="modal-header">
                         <h5 class="modal-title" id="modalAvaliacaoLabel">Novo Agendamento</h5>
@@ -93,14 +96,29 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="data" class="form-label">Selecione a data</label>
-                            <input type="date" class="form-control" name="data">
+                            <input maxlength="10" type="text" class="form-control" name="data" id="data" placeholder="dd/mm/aaaa">
+                            <script>
+                                const dataInput = document.getElementById('data');
+                                dataInput.addEventListener('input', function (e) {
+                                    let value = e.target.value.replace(/\D/g, '');
+                                    if (value.length > 2) value = value.replace(/(\d{2})(\d)/, '$1/$2');
+                                    if (value.length > 5) value = value.replace(/(\d{2})\/(\d{2})(\d)/, '$1/$2/$3');
+                                    e.target.value = value;
+                                });
+                            </script>
                         </div>
-
-
+                        <div class="mb-3">
+                            <div>
+                                <label for="descricao">Insira uma descrição</label>
+                            </div>
+                            <div class="d-flex justify-content-center" style="width: 450px">
+                                <textarea class="w-full" style="width: 450px" name="descricao" id="" placeholder="Insira aqui a sua descrição"></textarea>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success">Avaliar</button>
+                        <button type="submit" class="btn btn-success">Enviar solicitação</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     </div>
                 </form>
@@ -143,11 +161,10 @@
                             </select>
                         </div>
 
-
                         <div class="mb-3">
                             <label for="comentario" class="form-label">Comentário</label>
-                            <textarea minlength="30" maxlength="100" name="comentario" id="comentario" class="form-control"
-                            placeholder="Comentário com, no mínimo, 30 letras e com no máximo 100 letras." rows="3" required></textarea>
+                            <textarea minlength="20" maxlength="50" name="comentario" id="comentario" class="form-control"
+                            placeholder="Comentário com, no mínimo, 20 letras e com no máximo 50 letras." rows="3" required></textarea>
                         </div>
                     </div>
 

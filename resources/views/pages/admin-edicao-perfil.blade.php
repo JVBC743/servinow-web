@@ -9,6 +9,15 @@
                     {{ session('success') }}
                 </div>
             @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         <div class="card p-4 shadow w-100" style="max-width: 900px">
 
             <h1 class="text-center mb-4">Editar Perfil</h1>

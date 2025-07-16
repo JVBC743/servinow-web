@@ -1,8 +1,27 @@
 @extends('layouts.autenticado')
 
-@section('title', 'Agendamentos')
+@section('title', 'Solicitações')
 
 @section('content')
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    @if(session('error'))
+        <div class="alert alert-danger">{{ session('error') }}</div>
+    @endif
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <div class="container-fluid d-flex justify-content-center align-items-center py-5">
         <div class="card p-4 shadow w-100" style="max-width: 1200px">
 
@@ -27,19 +46,53 @@
                                 <td> {{ $item->id_cliente ? $item->cliente->nome : 'Cliente inexistente.'}} </td>
                                 <td> {{ $item->id_servico ? $item->servico->nome_servico : 'Serviço inexistente.'}} </td>
                                 <td> {{ $item->data_agendamento }} </td>
-                                @if($item->status != 4)
-                                    <td class="d-flex justify-content-between">
-                                        {{  $item->status ? $item->statusAgendamento->status : 'Status desconhecido' }}
+                                <td class="d-flex justify-content-between">
+                                    {{  $item->status ? $item->statusAgendamento->status : 'Status desconhecido' }}
+                                    <div>
+                                        <img data-bs-toggle="modal" data-bs-target="#modalSolicitacao{{ $item->id }}" class="list_icons border border-black rounded" src="{{ asset('images/verificar.png') }}" alt="">
                                         <a href="{{ route('servico', ['id' => $item->id_servico]) }}">
                                             <img class="list_icons" src="{{ asset('images/redirecionar.png') }}" alt="">
                                         </a>
-                                    </td>
-                                @else
-                                    <td class="" data-bs-toggle="modal" data-bs-target="#modalAgendamento">
-                                        <img class="list_icons border border-black rounded" src="{{ asset('images/verificar.png') }}" alt="">
-                                    </td>
-                                @endif
+                                    </div>
+                                </td>
                             </tr>
+                            <div class="modal fade" id="modalSolicitacao{{ $item->id }}" tabindex="-1" aria-labelledby="modalSolicitacaoLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        {{-- <form method="POST" action="{{ route('registrar.avaliacao') }}"> --}}
+                                            @csrf
+                                            {{-- <input type="hidden" name="id_agendamento" value="{{ $servico->id }}"> --}}
+
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalAgendamentoLabel">Nova Solicitação</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                            
+                                                <div class="mb-3">
+                                                    <h1>Solicitante:</h1>
+                                                    <h2>
+                                                        {{ $item->id_cliente ? $item->cliente->nome : 'Cliente inexistente.' }}
+                                                    </h2>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="comentario" class="form-label">Descrição</label>
+                                                    <h3>
+                                                        {{ $item->descricao }}
+                                                    </h3>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <img class="list_icons" src="{{ asset('images/confirmar.png') }}" alt="Botão para aceitar a solicitação de agendamento.">
+                                                <img class="list_icons" data-bs-dismiss="modal" src="{{ asset('images/negar.png') }}" alt="Botão para negar a solicitação de agendamento">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         @endif
                     @endforeach
                 </tbody>
@@ -47,42 +100,5 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modalAgendamento" tabindex="-1" aria-labelledby="modalAgendamentoLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                {{-- <form method="POST" action="{{ route('registrar.avaliacao') }}"> --}}
-                    @csrf
-                    {{-- <input type="hidden" name="id_agendamento" value="{{ $servico->id }}"> --}}
-
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalAgendamentoLabel">Nova Solicitação</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                    </div>
-
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            {{-- {{ NOME DO USUÁRIO SOLICITANTE }} --}}
-                        </div>
-
-                        <div class="mb-3">
-                           
-                        </div>
-
-
-                        <div class="mb-3">
-                            <label for="comentario" class="form-label">Descrição</label>
-                            <h3>
-                                {{-- {{ DESCRICAO DA SOLICITAÇÃO }} --}}
-                            </h3>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <img class="list_icons" src="{{ asset('images/confirmar.png') }}" alt="Botão para aceitar a solicitação de agendamento.">
-                        <img class="list_icons" data-bs-dismiss="modal" src="{{ asset('images/negar.png') }}" alt="Botão para negar a solicitação de agendamento">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    
 @endsection

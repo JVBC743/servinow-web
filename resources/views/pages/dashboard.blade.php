@@ -2,6 +2,23 @@
 @section('title', 'Dashboard')
 @section('content')
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    @if(session('error'))
+        <div class="alert alert-danger">{{ session('error') }}</div>
+    @endif
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <div class="d-flex align-items-center justify-content-between gap-2" style="max-width: 100%">
         <h1 class="m-0">Serviços Disponíveis</h1>
