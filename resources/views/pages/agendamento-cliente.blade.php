@@ -26,46 +26,49 @@
         <div class="card p-4 shadow w-100" style="max-width: 1200px">
 
             <h1 class="text-center mb-4">Seus serviços agendados como cliente</h1>
-
-            <table class="table table-bordered text-center align-middle">
-                <thead class="table-light">
-                    <tr>
-                        <th>ID</th>
-                        <th>Prestador</th>
-                        <th>Serviço</th>
-                        <th>Data/Hora</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($agendamento as $item)
-                        <tr class="text-align-center">
-                            <td> {{ $item->id }} </td>
-                            <td> {{ $item->id_prestador ? $item->prestador->nome : 'Cliente inexistente.'}} </td>
-                            <td> {{ $item->id_servico ? $item->servico->nome_servico : 'Serviço inexistente.'}} </td>
-                            <td> {{ $item->data_agendamento }} </td>
-                            @if($item->status != 4)
-                                <td class="d-flex justify-content-between">
-                                    {{  $item->status ? $item->statusAgendamento->status : 'Status desconhecido' }}
-                                    <a href="{{ route('servico', ['id' => $item->id_servico]) }}">
-                                        <img class="list_icons" src="{{ asset('images/redirecionar.png') }}" alt="">
-                                    </a>
-                                </td>
-                            @else
-                                <td class="d-flex justify-content-between">
-                                    {{  $item->status ? $item->statusAgendamento->status : 'Status desconhecido' }}
-                                    <div>
+            
+            <div class="table-responsive">
+                <table class="table table-bordered text-center align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Prestador</th>
+                            <th>Serviço</th>
+                            <th>Data/Hora</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($agendamento as $item)
+                            <tr class="text-align-center">
+                                <td> {{ $item->id }} </td>
+                                <td> {{ $item->id_prestador ? $item->prestador->nome : 'Cliente inexistente.'}} </td>
+                                <td> {{ $item->id_servico ? $item->servico->nome_servico : 'Serviço inexistente.'}} </td>
+                                <td> {{ $item->data_agendamento }} </td>
+                                @if($item->status != 4)
+                                    <td class="d-flex justify-content-between">
+                                        {{  $item->status ? $item->statusAgendamento->status : 'Status desconhecido' }}
                                         <a href="{{ route('servico', ['id' => $item->id_servico]) }}">
                                             <img class="list_icons" src="{{ asset('images/redirecionar.png') }}" alt="">
                                         </a>
-                                        <img class="list_icons" src="{{ asset('images/ampulheta.png') }}" alt="Olho aberto, símbolo de verificação de solicitação de agendamento.">
-                                    </div>
-                                </td>
-                            @endif
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                                    </td>
+                                @else
+                                    <td class="d-flex justify-content-between">
+                                        {{  $item->status ? $item->statusAgendamento->status : 'Status desconhecido' }}
+                                        <div>
+                                            <a href="{{ route('servico', ['id' => $item->id_servico]) }}">
+                                                <img class="list_icons" src="{{ asset('images/redirecionar.png') }}" alt="">
+                                            </a>
+                                            <img class="list_icons" src="{{ asset('images/ampulheta.png') }}"
+                                                alt="Olho aberto, símbolo de verificação de solicitação de agendamento.">
+                                        </div>
+                                    </td>
+                                @endif
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 @endsection

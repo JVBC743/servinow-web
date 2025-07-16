@@ -33,7 +33,7 @@
     @yield('styles')
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     {{-- Navbar --}}
     @if (View::exists('components.navbar'))
         <x-navbar />
@@ -43,7 +43,8 @@
     <x-toast />
 
     {{-- Conteúdo principal --}}
-    <main class="py-4" style="min-height: 80vh; padding-left: 4rem  ">
+    <main class="flex-grow-1 py-4 px-4">
+
         <div class="container-fluid">
             @yield('content')
         </div>
