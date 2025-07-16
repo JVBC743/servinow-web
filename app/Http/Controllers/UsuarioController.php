@@ -15,10 +15,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
 use Illuminate\Support\Facades\Storage;
+use Laravel\Sanctum\HasApiTokens;
 
 class UsuarioController extends Controller
 {
-
     public function index()
     {
         $lista = Usuario::all();
@@ -179,7 +179,7 @@ class UsuarioController extends Controller
     public function destroy($id) {}
 
     public function gerarRelatorio(){
-        
+
     }
     public function adminUserDestroy(int $id)
     {
