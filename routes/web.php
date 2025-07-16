@@ -51,7 +51,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::prefix('agendamento')->controller(AgendamentoController::class)->group(function () {
-        Route::get('cliente', 'indexCliente')->name('agendamento.cliente');
+        Route::get('cliente', 'index')->name('agendamento.cliente');
         // Route::get('prestador', 'indexPrestador')->name('agendamento.prestador');
         Route::post('agendar', 'store')->name('agendar');
         Route::get('solicitacoes', 'indexSolicitacoes')->name('agendamento.solicitacoes');
@@ -76,7 +76,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::prefix('servico')->controller(ServicoController::class)->group(function () {
-        Route::get('/cadastrados', 'indexPrestador')->name('servicos.cadastrados');
+        Route::get('/cadastrados', 'index')->name('servicos.cadastrados');
         Route::get('/dashboard', 'dashboard')->name('dashboard');
 
         Route::get('/{id}/show', 'show')->name('servico');
