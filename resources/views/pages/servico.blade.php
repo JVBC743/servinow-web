@@ -1,7 +1,32 @@
 @extends('layouts.autenticado')
 
 @section('title', 'Agendar Serviço')
+@section('styles')
+    <style>
+    .star-rating {
+        direction: rtl;
+        display: inline-flex;
+        gap: 5px;
+    }
 
+    .star-rating input[type="radio"] {
+        display: none;
+    }
+
+    .star-rating label {
+        font-size: 2rem;
+        color: #ccc;
+        cursor: pointer;
+        transition: color 0.2s ease-in-out;
+    }
+
+    .star-rating input[type="radio"]:checked ~ label,
+    .star-rating label:hover,
+    .star-rating label:hover ~ label {
+        color: #ffc107;
+    }
+</style>
+@endsection
 @section('content')
     {{-- {{ dd($servico->caminho_foto) }} --}}
 
@@ -30,15 +55,14 @@
         <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
             <div class="text-center">
 
-                @if($servico->caminho_foto)
+                @if ($servico->url_foto)
                     <div>
-                        <img class="service_photo" src="{{ asset("$servico->caminho_foto") }}" alt="Foto do serviço">
-                        <!-- TIRAR O ASSET PARA PUXAR O CAMIHNO DO MINIO
-                                  A CONSULTA NO BANCO TÁ CERTA -->
+                        <img class="service_photo" src="{{ asset("$servico->url_foto") }}" alt="Foto do serviço">
                     </div>
                 @else
                     <div>
-                        <img class="service_photo" src="{{ asset('images/servico-nulo.png') }}" alt="Não há foto de serviço">
+                        <img class="service_photo" src="{{ asset('images/servico-nulo.png') }}"
+                            alt="Não há foto de serviço">
                     </div>
                 @endif
 
@@ -64,8 +88,14 @@
                     <!-- LINK PARA O PERFIL DO PRESTADOR -->
 
                     <div class="d-flex justify-content-center">
-                        <div class="img_div">
-                            <img src="{{ asset('images/user-icon.png') }}" alt="Prestador" class="mb-2">
+                        <div class="">
+                            @if ($servico->prestador->url_foto)
+                                <img src="{{ $servico->prestador->url_foto }}" alt="Prestador" class="mb-2 rounded-circle"
+                                    style="width: 360px; height: 360px; object-fit: cover;">
+                            @else
+                                <img src="{{ asset('images/user-icon.png') }}" alt="Prestador" class="mb-2 rounded-circle"
+                                    style="width: 360px; height: 360px; object-fit: cover;">
+                            @endif
                         </div>
                     </div>
                 </a>
@@ -102,25 +132,26 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="nota" class="form-label">Titulo</label>
-                            <input minlength="10" maxlength="25" class="form-control" type="text" name="titulo" placeholder="Insira o título da sua avaliacao" required>
+                            <input minlength="10" maxlength="25" class="form-control" type="text" name="titulo"
+                                placeholder="Insira o título da sua avaliacao" required>
                         </div>
 
                         <div class="mb-3">
-                            <label for="nota" class="form-label">Quantas estrelas?</label>
-                            <select name="nota" id="nota" class="form-select" required>
-                                @for ($i = 1; $i <= 5; $i++)
-                                    <option value="{{ $i }}">
-                                        {{ str_repeat('★', $i) . str_repeat('☆', 5 - $i) }}
-                                    </option>
+                            <label class="form-label d-block">Quantas estrelas?</label>
+                            <div class="star-rating">
+                                @for ($i = 5; $i >= 1; $i--)
+                                    <input type="radio" id="star{{ $i }}" name="nota"
+                                        value="{{ $i }}" required>
+                                    <label for="star{{ $i }}" title="{{ $i }} estrelas">★</label>
                                 @endfor
-                            </select>
+                            </div>
                         </div>
 
 
                         <div class="mb-3">
                             <label for="comentario" class="form-label">Comentário</label>
                             <textarea minlength="30" maxlength="100" name="comentario" id="comentario" class="form-control"
-                            placeholder="Comentário com, no mínimo, 30 letras e com no máximo 100 letras." rows="3" required></textarea>
+                                placeholder="Comentário com, no mínimo, 30 letras e com no máximo 100 letras." rows="3" required></textarea>
                         </div>
                     </div>
 
@@ -137,14 +168,10 @@
         <div class="d-flex flex-wrap justify-content-center div-avaliacoes">
             @if ($avaliacoes->isNotEmpty())
                 @foreach ($avaliacoes as $avaliacao)
-                    <x-card-avaliacao 
-                        profileImage="{{ $avaliacao->cliente->caminho_img ?? asset('images/user-icon.png') }}"
-
-                        title="{{ $avaliacao->titulo }}"
-                        userName="{{ $avaliacao->cliente->nome ?? 'Anônimo' }}"
-                        rating="{{ $avaliacao->nota }}"
-                        description="{{ $avaliacao->comentario }}"
-                    />
+                    <x-card-avaliacao
+                        :profileImage="$avaliacao->cliente->url_foto"
+                        title="{{ $avaliacao->titulo }}" userName="{{ $avaliacao->cliente->nome ?? 'Anônimo' }}"
+                        rating="{{ $avaliacao->nota }}" description="{{ $avaliacao->comentario }}" />
                 @endforeach
             @else
                 <h1>Não há avaliações para esse serviço.</h1>

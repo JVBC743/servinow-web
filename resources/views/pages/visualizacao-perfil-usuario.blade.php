@@ -11,9 +11,9 @@
 
         <div class="card-body">
             <div class="text-center mb-4">
-                @if(auth()->user()->caminho_img)
+                @if($usr->url_foto)
                     <img src="
-                    {{ asset('storage/' . auth()->user()->caminho_img) }}
+                    {{ $usr->url_foto }}
                      " alt="Foto de perfil"
                         class="rounded-circle shadow" style="width: 120px; height: 120px; object-fit: cover;">
                 @else
@@ -70,7 +70,7 @@
                             {{ auth()->user()->logradouro }}, {{ auth()->user()->numero }}
                             {{ auth()->user()->complemento ? '- ' . auth()->user()->complemento : '' }},
                             {{ auth()->user()->bairro }} - {{ auth()->user()->cidade }}/{{ auth()->user()->uf }},
-                            CEP: 
+                            CEP:
                             {{ auth()->user()->cep }}
                         </td>
                     </tr>
@@ -95,12 +95,12 @@
                             @else
                                 Nenhuma rede social informada.
                             @endif
-                            
+
                         </td>
                     </tr>
                 </tbody>
             </table>
-            
+
             <div class="text-end">
                 <a href="{{ route('mostrar.edicao', ['id' => auth()->id()]) }}" class="btn btn-primary btn-geral">
                     Editar Perfil
