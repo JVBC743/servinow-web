@@ -17,13 +17,8 @@ class ServicoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $servicos = Servico::paginate(10); // paginação de 10 por página
-        return view('pages.lista-servicos', compact('servicos'));
-    }
 
-    public function indexPrestador()
+    public function index()
     {
         $id = Auth::id();
 
@@ -102,10 +97,8 @@ class ServicoController extends Controller
     public function show($id)
     {
         $servico = Servico::with('prestador')->findOrFail($id);
-        if($servico->caminho_foto)
-            $servico->url_foto = Storage::disk('miniobusca')->temporaryUrl($servico->caminho_foto, now()->addMinutes(5));
-        if($servico->prestador->caminho_img)
-            $servico->prestador->url_foto = Storage::disk('miniobusca')->temporaryUrl($servico->prestador->caminho_img, now()->addMinutes(5));
+        $servico->url_foto = Storage::disk('miniobusca')->temporaryUrl($servico->caminho_foto, now()->addMinutes(5));
+        $servico->prestador->url_foto = Storage::disk('miniobusca')->temporaryUrl($servico->prestador->caminho_img, now()->addMinutes(5));
         $avaliacoes = Avaliacao::where('id_servico', $id)->with('cliente')->get();
         $avaliacoes = $avaliacoes->map(function ($avaliacao) {
             if($avaliacao->cliente->caminho_img){
@@ -122,8 +115,7 @@ class ServicoController extends Controller
     {
 
         $usr = Usuario::findOrFail($id);
-        if($usr->caminho_img)
-            $usr->url_foto = Storage::disk('miniobusca')->temporaryUrl($usr->caminho_img, now()->addMinutes(5));
+        $usr->url_foto = Storage::disk('miniobusca')->temporaryUrl($usr->caminho_img, now()->addMinutes(5));
         return view('pages.visualizacao-perfil-prestador', compact('usr'));
     }
 
