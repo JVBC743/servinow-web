@@ -139,7 +139,7 @@ class UsuarioController extends Controller
         } else {
 
             $imagem_url = null;
-            
+
         }
         // dd($imagem_url);
         return view("pages.admin-edicao-perfil", compact('lista', 'usr', 'imagem_url'));
@@ -178,6 +178,9 @@ class UsuarioController extends Controller
 
     public function destroy($id) {}
 
+    public function gerarRelatorio(){
+        
+    }
     public function adminUserDestroy(int $id)
     {
         $usr = Usuario::find($id);

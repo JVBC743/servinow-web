@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\RecuperacaoSenhaController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ServicoController;
 use App\Http\Controllers\AvaliacaoController;
+use App\Http\Controllers\RelatorioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,6 +89,11 @@ Route::middleware('auth')->group(function () {
     Route::controller(UsuarioController::class)->group(function () {
         Route::get('/teste-minio', 'showMinioTest');
         Route::post('/teste-minio', 'testeMinio')->name('enviar.imagem');
+    });
+
+    //Relatorio
+    Route::prefix('relatorio')->controller(RelatorioController::class)->group(function(){
+        Route::get('/servicos', 'servicos')->name('relatorio.servicos.pdf');
     });
 
     // Admin

@@ -21,7 +21,7 @@ class Servico extends Model
         'avaliacao_id'
     ];
 
-    public function categoria()
+    public function categoriaR()
     {
         return $this->belongsTo(Categoria::class, 'categoria');
     }

@@ -10,8 +10,14 @@
                     {{ session('success') }}
                 </div>
             @endif
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="flex-grow-1 text-center m-0">Seus serviços cadastrados</h1>
 
-            <h1 class="text-center mb-4">Seus serviços cadastrados</h1>
+                <a href="{{ route('relatorio.servicos.pdf') }}" class="btn btn-primary">
+                    Gerar Relatório
+                </a>
+            </div>
+
 
             <table class="table table-bordered text-center align-middle">
                 <thead class="table-light">
