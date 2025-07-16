@@ -142,7 +142,7 @@
                                 <label for="descricao">Insira uma descrição</label>
                             </div>
                             <div class="d-flex justify-content-center" style="width: 450px">
-                                <textarea class="w-full" style="width: 450px" name="descricao" id="" placeholder="Insira aqui a sua descrição"></textarea>
+                                <textarea maxlength="50" minlength="20" class="w-full" style="width: 450px" name="descricao" id="" placeholder="Insira aqui a sua descrição"></textarea>
                             </div>
                         </div>
                     </div>
