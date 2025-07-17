@@ -5,9 +5,13 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRegisterRequest;
 use App\Models\Usuario;
+use App\Services\EvolutionWhatsApp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\DB;
+
 
 class AuthApiController extends Controller
 {
@@ -59,6 +63,44 @@ class AuthApiController extends Controller
             'token' => $token,
         ], 201);
     }
+
+    public function enviarLinkRecuperacao(Request $request)
+    {
+        $request->validate([
+            'telefone' => 'required|string|max:50',
+        ]);
+
+        $telefone = preg_replace('/[^0-9]/', '', $request->telefone);
+        $usuario = Usuario::where('telefone', $telefone)->first();
+
+        if (!$usuario) {
+            return response()->json(['error' => 'Telefone não encontrado.'], 404);
+        }
+
+        $token = Str::random(60);
+        DB::table('password_resets')->where('telefone', $telefone)->delete();
+        DB::table('password_resets')->insert([
+            'telefone' => $telefone,
+            'token' => $token,
+            'created_at' => \Carbon\Carbon::now(),
+        ]);
+
+        $link = url("/recuperar-senha/redefinir/{$token}?telefone={$telefone}");
+
+        try {
+            $resposta = EvolutionWhatsApp::sendMessage(
+                'ServiNow',
+                $telefone,
+                "Olá! Recebemos uma solicitação para redefinir a senha da sua conta no ServiNow. Para prosseguir, clique no link abaixo:\n\n{$link}\n\nSe você não solicitou essa recuperação, ignore esta mensagem."
+            );
+        } catch (\Throwable $e) {
+            \Log::error("Erro ao enviar mensagem de recuperação: " . $e->getMessage());
+            return response()->json(['error' => 'Erro ao enviar a mensagem de recuperação. Tente novamente.'], 500);
+        }
+
+        return response()->json(['message' => 'Link de recuperação enviado via WhatsApp!']);
+    }
+
 
     public function logout(Request $request)
     {
