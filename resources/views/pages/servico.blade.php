@@ -1,7 +1,6 @@
 @extends('layouts.autenticado')
 @section('title', 'Agendar Serviço')
 @section('content')
-    {{-- {{ dd($servico->caminho_foto) }} --}}
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -133,9 +132,11 @@
 
     {{-- AVALIACAO --}}
     <h1 class="text-center">Avaliações</h1>
-    <button class="mb-3 btn btn-info btn-geral text-white" data-bs-toggle="modal" data-bs-target="#modalAvaliacao">
-        Enviar avaliação
-    </button>
+    @if(auth()->id() !== $servico->usuario_id)
+        <button class="mb-3 btn btn-info btn-geral text-white" data-bs-toggle="modal" data-bs-target="#modalAvaliacao">
+            Enviar avaliação
+        </button>
+    @endif
 
     <div class="modal fade" id="modalAvaliacao" tabindex="-1" aria-labelledby="modalAvaliacaoLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">

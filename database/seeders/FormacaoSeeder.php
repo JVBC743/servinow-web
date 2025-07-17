@@ -13,6 +13,19 @@ class FormacaoSeeder extends Seeder
      */
     public function run(): void
     {
-        Formacao::factory(5)->create();
+        $formacao = [
+            'Engenheiro',
+            'Carpinteiro',
+            'Técnico de informática',
+            'Desenvolvedor',
+            'Arquiteto',
+            'Técnico de redes',
+            'Designer Gráfico',
+            'Engenheiro mecânico',
+            'Eletreecista',
+        ];
+        foreach ($formacao as $nome) {
+            Formacao::create(['formacao' => $nome]);
+        } 
     }
 }

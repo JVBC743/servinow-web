@@ -78,23 +78,44 @@
                                 <textarea name="descricao" id="descricao" class="form-control" maxlength="300" rows="4" placeholder="Adicione uma breve descrição das suas competências">{{ old('descricao', $usr->descricao) }}</textarea>
                             </div>
 
-                            {{-- Redes sociais --}}
+                            {{-- Substituindo redes sociais por campos de endereço --}}
+
                             <div class="col-md-6 mb-3">
-                                <label for="rede_social1" class="form-label">Rede social #1</label>
-                                <input type="text" name="rede_social1" id="rede_social1" class="form-control" maxlength="40" value="{{ old('rede_social1', $usr->rede_social1) }}">
+                                <label for="cep" class="form-label">CEP*</label>
+                                <input type="text" name="cep" id="cep" class="form-control" maxlength="10" value="{{ old('cep', $usr->cep ?? '') }}" required>
                             </div>
+
                             <div class="col-md-6 mb-3">
-                                <label for="rede_social2" class="form-label">Rede social #2</label>
-                                <input type="text" name="rede_social2" id="rede_social2" class="form-control" maxlength="40" value="{{ old('rede_social2', $usr->rede_social2) }}">
+                                <label for="logradouro" class="form-label">Logradouro*</label>
+                                <input type="text" name="logradouro" id="logradouro" class="form-control" value="{{ old('logradouro', $usr->logradouro ?? '') }}" required>
                             </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label for="numero" class="form-label">Número*</label>
+                                <input type="text" name="numero" id="numero" class="form-control" value="{{ old('numero', $usr->numero ?? '') }}" required>
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label for="complemento" class="form-label">Complemento</label>
+                                <input type="text" name="complemento" id="complemento" class="form-control" value="{{ old('complemento', $usr->complemento ?? '') }}">
+                            </div>
+
                             <div class="col-md-6 mb-3">
-                                <label for="rede_social3" class="form-label">Rede social #3</label>
-                                <input type="text" name="rede_social3" id="rede_social3" class="form-control" maxlength="40" value="{{ old('rede_social3', $usr->rede_social3) }}">
+                                <label for="bairro" class="form-label">Bairro*</label>
+                                <input type="text" name="bairro" id="bairro" class="form-control" value="{{ old('bairro', $usr->bairro ?? '') }}" required>
                             </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="rede_social4" class="form-label">Rede social #4</label>
-                                <input type="text" name="rede_social4" id="rede_social4" class="form-control" maxlength="40" value="{{ old('rede_social4', $usr->rede_social4) }}">
+
+                            <div class="col-md-4 mb-3">
+                                <label for="cidade" class="form-label">Cidade*</label>
+                                <input type="text" name="cidade" id="cidade" class="form-control" value="{{ old('cidade', $usr->cidade ?? '') }}" required>
                             </div>
+
+                            <div class="col-md-2 mb-3">
+                                <label for="uf" class="form-label">UF*</label>
+                                <input type="text" name="uf" id="uf" maxlength="2" class="form-control" value="{{ old('uf', $usr->uf ?? '') }}" required>
+                            </div>
+
+
 
                             {{-- Imagem --}}
                             <div class="d-flex justify-content-center mt-5 mb-3">
