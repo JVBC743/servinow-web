@@ -24,9 +24,7 @@
 
     <div class="container-fluid d-flex justify-content-center align-items-center py-5">
         <div class="card p-4 shadow w-100" style="max-width: 1200px">
-
             <h1 class="text-center mb-4">Seus serviços agendados como cliente</h1>
-
             <div class="table-responsive table-scroll-vertical">
                 <table class="table table-bordered text-center align-middle">
                     <thead class="table-light">
@@ -83,6 +81,7 @@
                             <th>Status</th>
                         </tr>
                     </thead>
+
                     <tbody>
                         @foreach ($agendamento_prestador as $item)
                             <tr class="text-align-center">
@@ -94,7 +93,7 @@
                                     <td class="d-flex justify-content-between">
                                         {{  $item->status ? $item->statusAgendamento->status : 'Status desconhecido' }}
                                         <div>
-                                            <img  data-bs-toggle="modal" data-bs-target="#modalAgendamento{{ $item->id }}" class="list_icons" src="{{ asset("images/menu.png") }}" alt="">
+                                            <img  data-bs-toggle="modal" data-bs-target="#modalEstado{{ $item->id }}" class="list_icons" src="{{ asset("images/menu.png") }}" alt="">
                                             <a href="{{ route('servico', ['id' => $item->id_servico]) }}">
                                                 <img class="list_icons" src="{{ asset('images/redirecionar.png') }}" alt="">
                                             </a>
@@ -114,26 +113,47 @@
                                 @endif
                             </tr>
 
-                            <div class="modal fade" id="modalAgendamento{{ $item->id }}" tabindex="-1" aria-labelledby="modalAgendamentoLabel" aria-hidden="true">
+                            <div class="modal fade" id="modalEstado{{ $item->id }}" tabindex="-1" aria-labelledby="modalEstadoLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
-                                        {{-- <input type="hidden" name="id_servico" value="{{ $item->id_servico}}"> --}}
+                                        <input type="hidden" name="id_servico" value="{{ $item->id_servico}}">
                                         <input type="hidden" name="id_agendamento" value="{{ $item->id }}">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="modalAgendamentoLabel">Opções</h5>
+                                            <h5 class="modal-title" id="modalAgendamentoLabel">Alterar estado do serviço: {{ $item->servico->nome_servico }} </h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                                         </div>
-
                                         <div class="modal-body">
                                             <div class="mb-3">
-                                                Alterar estado do serviço: {{ $item->servico->nome_servico }}
+                                                <h3>
+                                                    <div class="d-flex justify-content-center align-items-center">
+                                                        <div class="">
+                                                            <form action="{{ route('fechar.sucesso') }}" method="POST">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <input type="hidden" name="id_servico" value="{{ $item->id_servico}}">
+                                                                <input type="hidden" name="id_agendamento" value="{{ $item->id }}">
+                                                                <div>
+                                                                    <button class="mb-3 btn btn-success">Fechar com sucesso</button>
+                                                                    <img class="list_icons" src="{{ asset('images/sucesso.png') }}" alt="">
+                                                                </div>
+                                                            </form>
+                                                            <form action="{{ route('fechar.falha') }}" method="POST">
+                                                                @csrf
+                                                                @method('PUT')
+
+                                                                <input type="hidden" name="id_servico" value="{{ $item->id_servico}}">
+                                                                <input type="hidden" name="id_agendamento" value="{{ $item->id }}">
+                                                                <div>
+                                                                    <button class="btn btn-danger" >Fechar sem sucesso</button>
+                                                                    <img class="list_icons" src="{{ asset('images/falha.png') }}" alt="">
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </h3>
                                             </div>
                                         </div>
-
                                         <div class="modal-footer">
-                                            <button class="btn btn-success">
-                                                Confirmar
-                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -146,6 +166,3 @@
         </div>
     </div>
 @endsection
-
-
-                                

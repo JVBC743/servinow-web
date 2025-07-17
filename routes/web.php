@@ -57,6 +57,8 @@ Route::middleware('auth')->group(function () {
         Route::get('solicitacoes', 'indexSolicitacoes')->name('agendamento.solicitacoes');
         Route::put('/aceitar', 'acceptSolicitacao')->name('aceitacao.solicitacao');
         Route::delete('/negar','destroySolicitacao')->name('negacao.solicitacao');
+        Route::put('/sucesso', 'closeSuccess')->name('fechar.sucesso');
+        Route::put('/falha', 'closeFail')->name('fechar.falha');
     });
 
     // Perfil do usuário
@@ -89,18 +91,15 @@ Route::middleware('auth')->group(function () {
         Route::delete('/{servico}', 'destroy')->name('servico.destroy');
     });
 
-    // Testes e uploads
     Route::controller(UsuarioController::class)->group(function () {
         Route::get('/teste-minio', 'showMinioTest');
         Route::post('/teste-minio', 'testeMinio')->name('enviar.imagem');
     });
 
-    //Relatorio
     Route::prefix('relatorio')->controller(RelatorioController::class)->group(function(){
         Route::get('/servicos', 'servicos')->name('relatorio.servicos.pdf');
     });
 
-    // Admin
     Route::middleware('can:is_admin')->prefix('admin')->controller(UsuarioController::class)->group(function () {
         Route::get('/usuarios', 'index')->name('admin.lista.usuarios');
         Route::get('/edicao/{id}', 'adminShowUserAccount')->name('admin.mostrar.edicao');

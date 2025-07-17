@@ -141,4 +141,49 @@ class AgendamentoController extends Controller
         return redirect()->back()->with('success', 'A solicitação foi excluída com sucesso.');
 
     }
+    
+    public function closeFail(Request $request)
+    {
+        
+        $id_agendamento = $request->input('id_agendamento');
+
+        if(!$id_agendamento){
+            return redirect()->back()->with('error', 'A solicitação não foi encontrada pela solicitação de exclusão.');
+        }
+
+        $agendamento = Agendamento::find($id_agendamento);
+
+        if(!$agendamento){
+            return redirect()->back()->with('error', 'A solicitação não foi encontrada no banco.');
+        }
+
+        $agendamento->update([
+            'status' => 3,
+        ]);
+
+        return redirect()->back()->with('success', 'O agendamento foi fechado com o status: Fechado sem sucesso.');
+
+    }
+
+    public function closeSuccess(Request $request){
+
+        $id_agendamento = $request->input('id_agendamento');
+
+        if(!$id_agendamento){
+            return redirect()->back()->with('error', 'A solicitação não foi encontrada pela solicitação de exclusão.');
+        }
+
+        $agendamento = Agendamento::find($id_agendamento);
+
+        if(!$agendamento){
+            return redirect()->back()->with('error', 'A solicitação não foi encontrada no banco.');
+        }
+
+        $agendamento->update([
+            'status' => 2,
+        ]);
+
+        return redirect()->back()->with('success', 'O agendamento foi fechado com o status: Fechado com sucesso.');
+    }
+
 }
