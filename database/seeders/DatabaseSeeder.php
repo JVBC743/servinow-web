@@ -27,16 +27,9 @@ class DatabaseSeeder extends Seeder
             ['status' => 'Aguardando confirmação'],
         ]);
 
-        Categoria::insert([
-            ['nome' => 'Esportes'],
-            ['nome' => 'Tecnologia'],
-            ['nome' => 'Moda'],
-            ['nome' => 'Saúde'],
-            ['nome' => 'Educação'],
-            ['nome' => 'Música'],
-            ['nome' => 'Conserto'],
-            ['nome' => 'Mercenario'],
-        ]);        
+        $this->call([
+            CategoriaSeeder::class,
+        ]);
         
         Formacao::factory()->count(10)->create();
         Usuario::factory()->count(10)->create();

@@ -19,8 +19,9 @@ class ServicoController extends Controller
      */
     public function index()
     {
-        $servicos = Servico::paginate(10); // paginação de 10 por página
-        return view('pages.lista-servicos', compact('servicos'));
+        $servicos = Servico::paginate(10);
+        $categorias = Categoria::all();
+        return view('pages.servicos-cadastrados', compact('servicos', 'categorias'));
     }
 
     public function indexPrestador()
