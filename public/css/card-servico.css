@@ -9,6 +9,9 @@
   border: none;
   position: relative;
   margin-bottom: 20px;
+  word-break: break-word;
+  display: flex;
+  flex-direction: column;
 }
 
 .custom-card:hover {
@@ -33,7 +36,9 @@
 }
 
 .card-body {
-  padding: 24px;
+  padding: 12px;
+  flex: 1 1 auto;
+  padding: 12px;
 }
 
 .card-title {
@@ -53,8 +58,22 @@
 .card-text {
   color: #64748b;
   line-height: 1.6;
-  margin-bottom: 20px;
   font-size: 1rem;
+  margin-bottom: 20px;
+  max-height: 240px;
+  overflow-y: auto;
+  padding-right: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc transparent;
+}
+
+.card-text::-webkit-scrollbar {
+  width: 6px;
+}
+
+.card-text::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
 }
 
 .card-footer {
