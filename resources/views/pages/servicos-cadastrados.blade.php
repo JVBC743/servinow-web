@@ -37,7 +37,7 @@
                 </a>
             </div>
 
-            <div class="table-responsive">
+            <div class="table-responsive table-scroll-vertical">
 
                 <table class="table table-bordered text-center align-middle">
                     <thead class="table-light">
@@ -58,12 +58,12 @@
                                 <td>
                                     <div class="d-flex justify-content-center gap-3">
                                         <a href="{{ route('servico.edit', ['servico' => $item->id]) }}">
-                                            <img class="list_icons" src="{{ asset('images/edit.png') }}" alt="Editar">
+                                            <i class="fa-solid fa-pen-to-square edit-icon"></i>
                                         </a>
 
                                         <button class="delete_icon_button bg-transparent border-0 p-0" data-bs-toggle="modal"
                                             data-bs-target="#modalConfirmDelete" data-servico-id="{{ $item->id }}">
-                                            <img class="list_icons" src="{{ asset('images/delete.png') }}" alt="Excluir conta">
+                                                <i class="fa-solid fa-trash del-icon"></i>
                                         </button>
                                     </div>
                                 </td>

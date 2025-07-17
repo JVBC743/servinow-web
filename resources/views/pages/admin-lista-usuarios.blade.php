@@ -24,7 +24,7 @@
         <div class="card p-4 shadow w-100" style="max-width: 1200px">
 
             <h1 class="text-center mb-4">Lista de Usuários</h1>
-            <div class="table-responsive">
+            <div class="table-responsive table-scroll-vertical">
 
                 <table class="table table-bordered text-center align-middle">
                     <thead class="table-light">
