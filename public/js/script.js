@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const form = document.querySelector('form');
     const senhaInput = document.getElementById('senha');
     const repetirSenhaInput = document.getElementById('repetir_senha');
@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const celularInput = document.getElementById('celular');
 
     if (form) {
-        form.addEventListener('submit', function(event) {
+        form.addEventListener('submit', function (event) {
             // Validação de senha
             if (senhaInput.value !== repetirSenhaInput.value) {
                 alert('As senhas não coincidem!');
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Máscaras simples (exemplo básico, para máscaras complexas use bibliotecas)
     if (cpfInput) {
-        cpfInput.addEventListener('input', function(e) {
+        cpfInput.addEventListener('input', function (e) {
             let value = e.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
             value = value.replace(/(\d{3})(\d)/, '$1.$2');
             value = value.replace(/(\d{3})(\d)/, '$1.$2');
@@ -34,44 +34,44 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (cepInput) {
-        cepInput.addEventListener('input', function(e) {
+        cepInput.addEventListener('input', function (e) {
             let value = e.target.value.replace(/\D/g, '');
             value = value.replace(/^(\d{5})(\d)/, '$1-$2');
             e.target.value = value.slice(0, 9); // Limita ao tamanho do CEP formatado
         });
     }
 
-   if (celularInput) {
-    celularInput.addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, '');
+    if (celularInput) {
+        celularInput.addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
 
-        if (value.length > 2) {
-            value = `(${value.substring(0,2)}) ${value.substring(2)}`;
-        }
-
-        value = value.replace(/\D/g, '');
-
-        if (value.length > 2) {
-            const ddd = value.substring(0, 2);
-            const num = value.substring(2);
-
-            if (num.length <= 4) {
-                value = `(${ddd}) ${num}`;
-            } else if (num.length <= 8) {
-                value = `(${ddd}) ${num.substring(0, 4)}-${num.substring(4)}`;
-            } else {
-                value = `(${ddd}) ${num.substring(0, 5)}-${num.substring(5, 9)}`;
+            if (value.length > 2) {
+                value = `(${value.substring(0, 2)}) ${value.substring(2)}`;
             }
-        }
 
-        e.target.value = value;
-    });
-}
+            value = value.replace(/\D/g, '');
+
+            if (value.length > 2) {
+                const ddd = value.substring(0, 2);
+                const num = value.substring(2);
+
+                if (num.length <= 4) {
+                    value = `(${ddd}) ${num}`;
+                } else if (num.length <= 8) {
+                    value = `(${ddd}) ${num.substring(0, 4)}-${num.substring(4)}`;
+                } else {
+                    value = `(${ddd}) ${num.substring(0, 5)}-${num.substring(5, 9)}`;
+                }
+            }
+
+            e.target.value = value;
+        });
+    }
 
 
     // Funcionalidade para buscar CEP (exemplo usando ViaCEP)
     if (cepInput) {
-        cepInput.addEventListener('blur', async function() { // 'blur' é quando o campo perde o foco
+        cepInput.addEventListener('blur', async function () { // 'blur' é quando o campo perde o foco
             const cep = this.value.replace(/\D/g, ''); // Remove não dígitos
             if (cep.length === 8) {
                 try {
@@ -95,4 +95,23 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const lazyImages = document.querySelectorAll('img.lazy');
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.classList.remove('lazy');
+                observer.unobserve(img);
+            }
+        });
+    }, {
+        rootMargin: '2px'
+    });
+
+    lazyImages.forEach(image => observer.observe(image));
 });
