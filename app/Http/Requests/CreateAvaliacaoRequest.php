@@ -22,7 +22,7 @@ class CreateAvaliacaoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id_servico' => 'required,exists:Servico,id',
+            'id_servico' => 'required|exists:Servico,id',
             'titulo' => 'required|max:25|min:10',
             'nota' => 'required',
             'comentario' => 'min:30|required|max:100',
