@@ -41,7 +41,7 @@
                             alt="Não há foto de serviço">
                     </div>
                 @endif
-                @if($servico->id_prestador == auth()->id())
+                @if(auth()->id() !== $servico->usuario_id)
                     <button style="width: 200px; height: 50px" class="btn btn-info btn-geral text-white px-4 my-3" data-bs-toggle="modal" data-bs-target="#modalAgendamento">
                         Agendar
                     </button>

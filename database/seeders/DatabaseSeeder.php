@@ -22,8 +22,8 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call([
-            CategoriaSeeder::class,
-            StatusAgendamento::class,
+            // CategoriaSeeder::class,
+            StatusAgendamentoSeeder::class,
         ]);
         
         // Formacao::factory()->count(10)->create();
