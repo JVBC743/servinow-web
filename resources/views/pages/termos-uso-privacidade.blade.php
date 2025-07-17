@@ -97,9 +97,9 @@
                 A ServiNow atua apenas como intermediadora e não compartilha informações dos usuários com terceiros, salvo por obrigação legal. Os dados são utilizados unicamente para o funcionamento do sistema.
             </div>
 
-            <p><strong>4.1 Sistema de Denúncia</strong></p>
+            <p><strong>4.1 Denúncia</strong></p>
             <div class="ms-4 mb-4">
-                A plataforma disponibiliza um meio para denúncia de condutas inadequadas, que é o e-mail dos desenvolvedores. Todas as denúncias são analisadas pela equipe do ServiNow com confidencialidade e imparcialidade.
+                A plataforma disponibiliza um meio para denúncia de condutas inadequadas, que são os e-mails dos desenvolvedores, disponibilizados no item 6. Todas as denúncias são analisadas pela equipe do ServiNow com confidencialidade e imparcialidade.
             </div>
 
             <p><strong>5 - Proteção de Dados</strong></p>
