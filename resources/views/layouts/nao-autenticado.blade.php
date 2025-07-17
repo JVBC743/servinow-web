@@ -10,6 +10,13 @@
 
     @yield('styles')
 
+    <style>
+        span {
+            color: red;
+            font-style: bold;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -22,4 +29,5 @@
     <script src="{{ asset('js/script.js') }}"></script>
 </body>
 @yield('scripts')
+
 </html>
