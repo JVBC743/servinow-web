@@ -14,7 +14,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <!-- Outras opções -->
                 <li class="nav-item">
-                    <a class="nav-link fs-5 {{ request()->routeIs('dashboard') ? 'active' : '' }}"
+                    <a class="nav-link fs-5 {{ request()->routeIs(' ') ? 'active' : '' }}"
                         href="{{ route('dashboard') }}">
                         Início
                     </a>
