@@ -41,7 +41,7 @@
                 </thead>
                 <tbody>
                     @foreach ($agendamento as $item)
-                        @if($item->id_prestador == auth()->id() && $item->statusAgendamento->status == 'Aguardando confirmação')
+                        @if($item->id_prestador == auth()->id() && $item->status == 1)
 
                             <tr class="text-align-center">
                                 <td> {{ $item->id }} </td>
