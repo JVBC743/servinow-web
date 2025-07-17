@@ -15,7 +15,7 @@
                 <!-- Outras opções -->
                 <li class="nav-item">
                     <a class="nav-link fs-5 {{ request()->routeIs(' ') ? 'active' : '' }}"
-                        href="{{ route('dashboard') }}">
+                        href="{{ route('dashboard.guest') }}">
                         Início
                     </a>
                 </li>

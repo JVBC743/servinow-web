@@ -35,7 +35,12 @@ Route::prefix('PasswordReset')->controller(RecuperacaoSenhaController::class)->g
     Route::post('', 'enviarLinkRecuperacao')->name('post.recuperacao.senha');
     Route::get('/recuperar-senha/redefinir/{token}', 'mostrarFormularioRedefinicao')->name('redefinir.senha.form');
     Route::post('/recuperar-senha/redefinir', 'redefinirSenha')->name('post.redefinir.senha');
+
+
 });
+
+Route::get('/dashboard', [ServicoController::class, 'dashboardGuest'])->name('dashboard.guest');
+
 /*
 |--------------------------------------------------------------------------
 | Rotas protegidas (usuário autenticado)

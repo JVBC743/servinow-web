@@ -56,7 +56,8 @@
 
         <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
             <div class="text-center">
-
+                
+               
                 @if ($servico->url_foto)
                     <div>
                         <img class="service_photo" src="{{ asset("$servico->url_foto") }}" alt="Foto do serviço">
@@ -67,10 +68,11 @@
                             alt="Não há foto de serviço">
                     </div>
                 @endif
-
-                <button style="width: 200px; height: 50px" class="btn btn-info btn-geral text-white px-4 my-3" data-bs-toggle="modal" data-bs-target="#modalAgendamento">
-                    Agendar
-                </button>
+                @if($servico->id_prestador == auth()->id())
+                    <button style="width: 200px; height: 50px" class="btn btn-info btn-geral text-white px-4 my-3" data-bs-toggle="modal" data-bs-target="#modalAgendamento">
+                        Agendar
+                    </button>
+                @endif
             </div>
         </div>
 

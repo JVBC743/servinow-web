@@ -20,21 +20,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        StatusAgendamento::insert([
-            ['status' => 'Em andamento'],
-            ['status' => 'Finalizado com sucesso'],
-            ['status' => 'Finalizado sem sucesso'],
-            ['status' => 'Aguardando confirmação'],
-        ]);
 
         $this->call([
             CategoriaSeeder::class,
+            StatusAgendamento::class,
         ]);
         
-        Formacao::factory()->count(10)->create();
-        Usuario::factory()->count(10)->create();
-        Servico::factory()->count(10)->create();
-        Agendamento::factory()->count(10)->create();
-        Avaliacao::factory()->count(10)->create();
+        // Formacao::factory()->count(10)->create();
+        // Usuario::factory()->count(10)->create();
+        // Servico::factory()->count(10)->create();
+        // Agendamento::factory()->count(10)->create();
+        // Avaliacao::factory()->count(10)->create();
     }
 }

@@ -61,6 +61,35 @@ class ServicoController extends Controller
         return view('pages.dashboard', compact('servicos', 'pesquisa', 'categorias'));
     }
 
+    public function dashboardGuest(Request $request){
+
+        $pesquisa = $request->input('search');
+        $id_categoria = $request->input('categoria_id');
+
+        $query = Servico::query();
+
+        if($pesquisa){
+            $query->where('nome_servico', 'like', "%{$pesquisa}%");
+        }
+
+        if($id_categoria){
+            $query->where('categoria', $id_categoria);
+        }
+
+        $servicos = $query->get();
+        $servicos = $servicos->map(function ($servico) {
+            if($servico->caminho_foto)
+                $servico->url_foto = Storage::disk('miniobusca')->temporaryUrl($servico->caminho_foto, now()->addMinutes(5));
+            else
+                $servico->url_foto = "https://static.wixstatic.com/media/1233ff_ca96ec225309492dbd2cef0b7ca9938f~mv2.jpg/v1/fill/w_740,h_493,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/1233ff_ca96ec225309492dbd2cef0b7ca9938f~mv2.jpg";
+            return $servico;
+        });
+        $categorias = Categoria::all();
+
+        return view('pages.dashboard', compact('servicos', 'pesquisa', 'categorias'));
+
+    }
+
     /**
      * Show the form for creating a new resource.
      */
