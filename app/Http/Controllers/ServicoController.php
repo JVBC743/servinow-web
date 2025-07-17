@@ -168,6 +168,11 @@ class ServicoController extends Controller
         return redirect()->route('servicos.cadastrados')->with('success', 'Serviço atualizado com sucesso.');
     }
 
+    public function finished()
+    {
+        
+
+    }
 
     /**
      * Remove the specified resource from storage.
