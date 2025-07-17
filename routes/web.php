@@ -81,7 +81,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::prefix('servico')->controller(ServicoController::class)->group(function () {
-        Route::get('/cadastrados', 'index')->name('servicos.cadastrados');
+        Route::get('/cadastrados', 'indexPrestador')->name('servicos.cadastrados');
         Route::get('/dashboard', 'dashboard')->name('dashboard');
 
         Route::get('/{id}/show', 'show')->name('servico');

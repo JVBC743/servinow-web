@@ -158,7 +158,7 @@ class AgendamentoController extends Controller
         }
 
         $agendamento->update([
-            'status' => 3,
+            'status' => 4,
         ]);
 
         return redirect()->back()->with('success', 'O agendamento foi fechado com o status: Fechado sem sucesso.');
@@ -180,7 +180,7 @@ class AgendamentoController extends Controller
         }
 
         $agendamento->update([
-            'status' => 2,
+            'status' => 3,
         ]);
 
         return redirect()->back()->with('success', 'O agendamento foi fechado com o status: Fechado com sucesso.');

@@ -29,10 +29,17 @@ class EditarUsuarioRequest extends FormRequest
             'descricao' => 'max:300|sometimes|nullable|string  ',
             'area_atuacao' => 'sometimes|required|string',
             'cpf_cnpj' => 'max:14|sometimes|required|string',
-            'rede_social1' => 'max:40|sometimes|nullable|string',
-            'rede_social2' => 'max:40|sometimes|nullable|string',
-            'rede_social3' => 'max:40|sometimes|nullable|string',
-            'rede_social4' => 'max:40|sometimes|nullable|string',
+            // 'rede_social1' => 'max:40|sometimes|nullable|string',
+            // 'rede_social2' => 'max:40|sometimes|nullable|string',
+            // 'rede_social3' => 'max:40|sometimes|nullable|string',
+            // 'rede_social4' => 'max:40|sometimes|nullable|string',
+            'cep' => 'sometimes|required|string',
+            'logradouro' => 'sometimes|required|string',
+            'numero' => 'sometimes|required|string',
+            'complemento' => 'sometimes|required|string', 
+            'bairro' => 'sometimes|required|string',
+            'cidade' => 'sometimes|required|string',
+            'uf' => 'sometimes|required|string',
         ];
     }
     public function messages(): array
@@ -57,10 +64,18 @@ class EditarUsuarioRequest extends FormRequest
             'area_atuacao.required' => 'A sua área de atuação é obrigatória.',
             'cpf_cnpj.required' => 'O seu CPF ou CNPJ é obrigatório.',
 
-            'rede_social1.max' => 'O link da sua rede social primária não deve exceder 40 digitos, o que inclui espaços,',
-            'rede_social2.max' => 'O link da sua rede social secundária não deve exceder 40 digitos, o que inclui espaços',
-            'rede_social3.max' => 'O link da sua rede social terciária não deve exceder 40 digitos, o que inclui espaços',
-            'rede_social4.max' => 'O link da sua rede social quaternária não deve exceder 40 digitos, o que inclui espaços',
+            // 'rede_social1.max' => 'O link da sua rede social primária não deve exceder 40 digitos, o que inclui espaços,',
+            // 'rede_social2.max' => 'O link da sua rede social secundária não deve exceder 40 digitos, o que inclui espaços',
+            // 'rede_social3.max' => 'O link da sua rede social terciária não deve exceder 40 digitos, o que inclui espaços',
+            // 'rede_social4.max' => 'O link da sua rede social quaternária não deve exceder 40 digitos, o que inclui espaços',
+
+            'cep.required'         => 'O campo CEP é obrigatório.',
+            'logradouro.required'  => 'O campo logradouro é obrigatório.',
+            'numero.required'      => 'O campo número é obrigatório.',
+            'complemento.required' => 'O campo complemento é obrigatório.',
+            'bairro.required'      => 'O campo bairro é obrigatório.',
+            'cidade.required'      => 'O campo cidade é obrigatório.',
+            'uf.required'          => 'O campo UF é obrigatório.',
         ];
     }
 }
