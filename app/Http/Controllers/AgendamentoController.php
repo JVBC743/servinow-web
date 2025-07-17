@@ -65,7 +65,7 @@ class AgendamentoController extends Controller
             'id_prestador'      => $servico->usuario_id,
             'data_agendamento'  => $data['data'],
             'notificacao'       => false,
-            'status'            => 4,
+            'status'            => 1,
             'descricao'         => $data['descricao'],
         ]);
         return redirect()->back()->with('success', 'Solicitação de agendamento enviada com sucesso!');
