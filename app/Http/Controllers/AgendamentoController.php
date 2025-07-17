@@ -118,7 +118,7 @@ class AgendamentoController extends Controller
         }
 
         $agendamento->update([
-            'status' => 1,
+            'status' => 2,
         ]);
         return redirect()->back()->with('success', 'A solicitação foi aceitada.');
     }
