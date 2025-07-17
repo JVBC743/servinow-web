@@ -36,7 +36,7 @@ class UserRegisterRequest extends FormRequest
                 },
             ],
             'email' => 'required|email|max:80|unique:Usuario,email',
-            'telefone' => 'required|string|max:20',
+            'telefone' => 'required|string|max:20|unique:Usuario,telefone',
 
             'cep' => 'required|string|max:10',
             'logradouro' => 'required|string|max:100',
@@ -73,6 +73,7 @@ class UserRegisterRequest extends FormRequest
             'telefone.required' => 'O telefone é obrigatório.',
             'telefone.string' => 'O telefone deve ser um texto.',
             'telefone.max' => 'O telefone não pode ter mais de 20 caracteres.',
+            'telefone.unique' => 'O telefone inserido já existe no banco. Insira outro.',
 
             'cep.required' => 'O CEP é obrigatório.',
             'cep.string' => 'O CEP deve ser um texto.',

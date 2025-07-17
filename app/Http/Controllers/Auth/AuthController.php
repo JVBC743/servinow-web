@@ -37,6 +37,17 @@ class AuthController extends Controller
     }
     public function register(UserRegisterRequest $request)
     {
+
+        $usuariosExistentes = Usuario::all();
+        foreach($usuariosExistentes as $usr){
+            if($request->telefone == $usr->telefone){
+                
+                return redirect()->back()->with('error', 'O telefone ' . $usr->telefone . ' já existe. Insira outro.');
+
+            }
+        }
+        
+
         $usuario = Usuario::create([
             'nome' => $request->nome,
             'senha' => Hash::make($request->password),

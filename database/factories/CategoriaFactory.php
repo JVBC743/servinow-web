@@ -17,15 +17,15 @@ class CategoriaFactory extends Factory
     public function definition(): array
     {
         return [
-            'nome' => fake()->randomElement(['
-            Esportes', 
+            'nome' => fake()->randomElement([
+            'Esportes', 
             'Tecnologia',
             'Moda', 
             'Saúde', 
             'Educação', 
             'Música', 
             'Conserto', 
-            'Mercenario'
+            'Marcenaria'
         ]),
         ];
     }
