@@ -28,8 +28,8 @@
 
         <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
             <div class="text-center">
-                
-               
+
+
                 @if ($servico->url_foto)
                     <div>
                         <img class="service_photo" src="{{ asset("$servico->url_foto") }}" alt="Foto do serviço">
@@ -82,7 +82,7 @@
             </div>
         </div>
     </div>
-    
+
     {{-- AGENDAMENTO --}}
     <div class="modal fade" id="modalAgendamento" tabindex="-1" aria-labelledby="modalAgendamentoabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -90,7 +90,7 @@
                 <form method="POST" action="{{ route('agendar') }}">
                     @csrf
                     <input type="hidden" name="id_servico" value="{{ $servico->id }}">
-                    
+
 
                     <div class="modal-header">
                         <h5 class="modal-title" id="modalAvaliacaoLabel">Novo Agendamento</h5>
@@ -191,7 +191,7 @@
                     <x-card-avaliacao
                         :profileImage="$avaliacao->cliente->url_foto"
                         title="{{ $avaliacao->titulo }}" userName="{{ $avaliacao->cliente->nome ?? 'Anônimo' }}"
-                        rating="{{ $avaliacao->nota }}" description="{{ $avaliacao->comentario }}" />
+                        :rating="(int) $avaliacao->nota" description="{{ $avaliacao->comentario }}" />
                 @endforeach
             @else
                 <h1>Não há avaliações para esse serviço.</h1>
