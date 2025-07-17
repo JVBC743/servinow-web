@@ -1,32 +1,5 @@
 @extends('layouts.autenticado')
-
 @section('title', 'Agendar Serviço')
-@section('styles')
-    <style>
-    .star-rating {
-        direction: rtl;
-        display: inline-flex;
-        gap: 5px;
-    }
-
-    .star-rating input[type="radio"] {
-        display: none;
-    }
-
-    .star-rating label {
-        font-size: 2rem;
-        color: #ccc;
-        cursor: pointer;
-        transition: color 0.2s ease-in-out;
-    }
-
-    .star-rating input[type="radio"]:checked ~ label,
-    .star-rating label:hover,
-    .star-rating label:hover ~ label {
-        color: #ffc107;
-    }
-</style>
-@endsection
 @section('content')
     {{-- {{ dd($servico->caminho_foto) }} --}}
 
