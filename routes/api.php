@@ -16,7 +16,7 @@ Route::prefix('v1')->group(function () {
     // Autenticação via token
     Route::post('/login', [AuthApiController::class, 'login']);
     Route::post('/register', [AuthApiController::class, 'register']);
-
+    Route::post('/recuperar-senha', [AuthApiController::class, 'enviarLinkRecuperacao']);
     // Rotas protegidas
     Route::middleware('auth:sanctum')->group(function () {
 

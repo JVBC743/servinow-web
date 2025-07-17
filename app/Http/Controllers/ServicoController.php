@@ -86,7 +86,7 @@ class ServicoController extends Controller
         });
         $categorias = Categoria::all();
 
-        return view('pages.dashboard', compact('servicos', 'pesquisa', 'categorias'));
+        return view('pages.dashboardGuest', compact('servicos', 'pesquisa', 'categorias'));
 
     }
 

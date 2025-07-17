@@ -24,6 +24,7 @@ Route::middleware('guest')->group(function () {
         Route::view('/', 'pages.cadastro')->name('cadastro.form');
         Route::post('/', 'register')->name('cadastro.store');
     });
+    Route::get('/dashboard', [ServicoController::class, 'dashboardGuest'])->name('dashboard.guest');
 });
 
 // Informações públicas
@@ -35,11 +36,8 @@ Route::prefix('PasswordReset')->controller(RecuperacaoSenhaController::class)->g
     Route::post('', 'enviarLinkRecuperacao')->name('post.recuperacao.senha');
     Route::get('/recuperar-senha/redefinir/{token}', 'mostrarFormularioRedefinicao')->name('redefinir.senha.form');
     Route::post('/recuperar-senha/redefinir', 'redefinirSenha')->name('post.redefinir.senha');
-
-
 });
 
-Route::get('/dashboard', [ServicoController::class, 'dashboardGuest'])->name('dashboard.guest');
 
 /*
 |--------------------------------------------------------------------------
@@ -61,7 +59,7 @@ Route::middleware('auth')->group(function () {
         Route::post('agendar', 'store')->name('agendar');
         Route::get('solicitacoes', 'indexSolicitacoes')->name('agendamento.solicitacoes');
         Route::put('/aceitar', 'acceptSolicitacao')->name('aceitacao.solicitacao');
-        Route::delete('/negar','destroySolicitacao')->name('negacao.solicitacao');
+        Route::delete('/negar', 'destroySolicitacao')->name('negacao.solicitacao');
         Route::put('/sucesso', 'closeSuccess')->name('fechar.sucesso');
         Route::put('/falha', 'closeFail')->name('fechar.falha');
     });
@@ -101,7 +99,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/teste-minio', 'testeMinio')->name('enviar.imagem');
     });
 
-    Route::prefix('relatorio')->controller(RelatorioController::class)->group(function(){
+    Route::prefix('relatorio')->controller(RelatorioController::class)->group(function () {
         Route::get('/servicos', 'servicos')->name('relatorio.servicos.pdf');
     });
 
