@@ -43,7 +43,7 @@
     <x-toast />
 
     {{-- Conteúdo principal --}}
-    <main class="py-4" style="min-height: 80vh; padding-left: 4rem  ">
+    <main class="py-4" style="min-height: 100vh; padding-left: 4rem  ">
         <div class="container-fluid">
             @yield('content')
         </div>

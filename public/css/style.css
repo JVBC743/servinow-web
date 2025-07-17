@@ -12,6 +12,8 @@ html {
     font-family: Arial, sans-serif;
     font-size: 16px;
     overflow-x: hidden;
+    /* display: flex;
+    flex-direction: column; */
 }
 
 h1,
@@ -394,7 +396,28 @@ form {
     transform: scale(1.1);
 }
 
+.star-rating {
+    direction: rtl;
+    display: inline-flex;
+    gap: 5px;
+}
 
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+.star-rating label {
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+.star-rating input[type="radio"]:checked~label,
+.star-rating label:hover,
+.star-rating label:hover~label {
+    color: #ffc107;
+}
 
 @media (max-width: 425px) {
     main {
@@ -407,6 +430,7 @@ form {
         margin-bottom: 0.5rem;
     }
 }
+
 .card-img-top.lazy {
     opacity: 0;
     transition: opacity 0.3s ease-in;
