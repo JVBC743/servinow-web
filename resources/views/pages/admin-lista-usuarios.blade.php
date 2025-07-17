@@ -48,15 +48,14 @@
                                 <td>
                                     <div class="d-flex justify-content-center gap-3">
                                         <a href="{{ route('admin.mostrar.edicao', $usr->id) }}">
-                                            <img class="list_icons" src="{{ asset('images/edit.png') }}" alt="Editar">
+                                            <i class="fa-solid fa-pen-to-square edit-icon"></i>
                                         </a>
                                         <form action="{{ route('admin.excluir.conta', $usr->id) }}" method="POST"
                                             onsubmit="return confirm('Tem certeza que deseja excluir?')">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="delete_icon_button bg-transparent border-0 p-0">
-                                                <img class="list_icons" src="{{ asset('images/delete.png') }}"
-                                                    alt="Excluir conta">
+                                                <i class="fa-solid fa-trash del-icon"></i>
                                             </button>
                                         </form>
                                     </div>
