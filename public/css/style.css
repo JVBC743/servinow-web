@@ -97,6 +97,7 @@ h6 {
     margin-top: 0;
 }
 
+
 .divisor {
     border: 1px solid #888;
     width: 100%;
@@ -133,10 +134,13 @@ h6 {
     border: 1px solid black;
 }
 
+
 .btn-cadastrar:hover {
     background-color: #ccc;
     color: black;
     border: 1px solid black;
+    transform: scale(1.05);
+    transition: transform 0.4s ease-in-out;
 }
 
 .btn-entrar {
@@ -149,6 +153,8 @@ h6 {
     background-color: #006e92;
     color: black;
     border: 1px solid black;
+    transform: scale(1.1);
+    transition: transform 0.4s ease-in-out;
 }
 
 
@@ -156,8 +162,7 @@ h6 {
 
 .container-principal {
     background-color: transparent;
-
-    padding: 30px;
+    /* padding: 10px; */
     border-radius: 10px;
     width: 100%;
     max-width: 1200px;
@@ -225,6 +230,7 @@ form {
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
+    color: black;
 }
 
 .input-grupo {
@@ -232,57 +238,64 @@ form {
     flex-direction: column;
     flex: 1;
     min-width: 150px;
+    color: black;
 }
 
 .input-grupo label {
     margin-bottom: 5px;
     font-size: 14px;
     font-weight: 500;
+    color: black;
 }
 
 .input-grupo input {
     padding: 10px;
-    border: 1px solid #DDE3E8;
-    border-radius: 5px;
+    border: 1px solid grey;
+    border-radius: 15px;
     font-size: 14px;
     background-color: #F3F6F9;
-    color: #333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    color: black;
 }
 
 .input-grupo input:focus {
     outline: none;
     border-color: #007BFF;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.5);
 }
 
 .input-email {
     flex-grow: 2;
+    color: black;
 }
 
 .input-logradouro {
     flex-grow: 2.5;
+    color: black;
 }
 
 .input-cidade {
     flex-grow: 2;
+    color: black;
 }
 
 .input-numero,
 .input-uf,
 .input-bairro {
     flex-grow: 0.5;
+    color: black;
 }
 
 .termos {
     font-size: 16px;
-    color: #F0F0F0;
+    color: black;
     text-align: left;
     margin-top: 10px;
     line-height: 1.5;
 }
 
 .termos a {
-    color: #B0E0E6;
+    color: blue;
     text-decoration: none;
 }
 
