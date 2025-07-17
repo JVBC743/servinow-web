@@ -69,30 +69,28 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 
 
-    // Funcionalidade para buscar CEP (exemplo usando ViaCEP)
+    // Funcionalidade para buscar CEP com BrasilAPI
     if (cepInput) {
-        cepInput.addEventListener('blur', async function() { // 'blur' é quando o campo perde o foco
-            const cep = this.value.replace(/\D/g, ''); // Remove não dígitos
+        cepInput.addEventListener('blur', async function () {
+            const cep = this.value.replace(/\D/g, '');
             if (cep.length === 8) {
                 try {
-                    const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+                    const response = await fetch(`https://brasilapi.com.br/api/cep/v1/${cep}`);
                     if (!response.ok) throw new Error('CEP não encontrado');
                     const data = await response.json();
 
-                    if (!data.erro) {
-                        document.getElementById('logradouro').value = data.logradouro || '';
-                        document.getElementById('bairro').value = data.bairro || '';
-                        document.getElementById('cidade').value = data.localidade || '';
-                        document.getElementById('uf').value = data.uf || '';
-                        document.getElementById('numero').focus(); // Move o foco para o número
-                    } else {
-                        alert('CEP não encontrado.');
-                    }
+                    // BrasilAPI retorna: cep, state, city, neighborhood, street
+                    document.getElementById('logradouro').value = data.street || '';
+                    document.getElementById('bairro').value = data.neighborhood || '';
+                    document.getElementById('cidade').value = data.city || '';
+                    document.getElementById('uf').value = data.state || '';
+                    document.getElementById('numero').focus();
                 } catch (error) {
                     console.error('Erro ao buscar CEP:', error);
-                    alert('Erro ao buscar CEP. Verifique o console para mais detalhes.');
+                    alert('Erro ao buscar CEP. Verifique se o CEP é válido.');
                 }
             }
         });
     }
+
 });
