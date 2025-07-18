@@ -38,12 +38,13 @@ class UsuarioController extends Controller
         return redirect()->back()->with('success', 'O usuário foi editado com sucesso.');
     }
 
-    public function showPerfil(){
+    public function showPerfil()
+    {
 
         $id = Auth::id();
 
         $usr = Usuario::find($id);
-        if($usr->caminho_img)
+        if ($usr->caminho_img)
             $usr->url_foto = Storage::disk('miniobusca')->temporaryUrl($usr->caminho_img, now()->addMinutes(5));
         return view('pages.visualizacao-perfil-usuario', compact('usr'));
     }
@@ -136,11 +137,9 @@ class UsuarioController extends Controller
                 $usr->caminho_img,
                 now()->addMinutes(5)
             );
-
         } else {
 
             $imagem_url = null;
-
         }
         // dd($imagem_url);
         return view("pages.admin-edicao-perfil", compact('lista', 'usr', 'imagem_url'));
@@ -179,9 +178,7 @@ class UsuarioController extends Controller
 
     public function destroy($id) {}
 
-    public function gerarRelatorio(){
-
-    }
+    public function gerarRelatorio() {}
     public function adminUserDestroy(int $id)
     {
         $usr = Usuario::find($id);
@@ -190,10 +187,38 @@ class UsuarioController extends Controller
             return redirect()->back()->with('error', 'Usuário não encontrado.');
         }
 
-        $usr->destroy($id);
+        // Verifica se há serviços vinculados
+        if ($usr->servicos()->exists()) {
+            return redirect()->back()->with('error', 'Não é possível excluir o usuário, pois ele possui serviços vinculados.');
+        }
+
+        // Verifica se há agendamentos como cliente
+        if ($usr->agendamentosCliente()->exists()) {
+            return redirect()->back()->with('error', 'Não é possível excluir o usuário, pois ele possui agendamentos como cliente.');
+        }
+
+        // Verifica se há agendamentos como prestador
+        if ($usr->agendamentosPrestador()->exists()) {
+            return redirect()->back()->with('error', 'Não é possível excluir o usuário, pois ele possui agendamentos como prestador.');
+        }
+
+        // Verifica se há avaliações feitas pelo usuário
+        // if ($usr->avaliacoesCliente()->exists()) {
+        //     return redirect()->back()->with('error', 'Não é possível excluir o usuário, pois ele possui avaliações registradas como cliente.');
+        // }
+
+        // // Verifica se há avaliações recebidas pelo usuário
+        // if ($usr->avaliacoesPrestador()->exists()) {
+        //     return redirect()->back()->with('error', 'Não é possível excluir o usuário, pois ele possui avaliações como prestador.');
+        // }
+
+        // Exclusão permitida
+        $usr->delete();
 
         return redirect()->back()->with('success', 'Usuário excluído com sucesso!');
     }
+
+
 
     public function showMinioTest()
     {

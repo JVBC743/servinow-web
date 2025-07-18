@@ -79,4 +79,13 @@ class Usuario extends Authenticatable
     {
         return $this->hasMany(Servico::class, 'usuario_id');
     }
+
+    public function agendamentosCliente(){
+        return $this->hasMany(Agendamento::class, 'id_cliente');
+    }
+
+    public function agendamentosPrestador(){
+        return $this->hasMany(Agendamento::class, 'id_prestador');
+    }
+
 }

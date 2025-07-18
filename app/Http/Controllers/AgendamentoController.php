@@ -9,6 +9,7 @@ use App\Models\StatusAgendamento;
 use App\Models\Agendamento;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreateAgendamentoRequest;
+use App\Services\EvolutionWhatsApp;
 
 class AgendamentoController extends Controller
 {
@@ -30,7 +31,8 @@ class AgendamentoController extends Controller
         return view('pages.agendamentos', compact('agendamento_cliente', 'agendamento_prestador'));
     }
 
-    public function indexSolicitacoes(){
+    public function indexSolicitacoes()
+    {
         $id = Auth::id();
 
         $agendamento = Agendamento::with(['cliente', 'servico', 'statusAgendamento'])
@@ -38,15 +40,11 @@ class AgendamentoController extends Controller
             ->get();
 
         return view('pages.solicitacoes-agendamento', compact('agendamento'));
-
     }
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        
-    }
+    public function create() {}
 
     /**
      * Store a newly created resource in storage.
@@ -59,7 +57,12 @@ class AgendamentoController extends Controller
 
         $servico = Servico::find($id_servico);
 
-        Agendamento::create([
+        // Impede que o cliente agende com ele mesmo
+        if ($servico->usuario_id == $id) {
+            return redirect()->back()->with('error', 'Você não pode agendar um serviço com você mesmo.');
+        }
+
+        $agendamento = Agendamento::create([
             'id_cliente'        => $id,
             'id_servico'        => $id_servico,
             'id_prestador'      => $servico->usuario_id,
@@ -68,9 +71,23 @@ class AgendamentoController extends Controller
             'status'            => 1,
             'descricao'         => $data['descricao'],
         ]);
-        return redirect()->back()->with('success', 'Solicitação de agendamento enviada com sucesso!');
 
+        $cliente = Auth::user();
+        $prestador = $servico->prestador; // Assumindo que $servico->prestador retorna o usuário dono do serviço
+        $nomeServico = $servico->nome_servico;
+        $dataFormatada = \Carbon\Carbon::parse($data['data'])->format('d/m/Y H:i');
+
+        // Mensagem para o cliente
+        $mensagemCliente = "Olá {$cliente->nome}, sua solicitação de agendamento para o serviço *{$nomeServico}* foi enviada com sucesso!\n\n📅 Data: *{$dataFormatada}*\n💬 Descrição: {$data['descricao']}\n\nEm breve o prestador entrará em contato.";
+        EvolutionWhatsApp::sendMessage('ServiNow', $cliente->telefone, $mensagemCliente);
+
+        // Mensagem para o provedor/prestador
+        $mensagemPrestador = "Olá {$prestador->nome}, você recebeu uma nova solicitação de agendamento para o serviço *{$nomeServico}*.\n\n👤 Cliente: {$cliente->nome}\n📞 Contato: {$cliente->telefone}\n📅 Data: *{$dataFormatada}*\n💬 Descrição: {$data['descricao']}\n\nAcesse seu painel para aceitar ou recusar.";
+        EvolutionWhatsApp::sendMessage('ServiNow', $prestador->telefone, $mensagemPrestador);
+
+        return redirect()->back()->with('success', 'Solicitação de agendamento enviada com sucesso!');
     }
+
 
     /**
      * Display the specified resource.
@@ -107,13 +124,13 @@ class AgendamentoController extends Controller
     {
         $id_agendamento = $request->input('id_agendamento');
 
-        if(!$id_agendamento){
+        if (!$id_agendamento) {
             return redirect()->back()->with('error', 'A solicitação não foi encontrada.');
         }
 
         $agendamento = Agendamento::find($id_agendamento);
 
-        if(!$agendamento){
+        if (!$agendamento) {
             return redirect()->back()->with('error', 'A solicitação não foi encontrada no banco.');
         }
 
@@ -123,37 +140,37 @@ class AgendamentoController extends Controller
         return redirect()->back()->with('success', 'A solicitação foi aceitada.');
     }
 
-    public function destroySolicitacao(Request $request){
+    public function destroySolicitacao(Request $request)
+    {
 
         $id_agendamento = $request->input('id_agendamento');
 
-        if(!$id_agendamento){
+        if (!$id_agendamento) {
             return redirect()->back()->with('error', 'A solicitação não foi encontrada pela solicitação de exclusão.');
         }
 
         $agendamento = Agendamento::find($id_agendamento);
-        if(!$agendamento){
+        if (!$agendamento) {
             return redirect()->back()->with('error', 'A solicitação não foi encontrada no banco.');
         }
 
         $agendamento->delete();
 
         return redirect()->back()->with('success', 'A solicitação foi excluída com sucesso.');
-
     }
-    
+
     public function closeFail(Request $request)
     {
-        
+
         $id_agendamento = $request->input('id_agendamento');
 
-        if(!$id_agendamento){
+        if (!$id_agendamento) {
             return redirect()->back()->with('error', 'A solicitação não foi encontrada pela solicitação de exclusão.');
         }
 
         $agendamento = Agendamento::find($id_agendamento);
 
-        if(!$agendamento){
+        if (!$agendamento) {
             return redirect()->back()->with('error', 'A solicitação não foi encontrada no banco.');
         }
 
@@ -162,20 +179,20 @@ class AgendamentoController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'O agendamento foi fechado com o status: Fechado sem sucesso.');
-
     }
 
-    public function closeSuccess(Request $request){
+    public function closeSuccess(Request $request)
+    {
 
         $id_agendamento = $request->input('id_agendamento');
 
-        if(!$id_agendamento){
+        if (!$id_agendamento) {
             return redirect()->back()->with('error', 'A solicitação não foi encontrada pela solicitação de exclusão.');
         }
 
         $agendamento = Agendamento::find($id_agendamento);
 
-        if(!$agendamento){
+        if (!$agendamento) {
             return redirect()->back()->with('error', 'A solicitação não foi encontrada no banco.');
         }
 
@@ -185,5 +202,4 @@ class AgendamentoController extends Controller
 
         return redirect()->back()->with('success', 'O agendamento foi fechado com o status: Fechado com sucesso.');
     }
-
 }
