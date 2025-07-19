@@ -1,0 +1,111 @@
+/* ===== Padrão ===== */
+.btn-padrao {
+    color: white;
+    background-color: #7DCCD8;
+    border: 1px solid rgb(95, 95, 95);
+    border-radius: 10px;
+    padding: 8px 14px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-padrao:hover {
+    background-color: #45abbb;
+    border: 1px solid rgb(95, 95, 95);
+    transform: scale(1.05);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    color: white;
+}
+
+.btn-padrao:active {
+    background-color: #7DCCD8 !important;
+    border: 1px solid rgb(95, 95, 95) !important;
+    transform: scale(0.97);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    color: white;
+}
+
+/* ===== branco ===== */
+.btn-branco {
+    color: black;
+    background-color: white;
+    border: 1px solid rgb(95, 95, 95);
+    border-radius: 10px;
+    padding: 8px 14px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-branco:hover {
+    background-color: #ccc;
+    border: 1px solid rgb(95, 95, 95);
+    transform: scale(1.05);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    color: black;
+}
+
+.btn-branco:active {
+    background-color: white !important;
+    border: 1px solid rgb(95, 95, 95);
+    transform: scale(0.97);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    color: black !important;
+}
+
+/* ===== Red ===== */
+.btn-vermelho {
+    color: white;
+    background-color: hsl(0, 100%, 38%);
+    border: 1px solid rgb(95, 95, 95);
+    border-radius: 10px;
+    padding: 8px 14px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-vermelho:hover {
+    background-color: hsl(0, 100%, 33%);
+    border: 1px solid rgb(95, 95, 95);
+    transform: scale(1.05);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    color: white;
+}
+
+.btn-vermelho:active {
+    background-color: hsl(0, 100%, 38%) !important;
+    border: 1px solid rgb(95, 95, 95);
+    transform: scale(0.97);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    color: white;
+}
+
+/* ===== Verde ===== */
+.btn-verde {
+    color: white;
+    background-color: hsl(150, 60%, 38%);
+    border: 1px solid rgb(95, 95, 95);
+    border-radius: 10px;
+    padding: 8px 14px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-verde:hover {
+    background-color: hsl(150, 60%, 33%);
+    border: 1px solid rgb(95, 95, 95);
+    transform: scale(1.05);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    color: white;
+}
+
+.btn-verde:active {
+    background-color: hsl(150, 60%, 38%) !important;
+    border: 1px solid rgb(95, 95, 95);
+    transform: scale(0.97);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    color: white;
+}
