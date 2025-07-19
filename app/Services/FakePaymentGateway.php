@@ -12,39 +12,66 @@ class FakePaymentGateway implements PaymentGatewayInterface
 {
     public function createPayment(float $amount, string $method, array $details = []): array
     {
-        // Busca o método de pagamento pelo nome
-        $metodo = MetodoPagamento::where('metodo', $this->mapMethodName($method))->first();
+        $metodoNome = $this->mapMethodName($method);
+        $metodo = MetodoPagamento::where('metodo', $metodoNome)->first();
         if (!$metodo) {
             throw new \Exception('Método de pagamento inválido');
         }
 
-        // Busca o status "Pendente"
         $status = StatusPagamento::where('status', 'Pendente')->first();
         if (!$status) {
             throw new \Exception('Status de pagamento não encontrado');
         }
 
-        // O agendamento pode ser passado em $details['agendamento_id']
         $agendamentoId = $details['agendamento_id'] ?? null;
-
         $codigo = (string) Str::uuid();
         $paymentUrl = route('fake.payment.show', ['id' => $codigo]);
+
+        // Simulação de dados extras por método
+        $extra = [];
+        switch ($metodoNome) {
+            case 'PIX':
+                $extra['qr_code'] = QrCode::size(200)->generate($paymentUrl);
+                break;
+            case 'Boleto Bancário':
+                $fakeBarCode = '23790.12345 60000.123456 70000.123456 1 12340000010000';
+                $extra['pdf_url'] = route('fake.payment.boleto', ['id' => $codigo]);
+                $extra['barcode'] = $fakeBarCode;
+                $extra['qr_code'] = QrCode::size(200)->generate($paymentUrl);
+                break;
+            case 'Cartão de Crédito':
+            case 'Cartão de Débito':
+                // Simula cobrança automática e armazena dados do cartão de forma segura (exemplo: criptografia)
+                if (empty($details['card_number']) || empty($details['card_holder']) || empty($details['card_expiry']) || empty($details['card_cvv'])) {
+                    throw new \Exception('Dados do cartão incompletos');
+                }
+                // Exemplo de armazenamento seguro (use criptografia real em produção)
+                $encryptedCard = encrypt(json_encode([
+                    'number' => $details['card_number'],
+                    'holder' => $details['card_holder'],
+                    'expiry' => $details['card_expiry'],
+                    'cvv'    => $details['card_cvv'],
+                ]));
+                $extra['card_token'] = $encryptedCard;
+                // Simula pagamento aprovado automaticamente
+                $status = StatusPagamento::where('status', 'Pago')->first();
+                break;
+        }
 
         Pagamento::create([
             'id_agendamento' => $agendamentoId,
             'status' => $status->id,
-            'data_pagamento' => null,
+            'data_pagamento' => $status->status === 'Pago' ? now() : null,
             'metodo' => $metodo->id,
             'codigo' => $codigo,
         ]);
 
-        return [
+        return array_merge([
             'id' => $codigo,
             'amount' => $amount,
-            'status' => 'pending',
-            'qr_code' => QrCode::size(200)->generate($paymentUrl),
+            'status' => strtolower($status->status),
             'payment_url' => $paymentUrl,
-        ];
+        ], $extra);
     }
 
     public function checkPaymentStatus(string $paymentId): string
