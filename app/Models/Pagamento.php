@@ -12,11 +12,13 @@ class Pagamento extends Model
     protected $table = 'Pagamento';
 
     protected $fillable = [
-        'id_agendamento',
-        'status',
-        'data_pagamento',
-        'metodo',
-    ];
+    'id_agendamento',
+    'status',
+    'data_pagamento',
+    'metodo',
+    'codigo',
+];
+
 
     protected $casts = [
         'data_pagamento' => 'datetime',
