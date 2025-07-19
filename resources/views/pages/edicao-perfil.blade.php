@@ -107,7 +107,7 @@
                                 <input type="text" name="bairro" id="bairro" class="form-control" value="{{ old('bairro', $usr->bairro ?? '') }}" required>
                             </div>
 
-                            <div class="col-md-4 mb-3">
+                            <div cgit lass="col-md-4 mb-3">
                                 <label for="cidade" class="form-label">Cidade*</label>
                                 <input type="text" name="cidade" id="cidade" class="form-control" value="{{ old('cidade', $usr->cidade ?? '') }}" required>
                             </div>

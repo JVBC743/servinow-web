@@ -8,8 +8,8 @@
         <div class="text-center mb-4">
             @if($usr->url_foto)
                 <img src="
-                                            {{ $usr->url_foto }}
-                                             " alt="Foto de perfil" class="rounded-circle shadow"
+                                                    {{ $usr->url_foto }}
+                                                     " alt="Foto de perfil" class="rounded-circle shadow"
                     style="width: 120px; height: 120px; object-fit: cover;">
             @else
                 <img src="{{ asset('images/user-icon.png') }}" alt="Foto padrão" class="rounded-circle shadow">
@@ -104,6 +104,13 @@
                 Editar Perfil
             </a>
         </div>
+        <div class="text-end mt-3">
+            <button type="button" class="btn btn-verde" data-bs-toggle="modal" data-bs-target="#editarPerfilModal">
+                Testar Modal Editar Perfil
+            </button>
+        </div>
+        @include('components.modal')
+
     </div>
     </div>
 @endsection
