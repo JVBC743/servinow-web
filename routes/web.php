@@ -107,6 +107,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/usuarios', 'index')->name('admin.lista.usuarios');
         Route::get('/edicao/{id}', 'adminShowUserAccount')->name('admin.mostrar.edicao');
         Route::put('/editar/{id}', 'adminUsuarioEdit')->name('admin.usuario.edit');
-        Route::delete('/excluir/{id}', 'adminUserDestroy')->name('admin.excluir.conta');
+        Route::delete('/excluir/{id}', 'adminUserDestroy')->name('admin.excluir.usuario');
     });
 });

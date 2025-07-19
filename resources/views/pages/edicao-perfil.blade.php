@@ -149,15 +149,16 @@
                                 <form action="{{ route('excluir.usuario', $usr->id ) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <input type="hidden" name="id_servico" value="{{ $usr->id }}">
-
+                                    
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="titleModalExcluirConta">Tem certeza?</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                                     </div>
 
                                     <div class="modal-body">
-                                        <p>Caso você prossiga com essa ação, a sua conta, serviços, agendamentos, solicitações e avaliações serão excluídas do sistema.</p>
+                                        <p>Caso você prossiga com essa ação, a sua conta, serviços, agendamentos, solicitações e avaliações serão excluídas do sistema.
+                                            E nenhum desses dados podem ser recuperados.
+                                        </p>
                                     </div>
 
                                     <div class="modal-footer">
