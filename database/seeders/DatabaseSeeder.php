@@ -25,8 +25,10 @@ class DatabaseSeeder extends Seeder
             CategoriaSeeder::class,
             StatusAgendamentoSeeder::class,
             FormacaoSeeder::class,
+            StatusPagamentoSeeder::class,
+            MetodoPagamentoSeeder::class,
         ]);
-        
+
         // Formacao::factory()->count(10)->create();
         // Usuario::factory()->count(10)->create();
         // Servico::factory()->count(10)->create();

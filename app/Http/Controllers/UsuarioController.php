@@ -38,12 +38,13 @@ class UsuarioController extends Controller
         return redirect()->back()->with('success', 'O usuário foi editado com sucesso.');
     }
 
-    public function showPerfil(){
+    public function showPerfil()
+    {
 
         $id = Auth::id();
 
         $usr = Usuario::find($id);
-        if($usr->caminho_img)
+        if ($usr->caminho_img)
             $usr->url_foto = Storage::disk('miniobusca')->temporaryUrl($usr->caminho_img, now()->addMinutes(5));
         return view('pages.visualizacao-perfil-usuario', compact('usr'));
     }
@@ -52,12 +53,11 @@ class UsuarioController extends Controller
     {
         $lista = Formacao::all();
 
-        $usr = Usuario::find($id);
-
         if (!$usr) {
             return redirect()->back()->with('error', 'Usuário não encontrado.');
         }
-        return view('pages.edicao-perfil', compact('lista', 'usr'));
+
+        return view('pages.edicao-perfil', compact('lista'));
     }
 
     public function show($id)
@@ -136,11 +136,9 @@ class UsuarioController extends Controller
                 $usr->caminho_img,
                 now()->addMinutes(5)
             );
-
         } else {
 
             $imagem_url = null;
-
         }
         // dd($imagem_url);
         return view("pages.admin-edicao-perfil", compact('lista', 'usr', 'imagem_url'));
@@ -177,23 +175,37 @@ class UsuarioController extends Controller
             ->with('error', 'Falha ao salvar!');
     }
 
-    public function destroy($id) {}
+    public function destroy($id) 
+    {
+        $usr = Usuario::find($id);
 
-    public function gerarRelatorio(){
+        if(!$usr){
+            return redirect()->back()->with('error', 'O usuário selecionado para exclusão não foi encontrado.');
+        }
+
+        $usr->delete();
+        return redirect()->route('dashboard.guest')->with('success', 'A sua conta foi excluída com sucesso.');
+    }
+
+    public function gerarRelatorio() 
+    {
 
     }
+
     public function adminUserDestroy(int $id)
     {
         $usr = Usuario::find($id);
 
-        if (!$usr) {
-            return redirect()->back()->with('error', 'Usuário não encontrado.');
+        if(!$usr){
+            return redirect()->back()->with('error', 'O usuário selecionado para exclusão não foi encontrado.');
         }
 
-        $usr->destroy($id);
+        $usr->delete();
 
         return redirect()->back()->with('success', 'Usuário excluído com sucesso!');
     }
+
+
 
     public function showMinioTest()
     {

@@ -21,7 +21,7 @@ class AvaliacaoController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**

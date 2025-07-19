@@ -3,29 +3,30 @@
 @section('title', 'Editar Perfil')
 
 @section('content')
-    <div class="container-fluid d-flex justify-content-center align-items-center py-5">
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
+
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+        @if (session('error'))
+            <div class="alert alert-danger">{{ session('error') }}</div>
+        @endif
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
             </div>
         @endif
+    <div class="container-fluid d-flex justify-content-center align-items-center py-5">
         <div class="card p-4 shadow w-100" style="max-width: 900px">
 
             <h1 class="text-center mb-4">Editar Perfil</h1>
 
-            @if (session('error'))
-                <div class="alert alert-danger">{{ session('error') }}</div>
-            @endif
-
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul class="mb-0">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
 
             @if ($usr)
                 <form action="{{ route('admin.usuario.edit', $usr->id) }}" method="post" enctype="multipart/form-data">
@@ -61,7 +62,7 @@
                                 <option value="">Selecione a sua formação</option>
                                 @foreach ($lista as $formacao)
                                     <option value="{{ $formacao->id }}"
-                                        {{ old('area_atuacao', $usr->area_atuacao) == $formacao->id ? 'selected' : '' }}>
+                                        {{ (int) old('area_atuacao', $usr->area_atuacao) === $formacao->id ? 'selected' : '' }}>
                                         {{ $formacao->formacao }}
                                     </option>
                                 @endforeach

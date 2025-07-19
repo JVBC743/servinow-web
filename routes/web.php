@@ -72,7 +72,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/edicao/{id}', 'show')->name('mostrar.edicao');
         Route::get('/formacoes/{id}', 'listFormations')->name('listar.formacoes');
         Route::put('/editar/{id}', 'edit')->name('editar.usuario');
-        Route::delete('/excluir/{id}', 'destroy')->name('excluir.conta');
+        Route::delete('/excluir/{id}', 'destroy')->name('excluir.usuario');
     });
 
     // Serviços
@@ -107,6 +107,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/usuarios', 'index')->name('admin.lista.usuarios');
         Route::get('/edicao/{id}', 'adminShowUserAccount')->name('admin.mostrar.edicao');
         Route::put('/editar/{id}', 'adminUsuarioEdit')->name('admin.usuario.edit');
-        Route::delete('/excluir/{id}', 'adminUserDestroy')->name('admin.excluir.conta');
+        Route::delete('/excluir/{id}', 'adminUserDestroy')->name('admin.excluir.usuario');
     });
 });

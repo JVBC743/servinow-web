@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('Agendamento', function (Blueprint $table) {
-            $table->string('descricao', length: 50)->nullable();
+        Schema::table('Pagamento', function (Blueprint $table) {
+            $table->boolean('repassado')->default(false);
         });
     }
 
@@ -21,7 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('descricao');
-
+        Schema::table('Pagamento', function (Blueprint $table) {
+            $table->dropColumn('repassado');
+        });
     }
 };

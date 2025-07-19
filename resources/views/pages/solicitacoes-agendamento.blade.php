@@ -28,7 +28,7 @@
             <h1 class="text-center mb-4">Solicitações de agendamento pelos seus serviços</h1>
 
 
-            
+
             <table class="table table-bordered text-center align-middle">
                 <thead class="table-light">
                     <tr>
@@ -94,7 +94,7 @@
                                                     <img class="list_icons" src="{{ asset('images/confirmar.png') }}" alt="Botão para aceitar a solicitação de agendamento.">
                                                 </button>
                                             </form>
-    
+
                                             <form action="{{ route('negacao.solicitacao') }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
