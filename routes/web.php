@@ -72,7 +72,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/edicao/{id}', 'show')->name('mostrar.edicao');
         Route::get('/formacoes/{id}', 'listFormations')->name('listar.formacoes');
         Route::put('/editar/{id}', 'edit')->name('editar.usuario');
-        Route::delete('/excluir/{id}', 'destroy')->name('excluir.conta');
+        Route::delete('/excluir/{id}', 'destroy')->name('excluir.usuario');
     });
 
     // Serviços

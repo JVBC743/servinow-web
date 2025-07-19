@@ -36,6 +36,7 @@
                 @endif
 
                 @if($usr)
+
                     <form action="{{ route('editar.usuario', $usr->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -65,7 +66,8 @@
                                 <select name="area_atuacao" id="area_atuacao" class="form-select" required>
                                     <option value="">Selecione a sua formação</option>
                                     @foreach ($lista as $formacao)
-                                        <option value="{{ $formacao->id }}" {{ old('area_atuacao', $usr->area_atuacao) == $formacao->id ? 'selected' : '' }}>
+                                        <option value="{{ $formacao->id }}"
+                                            {{ (int) old('area_atuacao', $usr->area_atuacao) === $formacao->id ? 'selected' : '' }}>
                                             {{ $formacao->formacao }}
                                         </option>
                                     @endforeach
@@ -115,8 +117,6 @@
                                 <input type="text" name="uf" id="uf" maxlength="2" class="form-control" value="{{ old('uf', $usr->uf ?? '') }}" required>
                             </div>
 
-
-
                             {{-- Imagem --}}
                             <div class="d-flex justify-content-center mt-5 mb-3">
                                 <div class="d-flex flex-column align-items-center">
@@ -135,11 +135,40 @@
                                 <a href="{{ route('visualizacao.perfil')  }}" class="btn btn-secondary px-5">Desfazer</a>
                             </div>
                             <div class="d-flex justify-content-center mt-4 w-100">
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalExcluirConta">Excluir Conta</button>
+                            </div>
+                            <div class="d-flex justify-content-center mt-4 w-100">
                                 <button type="submit" class="btn btn-primary px-5 btn-geral">Salvar</button>
                             </div>
                         </div>
-                        
                     </form>
+
+                     <div class="modal fade" id="modalExcluirConta" tabindex="-1" aria-labelledby="modalExcluirContaabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <form action="{{ route('excluir.usuario', $usr->id ) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="hidden" name="id_servico" value="{{ $usr->id }}">
+
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="titleModalExcluirConta">Tem certeza?</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <p>Caso você prossiga com essa ação, a sua conta, serviços, agendamentos, solicitações e avaliações serão excluídas do sistema.</p>
+                                    </div>
+
+                                    <div class="modal-footer">
+
+                                        <button type="submit" class="btn btn-danger" >Confirmar Exclusão</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 @else
                     <h3 class="text-center text-danger">Usuário não encontrado, por favor, volte.</h3>
                 @endif

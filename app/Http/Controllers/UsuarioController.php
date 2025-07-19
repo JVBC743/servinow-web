@@ -53,12 +53,11 @@ class UsuarioController extends Controller
     {
         $lista = Formacao::all();
 
-        $usr = Usuario::find($id);
-
         if (!$usr) {
             return redirect()->back()->with('error', 'Usuário não encontrado.');
         }
-        return view('pages.edicao-perfil', compact('lista', 'usr'));
+
+        return view('pages.edicao-perfil', compact('lista'));
     }
 
     public function show($id)
@@ -176,9 +175,23 @@ class UsuarioController extends Controller
             ->with('error', 'Falha ao salvar!');
     }
 
-    public function destroy($id) {}
+    public function destroy($id) 
+    {
+        $usr = Usuario::find($id);
 
-    public function gerarRelatorio() {}
+        if(!$usr){
+            return redirect()->back()->with('error', 'O usuário selecionado para exclusão não foi encontrado.');
+        }
+
+        $usr->delete();
+        return redirect()->route('dashboard.guest')->with('success', 'A sua conta foi excluída com sucesso.');
+    }
+
+    public function gerarRelatorio() 
+    {
+
+    }
+
     public function adminUserDestroy(int $id)
     {
         $usr = Usuario::find($id);
