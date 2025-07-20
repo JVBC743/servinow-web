@@ -29,8 +29,9 @@ class ServicoController extends Controller
         $id = Auth::id();
 
         $servicos = Servico::where('usuario_id', $id)->get();
+        $categorias = Categoria::all(); 
 
-        return view('pages.servicos-cadastrados', compact('servicos'));
+        return view('pages.servicos-cadastrados', compact('servicos', 'categorias'));
     }
 
     public function dashboard(Request $request)

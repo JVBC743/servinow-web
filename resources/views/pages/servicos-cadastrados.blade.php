@@ -57,9 +57,13 @@
                                 <td>{{ $item->created_at->format('d/m/Y') }} às {{ $item->created_at->format('H:i') }}</td>
                                 <td>
                                     <div class="d-flex justify-content-center gap-3">
-                                        <a href="{{ route('servico.edit', ['servico' => $item->id]) }}">
+                                        <!-- Botão para abrir a modal de editar serviço, passando o serviço correto -->
+                                        <button type="button"
+                                            class="bg-transparent border-0 p-0"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#editarServicoModal{{ $item->id }}">
                                             <i class="fa-solid fa-pen-to-square edit-icon"></i>
-                                        </a>
+                                        </button>
 
                                         <button class="delete_icon_button bg-transparent border-0 p-0" data-bs-toggle="modal"
                                             data-bs-target="#modalConfirmDelete" data-servico-id="{{ $item->id }}">
@@ -68,6 +72,8 @@
                                     </div>
                                 </td>
                             </tr>
+                            <!-- Modal Editar Serviço para cada serviço -->
+                            @include('components.modal-editar-servico', ['servico' => $item, 'categorias' => $categorias])
                         @endforeach
                     </tbody>
 
@@ -99,6 +105,7 @@
             </div>
         </div>
     </div>
+
 @endsection
 
 @section('scripts')

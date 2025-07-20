@@ -109,7 +109,7 @@
                 Testar Modal Editar Perfil
             </button>
         </div>
-        @include('components.modal', ['usr' => $usr, 'lista' => $lista, 'imagem_url' => $imagem_url])
+        @include('components.modal-editar-perfil', ['usr' => $usr, 'lista' => $lista, 'imagem_url' => $imagem_url])
 
     </div>
     </div>
