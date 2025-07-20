@@ -1,0 +1,28 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::table('Servico', function (Blueprint $table) {
+            $table->decimal('preco', 10, 2)->after('descricao')->nullable()->comment('Preço do serviço');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::table('Servico', function (Blueprint $table) {
+            $table->dropColumn('preco');
+        });
+    }
+};
