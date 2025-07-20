@@ -68,7 +68,7 @@
 
                 <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
                     <a href="#" class="btn btn-primary btn-geral">Enviar mensagem</a>
-                    {{-- <button class="btn btn-warning">Reportar</button> Avaliar se vai ser necessário trocar para um contato de e-mail. --}}
+                    <button class="btn btn-warning">Reportar</button>
                 </div>
             </div>
         </div>
