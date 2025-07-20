@@ -31,7 +31,10 @@
 
 
     <hr>
-    
+<x-btn variant="branco" type="button" data-bs-toggle="modal" data-bs-target="#modalDenunciarUsuarioTeste">
+    Denunciar Usuário
+</x-btn>
+
     <div class="d-flex flex-wrap justify-content-center" style="gap: 20px;">
 
         @foreach($servicos as $item)
@@ -46,6 +49,6 @@
 
 
 
-    @include('components.modal-denunciar-usuario')
+    
    
 @endsection
