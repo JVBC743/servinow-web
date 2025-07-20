@@ -7,11 +7,19 @@
                 <button type="button" class="btn-close modal-denunciar-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
             </div>
             <div class="modal-body">
-                <form action="#" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('denunciar.prestador', $usr->id) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="id_prestador" value="{{ $usr->id }}">
+
                     <div class="card-denunciar-usuario mb-4">
                         <div class="card-body">
                             <div class="row-denunciar-usuario">
                                 <div class="col-denunciar-usuario-esq">
+
+                                    <div class="form-group-denunciar-usuario mb-3">
+                                        <label for="titulo" class="label-denunciar-usuario">Titulo da denúncia<span class="required">*</span></label>
+                                        <input type="text" name="titulo" class="form-control input-denunciar-usuario">
+                                    </div>
                                     <!-- Motivo -->
                                     <div class="form-group-denunciar-usuario mb-3">
                                         <label for="motivoTeste" class="label-denunciar-usuario">Motivo<span class="required">*</span></label>

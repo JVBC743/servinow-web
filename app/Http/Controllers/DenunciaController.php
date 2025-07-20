@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Denuncia;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateDenunciaRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Container\Attributes\Storage;
+use App\Models\Usuario;
 
 class DenunciaController extends Controller
 {
@@ -13,6 +17,11 @@ class DenunciaController extends Controller
     public function index()
     {
         //
+    }
+
+    public function indexMotivos()
+    {
+
     }
 
     /**
@@ -26,9 +35,35 @@ class DenunciaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(CreateDenunciaRequest $request, $id)
+    {   
+        $denunciado = $request->input('id_prestador');
+
+        $prestador = Usuario::find($denunciado);
+
+        if(!$prestador){
+            return redirect()->back()->with('error', 'O prestador não foi encontrado no banco.');
+        }
+
+        $data = $request->validated();
+
+        if ($request->hasFile('anexo')) {
+            $path = $request->file('anexo')->store('denuncia/anexos', 'minio');
+            $data['caminho_arquivo'] = $path;
+        }
+        
+        Denuncia::create([
+
+            'id_denunciante' => Auth::id(),
+            'id_denunciado' => $denunciado,
+            'titulo' => $data['titulo'],
+            'id_motivo' => $data['motivo'],
+            'descricao' => $data['descricao'],
+            'caminho_arquivo' => $data['caminho_arquivo'] ?? null,
+
+        ]);
+
+        return redirect()->back()->with('success', 'A denuncia foi realizada com sucesso.');
     }
 
     /**

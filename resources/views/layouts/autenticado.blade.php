@@ -32,7 +32,6 @@
     <link rel="stylesheet" href="{{ asset('css/components/buttons.css') }}">
     <link rel="stylesheet" href="{{ asset('css/components/modal.css') }}">
 
-    @include('components.modal-denunciar-usuario', ['motivos' => $motivos])
 
     @yield('styles')
     

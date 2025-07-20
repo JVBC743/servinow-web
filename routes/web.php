@@ -7,7 +7,7 @@ use App\Http\Controllers\Auth\RecuperacaoSenhaController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ServicoController;
 use App\Http\Controllers\AvaliacaoController;
-use App\Http\Controllers\MotivoController;
+use App\Http\Controllers\DenunciaController;
 use App\Http\Controllers\RelatorioController;
 
 /*
@@ -96,8 +96,9 @@ Route::middleware('auth')->group(function () {
 
     });
 
-    Route::prefix('denuncia')->controller(MotivoController::class)->group(function () {
-        Route::get('/list', 'index');
+    Route::prefix('denuncia')->controller(DenunciaController::class)->group(function () {
+        Route::get('/lista-motivos', 'indexMotivos')->name('listar.motivos');
+        Route::post('denunciar/{id}', 'store')->name('denunciar.prestador');
     });
 
     Route::controller(UsuarioController::class)->group(function () {

@@ -142,7 +142,7 @@
             Enviar avaliação
         </button>
         <x-btn variant="vermelho" type="button" data-bs-toggle="modal" data-bs-target="#modalDenunciarUsuarioTeste">
-            Denunciar Usuário
+            Denunciar Servico
         </x-btn>
     </div>
         

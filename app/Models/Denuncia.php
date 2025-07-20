@@ -14,6 +14,7 @@ class Denuncia extends Model
         'id_motivo',
         'titulo',
         'descricao',
+        'caminho_arquivo'
     ];
     
     public function denunciante()

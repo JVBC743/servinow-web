@@ -162,7 +162,10 @@ class ServicoController extends Controller
         $usr = Usuario::findOrFail($id);
         if($usr->caminho_img)
             $usr->url_foto = Storage::disk('miniobusca')->temporaryUrl($usr->caminho_img, now()->addMinutes(5));
-        return view('pages.visualizacao-perfil-prestador', compact('usr'));
+
+        $motivos = Motivo::all();
+
+        return view('pages.visualizacao-perfil-prestador', compact('usr', 'motivos'));
     }
 
     /**

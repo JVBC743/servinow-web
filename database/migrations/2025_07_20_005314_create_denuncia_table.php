@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_motivo');
             
             $table->string('titulo');
-            $table->text('descricao');
+            $table->text('descricao')->nullable();
 
             $table->foreign('id_motivo')->references('id')->on('Motivo');
             $table->foreign('id_denunciante')->references('id')->on('Usuario');
