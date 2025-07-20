@@ -3,7 +3,7 @@
 @section('title', 'Perfil do Prestador')
 
 @section('content')
-    <div class="container py-5">
+    <div class="container py-5 rounded-5">
         <div class="card shadow mx-auto" style="max-width: 900px;">
             <div class="card-header bg-info text-light text-center">
                 <h3 class="mb-0">Perfil do Prestador</h3>
