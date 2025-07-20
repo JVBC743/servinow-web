@@ -4,12 +4,30 @@
 
 @section('content')
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    @if(session('error'))
+        <div class="alert alert-danger">{{ session('error') }}</div>
+    @endif
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <div class="card-body">
         <div class="text-center mb-4">
             @if($usr->url_foto)
                 <img src="
-                                                                    {{ $usr->url_foto }}
-                                                                     " alt="Foto de perfil" class="rounded-circle shadow"
+                    {{ $usr->url_foto }}
+                        " alt="Foto de perfil" class="rounded-circle shadow"
                     style="width: 120px; height: 120px; object-fit: cover;">
             @else
                 <img src="{{ asset('images/user-icon.png') }}" alt="Foto padrão" class="rounded-circle shadow">
@@ -99,14 +117,14 @@
             <small class="d-md-none text-muted">Deslize para o lado para ver mais →</small>
         </div>
 
-        <div class="text-end">
+        {{-- <div class="text-end">
             <a href="{{ route('mostrar.edicao', ['id' => auth()->id()]) }}" class="btn btn-primary btn-geral">
                 Editar Perfil
             </a>
-        </div>
-        <div class="text-end mt-3">
-            <button type="button" class="btn btn-verde" data-bs-toggle="modal" data-bs-target="#editarPerfilModal">
-                Testar Modal Editar Perfil
+        </div> --}}
+        <div class="text-end mt-3 ">
+            <button type="button" class="btn btn-primary btn-geral" data-bs-toggle="modal" data-bs-target="#editarPerfilModal">
+                Editar Perfil
             </button>
         </div>
         @include('components.modal-editar-perfil', ['usr' => $usr, 'lista' => $lista, 'imagem_url' => $imagem_url])
@@ -114,9 +132,5 @@
     </div>
     </div>
 
-@if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
+
 @endsection

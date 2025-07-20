@@ -20,6 +20,8 @@ class AgendamentoController extends Controller
     {
         $id = Auth::id();
 
+        // $formatada = \Carbon\Carbon::createFromFormat('Y-m-d', $prazo)->format('d-m-Y');
+
         $agendamento_cliente = Agendamento::with(['prestador', 'servico', 'statusAgendamento'])
             ->where('id_cliente', $id)
             ->get();
@@ -38,6 +40,8 @@ class AgendamentoController extends Controller
         $agendamento = Agendamento::with(['cliente', 'servico', 'statusAgendamento'])
             ->where('id_prestador', $id)
             ->get();
+
+        // $agendamento->prazo = \Carbon\Carbon::createFromFormat('d/m/Y', $data)->format('Y-m-d');
 
         return view('pages.solicitacoes-agendamento', compact('agendamento'));
     }
@@ -66,7 +70,7 @@ class AgendamentoController extends Controller
             'id_cliente'        => $id,
             'id_servico'        => $id_servico,
             'id_prestador'      => $servico->usuario_id,
-            'data_agendamento'  => $data['data'],
+            'prazo'  => $data['data'],
             'notificacao'       => false,
             'status'            => 1,
             'descricao'         => $data['descricao'],

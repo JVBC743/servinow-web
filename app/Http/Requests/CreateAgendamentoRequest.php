@@ -19,10 +19,21 @@ class CreateAgendamentoRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
+
+    protected function prepareForValidation()
+    {
+        if ($this->has('data')) {
+            $data = str_replace('/', '-', $this->input('data'));
+            $this->merge([
+                'data' => date('Y-m-d', strtotime($data))
+            ]);
+        }
+    }
+
     public function rules(): array
     {
         return [
-            'data' => 'required|after_or_equal:today',
+            'data' => 'required|date|after_or_equal:today',
             'descricao' => 'max:50|min:20|required',
         ];
     }

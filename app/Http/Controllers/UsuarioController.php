@@ -17,6 +17,8 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
 
+use App\Services\EvolutionWhatsApp;
+
 class UsuarioController extends Controller
 {
     public function index()
@@ -115,8 +117,8 @@ class UsuarioController extends Controller
 
         if ($usr->update($data)) {
             return redirect()
-                ->route('mostrar.edicao', ['id' => $id])
-                ->with('success', 'Perfil atualizado com sucesso!');
+                ->back()
+                ->with('success', 'As alterações foram aplicadas com sucesso!');
         }
 
         return redirect()
@@ -203,6 +205,20 @@ class UsuarioController extends Controller
         if (!$usr) {
             return redirect()->back()->with('error', 'O usuário selecionado para exclusão não foi encontrado.');
         }
+
+        // $cliente = Auth::user();
+
+
+        
+        $dataFormatada = \Carbon\Carbon::parse($data['data'])->format('d/m/Y H:i');
+
+        // Mensagem para o cliente
+        $mensagemClientes = "Olá, *{$usr}*, a sua conta foi excluída por um administrador do sistema. Entre em contato com um dos e-mails dos desenvolvedores para mais detalhes: joaovictor.brumc@gmail.com, joseclaionmartins@gmail.com ou mateus4pantoja@gmail.com";
+        EvolutionWhatsApp::sendMessage('ServiNow', $usr->telefone, $mensagemClientes);
+
+        // Mensagem para o provedor/prestador
+        // $mensagemPrestador = "Olá {$prestador->nome}, você recebeu uma nova solicitação de agendamento para o serviço *{$nomeServico}*.\n\n👤 Cliente: {$cliente->nome}\n📞 Contato: {$cliente->telefone}\n📅 Data: *{$dataFormatada}*\n💬 Descrição: {$data['descricao']}\n\nAcesse seu painel para aceitar ou recusar.";
+        // EvolutionWhatsApp::sendMessage('ServiNow', $prestador->telefone, $mensagemPrestador);
 
         $usr->delete();
 

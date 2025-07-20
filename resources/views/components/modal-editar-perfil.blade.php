@@ -37,7 +37,7 @@
                         </div>
                         <div class="card-editar-perfil">
                             <div class="card-body">
-                                <h5 class="card-title card-editar-title">Formação / Área de Atuação</h5>
+                                <h5 class="card-title card-editar-title">Descrição profissional</h5>
                                 <div class="form-group-editar-perfil">
                                     <label for="area_atuacao" class="label-editar-perfil">Área de Atuação<span class="required">*</span></label>
                                     <select name="area_atuacao" id="area_atuacao" class="form-select select-editar-perfil " required>

@@ -7,6 +7,7 @@ use App\Models\Usuario;
 use App\Models\Servico;
 use App\Models\StatusAgendamento;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Carbon;
 
 class Agendamento extends Model
 {
@@ -20,15 +21,15 @@ class Agendamento extends Model
         'id_cliente',
         'id_servico',
         'id_prestador',
-        'data_agendamento',
+        'prazo',
         'status',
         'notificacao',
         'descricao',
     ];
 
-    protected $casts = [
-        'data_agendamento' => 'datetime',
-    ];
+    // protected $casts = [
+    //     'prazo' => 'datetime',
+    // ];
 
     public function cliente()
     {
@@ -48,5 +49,9 @@ class Agendamento extends Model
     public function statusAgendamento()
     {
         return $this->belongsTo(StatusAgendamento::class, 'status', 'id');
+    }
+    public function getPrazoFormatadoAttribute()
+    {
+        return Carbon::parse($this->prazo)->format('d/m/Y');
     }
 }

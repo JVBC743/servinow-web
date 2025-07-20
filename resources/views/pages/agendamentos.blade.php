@@ -42,7 +42,7 @@
                                 <td> {{ $item->id }} </td>
                                 <td> {{ $item->id_prestador ? $item->prestador->nome : 'Prestador inexistente.'}} </td>
                                 <td> {{ $item->id_servico ? $item->servico->nome_servico : 'Serviço inexistente.'}} </td>
-                                <td> {{ $item->data_agendamento->format('d/m/Y') }} </td>
+                                <td> {{ $item->prazo_formatado }} </td>
                                 @if($item->status != 1)
                                     <td class="d-flex justify-content-between">
                                         {{  $item->status ? $item->statusAgendamento->status : 'Status desconhecido' }}
@@ -88,7 +88,7 @@
                                 <td> {{ $item->id }} </td>
                                 <td> {{ $item->id_cliente ? $item->cliente->nome : 'Cliente inexistente.'}} </td>
                                 <td> {{ $item->id_servico ? $item->servico->nome_servico : 'Serviço inexistente.'}} </td>
-                                <td> {{ $item->data_agendamento->format('d/m/Y') }} </td>
+                                <td> {{ $item->prazo_formatado }} </td>
                                 @if($item->status != 1)
                                     <td class="d-flex justify-content-between">
                                         {{  $item->status ? $item->statusAgendamento->status : 'Status desconhecido' }}
