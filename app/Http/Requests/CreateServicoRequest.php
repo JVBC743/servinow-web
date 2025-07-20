@@ -22,11 +22,12 @@ class CreateServicoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nome_servico' => 'max:40|min:20|required',
-            'desc_servico' => 'max:750',
+            'nome' => 'max:40|min:20|required',
+            'preco' => 'required|numeric|min:0|max:999999.99',
+            'descricao' => 'max:750',
             'categoria' => 'required',
-            'foto' => 'nullable|image|mimes:png,jpg,jpeg|max:15360',
-
+            'imagem' => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
+        
         ];
     }
 
@@ -42,12 +43,14 @@ class CreateServicoRequest extends FormRequest
 
             'categoria.required' => 'O seu serviço não pode possui nenhuma categoria.',
 
-            'foto.image' => 'O arquivo inserido deve ser uma foto em formato PNG, JPG ou JPEG.',
-            'foto.mimes' => 'O arquivo inserido deve ser uma foto em formato PNG, JPG ou JPEG.',
-            'foto.max' => 'A sua foto não deve possuir exceder de 15 MB de tamanho.',
+            'imagem.image' => 'O arquivo inserido deve ser uma foto em formato PNG, JPG ou JPEG.',
+            'imagem.mimes' => 'O arquivo inserido deve ser uma foto em formato PNG, JPG ou JPEG.',
+            'imagem.max' => 'A sua foto não deve possuir exceder de 2 MB de tamanho.',
 
-            '' => '',
+            'preco.required' => 'O preço do seu serviço deve estar presente.',
+            'preco.numeric' => 'O campo de preço deve possuir apenas números.',
+            'preco.max' => 'O preço máximo do seu serviço.'
+
         ];
-        
     }
 }
