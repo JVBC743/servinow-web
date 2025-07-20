@@ -28,6 +28,7 @@ class AgendamentoController extends Controller
 
         $agendamento_prestador = Agendamento::with(['cliente', 'servico', 'statusAgendamento'])
             ->where('id_prestador', $id)
+            ->where('status', '!=', 1)
             ->get();
 
         return view('pages.agendamentos', compact('agendamento_cliente', 'agendamento_prestador'));

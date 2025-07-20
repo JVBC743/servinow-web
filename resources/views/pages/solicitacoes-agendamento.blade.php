@@ -71,17 +71,21 @@
 
                                         <div class="modal-body">
                                             <div class="mb-3">
-                                                <h1>Solicitante:</h1>
-                                                <h2>
+                                                <h3>Solicitante:</h3>
                                                     {{ $item->id_cliente ? $item->cliente->nome : 'Cliente inexistente.' }}
-                                                </h2>
+                                            </div>
+                                            <div class="mb-3">
+                                                <h3>
+                                                    Telefone para contato:
+                                                </h3>
+                                                {{ $item->id_cliente ? $item->cliente->telefone : 'Telefone inexistente' }}
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="comentario" class="form-label">Descrição</label>
                                                 <h3>
-                                                    {{ $item->descricao }}
+                                                    Descrição
                                                 </h3>
+                                                    {{ $item->descricao }}
                                             </div>
                                         </div>
 
