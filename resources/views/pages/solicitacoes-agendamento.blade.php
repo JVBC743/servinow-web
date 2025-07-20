@@ -22,13 +22,10 @@
         </div>
     @endif
 
-    <div class="container-fluid d-flex justify-content-center align-items-center py-5">
+    <div class="rounded-5 container-fluid d-flex justify-content-center align-items-center py-5">
         <div class="card p-4 shadow w-100" style="max-width: 1200px">
 
             <h1 class="text-center mb-4">Solicitações de agendamento pelos seus serviços</h1>
-
-
-
             <table class="table table-bordered text-center align-middle">
                 <thead class="table-light">
                     <tr>
@@ -71,17 +68,21 @@
 
                                         <div class="modal-body">
                                             <div class="mb-3">
-                                                <h1>Solicitante:</h1>
-                                                <h2>
+                                                <h3>Solicitante:</h3>
                                                     {{ $item->id_cliente ? $item->cliente->nome : 'Cliente inexistente.' }}
-                                                </h2>
+                                            </div>
+                                            <div class="mb-3">
+                                                <h3>
+                                                    Telefone para contato:
+                                                </h3>
+                                                {{ $item->id_cliente ? $item->cliente->telefone : 'Telefone inexistente' }}
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="comentario" class="form-label">Descrição</label>
                                                 <h3>
-                                                    {{ $item->descricao }}
+                                                    Descrição
                                                 </h3>
+                                                    {{ $item->descricao }}
                                             </div>
                                         </div>
 

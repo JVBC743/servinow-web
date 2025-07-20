@@ -20,7 +20,7 @@
         </div>
     @endif
 
-    <div class="row shadow mt-3 mb-5 me-5" style="height: 100%; min-height: 700px;">
+    <div class="row shadow mt-3 mb-5 me-5 rounded-5" style="height: 100%; min-height: 700px;">
 
         <div class="d-flex justify-content-center align-items-center text-center" style="height: 150px">
             <h1 class=""> {{ $servico->nome_servico }} </h1>
@@ -31,8 +31,8 @@
 
 
                 @if ($servico->url_foto)
-                    <div>
-                        <img class="service_photo" src="{{ asset("$servico->url_foto") }}" alt="Foto do serviço">
+                    <div >
+                        <img class="service_photo rounded-5" src="{{ asset("$servico->url_foto") }}" alt="Foto do serviço">
                     </div>
                 @else
                     <div>
@@ -185,7 +185,7 @@
     </div>
 
     <div class="mt-2 ml-1 mr-1 mb-1">
-        <div class="d-flex flex-wrap justify-content-center div-avaliacoes">
+        <div class="rounded-5 d-flex flex-wrap justify-content-center div-avaliacoes">
             @if ($avaliacoes->isNotEmpty())
                 @foreach ($avaliacoes as $avaliacao)
                     <x-card-avaliacao

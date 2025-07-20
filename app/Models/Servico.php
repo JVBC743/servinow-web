@@ -18,6 +18,7 @@ class Servico extends Model
         'desc_servico',
         'caminho_foto',
         'usuario_id',
+        'preco',
     ];
 
     public function categoriaR()
@@ -33,5 +34,5 @@ class Servico extends Model
         return $this->hasMany(Avaliacao::class, 'id_servico');
     }
 
-    
+
 }
