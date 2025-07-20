@@ -12,6 +12,7 @@ html {
     font-family: Arial, sans-serif;
     font-size: 16px;
     overflow-x: hidden;
+    background-color: #F3F6F9;
     /* display: flex;
     flex-direction: column; */
 }
@@ -451,4 +452,38 @@ form {
 
 .card-img-top {
     opacity: 1;
+}
+
+.eye-icon {
+    color: #000000;
+    font-size: 30px;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+    margin-right: 10px;
+}
+.eye-icon:hover {
+    color: grey;
+    transform: scale(1.1);
+}
+
+.info-icon {
+    color: #000000;
+    font-size: 30px;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+.info-icon:hover {
+    color: grey;
+    transform: scale(1.1);
+}
+
+.geral-icon {
+    color: #000000;
+    font-size: 30px;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+.geral-icon:hover {
+    color: grey;
+    transform: scale(1.1);
 }

@@ -48,66 +48,55 @@
                                 <td class="d-flex justify-content-between">
                                     {{  $item->status ? $item->statusAgendamento->status : 'Status desconhecido' }}
                                     <div>
-                                        <img data-bs-toggle="modal" data-bs-target="#modalSolicitacao{{ $item->id }}" class="list_icons border border-black rounded" src="{{ asset('images/verificar.png') }}" alt="">
+                                        <i class="fa-solid fa-eye eye-icon" data-bs-toggle="modal"
+                                            data-bs-target="#modalSolicitacao{{ $item->id }}"></i>
                                         <a href="{{ route('servico', ['id' => $item->id_servico]) }}">
-                                            <img class="list_icons" src="{{ asset('images/redirecionar.png') }}" alt="">
+                                            <i class="fa-solid fa-circle-info info-icon"></i>
                                         </a>
                                     </div>
                                 </td>
                             </tr>
 
-                            <div class="modal fade" id="modalSolicitacao{{ $item->id }}" tabindex="-1" aria-labelledby="modalSolicitacaoLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <input type="hidden" name="id_servico" value="{{ $item->id_servico}}">
-                                        <input type="hidden" name="id_agendamento" value="{{ $item->id }}">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="modalAgendamentoLabel">Nova Solicitação</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                                        </div>
-
-                                        <div class="modal-body">
-                                            <div class="mb-3">
-                                                <h3>Solicitante:</h3>
-                                                    {{ $item->id_cliente ? $item->cliente->nome : 'Cliente inexistente.' }}
-                                            </div>
-                                            <div class="mb-3">
-                                                <h3>
-                                                    Telefone para contato:
-                                                </h3>
-                                                {{ $item->id_cliente ? $item->cliente->telefone : 'Telefone inexistente' }}
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <h3>
-                                                    Descrição
-                                                </h3>
-                                                    {{ $item->descricao }}
-                                            </div>
-                                        </div>
-
-                                        <div class="modal-footer">
-                                            <form action="{{ route('aceitacao.solicitacao') }}" method="POST">
-                                                @csrf
-                                                @method('PUT')
-                                                <input type="hidden" name="id_agendamento" value="{{ $item->id }}">
-                                                <button name="aceitar">
-                                                    <img class="list_icons" src="{{ asset('images/confirmar.png') }}" alt="Botão para aceitar a solicitação de agendamento.">
-                                                </button>
-                                            </form>
-
-                                            <form action="{{ route('negacao.solicitacao') }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <input type="hidden" name="id_agendamento" value="{{ $item->id }}">
-                                                <button name="negar">
-                                                    <img class="list_icons" data-bs-dismiss="modal" src="{{ asset('images/negar.png') }}" alt="Botão para negar a solicitação de agendamento">
-                                                </button>
-                                            </form>
-                                        </div>
+                            <x-modal-default
+                                :id="'modalSolicitacao' . $item->id"
+                                :title="'Nova Solicitação'"
+                            >
+                                <div>
+                                    <div class="form-group-editar-perfil mb-3">
+                                        <label class="label-editar-perfil">Solicitante</label>
+                                        <input type="text" class="form-control input-editar-perfil" value="{{ $item->id_cliente ? $item->cliente->nome : 'Cliente inexistente.' }}" disabled>
+                                    </div>
+                                    <div class="form-group-editar-perfil mb-3">
+                                        <label class="label-editar-perfil">Telefone para contato</label>
+                                        <input type="text" class="form-control input-editar-perfil" value="{{ $item->id_cliente ? $item->cliente->telefone : 'Telefone inexistente' }}" disabled>
+                                    </div>
+                                    <div class="form-group-editar-perfil mb-0">
+                                        <label class="label-editar-perfil">Descrição</label>
+                                        <textarea class="form-control input-editar-perfil" rows="4" disabled>{{ $item->descricao }}</textarea>
                                     </div>
                                 </div>
-                            </div>
+                                <x-slot name="footer_left">
+                                    <form action="{{ route('negacao.solicitacao') }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" name="id_agendamento" value="{{ $item->id }}">
+                                        <x-btn variant="vermelho" type="submit" name="negar">
+                                            Negar solicitação
+                                        </x-btn>
+                                    </form>
+                                </x-slot>
+                                <x-slot name="footer_right">
+                                    <form action="{{ route('aceitacao.solicitacao') }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <input type="hidden" name="id_agendamento" value="{{ $item->id }}">
+                                        <x-btn variant="verde" type="submit" name="aceitar">
+                                            Aceitar solicitação
+                                        </x-btn>
+                                    </form>
+                                </x-slot>
+                            </x-modal-default>
+                            ?>
                         @endif
                     @endforeach
                 </tbody>
