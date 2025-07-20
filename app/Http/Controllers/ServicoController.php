@@ -28,7 +28,15 @@ class ServicoController extends Controller
     {
         $id = Auth::id();
 
-        $servicos = Servico::where('usuario_id', $id)->get();
+        $servicos = Servico::where('usuario_id', $id)->get()->map(function ($servico) {
+            if ($servico->caminho_foto) {
+                $servico->imagem_url = Storage::disk('miniobusca')->temporaryUrl($servico->caminho_foto, now()->addMinutes(5));
+            } else {
+                $servico->imagem_url = null; // ou uma URL padrão
+            }
+            return $servico;
+        });
+
         $categorias = Categoria::all();
 
         return view('pages.servicos-cadastrados', compact('servicos', 'categorias'));
