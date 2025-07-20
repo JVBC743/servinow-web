@@ -31,7 +31,7 @@
 
 
     <hr>
-
+    
     <div class="d-flex flex-wrap justify-content-center" style="gap: 20px;">
 
         @foreach($servicos as $item)
@@ -42,8 +42,10 @@
             description="{{ $item->desc_servico }}"
             buttonUrl="{{ route('servico', ['id' => $item->id]) }}" />
         @endforeach
-
     </div>
 
 
+
+    @include('components.modal-denunciar-usuario')
+   
 @endsection
