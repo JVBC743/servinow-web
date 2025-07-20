@@ -1,0 +1,190 @@
+.modal-editar-perfil {
+    background: linear-gradient(135deg, #f8fcff 80%, #e3f6fa 100%);
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(60, 120, 180, 0.18), 0 1.5px 8px rgba(60, 120, 180, 0.12);
+    border: none;
+    padding: 0;
+}
+
+.modal-editar-header {
+    background: linear-gradient(90deg, #7DCCD8 60%, #4879BF 100%);
+    color: rgb(0, 0, 0);
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    box-shadow: 0 2px 8px rgba(60, 120, 180, 0.08);
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-height: 70px;
+    display: flex;
+}
+
+.modal-editar-title {
+    font-weight: bold;
+    font-size: 2rem;
+    letter-spacing: 1px;
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    color: #fff;
+}
+
+.modal-editar-close {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    filter: brightness(0) invert(1);
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.modal-editar-close:hover {
+    opacity: 1;
+}
+
+/* Cards */
+.card-editar-perfil {
+    border-radius: 16px;
+    box-shadow: 0 4px 18px rgba(60, 120, 180, 0.10);
+    border: none;
+    background: #fff;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+.card-editar-perfil:hover {
+    box-shadow: 0 8px 32px rgba(60, 120, 180, 0.18);
+    transform: translateY(-2px) scale(1.01);
+}
+.card-editar-perfil:active {
+    box-shadow: 0 2px 8px rgba(60, 120, 180, 0.12);
+}
+
+.card-editar-title {
+    color: #4879BF;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+/* Inputs e selects */
+.input-editar-perfil,
+.select-editar-perfil {
+    border-radius: 10px;
+    border: 1px solid #7DCCD8;
+    background: #F3F6F9;
+    box-shadow: 0 2px 8px rgba(60, 120, 180, 0.08);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    color: #222;
+    position: relative;
+    margin-top: 0; 
+}
+
+
+.label-editar-perfil {
+    position: static;
+    display: block;
+    font-size: 1rem;
+    color: #006e92;
+    font-weight: 500;
+    margin-bottom: 2px;
+    background: transparent;
+    z-index: 2;
+    pointer-events: none;
+}
+.label-editar-perfil .required {
+    color: #d32f2f;
+    font-weight: bold;
+    margin-left: 2px;
+}
+.form-group-editar-perfil {
+    position: relative;
+    margin-bottom: 1rem; /* Reduzido para aproximar os campos */
+}
+
+/* Botões */
+.btn-editar-perfil {
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 8px 24px;
+    transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(60, 120, 180, 0.08);
+    border: none;
+}
+
+.btn-editar-primary {
+    background: #7DCCD8;
+    color: #fff;
+}
+.btn-editar-primary:hover {
+    background: #4879BF;
+    color: #fff;
+    transform: scale(1.05);
+}
+.btn-editar-primary:active {
+    background: #006e92;
+    color: #fff;
+}
+
+.btn-editar-secondary {
+    background: #fff;
+    color: #4879BF;
+    border: 1px solid #7DCCD8;
+}
+.btn-editar-secondary:hover {
+    background: #e3f6fa;
+    color: #006e92;
+    transform: scale(1.05);
+}
+.btn-editar-secondary:active {
+    background: #ccc;
+    color: #4879BF;
+}
+
+.btn-editar-danger {
+    background: hsl(0, 100%, 38%);
+    color: #fff;
+}
+.btn-editar-danger:hover {
+    background: hsl(0, 100%, 33%);
+    color: #fff;
+    transform: scale(1.05);
+}
+.btn-editar-danger:active {
+    background: hsl(0, 100%, 28%);
+    color: #fff;
+}
+
+/* Foto de perfil */
+.profile_img-editar {
+    box-shadow: 0 2px 8px rgba(60, 120, 180, 0.10);
+    border: 3px solid #7DCCD8;
+    background: #e3f6fa;
+    transition: box-shadow 0.2s, border-color 0.2s;
+}
+.profile_img-editar:hover {
+    box-shadow: 0 8px 32px rgba(60, 120, 180, 0.18);
+    border-color: #4879BF;
+}
+
+/* Agrupamento lado a lado */
+@media (min-width: 992px) {
+    .row-editar-perfil {
+        display: flex;
+        gap: 24px;
+    }
+    .row-editar-perfil > .card-editar-perfil {
+        flex: 1 1 0;
+        min-width: 0;
+    }
+}
+
+/* Responsivo */
+@media (max-width: 991px) {
+    .row-editar-perfil {
+        flex-direction: column;
+        gap: 0;
+    }
+    .card-editar-perfil {
+        margin-bottom: 16px;
+    }
+}

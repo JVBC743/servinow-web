@@ -1,6 +1,6 @@
-    @props([
+@props([
     'variant' => 'primary', 
-    'type' => 'button'
+    'type' => 'button',
 ])
 
 @php
@@ -13,10 +13,10 @@ $classes = match($variant) {
 };
 @endphp
 
-<button {{ $attributes->merge(['class' => $classes, 'type' => $type]) }}>
-    {{ $slot }}
-</button>
 
+    <button {{ $attributes->merge(['class' => $classes, 'type' => $type]) }}>
+        {{ $slot }}
+    </button>
 
 
 <!-- <x-btn variant="padrao">Login</x-button>

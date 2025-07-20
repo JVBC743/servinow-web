@@ -38,24 +38,28 @@ class UsuarioController extends Controller
         return redirect()->back()->with('success', 'O usuário foi editado com sucesso.');
     }
 
+
     public function showPerfil()
     {
-
         $id = Auth::id();
-
         $usr = Usuario::find($id);
-        if ($usr->caminho_img)
-            $usr->url_foto = Storage::disk('miniobusca')->temporaryUrl($usr->caminho_img, now()->addMinutes(5));
-        return view('pages.visualizacao-perfil-usuario', compact('usr'));
+
+        if ($usr->caminho_img) {
+            $imagem_url = Storage::disk('miniobusca')->temporaryUrl($usr->caminho_img, now()->addMinutes(5));
+        } else {
+            $imagem_url = null;
+        }
+
+        $lista = Formacao::all();
+
+        return view('pages.visualizacao-perfil-usuario', compact('usr', 'lista', 'imagem_url'));
     }
 
     public function listFormations($id)
     {
         $lista = Formacao::all();
 
-        if (!$usr) {
-            return redirect()->back()->with('error', 'Usuário não encontrado.');
-        }
+
 
         return view('pages.edicao-perfil', compact('lista'));
     }
@@ -175,11 +179,11 @@ class UsuarioController extends Controller
             ->with('error', 'Falha ao salvar!');
     }
 
-    public function destroy($id) 
+    public function destroy($id)
     {
         $usr = Usuario::find($id);
 
-        if(!$usr){
+        if (!$usr) {
             return redirect()->back()->with('error', 'O usuário selecionado para exclusão não foi encontrado.');
         }
 
@@ -187,7 +191,7 @@ class UsuarioController extends Controller
         return redirect()->route('dashboard.guest')->with('success', 'A sua conta foi excluída com sucesso.');
     }
 
-    public function gerarRelatorio() 
+    public function gerarRelatorio()
     {
 
     }
@@ -196,7 +200,7 @@ class UsuarioController extends Controller
     {
         $usr = Usuario::find($id);
 
-        if(!$usr){
+        if (!$usr) {
             return redirect()->back()->with('error', 'O usuário selecionado para exclusão não foi encontrado.');
         }
 
