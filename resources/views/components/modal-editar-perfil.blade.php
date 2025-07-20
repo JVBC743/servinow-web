@@ -20,9 +20,9 @@
                                 <h5 class="card-title card-editar-title">Informações Pessoais</h5>
                                 <div class="form-group-editar-perfil">
                                     <label for="nome" class="label-editar-perfil">Nome<span class="required">*</span></label>
-                                    <input type="text" name="nome" id="nome" class="form-control input-editar-perfil " value="{{ old('nome', $usr->nome) }}" maxlength="50" required>
-                                    
+                                    <input type="text" name="nome" id="nome" class="form-control input-editar-perfil " value="{{ old('nome', $usr->nome) }}" maxlength="50" required>   
                                 </div>
+                                
                                 <div class="row">
                                     <div class="col-md-6 mb-3 form-group-editar-perfil">
                                         <label for="email" class="label-editar-perfil">E-mail<span class="required">*</span></label>

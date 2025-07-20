@@ -8,6 +8,7 @@ use App\Models\Servico;
 use App\Models\Agendamento;
 use App\Models\Usuario;
 use App\Models\Avaliacao;
+use App\Models\Motivo;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -137,6 +138,8 @@ class ServicoController extends Controller
     public function show($id)
     {
         $servico = Servico::with('prestador')->findOrFail($id);
+        $motivos = Motivo::all();
+
         if($servico->caminho_foto)
             $servico->url_foto = Storage::disk('miniobusca')->temporaryUrl($servico->caminho_foto, now()->addMinutes(5));
         if($servico->prestador->caminho_img)
@@ -150,7 +153,7 @@ class ServicoController extends Controller
             }
             return $avaliacao;
         });
-        return view('pages.servico', compact('servico','avaliacoes'));
+        return view('pages.servico', compact('servico','avaliacoes', 'motivos'));
     }
 
     public function showPrestador($id)

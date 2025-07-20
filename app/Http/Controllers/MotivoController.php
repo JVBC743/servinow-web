@@ -12,7 +12,7 @@ class MotivoController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**

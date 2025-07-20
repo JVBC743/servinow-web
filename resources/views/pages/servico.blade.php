@@ -53,6 +53,11 @@
             <p class="text-justify">
                 {{ $servico->desc_servico }}
             </p>
+            <div class="w-bold mt-5">
+                <h4>Preço:</h4>
+                <p>R$ {{ $servico->preco }}</p>
+                
+            </div>
         </div>
 
         <div class="col-12 col-md-4 margin_div_servico d-flex justify-content-center align-items-center">
@@ -90,7 +95,6 @@
                 <form method="POST" action="{{ route('agendar') }}">
                     @csrf
                     <input type="hidden" name="id_servico" value="{{ $servico->id }}">
-
 
                     <div class="modal-header">
                         <h5 class="modal-title" id="modalAvaliacaoLabel">Novo Agendamento</h5>
@@ -133,9 +137,15 @@
     {{-- AVALIACAO --}}
     <h1 class="text-center">Avaliações</h1>
     @if(auth()->id() !== $servico->usuario_id)
-        <button class="mb-3 btn btn-info btn-geral text-white" data-bs-toggle="modal" data-bs-target="#modalAvaliacao">
+    <div class="mb-3">
+        <button class=" btn btn-info btn-geral text-white" data-bs-toggle="modal" data-bs-target="#modalAvaliacao">
             Enviar avaliação
         </button>
+        <x-btn variant="vermelho" type="button" data-bs-toggle="modal" data-bs-target="#modalDenunciarUsuarioTeste">
+            Denunciar Usuário
+        </x-btn>
+    </div>
+        
     @endif
 
     <div class="modal fade" id="modalAvaliacao" tabindex="-1" aria-labelledby="modalAvaliacaoLabel" aria-hidden="true">

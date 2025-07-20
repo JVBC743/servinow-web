@@ -17,10 +17,11 @@
                                         <label for="motivoTeste" class="label-denunciar-usuario">Motivo<span class="required">*</span></label>
                                         <select name="motivo" id="motivoTeste" class="form-select select-denunciar-usuario" required>
                                             <option value="">Selecione o motivo</option>
-                                            <option value="abuso">Abuso ou comportamento inadequado</option>
-                                            <option value="fraude">Fraude ou informações falsas</option>
-                                            <option value="spam">Spam ou publicidade não autorizada</option>
-                                            <option value="outro">Outro</option>
+                                            @foreach($motivos as $item)
+
+                                                <option value="{{ $item->id }}"> {{ $item->motivo ? $item->motivo : '' }} </option>
+
+                                            @endforeach
                                         </select>
                                     </div>
                                     <!-- Evidência -->

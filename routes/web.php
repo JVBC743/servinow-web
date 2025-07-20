@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\RecuperacaoSenhaController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ServicoController;
 use App\Http\Controllers\AvaliacaoController;
+use App\Http\Controllers\MotivoController;
 use App\Http\Controllers\RelatorioController;
 
 /*
@@ -92,6 +93,11 @@ Route::middleware('auth')->group(function () {
         Route::get('/{servico}/edit', 'edit')->name('servico.edit');
         Route::put('/{servico}', 'update')->name('servico.update');
         Route::delete('/{servico}', 'destroy')->name('servico.destroy');
+
+    });
+
+    Route::prefix('denuncia')->controller(MotivoController::class)->group(function () {
+        Route::get('/list', 'index');
     });
 
     Route::controller(UsuarioController::class)->group(function () {
