@@ -110,10 +110,18 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="mb-3">
-                                                <div class="mb-5 mt-3">
-                                                    <h4>
-                                                        {{ $item->descricao }}
-                                                    </h4>
+                                                <div class="mb-2 mt-3">
+                                                    <h5>
+                                                        Descrição do agendamento:
+                                                    </h5>
+                                                    
+                                                    {{ $item->descricao }}
+                                                </div>
+                                                <div class="mb-3">
+                                                    <h5>
+                                                        Prazo:
+                                                    </h5>
+                                                    {{ $item->prazo_formatado }}
                                                 </div>
                                                 <h3>
                                                     <div class="d-flex justify-content-center align-items-center">
@@ -128,7 +136,7 @@
                                                                     <img class="list_icons" src="{{ asset('images/sucesso.png') }}" alt="">
                                                                 </div>
                                                             </form>
-                                                            
+
                                                             <form action="{{ route('fechar.falha') }}" method="POST">
                                                                 @csrf
                                                                 @method('PUT')
