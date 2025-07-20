@@ -29,7 +29,7 @@ class ServicoController extends Controller
         $id = Auth::id();
 
         $servicos = Servico::where('usuario_id', $id)->get();
-        $categorias = Categoria::all(); 
+        $categorias = Categoria::all();
 
         return view('pages.servicos-cadastrados', compact('servicos', 'categorias'));
     }
@@ -110,6 +110,7 @@ class ServicoController extends Controller
             'imagem' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'categoria' => 'required|exists:Categoria,id',
             'descricao' => 'required|string|max:750',
+            'preco' => 'required|numeric|min:0',
         ]);
 
         // Upload da imagem para MinIO (supondo disco minio configurado)
@@ -122,6 +123,7 @@ class ServicoController extends Controller
             'desc_servico' => $validatedData['descricao'],
             'caminho_foto' => $path,
             'usuario_id' => Auth::id(),
+            'preco' => $validatedData['preco'],
         ]);
 
         return redirect()->route('servicos.cadastrados')->with('success', 'Serviço criado com sucesso.');
@@ -186,14 +188,16 @@ class ServicoController extends Controller
             'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'categoria' => 'required|exists:Categoria,id',
             'descricao' => 'required|string|max:750',
+            'preco' => 'required|numeric|min:0',
         ]);
 
         $servico->nome_servico = $validatedData['nome'];
         $servico->categoria = $validatedData['categoria'];
         $servico->desc_servico = $validatedData['descricao'];
+        $servico->preco = $validatedData['preco'];
 
         if ($request->hasFile('imagem')) {
-            if ($servico->caminho_img) {
+            if ($servico->caminho_foto) {
                 // Apaga imagem antiga
                 Storage::disk('minio')->delete($servico->caminho_foto);
             }
