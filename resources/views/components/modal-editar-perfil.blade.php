@@ -144,8 +144,8 @@
                     </p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-branco px-5" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-danger btn-vermelho px-5">Confirmar Exclusão</button>
+                    <button type="button" class="btn btn-secondary btn-branco" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-danger btn-vermelho">Confirmar Exclusão</button>
                 </div>
             </form>
         </div>
