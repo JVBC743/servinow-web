@@ -57,10 +57,6 @@
                                             <img id="img-preview" class="img-preview d-none" alt="Prévia da imagem" />
                                         </div>
                                         <input type="file" name="imagem" id="imagem" class="form-control mb-2" accept="image/*" required>
-                                        <input type="hidden" name="imagem_cortada" id="imagem_cortada">
-                                        <button type="button" id="crop-btn" class="btn btn-outline-primary btn-sm mt-2 d-none">
-                                            <i class="bi bi-crop"></i> Cortar imagem
-                                        </button>
                                         @error('imagem')
                                             <span class="text-danger small">{{ $message }}</span>
                                         @enderror
@@ -128,14 +124,9 @@
 @endsection
 
 @section('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.6.2/dist/cropper.min.js"></script>
     <script>
-        let cropper;
         const inputImagem = document.getElementById('imagem');
         const imgPreview = document.getElementById('img-preview');
-        const cropBtn = document.getElementById('crop-btn');
-        const inputCortada = document.getElementById('imagem_cortada');
-        const form = document.getElementById('form-servico');
 
         inputImagem.addEventListener('change', function(e) {
             const file = e.target.files[0];
@@ -144,42 +135,8 @@
                 reader.onload = function(ev) {
                     imgPreview.src = ev.target.result;
                     imgPreview.classList.remove('d-none');
-                    cropBtn.classList.remove('d-none');
-                    if (cropper) cropper.destroy();
-                    cropper = new Cropper(imgPreview, {
-                        aspectRatio: 1,
-                        viewMode: 1,
-                        autoCropArea: 1,
-                        movable: true,
-                        zoomable: true,
-                        rotatable: false,
-                        scalable: false,
-                    });
                 };
                 reader.readAsDataURL(file);
-            }
-        });
-
-        cropBtn.addEventListener('click', function() {
-            if (cropper) {
-                const canvas = cropper.getCroppedCanvas({
-                    width: 400,
-                    height: 400,
-                    imageSmoothingQuality: 'high'
-                });
-                imgPreview.src = canvas.toDataURL('image/jpeg');
-                inputCortada.value = imgPreview.src;
-                cropper.destroy();
-                cropBtn.classList.add('d-none');
-            }
-        });
-
-        // Garante que a imagem cortada será enviada
-        form.addEventListener('submit', function(e) {
-            if (cropper) {
-                e.preventDefault();
-                cropBtn.click();
-                setTimeout(() => form.submit(), 300);
             }
         });
     </script>
