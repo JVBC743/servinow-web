@@ -92,72 +92,54 @@
                                 <td class="d-flex justify-content-between">
                                     {{  $item->status ? $item->statusAgendamento->status : 'Status desconhecido' }}
                                     <div>
-                                        <img  data-bs-toggle="modal" data-bs-target="#modalEstado{{ $item->id }}" class="list_icons" src="{{ asset("images/menu.png") }}" alt="">
+                                        <i class="fa-solid fa-eye geral-icon" data-bs-toggle="modal" data-bs-target="#modalEstado{{ $item->id }}"></i>
                                         <a href="{{ route('servico', ['id' => $item->id_servico]) }}">
-                                            <img class="list_icons" src="{{ asset('images/redirecionar.png') }}" alt="">
+                                            <i class="fa-solid fa-circle-info geral-icon"></i>
                                         </a>
                                     </div>
                                 </td>
                             </tr>
-                            <div class="modal fade" id="modalEstado{{ $item->id }}" tabindex="-1" aria-labelledby="modalEstadoLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <input type="hidden" name="id_servico" value="{{ $item->id_servico}}">
-                                        <input type="hidden" name="id_agendamento" value="{{ $item->id }}">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="modalAgendamentoLabel">Alterar estado do serviço: "{{ $item->servico->nome_servico }}" </h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="mb-3">
-                                                <div class="mb-2 mt-3">
-                                                    <h5>
-                                                        Descrição do agendamento:
-                                                    </h5>
-                                                    
-                                                    {{ $item->descricao }}
-                                                </div>
-                                                <div class="mb-3">
-                                                    <h5>
-                                                        Prazo:
-                                                    </h5>
-                                                    {{ $item->prazo_formatado }}
-                                                </div>
-                                                <h3>
-                                                    <div class="d-flex justify-content-center align-items-center">
-                                                        <div class="">
-                                                            <form action="{{ route('fechar.sucesso') }}" method="POST">
-                                                                @csrf
-                                                                @method('PUT')
-                                                                <input type="hidden" name="id_servico" value="{{ $item->id_servico}}">
-                                                                <input type="hidden" name="id_agendamento" value="{{ $item->id }}">
-                                                                <div>
-                                                                    <button class="mb-3 btn btn-success">Fechar com sucesso</button>
-                                                                    <img class="list_icons" src="{{ asset('images/sucesso.png') }}" alt="">
-                                                                </div>
-                                                            </form>
-
-                                                            <form action="{{ route('fechar.falha') }}" method="POST">
-                                                                @csrf
-                                                                @method('PUT')
-
-                                                                <input type="hidden" name="id_servico" value="{{ $item->id_servico}}">
-                                                                <input type="hidden" name="id_agendamento" value="{{ $item->id }}">
-                                                                <div>
-                                                                    <button class="btn btn-danger" >Fechar sem sucesso</button>
-                                                                    <img class="list_icons" src="{{ asset('images/falha.png') }}" alt="">
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                        </div>
+                            <x-modal-default
+                                :id="'modalEstado' . $item->id"
+                                title="Status do Serviço"
+                            >
+                                <div>
+                                    <div class="form-group-editar-perfil mb-3">
+                                        <label class="label-editar-perfil">Serviço</label>
+                                        <input type="text" class="form-control input-editar-perfil" value="{{ $item->servico->nome_servico ?? 'Serviço inexistente.' }}" disabled>
+                                    </div>
+                                    <div class="form-group-editar-perfil mb-3">
+                                        <label class="label-editar-perfil">Prazo</label>
+                                        <input type="text" class="form-control input-editar-perfil" value="{{ $item->prazo_formatado }}" disabled>
+                                    </div>
+                                    <div class="form-group-editar-perfil mb-0">
+                                        <label class="label-editar-perfil">Descrição</label>
+                                        <textarea class="form-control input-editar-perfil" rows="4" disabled>{{ $item->descricao }}</textarea>
                                     </div>
                                 </div>
-                            </div>
+                                <x-slot name="footer_left">
+                                    <form action="{{ route('fechar.falha') }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <input type="hidden" name="id_servico" value="{{ $item->id_servico}}">
+                                        <input type="hidden" name="id_agendamento" value="{{ $item->id }}">
+                                        <x-btn variant="vermelho" type="submit" name="fechar_falha">
+                                            Finalizado sem sucesso
+                                        </x-btn>
+                                    </form>
+                                </x-slot>
+                                <x-slot name="footer_right">
+                                    <form action="{{ route('fechar.sucesso') }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <input type="hidden" name="id_servico" value="{{ $item->id_servico}}">
+                                        <input type="hidden" name="id_agendamento" value="{{ $item->id }}">
+                                        <x-btn variant="verde" type="submit" name="fechar_sucesso">
+                                            Finalizado com sucesso
+                                        </x-btn>
+                                    </form>
+                                </x-slot>
+                            </x-modal-default>
                         @endforeach
                     </tbody>
                     <small class="d-md-none text-muted">Deslize para o lado para ver mais →</small>
