@@ -47,7 +47,7 @@
                                 <td> {{ $item->id }} </td>
                                 <td> {{ $item->id_cliente ? $item->cliente->nome : 'Cliente inexistente.'}} </td>
                                 <td> {{ $item->id_servico ? $item->servico->nome_servico : 'Serviço inexistente.'}} </td>
-                                <td> {{ $item->data_agendamento }} </td>
+                                <td> {{ $item->prazo_formatado}} </td>
                                 <td class="d-flex justify-content-between">
                                     {{  $item->status ? $item->statusAgendamento->status : 'Status desconhecido' }}
                                     <div>

@@ -31,7 +31,7 @@ class RelatorioController extends Controller
         $agendamentosPorMes = [];
 
         foreach ($agendamentos as $agendamento) {
-            $mes = $agendamento->data_agendamento->format('m/Y');
+            $mes = $agendamento->prazo->format('m/Y');
             $nomeServico = $agendamento->servico->nome_servico ?? 'Desconhecido';
 
             if (!isset($agendamentosPorMes[$mes])) {
