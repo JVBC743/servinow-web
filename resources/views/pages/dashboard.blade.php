@@ -31,6 +31,9 @@
 
 
     <hr>
+<x-btn variant="branco" type="button" data-bs-toggle="modal" data-bs-target="#modalDenunciarUsuarioTeste">
+    Denunciar Usuário
+</x-btn>
 
     <div class="d-flex flex-wrap justify-content-center" style="gap: 20px;">
 
@@ -42,8 +45,10 @@
             description="{{ $item->desc_servico }}"
             buttonUrl="{{ route('servico', ['id' => $item->id]) }}" />
         @endforeach
-
     </div>
 
 
+
+    
+   
 @endsection
