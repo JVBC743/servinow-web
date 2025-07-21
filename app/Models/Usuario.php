@@ -71,8 +71,7 @@ class Usuario extends Authenticatable
 
     public function formacao()
     {
-        // O segundo argumento 'area_atuacao' pode precisar ser alterado para 'formacao_id'
-        return $this->belongsTo(Formacao::class, 'area_atuacao');
+        return $this->belongsTo(Formacao::class, 'area_atuacao', 'id');
     }
 
     public function servicos()

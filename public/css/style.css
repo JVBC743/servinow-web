@@ -933,3 +933,43 @@ form {
         margin: 0;
     }
 }
+
+
+.badge-price {
+    background: white;
+    color: #059669;
+    border: 2px solid #059669;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 8px 16px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.2);
+    z-index: 3;
+    position: relative;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.badge-price::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    border-radius: 18px;
+    z-index: -1;
+}
+
+.badge-price:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(5, 150, 105, 0.3);
+    background: #f0fdf4;
+    border-color: #047857;
+    color: #047857;
+}
+
+.card-img-container:hover .badge-price {
+    transform: translateY(-2px) scale(1.05);
+}

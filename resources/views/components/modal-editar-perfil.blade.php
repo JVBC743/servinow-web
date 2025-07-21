@@ -113,9 +113,18 @@
 
                     <!-- Ações -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary btn-branco" onclick="window.location='{{ route('visualizacao.perfil') }}'">Fechar</button>
-                        <button type="button" class="btn btn-danger btn-vermelho" data-bs-toggle="modal" data-bs-target="#modalExcluirConta">Excluir Conta</button>
-                        <button type="submit" class="btn btn-primary btn-verde">Salvar alterações</button>
+                        <x-btn variant="branco" type="button" data-bs-dismiss="modal">
+                            <i class="fa-solid fa-times me-2"></i>
+                            Fechar
+                        </x-btn>
+                        <x-btn variant="vermelho" type="button" data-bs-toggle="modal" data-bs-target="#modalExcluirConta">
+                            <i class="fa-solid fa-trash me-2"></i>
+                            Excluir Conta
+                        </x-btn>
+                        <x-btn variant="verde" type="submit">
+                            <i class="fa-solid fa-save me-2"></i>
+                            Salvar alterações
+                        </x-btn>
                     </div>
                 </form>
 
@@ -144,8 +153,14 @@
                     </p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-branco" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-danger btn-vermelho">Confirmar Exclusão</button>
+                    <x-btn variant="branco" type="button" data-bs-dismiss="modal">
+                        <i class="fa-solid fa-times me-2"></i>
+                        Cancelar
+                    </x-btn>
+                    <x-btn variant="vermelho" type="submit">
+                        <i class="fa-solid fa-exclamation-triangle me-2"></i>
+                        Confirmar Exclusão
+                    </x-btn>
                 </div>
             </form>
         </div>

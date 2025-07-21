@@ -36,19 +36,19 @@
                 </div>
             </div>
             <div class="profile-info">
-                <h1 class="profile-name">{{ auth()->user()->nome }}</h1>
-                <p class="profile-email">{{ auth()->user()->email }}</p>
-                @if(auth()->user()->descricao)
-                    <p class="profile-description">{{ auth()->user()->descricao }}</p>
+                <h1 class="profile-name">{{ $usr->nome }}</h1>
+                <p class="profile-email">{{ $usr->email }}</p>
+                @if($usr->descricao)
+                    <p class="profile-description">{{ $usr->descricao }}</p>
                 @endif
                 <div class="profile-badges">
-                    @if(auth()->user()->formacao)
-                        <span class="badge badge-info">{{ auth()->user()->formacao->nome }}</span>
+                    @if($usr->formacao)
+                        <span class="badge badge-info">{{ $usr->formacao->formacao }}</span>
                     @endif
                 </div>
             </div>
             <div class="profile-actions">
-                <x-btn variant="padrao" type="button" data-bs-toggle="modal" data-bs-target="#editarPerfilModal">
+                <x-btn variant="padrao-detalhado" type="button" data-bs-toggle="modal" data-bs-target="#editarPerfilModal">
                     <i class="fa-solid fa-pen-to-square me-2"></i>
                     Editar Perfil
                 </x-btn>
@@ -67,19 +67,23 @@
                     <div class="info-card-body">
                         <div class="info-item">
                             <label>Telefone</label>
-                            <span>{{ auth()->user()->telefone }}</span>
+                            <span>{{ $usr->telefone }}</span>
                         </div>
                         <div class="info-item">
                             <label>CPF/CNPJ</label>
-                            <span>{{ auth()->user()->cpf_cnpj }}</span>
+                            <span>{{ $usr->cpf_cnpj }}</span>
                         </div>
                         <div class="info-item">
                             <label>Data de Nascimento</label>
-                            <span>{{ \Carbon\Carbon::parse(auth()->user()->data_nascimento)->format('d/m/Y') }}</span>
+                            <span>{{ \Carbon\Carbon::parse($usr->data_nascimento)->format('d/m/Y') }}</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Área de Atuação</label>
+                            <span>{{ $usr->formacao ? $usr->formacao->formacao : 'Não informado' }}</span>
                         </div>
                         <div class="info-item">
                             <label>Descrição</label>
-                            <span>{{ auth()->user()->descricao ?? 'Não há descrição' }}</span>
+                            <span>{{ $usr->descricao ?? 'Não há descrição' }}</span>
                         </div>
                     </div>
                 </div>
@@ -95,65 +99,32 @@
                     <div class="info-card-body">
                         <div class="info-item">
                             <label>Logradouro</label>
-                            <span>{{ auth()->user()->logradouro }}, {{ auth()->user()->numero }}</span>
+                            <span>{{ $usr->logradouro }}, {{ $usr->numero }}</span>
                         </div>
-                        @if(auth()->user()->complemento)
+                        @if($usr->complemento)
                             <div class="info-item">
                                 <label>Complemento</label>
-                                <span>{{ auth()->user()->complemento }}</span>
+                                <span>{{ $usr->complemento }}</span>
                             </div>
                         @endif
                         <div class="info-item">
                             <label>Bairro</label>
-                            <span>{{ auth()->user()->bairro }}</span>
+                            <span>{{ $usr->bairro }}</span>
                         </div>
                         <div class="info-item">
                             <label>Cidade/UF</label>
-                            <span>{{ auth()->user()->cidade }}/{{ auth()->user()->uf }}</span>
+                            <span>{{ $usr->cidade }}/{{ $usr->uf }}</span>
                         </div>
                         <div class="info-item">
                             <label>CEP</label>
-                            <span>{{ auth()->user()->cep }}</span>
+                            <span>{{ $usr->cep }}</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Redes Sociais -->
-        <div class="col-12">
-            <div class="info-card">
-                <div class="info-card-header">
-                    <i class="fa-solid fa-share-nodes info-icon"></i>
-                    <h3>Redes Sociais</h3>
-                </div>
-                <div class="info-card-body">
-                    @php
-                        $rs = [
-                            auth()->user()->rede_social1,
-                            auth()->user()->rede_social2,
-                            auth()->user()->rede_social3,
-                            auth()->user()->rede_social4
-                        ];
-                        $rs = array_filter($rs);
-                    @endphp
-                    @if(count($rs) > 0)
-                        <div class="social-links">
-                            @foreach($rs as $rede)
-                                <a href="{{ $rede }}" target="_blank" class="social-link">
-                                    <i class="fa-solid fa-external-link-alt me-2"></i>
-                                    {{ $rede }}
-                                </a>
-                            @endforeach
-                        </div>
-                    @else
-                        <p class="text-muted">Nenhuma rede social informada.</p>
-                    @endif
-                </div>
-            </div>
-        </div>
     </div>
 
     @include('components.modal-editar-perfil', ['usr' => $usr, 'lista' => $lista, 'imagem_url' => $imagem_url])
-
 @endsection

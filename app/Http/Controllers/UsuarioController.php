@@ -44,12 +44,14 @@ class UsuarioController extends Controller
     public function showPerfil()
     {
         $id = Auth::id();
-        $usr = Usuario::find($id);
+        $usr = Usuario::with('formacao')->find($id);
 
         if ($usr->caminho_img) {
-            $imagem_url = Storage::disk('miniobusca')->temporaryUrl($usr->caminho_img, now()->addMinutes(5));
+            $usr->url_foto = Storage::disk('miniobusca')->temporaryUrl($usr->caminho_img, now()->addMinutes(5));
+            $imagem_url = $usr->url_foto; // Adicionar esta linha
         } else {
-            $imagem_url = null;
+            $usr->url_foto = null;
+            $imagem_url = null; // Adicionar esta linha
         }
 
         $lista = Formacao::all();
