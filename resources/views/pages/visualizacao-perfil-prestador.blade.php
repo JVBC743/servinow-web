@@ -2,6 +2,8 @@
 
 @section('title', 'Perfil do Prestador')
 
+@include('components.modal-denunciar-usuario', ['motivos' => $motivos])
+
 @section('content')
     <div class="container py-5 rounded-5">
         <div class="card shadow mx-auto" style="max-width: 900px;">
@@ -59,7 +61,6 @@
                         </p>
                         <p class="mb-0"> E-mail:
                             {{ $usr->email }}
-
                         </p>
                     </div>
                 </div>
@@ -68,10 +69,10 @@
 
                 <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
                     <a href="#" class="btn btn-primary btn-geral">Enviar mensagem</a>
-                    <button class="btn btn-warning">Reportar</button>
+                    
+                    <button data-bs-toggle="modal" data-bs-target="#modalDenunciarUsuarioTeste" class="btn btn-warning">Reportar</button>
                 </div>
             </div>
         </div>
     </div>
-
 @endsection

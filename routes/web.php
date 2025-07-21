@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\RecuperacaoSenhaController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ServicoController;
 use App\Http\Controllers\AvaliacaoController;
+use App\Http\Controllers\DenunciaController;
 use App\Http\Controllers\RelatorioController;
 
 /*
@@ -93,6 +94,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/{servico}/edit', 'edit')->name('servico.edit');
         Route::put('/{servico}', 'update')->name('servico.update');
         Route::delete('/{servico}', 'destroy')->name('servico.destroy');
+
+    });
+
+    Route::prefix('denuncia')->controller(DenunciaController::class)->group(function () {
+        Route::get('/lista-motivos', 'indexMotivos')->name('listar.motivos');
+        Route::post('denunciar/{id}', 'store')->name('denunciar.prestador');
     });
 
     Route::controller(UsuarioController::class)->group(function () {

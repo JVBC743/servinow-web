@@ -32,7 +32,9 @@
     <link rel="stylesheet" href="{{ asset('css/components/buttons.css') }}">
     <link rel="stylesheet" href="{{ asset('css/components/modal.css') }}">
 
+
     @yield('styles')
+    
 </head>
 
 <body>

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateServicoRequest;
 use App\Models\Categoria;
 use App\Models\Servico;
 use App\Models\Agendamento;
 use App\Models\Usuario;
 use App\Models\Avaliacao;
+use App\Models\Motivo;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -111,27 +113,20 @@ class ServicoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateServicoRequest $request)
     {
-        $validatedData = $request->validate([
-            'nome' => 'required|string|min:20|max:40',
-            'imagem' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'categoria' => 'required|exists:Categoria,id',
-            'descricao' => 'required|string|max:750',
-            'preco' => 'required|numeric|min:0',
-        ]);
 
-        // Upload da imagem para MinIO (supondo disco minio configurado)
+        $data = $request->validated();
         $path = $request->file('imagem')->store('imagens/servicos', 'minio');
 
         // Criar serviço com usuário logado
         Servico::create([
-            'nome_servico' => $validatedData['nome'],
-            'categoria' => $validatedData['categoria'],
-            'desc_servico' => $validatedData['descricao'],
+            'nome_servico' => $data['nome'],
+            'categoria' => $data['categoria'],
+            'desc_servico' => $data['descricao'],
             'caminho_foto' => $path,
             'usuario_id' => Auth::id(),
-            'preco' => $validatedData['preco'],
+            'preco' => $data['preco'],
         ]);
 
         return redirect()->route('servicos.cadastrados')->with('success', 'Serviço criado com sucesso.');
@@ -143,6 +138,8 @@ class ServicoController extends Controller
     public function show($id)
     {
         $servico = Servico::with('prestador')->findOrFail($id);
+        $motivos = Motivo::all();
+
         if($servico->caminho_foto)
             $servico->url_foto = Storage::disk('miniobusca')->temporaryUrl($servico->caminho_foto, now()->addMinutes(5));
         if($servico->prestador->caminho_img)
@@ -156,7 +153,7 @@ class ServicoController extends Controller
             }
             return $avaliacao;
         });
-        return view('pages.servico', compact('servico','avaliacoes'));
+        return view('pages.servico', compact('servico','avaliacoes', 'motivos'));
     }
 
     public function showPrestador($id)
@@ -165,7 +162,10 @@ class ServicoController extends Controller
         $usr = Usuario::findOrFail($id);
         if($usr->caminho_img)
             $usr->url_foto = Storage::disk('miniobusca')->temporaryUrl($usr->caminho_img, now()->addMinutes(5));
-        return view('pages.visualizacao-perfil-prestador', compact('usr'));
+
+        $motivos = Motivo::all();
+
+        return view('pages.visualizacao-perfil-prestador', compact('usr', 'motivos'));
     }
 
     /**

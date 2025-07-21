@@ -7,20 +7,29 @@
                 <button type="button" class="btn-close modal-denunciar-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
             </div>
             <div class="modal-body">
-                <form action="#" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('denunciar.prestador', $usr->id) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="id_prestador" value="{{ $usr->id }}">
+
                     <div class="card-denunciar-usuario mb-4">
                         <div class="card-body">
                             <div class="row-denunciar-usuario">
                                 <div class="col-denunciar-usuario-esq">
+
+                                    <div class="form-group-denunciar-usuario mb-3">
+                                        <label for="titulo" class="label-denunciar-usuario">Titulo da denúncia<span class="required">*</span></label>
+                                        <input type="text" name="titulo" class="form-control input-denunciar-usuario">
+                                    </div>
                                     <!-- Motivo -->
                                     <div class="form-group-denunciar-usuario mb-3">
                                         <label for="motivoTeste" class="label-denunciar-usuario">Motivo<span class="required">*</span></label>
                                         <select name="motivo" id="motivoTeste" class="form-select select-denunciar-usuario" required>
                                             <option value="">Selecione o motivo</option>
-                                            <option value="abuso">Abuso ou comportamento inadequado</option>
-                                            <option value="fraude">Fraude ou informações falsas</option>
-                                            <option value="spam">Spam ou publicidade não autorizada</option>
-                                            <option value="outro">Outro</option>
+                                            @foreach($motivos as $item)
+
+                                                <option value="{{ $item->id }}"> {{ $item->motivo ? $item->motivo : '' }} </option>
+
+                                            @endforeach
                                         </select>
                                     </div>
                                     <!-- Evidência -->

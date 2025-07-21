@@ -8,6 +8,7 @@ use App\Models\Servico;
 use App\Models\Agendamento;
 use App\Models\StatusAgendamento;
 use App\Models\Avaliacao;
+use App\Models\Motivo;
 
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -27,6 +28,8 @@ class DatabaseSeeder extends Seeder
             FormacaoSeeder::class,
             StatusPagamentoSeeder::class,
             MetodoPagamentoSeeder::class,
+            MotivoSeeder::class,
+            
         ]);
 
         // Formacao::factory()->count(10)->create();
