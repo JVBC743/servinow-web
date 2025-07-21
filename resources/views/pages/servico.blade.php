@@ -81,6 +81,8 @@
                     <x-btn variant="vermelho" type="button" data-bs-toggle="modal" data-bs-target="#modalDenunciarUsuarioTeste">
                         <i class="bi bi-flag-fill me-2"></i> Denunciar Serviço
                     </x-btn>
+                    @include('components.modal-denunciar-servico', ['motivos' => $motivos])
+
                 @endif
             </div>
         </div>

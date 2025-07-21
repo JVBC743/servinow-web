@@ -100,7 +100,8 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('denuncia')->controller(DenunciaController::class)->group(function () {
         Route::get('/lista-motivos', 'indexMotivos')->name('listar.motivos');
-        Route::post('denunciar/{id}', 'store')->name('denunciar.prestador');
+        Route::post('prestador/{id}', 'reportPrestador')->name('denunciar.prestador');
+        Route::post('/servico/{id}', 'reportServico')->name('denunciar.servico');
     });
 
     Route::controller(UsuarioController::class)->group(function () {

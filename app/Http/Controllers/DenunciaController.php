@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Denuncia;
 use Illuminate\Http\Request;
-use App\Http\Requests\CreateDenunciaRequest;
+use App\Http\Requests\CreateDenunciaPrestadorRequest;
+use App\Http\Requests\CreateDenunciaServicoRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Container\Attributes\Storage;
 use App\Models\Usuario;
-
+use App\Models\Servico;
 class DenunciaController extends Controller
 {
     /**
@@ -35,7 +36,7 @@ class DenunciaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CreateDenunciaRequest $request, $id)
+    public function reportPrestador(CreateDenunciaPrestadorRequest $request, $id)
     {   
         $denunciado = $request->input('id_prestador');
 
@@ -64,6 +65,45 @@ class DenunciaController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'A denuncia foi realizada com sucesso.');
+    }
+
+    public function reportServico($id, CreateDenunciaServicoRequest $request)
+    {
+
+        $servico_denunciado = $request->input('id_servico');
+
+        $servico = Servico::find($servico_denunciado);
+        $prestador = Usuario::find($servico->usuario_id);
+
+        if(!$servico){
+            return redirect()->back()->with('error', 'Serviço não encontrado no nosso banco.');
+        }
+
+        if(!$prestador){
+            return redirect()->back()->with('error', 'Prestador não encontrado no nosso banco.');
+        }
+
+        $data = $request->validated();
+
+        if ($request->hasFile('anexo')) {
+            $path = $request->file('anexo')->store('denuncia/anexos', 'minio');
+            $data['caminho_arquivo'] = $path;
+        }
+        
+        Denuncia::create([
+
+            'id_denunciante' => Auth::id(),
+            'id_servico' => $servico_denunciado,
+            'id_denunciado' => $prestador->id,
+            'titulo' => $data['titulo'],
+            'id_motivo' => $data['motivo'],
+            'descricao' => $data['descricao'],
+            'caminho_arquivo' => $data['caminho_arquivo'] ?? null,
+
+        ]);
+
+        return redirect()->back()->with('success', 'A denuncia foi realizada com sucesso.');
+
     }
 
     /**
