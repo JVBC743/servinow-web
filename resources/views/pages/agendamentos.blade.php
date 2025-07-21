@@ -3,25 +3,6 @@
 @section('title', 'Agendamentos')
 
 @section('content')
-
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-    @if(session('error'))
-        <div class="alert alert-danger">{{ session('error') }}</div>
-    @endif
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-
     <div class="d-flex flex-wrap gap-4 justify-content-center mb-3">
         <div class="card-resumo">
             <div class="titulo-card">Serviços cadastrados</div>
@@ -125,7 +106,8 @@
                                         </div>
                                     </div>
                                     <x-slot name="footer_left">
-                                        <form action="{{ route('fechar.falha') }}" method="POST">
+                                        @if($item->status == 2)
+                                        <form class="form-finalizar-falha" action="{{ route('fechar.falha') }}" method="POST">
                                             @csrf
                                             @method('PUT')
                                             <input type="hidden" name="id_servico" value="{{ $item->id_servico}}">
@@ -134,9 +116,11 @@
                                                 Finalizado sem sucesso
                                             </x-btn>
                                         </form>
+                                        @endif
                                     </x-slot>
                                     <x-slot name="footer_right">
-                                        <form action="{{ route('fechar.sucesso') }}" method="POST">
+                                        @if($item->status == 2)
+                                        <form class="form-finalizar-sucesso" action="{{ route('fechar.sucesso') }}" method="POST">
                                             @csrf
                                             @method('PUT')
                                             <input type="hidden" name="id_servico" value="{{ $item->id_servico}}">
@@ -145,6 +129,7 @@
                                                 Finalizado com sucesso
                                             </x-btn>
                                         </form>
+                                        @endif
                                     </x-slot>
                                 </x-modal-default>
                             @endforeach
@@ -179,7 +164,7 @@
                                     <td>{{ $item->prazo_formatado }}</td>
                                     <td>
                                         {{  $item->status ? $item->statusAgendamento->status : 'Status desconhecido' }}
-                                       
+
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center gap-2">

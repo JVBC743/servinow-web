@@ -32,12 +32,13 @@
     <div class="d-flex flex-wrap justify-content-center" style="gap: 20px;">
 
         @foreach($servicos as $item)
-            <x-card-servico 
-            :imageUrl="$item->url_foto" 
+            <x-card-servico
+            :imageUrl="$item->url_foto"
             title="{{ $item->nome_servico }}"
-            category="{{ $item->categoriaR->nome ?? 'Sem categoria' }}" 
+            category="{{ $item->categoriaR->nome ?? 'Sem categoria' }}"
             description="{{ $item->desc_servico }}"
-            buttonUrl="{{ route('servico', ['id' => $item->id]) }}" />
+            buttonUrl="{{ route('servico', ['id' => $item->id]) }}"
+            price="{{ 'R$ ' . $item->preco }}"/>
         @endforeach
     </div>
 @endsection

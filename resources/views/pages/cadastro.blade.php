@@ -1,5 +1,8 @@
 @extends ('layouts.nao-autenticado')
 @section('title', 'Cadastro')
+@section('scripts')
+    <script src="{{ asset('js/cadastro.js') }}"></script>
+@endsection
 @section('content')
 
     @if ($errors->any())
@@ -138,3 +141,4 @@
         </div>
     </div>
 @endsection
+

@@ -25,7 +25,7 @@ class FakePaymentGateway implements PaymentGatewayInterface
 
         $agendamentoId = $details['agendamento_id'] ?? null;
         $codigo = (string) Str::uuid();
-        $paymentUrl = route('fake.payment.show', ['id' => $codigo]);
+        $paymentUrl = route('fake.payment.boleto', ['id' => $codigo]);
 
         // Simulação de dados extras por método
         $extra = [];
@@ -83,7 +83,7 @@ class FakePaymentGateway implements PaymentGatewayInterface
         }
 
         // Retorna o status pelo nome
-        return $pagamento->status ? strtolower($pagamento->status->status) : 'unknown';
+        return $pagamento->status ? strtolower($pagamento->statusR->status) : 'unknown';
     }
 
     public function confirmPayment(string $paymentId): void
@@ -92,7 +92,7 @@ class FakePaymentGateway implements PaymentGatewayInterface
 
         if ($pagamento) {
             // Só permite confirmar se estiver pendente
-            if ($pagamento->status && strtolower($pagamento->status->status) === 'pendente') {
+            if ($pagamento->status && strtolower($pagamento->statusR->status) === 'pendente') {
                 $statusPago = StatusPagamento::where('status', 'Pago')->first();
                 $pagamento->update([
                     'status' => $statusPago ? $statusPago->id : $pagamento->status,
@@ -108,7 +108,7 @@ class FakePaymentGateway implements PaymentGatewayInterface
 
         if ($pagamento) {
             // Só permite cancelar se estiver pendente
-            if ($pagamento->status && strtolower($pagamento->status->status) === 'pendente') {
+            if ($pagamento->status && strtolower($pagamento->statusR->status) === 'pendente') {
                 $statusCancelado = StatusPagamento::where('status', 'Cancelado')->first();
                 $pagamento->update([
                     'status' => $statusCancelado ? $statusCancelado->id : $pagamento->status,

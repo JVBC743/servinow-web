@@ -16,9 +16,22 @@
     <div class="info"><strong>Código:</strong> {{ $codigo }}</div>
     <div class="barcode"><strong>Código de Barras:</strong> {{ $barcode }}</div>
     <div class="qrcode">
-        <strong>QR Code PIX:</strong><br>
-        {!! $qr_code !!}
+        <strong>QR Code para pagamento:</strong><br>
+        <form id="form-pagar-boleto" action="{{ route('fake.payment.boleto.pagar', ['id' => $codigo]) }}" method="POST" style="display:none;">
+            @csrf
+        </form>
+        @php
+            // Gera uma URL que, ao ser acessada, dispara o submit do formulário via JS
+            $qrPostUrl = url()->current() . '?pagar=1';
+        @endphp
+        {!! QrCode::size(200)->generate($qrPostUrl) !!}
     </div>
     <div class="info"><em>Este boleto é apenas para fins de simulação.</em></div>
+
+    @if(request('pagar'))
+    <script>
+        document.getElementById('form-pagar-boleto').submit();
+    </script>
+    @endif
 </body>
 </html>

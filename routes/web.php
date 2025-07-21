@@ -64,6 +64,7 @@ Route::middleware('auth')->group(function () {
         Route::put('/sucesso', 'closeSuccess')->name('fechar.sucesso');
         Route::put('/falha', 'closeFail')->name('fechar.falha');
         Route::delete('/agendamento/{agendamento}', [AgendamentoController::class, 'destroy'])->name('agendamento.destroy');
+        Route::put('/confirmar-pagamento', [AgendamentoController::class, 'confirmarPagamento'])->name('confirmar.pagamento');
     });
 
     // Perfil do usuário
@@ -117,4 +118,9 @@ Route::middleware('auth')->group(function () {
         Route::put('/editar/{id}', 'adminUsuarioEdit')->name('admin.usuario.edit');
         Route::delete('/excluir/{id}', 'adminUserDestroy')->name('admin.excluir.usuario');
     });
+
+    Route::get('/fake-payment/boleto/{id}', [AgendamentoController::class, 'showBoleto'])
+    ->name('fake.payment.boleto');
+    Route::post('/fake-payment/boleto/{id}', [App\Http\Controllers\AgendamentoController::class, 'pagarBoletoFake'])
+    ->name('fake.payment.boleto.pagar');
 });

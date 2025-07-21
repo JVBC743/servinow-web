@@ -461,6 +461,7 @@ form {
     transition: transform 0.2s ease, color 0.2s ease;
     margin-right: 10px;
 }
+
 .eye-icon:hover {
     color: grey;
     transform: scale(1.1);
@@ -472,6 +473,7 @@ form {
     cursor: pointer;
     transition: transform 0.2s ease, color 0.2s ease;
 }
+
 .info-icon:hover {
     color: grey;
     transform: scale(1.1);
@@ -483,6 +485,7 @@ form {
     cursor: pointer;
     transition: transform 0.2s ease, color 0.2s ease;
 }
+
 .geral-icon:hover {
     color: grey;
     transform: scale(1.1);
@@ -491,17 +494,17 @@ form {
 /* Cards de resumo para dashboard */
 .card-resumo {
     background: #fff;
-    box-shadow: 0 6px 24px rgba(0,0,0,0.16); 
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.16);
     border-left: 6px solid var(--cor-padrao, #7DCCD8);
     border-radius: 12px;
-    padding: 12px 8px; 
+    padding: 12px 8px;
     min-width: 180px;
     min-height: 70px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    margin-bottom: 0; 
+    margin-bottom: 0;
 }
 
 .titulo-card {
@@ -510,9 +513,17 @@ form {
     margin-bottom: 4px;
     font-weight: 500;
 }
+
 .valor-card {
     font-size: 1.5rem;
     font-weight: bold;
     color: var(--cor-padrao, #7DCCD8);
 }
- 
+
+.custom-card .badge {
+    font-size: 1rem;
+    padding: 0.6em 1em;
+    border-radius: 1.5em;
+    box-shadow: 0 2px 8px #0002;
+    letter-spacing: 0.5px;
+}
