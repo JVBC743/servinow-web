@@ -8,14 +8,17 @@
     'buttonUrl' => '#'
 ])
 
-<div class="custom-card" {{ $attributes }}>
-    <div class="card-img-container">
-        <img 
-            src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" 
-            data-src="{{ $imageUrl }}" 
-            alt="{{ $title }}" 
-            class="card-img-top lazy" 
+<div class="custom-card position-relative" {{ $attributes }}>
+    <div class="card-img-container position-relative">
+        <img
+            src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+            data-src="{{ $imageUrl }}"
+            alt="{{ $title }}"
+            class="card-img-top lazy"
             loading="lazy">
+        <span class="badge bg-success position-absolute top-0 end-0 m-2 fs-6 shadow" style="z-index:2;">
+            {{ $price }}
+        </span>
     </div>
     <div class="card-body">
         <h5 class="card-title">{{ $title }}</h5>
