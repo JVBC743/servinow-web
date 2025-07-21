@@ -213,7 +213,39 @@ class UsuarioController extends Controller
         return redirect()->back()->with('success', 'Usuário excluído com sucesso!');
     }
 
+    public function blockAdmin($id){
 
+        $usr = Usuario::find($id);
+
+        if(!$usr){
+            return redirect()->back()->with('error', 'O usuário selecionado para bloqueio não foi encontrado.');
+        }
+
+        if ($usr->update(['bloqueado' => true])) {
+            return redirect()
+                ->back()
+                ->with('success', 'O usuário foi bloqueado com sucesso.');
+        }
+
+        return redirect()->back()->with('error', 'Houve um erro ao bloquear o usuário.');
+    }
+
+    public function unblockAdmin($id){
+
+        $usr = Usuario::find($id);
+
+        if(!$usr){
+            return redirect()->back()->with('error', 'O usuário selecionado para desbloqueio não foi encontrado.');
+        }
+
+        if ($usr->update(['bloqueado' => false])) {
+            return redirect()
+                ->back()
+                ->with('success', 'O usuário foi desbloqueado com sucesso.');
+        }
+
+        return redirect()->back()->with('error', 'Houve um erro ao desbloquear o usuário.');
+    }
 
     public function showMinioTest()
     {

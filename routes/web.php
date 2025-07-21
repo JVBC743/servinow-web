@@ -118,6 +118,11 @@ Route::middleware('auth')->group(function () {
         Route::get('/edicao/{id}', 'adminShowUserAccount')->name('admin.mostrar.edicao');
         Route::put('/editar/{id}', 'adminUsuarioEdit')->name('admin.usuario.edit');
         Route::delete('/excluir/{id}', 'adminUserDestroy')->name('admin.excluir.usuario');
+
+
+        Route::put('/bloqueio/{id}','blockAdmin')->name('bloqueio.usuario');
+        Route::put('/desbloqueio/{id}','unblockAdmin')->name('desbloqueio.usuario');
+
     });
 
     Route::get('/fake-payment/boleto/{id}', [AgendamentoController::class, 'showBoleto'])

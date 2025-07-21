@@ -13,7 +13,6 @@
         {
             Schema::table('Denuncia', function (Blueprint $table) {
                 $table->unsignedBigInteger('id_denunciante')->nullable()->change();
-
             });
         }
 
