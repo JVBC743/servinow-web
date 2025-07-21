@@ -24,6 +24,12 @@ class AuthApiController extends Controller
 
         $usuario = Usuario::where('email', $request->email)->first();
 
+        if($usuario && $usuario->bloqueado) {
+            throw ValidationException::withMessages([
+                'email' => ['Sua conta está bloqueada. Entre em contato com o suporte.'],
+            ]);
+        }
+
         if (! $usuario || ! Hash::check($request->password, $usuario->senha)) {
             throw ValidationException::withMessages([
                 'email' => ['As credenciais estão incorretas.'],
