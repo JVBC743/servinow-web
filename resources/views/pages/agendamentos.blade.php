@@ -297,7 +297,7 @@
                             @foreach ($servicos as $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
-                                    <td>{{ $item->nome_servico ?? 'Status não encontrado.' }}</td>
+                                       <td>{{ $item->nome_servico ?? 'Status não encontrado.' }}</td>
                                     <td>{{ $item->created_at->format('d/m/Y') }} às {{ $item->created_at->format('H:i') }}</td>
                                     <td>
                                         <div class="d-flex justify-content-center gap-3">
