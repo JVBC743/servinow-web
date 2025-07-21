@@ -21,14 +21,14 @@
     <link rel="stylesheet" href="{{ asset('css/photos.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sizes.css') }}">
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/buttons.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/components/buttons.css') }}">
     <link rel="stylesheet" href="{{ asset('css/colors.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/card-servico.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/card-avaliacao.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/search-bar.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/components/card-servico.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/components/card-avaliacao.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/components/footer.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/components/navbar.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/components/search-bar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/components/buttons.css') }}">
     <link rel="stylesheet" href="{{ asset('css/components/modal.css') }}">
 

@@ -138,7 +138,6 @@ class ServicoController extends Controller
     public function show($id)
     {
         $servico = Servico::with('prestador')->findOrFail($id);
-        $motivos = Motivo::all();
 
         if($servico->caminho_foto)
             $servico->url_foto = Storage::disk('miniobusca')->temporaryUrl($servico->caminho_foto, now()->addMinutes(5));
@@ -153,7 +152,7 @@ class ServicoController extends Controller
             }
             return $avaliacao;
         });
-        return view('pages.servico', compact('servico','avaliacoes', 'motivos'));
+        return view('pages.servico', compact('servico', 'avaliacoes'));
     }
 
     public function showPrestador($id)

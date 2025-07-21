@@ -493,31 +493,55 @@ form {
 
 /* Cards de resumo para dashboard */
 .card-resumo {
-    background: #fff;
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.16);
-    border-left: 6px solid var(--cor-padrao, #7DCCD8);
-    border-radius: 12px;
-    padding: 12px 8px;
-    min-width: 180px;
-    min-height: 70px;
+    background: linear-gradient(135deg, #fff 0%, #f8fafc 100%);
+    box-shadow: 0 8px 32px rgba(125, 204, 216, 0.15);
+    border: 1px solid rgba(125, 204, 216, 0.1);
+    border-left: 4px solid var(--cor-padrao, #7DCCD8);
+    border-radius: 16px;
+    padding: 20px 24px;
+    min-width: 200px;
+    min-height: 85px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
     margin-bottom: 0;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-resumo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--cor-padrao, #7DCCD8), transparent);
+    border-radius: 0 16px 0 100%;
+    opacity: 0.1;
+}
+
+.card-resumo:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(125, 204, 216, 0.25);
 }
 
 .titulo-card {
-    font-size: 1rem;
-    color: #000000a8;
-    margin-bottom: 4px;
-    font-weight: 500;
+    font-size: 0.875rem;
+    color: #64748b;
+    margin-bottom: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .valor-card {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--cor-padrao, #7DCCD8);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--cor-padrao-escuro, #006e92);
+    line-height: 1;
 }
 
 .custom-card .badge {
@@ -526,4 +550,117 @@ form {
     border-radius: 1.5em;
     box-shadow: 0 2px 8px #0002;
     letter-spacing: 0.5px;
+}
+
+.btn-modern {
+    background: linear-gradient(135deg, #7DCCD8 0%, #5fb3c4 100%);
+    border: none;
+    border-radius: 12px;
+    padding: 16px 20px;
+    color: white;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(125, 204, 216, 0.3);
+}
+
+.btn-modern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn-modern:hover::before {
+    left: 100%;
+}
+
+.btn-modern:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(125, 204, 216, 0.4);
+    background: linear-gradient(135deg, #5fb3c4 0%, #4a9bb0 100%);
+}
+
+.btn-modern.active {
+    background: linear-gradient(135deg, #006e92 0%, #004d66 100%);
+    box-shadow: 0 6px 20px rgba(0, 110, 146, 0.4);
+}
+
+.btn-modern i {
+    font-size: 1.1rem;
+}
+
+.btn-modern span {
+    font-size: 0.9rem;
+    display: block;
+    margin-top: 2px;
+}
+
+.table-modern {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.table-modern thead th {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border: none;
+    padding: 16px 12px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #475569;
+}
+
+.table-modern tbody tr {
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.table-modern tbody tr:hover {
+    background-color: #f8fafc;
+    transform: scale(1.01);
+}
+
+.table-modern tbody td {
+    padding: 16px 12px;
+    border: none;
+    border-bottom: 1px solid #e2e8f0;
+    vertical-align: middle;
+}
+
+.card-table-container {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(125, 204, 216, 0.1);
+}
+
+.table-title {
+    color: #1e293b;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.table-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--cor-padrao), var(--cor-padrao-escuro));
+    border-radius: 2px;
 }
