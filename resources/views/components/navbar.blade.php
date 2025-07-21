@@ -52,7 +52,7 @@
                                 Agendamentos
                             </a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a class="dropdown-item"
                                 href="{{ route('agendamento.solicitacoes') }}">
                                 Solicitações
@@ -63,7 +63,7 @@
                                 href="{{ route('servicos.cadastrados') }}">
                                 Serviços Cadastrados
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
                 
