@@ -35,7 +35,7 @@ class AvaliacaoController extends Controller
 
         Avaliacao::create($data);
 
-        return redirect()->back()->with('success', 'Avaliação inserida com sucesso!');
+        return redirect()->route('agendamento.cliente')->with('success', 'Avaliação inserida com sucesso!');
     }
 
     /**

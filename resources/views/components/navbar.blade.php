@@ -52,18 +52,6 @@
                                 Agendamentos
                             </a>
                         </li>
-                        <!-- <li>
-                            <a class="dropdown-item"
-                                href="{{ route('agendamento.solicitacoes') }}">
-                                Solicitações
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item"
-                                href="{{ route('servicos.cadastrados') }}">
-                                Serviços Cadastrados
-                            </a>
-                        </li> -->
                     </ul>
                 </li>
                 
