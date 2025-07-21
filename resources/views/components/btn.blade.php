@@ -1,17 +1,36 @@
 @props([
-    'variant' => 'primary',
+    'variant' => 'padrao',
     'type' => 'button',
+    'size' => 'normal',
+    'disabled' => false
 ])
+
 @php
-    $classes = match($variant) {
-        'padrao' => 'btn btn-primary btn-padrao',
-        'branco' => 'btn btn-secondary btn-branco',
-        'verde' => 'btn btn-secondary btn-verde',
-        'vermelho' => 'btn btn-danger btn-vermelho',
-        default => 'btn btn-primary btn-padrao',
-    };
+    $variants = [
+        'padrao' => 'btn-padrao',
+        'verde' => 'btn-verde',
+        'vermelho' => 'btn-vermelho',
+        'branco' => 'btn-branco',
+        'padrao-detalhado' => 'btn-padrao-detalhado',
+        'verde-detalhado' => 'btn-verde-detalhado',
+        'vermelho-detalhado' => 'btn-vermelho-detalhado',
+        'branco-detalhado' => 'btn-branco-detalhado'
+    ];
+    
+    $sizeClasses = [
+        'small' => 'btn-sm',
+        'normal' => '',
+        'large' => 'btn-lg'
+    ];
+    
+    $class = $variants[$variant] . ' ' . $sizeClasses[$size];
 @endphp
 
-<button {{ $attributes->merge(['class' => $classes, 'type' => $type]) }}>
+<button 
+    type="{{ $type }}" 
+    class="{{ $class }} {{ $attributes->get('class') }}"
+    @if($disabled) disabled @endif
+    {{ $attributes->except(['class']) }}
+>
     {{ $slot }}
 </button>

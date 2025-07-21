@@ -109,3 +109,175 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
     color: white;
 }
+
+/* ===== Verde Detalhado ===== */
+.btn-verde-detalhado {
+    color: white;
+    background: linear-gradient(135deg, hsl(150, 60%, 38%) 0%, hsl(150, 60%, 30%) 100%);
+    border: 1px solid hsl(150, 60%, 25%);
+    border-radius: 12px;
+    padding: 12px 24px;
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
+    transition: all 0.3s ease;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-verde-detalhado::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, hsl(150, 80%, 60%), hsl(150, 80%, 40%), hsl(150, 80%, 60%));
+    transition: all 0.4s ease;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.btn-verde-detalhado:hover::before {
+    width: 100%;
+}
+
+.btn-verde-detalhado:hover {
+    background: linear-gradient(135deg, hsl(150, 60%, 33%) 0%, hsl(150, 60%, 25%) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(76, 175, 80, 0.4);
+    color: white;
+}
+
+.btn-verde-detalhado:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+/* ===== Vermelho Detalhado ===== */
+.btn-vermelho-detalhado {
+    color: white;
+    background: linear-gradient(135deg, hsl(0, 100%, 38%) 0%, hsl(0, 100%, 30%) 100%);
+    border: 1px solid hsl(0, 100%, 25%);
+    border-radius: 12px;
+    padding: 12px 24px;
+    box-shadow: 0 6px 20px rgba(244, 67, 54, 0.3);
+    transition: all 0.3s ease;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-vermelho-detalhado::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, hsl(0, 100%, 70%), hsl(0, 100%, 50%), hsl(0, 100%, 70%));
+    transition: all 0.4s ease;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.btn-vermelho-detalhado:hover::before {
+    width: 100%;
+}
+
+.btn-vermelho-detalhado:hover {
+    background: linear-gradient(135deg, hsl(0, 100%, 33%) 0%, hsl(0, 100%, 25%) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(244, 67, 54, 0.4);
+    color: white;
+}
+
+.btn-vermelho-detalhado:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);
+}
+
+/* ===== Branco Detalhado ===== */
+.btn-branco-detalhado {
+    color: #1e293b;
+    background: linear-gradient(135deg, white 0%, #f8fafc 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 12px 24px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-branco-detalhado::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #cbd5e1, #475569, #cbd5e1);
+    transition: all 0.4s ease;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.btn-branco-detalhado:hover::before {
+    width: 100%;
+}
+
+.btn-branco-detalhado:hover {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    color: #1e293b;
+}
+
+.btn-branco-detalhado:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== Padrão Detalhado ===== */
+.btn-padrao-detalhado {
+    color: white;
+    background: linear-gradient(135deg, #7DCCD8 0%, #5fb3c4 100%);
+    border: 1px solid #4a9bb0;
+    border-radius: 12px;
+    padding: 12px 24px;
+    box-shadow: 0 6px 20px rgba(125, 204, 216, 0.3);
+    transition: all 0.3s ease;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-padrao-detalhado::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #a8e6cf, #ffffff, #a8e6cf);
+    transition: all 0.4s ease;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.btn-padrao-detalhado:hover::before {
+    width: 100%;
+}
+
+.btn-padrao-detalhado:hover {
+    background: linear-gradient(135deg, #5fb3c4 0%, #4a9bb0 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(125, 204, 216, 0.4);
+    color: white;
+}
+
+.btn-padrao-detalhado:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 15px rgba(125, 204, 216, 0.3);
+}

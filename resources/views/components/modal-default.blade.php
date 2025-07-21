@@ -1,4 +1,3 @@
-
 <div class="modal fade" id="{{ $id ?? 'modalPadrao' }}" tabindex="-1" aria-labelledby="{{ $id ?? 'modalPadrao' }}Label" aria-hidden="true">
     <div class="modal-dialog {{ $size ?? 'modal-dialog-centered' }}">
         <div class="modal-content modal-editar-perfil">
@@ -14,6 +13,11 @@
             <div class="modal-footer d-flex justify-content-between">
                 @isset($footer_left)
                     {{ $footer_left }}
+                @else
+                    <x-btn variant="branco-detalhado" type="button" data-bs-dismiss="modal">
+                        <i class="fa-solid fa-times me-2"></i>
+                        Fechar
+                    </x-btn>
                 @endisset
                 @isset($footer_right)
                     {{ $footer_right }}

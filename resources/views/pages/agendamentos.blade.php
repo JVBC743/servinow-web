@@ -24,35 +24,35 @@
         </div>
     </div>
 
-    <!-- Botões de seleção com visual mais moderno -->
+    <!-- Botões de collapse com versão detalhada -->
     <div class="row g-3 justify-content-center mb-5">
         <div class="col-12 col-sm-6 col-lg-3 d-flex">
-            <button class="btn btn-modern flex-fill" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCliente"
+            <x-btn variant="padrao-detalhado" class="flex-fill" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCliente"
                 aria-expanded="false" aria-controls="collapseCliente">
                 <i class="fa-solid fa-user me-2"></i>
                 <span>Agendados como Cliente</span>
-            </button>
+            </x-btn>
         </div>
         <div class="col-12 col-sm-6 col-lg-3 d-flex">
-            <button class="btn btn-modern flex-fill" type="button" data-bs-toggle="collapse"
+            <x-btn variant="padrao-detalhado" class="flex-fill" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapsePrestador" aria-expanded="false" aria-controls="collapsePrestador">
                 <i class="fa-solid fa-user-tie me-2"></i>
                 <span>Agendados como Prestador</span>
-            </button>
+            </x-btn>
         </div>
         <div class="col-12 col-sm-6 col-lg-3 d-flex">
-            <button class="btn btn-modern flex-fill" type="button" data-bs-toggle="collapse"
+            <x-btn variant="padrao-detalhado" class="flex-fill" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapseSolicitados" aria-expanded="false" aria-controls="collapseSolicitados">
                 <i class="fa-solid fa-calendar-check me-2"></i>
                 <span>Serviços Agendados</span>
-            </button>
+            </x-btn>
         </div>
         <div class="col-12 col-sm-6 col-lg-3 d-flex">
-            <button class="btn btn-modern flex-fill" type="button" data-bs-toggle="collapse"
+            <x-btn variant="padrao-detalhado" class="flex-fill" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapseCadastrados" aria-expanded="false" aria-controls="collapseCadastrados">
                 <i class="fa-solid fa-folder-open me-2"></i>
                 <span>Serviços Cadastrados</span>
-            </button>
+            </x-btn>
         </div>
     </div>
 
@@ -161,6 +161,7 @@
                                                 <input type="hidden" name="id_servico" value="{{ $item->id_servico}}">
                                                 <input type="hidden" name="id_agendamento" value="{{ $item->id }}">
                                                 <x-btn variant="vermelho" type="submit" name="fechar_falha">
+                                                    <i class="fa-solid fa-times me-2"></i>
                                                     Finalizado sem sucesso
                                                 </x-btn>
                                             </form>
@@ -174,6 +175,7 @@
                                                 <input type="hidden" name="id_servico" value="{{ $item->id_servico}}">
                                                 <input type="hidden" name="id_agendamento" value="{{ $item->id }}">
                                                 <x-btn variant="verde" type="submit" name="fechar_sucesso">
+                                                    <i class="fa-solid fa-check me-2"></i>
                                                     Finalizado com sucesso
                                                 </x-btn>
                                             </form>
@@ -281,7 +283,7 @@
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <h2 class="table-title text-center mb-0">Serviços Cadastrados</h2>
                         <a href="{{ route('servico.create') }}">
-                            <x-btn variant="padrao" type="button">
+                            <x-btn variant="verde" type="button">
                                 <i class="fa-solid fa-plus me-2"></i>
                                 Cadastrar Serviço
                             </x-btn>
@@ -340,9 +342,14 @@
                                     Tem certeza que deseja excluir este serviço?
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="btn btn-danger">Excluir</button>
+                                    <x-btn variant="branco" type="button" data-bs-dismiss="modal">
+                                        <i class="fa-solid fa-times me-2"></i>
+                                        Cancelar
+                                    </x-btn>
+                                    <x-btn variant="vermelho" type="submit">
+                                        <i class="fa-solid fa-trash me-2"></i>
+                                        Excluir
+                                    </x-btn>
                                 </div>
                             </form>
                         </div>
