@@ -74,7 +74,7 @@ class UsuarioController extends Controller
         if (auth()->id() !== (int) $id && !auth()->user()->is_admin) {
             abort(403, 'Acesso não autorizado.');
         }
-        $usr = Usuario::find($id);
+        $usr = Usuario::with('formacao')->find($id);
 
         $lista = Formacao::all();
 
@@ -207,6 +207,20 @@ class UsuarioController extends Controller
         if (!$usr) {
             return redirect()->back()->with('error', 'O usuário selecionado para exclusão não foi encontrado.');
         }
+
+        // $cliente = Auth::user();
+
+
+
+        $dataFormatada = \Carbon\Carbon::parse($data['data'])->format('d/m/Y H:i');
+
+        // Mensagem para o cliente
+        $mensagemClientes = "Olá, *{$usr}*, a sua conta foi excluída por um administrador do sistema. Entre em contato com um dos e-mails dos desenvolvedores para mais detalhes: joaovictor.brumc@gmail.com, joseclaionmartins@gmail.com ou mateus4pantoja@gmail.com";
+        EvolutionWhatsApp::sendMessage('ServiNow', $usr->telefone, $mensagemClientes);
+
+        // Mensagem para o provedor/prestador
+        // $mensagemPrestador = "Olá {$prestador->nome}, você recebeu uma nova solicitação de agendamento para o serviço *{$nomeServico}*.\n\n👤 Cliente: {$cliente->nome}\n📞 Contato: {$cliente->telefone}\n📅 Data: *{$dataFormatada}*\n💬 Descrição: {$data['descricao']}\n\nAcesse seu painel para aceitar ou recusar.";
+        // EvolutionWhatsApp::sendMessage('ServiNow', $prestador->telefone, $mensagemPrestador);
 
         $usr->delete();
 

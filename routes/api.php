@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\AuthApiController;
 use App\Http\Controllers\Api\AgendamentoApiController;
 use App\Http\Controllers\Api\AvaliacaoApiController;
 use App\Http\Controllers\Api\ServicoApiController;
+use App\Http\Controllers\Api\UsuarioApiController;
 
 Route::prefix('v1')->group(function () {
 
@@ -32,5 +33,10 @@ Route::prefix('v1')->group(function () {
         // Route::post('/servicos', [ServicoApiController::class, 'store']);
         Route::get('/servicos/{id}', [ServicoApiController::class, 'show']);
         Route::get('/prestador/{id}', [ServicoApiController::class, 'showPrestador']);
+
+        // Rotas para usuário
+        Route::get('/usuario/{id}', [UsuarioApiController::class, 'show']);
+        Route::post('/update/usuario/{id}', [UsuarioApiController::class, 'edit']);
+        Route::post('/delete/usuario/{id}', [UsuarioApiController::class, 'destroy']);
     });
 });
