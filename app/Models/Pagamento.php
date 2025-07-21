@@ -29,7 +29,7 @@ class Pagamento extends Model
         return $this->belongsTo(Agendamento::class, 'id_agendamento');
     }
 
-    public function status()
+    public function statusR()
     {
         return $this->belongsTo(StatusPagamento::class, 'status');
     }

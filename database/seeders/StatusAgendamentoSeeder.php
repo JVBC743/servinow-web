@@ -18,9 +18,11 @@ class StatusAgendamentoSeeder extends Seeder
             'Em progresso',
             'Finalizado com sucesso',
             'Finalizado sem sucesso',
+            'Aguardando pagamento',
+            'pago',
         ];
         foreach ($status as $nome) {
             StatusAgendamento::create(['status' => $nome]);
-        } 
+        }
     }
 }
