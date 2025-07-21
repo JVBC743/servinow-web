@@ -23,6 +23,7 @@
                                             placeholder="Insira o título do serviço" value="{{ old('nome', $servico->nome_servico) }}"
                                             minlength="20" maxlength="40" required>
                                     </div>
+                                    
                                     <!-- Categoria -->
                                     <div class="form-group-editar-perfil mb-3">
                                         <label for="categoria{{ $servico->id }}" class="label-editar-perfil">Categoria<span class="required">*</span></label>
@@ -36,7 +37,18 @@
                                             @endforeach
                                         </select>
                                     </div>
+
+                                    <!-- Preço -->
+                                    <div class="form-group-editar-perfil mb-3">
+                                        <label for="preco{{ $servico->id }}" class="label-editar-perfil">Preço<span class="required">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">R$</span>
+                                            <input type="text" name="preco" id="preco{{ $servico->id }}" class="form-control input-editar-perfil"
+                                                placeholder="0,00" value="{{ old('preco', number_format($servico->preco, 2, ',', '')) }}" required>
+                                        </div>
+                                    </div>
                                 </div>
+                                
                                 <div class="col-md-6">
                                     <!-- Descrição -->
                                     <div class="form-group-editar-perfil mb-3 h-100 d-flex flex-column">
@@ -46,6 +58,7 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             <!-- Imagem do Serviço (embaixo de tudo) -->
                             <div class="form-group-editar-perfil mb-3 mt-4">
                                 <label for="imagem{{ $servico->id }}" class="label-editar-perfil">Alterar Imagem do Serviço</label>
@@ -75,3 +88,15 @@
         </div>
     </div>
 </div>
+
+<script>
+// Máscara para preço no modal
+document.getElementById('preco{{ $servico->id }}').addEventListener('input', function (e) {
+    let value = e.target.value.replace(/\D/g, '');
+    value = (value / 100).toFixed(2) + '';
+    value = value.replace(".", ",");
+    value = value.replace(/(\d)(\d{3})(\d{3}),/g, "$1.$2.$3,");
+    value = value.replace(/(\d)(\d{3}),/g, "$1.$2,");
+    e.target.value = value;
+});
+</script>

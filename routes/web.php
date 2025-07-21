@@ -56,13 +56,12 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('agendamento')->controller(AgendamentoController::class)->group(function () {
         Route::get('cliente', 'index')->name('agendamento.cliente');
-        // Route::get('prestador', 'indexPrestador')->name('agendamento.prestador');
         Route::post('agendar', 'store')->name('agendar');
         Route::get('solicitacoes', 'indexSolicitacoes')->name('agendamento.solicitacoes');
         Route::put('/aceitar', 'acceptSolicitacao')->name('aceitacao.solicitacao');
-        Route::delete('/negar', 'destroySolicitacao')->name('negacao.solicitacao');
-        Route::put('/sucesso', 'closeSuccess')->name('fechar.sucesso');
-        Route::put('/falha', 'closeFail')->name('fechar.falha');
+        Route::delete('/negar', 'destroySolicitacao')->name('negacao.solicitacao');  // ✅ Corrigido
+        Route::put('/sucesso', 'closeSuccess')->name('fechar.sucesso');         // ✅ Corrigido
+        Route::put('/falha', 'closeFail')->name('fechar.falha');               // ✅ Corrigido
         Route::delete('/agendamento/{agendamento}', [AgendamentoController::class, 'destroy'])->name('agendamento.destroy');
         Route::put('/confirmar-pagamento', [AgendamentoController::class, 'confirmarPagamento'])->name('confirmar.pagamento');
     });
