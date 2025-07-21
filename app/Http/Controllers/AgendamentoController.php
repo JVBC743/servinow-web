@@ -7,6 +7,7 @@ use App\Models\Servico;
 use App\Models\Usuario;
 use App\Models\StatusAgendamento;
 use App\Models\Agendamento;
+use App\Models\Categoria; // Adicione este import no topo do arquivo
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreateAgendamentoRequest;
 use App\Services\EvolutionWhatsApp;
@@ -20,18 +21,35 @@ class AgendamentoController extends Controller
     {
         $id = Auth::id();
 
-        // $formatada = \Carbon\Carbon::createFromFormat('Y-m-d', $prazo)->format('d-m-Y');
-
-        $agendamento_cliente = Agendamento::with(['prestador', 'servico', 'statusAgendamento'])
-            ->where('id_cliente', $id)
-            ->get();
-
+        // Serviços agendados como prestador
         $agendamento_prestador = Agendamento::with(['cliente', 'servico', 'statusAgendamento'])
             ->where('id_prestador', $id)
             ->where('status', '!=', 1)
             ->get();
 
-        return view('pages.agendamentos', compact('agendamento_cliente', 'agendamento_prestador'));
+        // Serviços agendados como cliente
+        $agendamento_cliente = Agendamento::with(['prestador', 'servico', 'statusAgendamento'])
+            ->where('id_cliente', $id)
+            ->get();
+
+        // Serviços agendados (solicitações)
+        $agendamento = Agendamento::with(['cliente', 'servico', 'statusAgendamento'])
+            ->where('id_prestador', $id)
+            ->get();
+
+        // Serviços cadastrados
+        $servicos = Servico::where('usuario_id', $id)->get();
+
+        // Categorias (ADICIONE ESTA LINHA)
+        $categorias = Categoria::all();
+
+        return view('pages.agendamentos', compact(
+            'agendamento_prestador',
+            'agendamento_cliente',
+            'agendamento',
+            'servicos',
+            'categorias' // ADICIONE ESTA VARIÁVEL
+        ));
     }
 
     public function indexSolicitacoes()

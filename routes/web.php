@@ -62,6 +62,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('/negar', 'destroySolicitacao')->name('negacao.solicitacao');
         Route::put('/sucesso', 'closeSuccess')->name('fechar.sucesso');
         Route::put('/falha', 'closeFail')->name('fechar.falha');
+        Route::delete('/agendamento/{agendamento}', [AgendamentoController::class, 'destroy'])->name('agendamento.destroy');
     });
 
     // Perfil do usuário
