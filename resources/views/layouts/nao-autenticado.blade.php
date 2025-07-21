@@ -9,6 +9,14 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/components/buttons.css') }}">
 
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/components/card-servico.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/components/card-avaliacao.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/components/footer.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/components/search-bar.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/components/buttons.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/components/modal.css') }}">
+
     @yield('styles')
 
     <style>
