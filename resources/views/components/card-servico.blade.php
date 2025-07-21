@@ -16,9 +16,12 @@
             alt="{{ $title }}"
             class="card-img-top lazy"
             loading="lazy">
-        <span class="badge bg-success position-absolute top-0 end-0 m-2 fs-6 shadow" style="z-index:2;">
-            {{ $price }}
-        </span>
+        
+        <div class="position-absolute top-0 end-0 m-3" style="z-index:3;">
+            <span class="badge badge-price shadow-lg">
+                {{ $price }}
+            </span>
+        </div>
     </div>
     <div class="card-body">
         <h5 class="card-title">{{ $title }}</h5>

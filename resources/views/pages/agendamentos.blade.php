@@ -5,16 +5,14 @@
 @section('content')
     <div class="d-flex flex-wrap gap-4 justify-content-center mb-3">
         <div class="card-resumo">
-            <div class="titulo-card">Serviços cadastrados</div>
-            <div class="valor-card">{{ $servicos->count() }}</div>
+            <div class="titulo-card">Agendados como cliente</div>
+            <div class="valor-card">{{ $agendamento_cliente->count() }}</div>
         </div>
         <div class="card-resumo">
             <div class="titulo-card">Agendados como prestador</div>
-            <div class="valor-card">{{ $agendamento_prestador->count() }}</div>
-        </div>
-        <div class="card-resumo">
-            <div class="titulo-card">Agendados como cliente</div>
-            <div class="valor-card">{{ $agendamento_cliente->count() }}</div>
+            <div class="valor-card">
+                {{ $agendamento_prestador->count() }}
+            </div>
         </div>
         <div class="card-resumo">
             <div class="titulo-card">Serviços solicitados</div>
@@ -22,13 +20,18 @@
                 {{ $agendamento->where('id_prestador', auth()->id())->where('status', 1)->count() }}
             </div>
         </div>
-    </div>
+        <div class="card-resumo">
+            <div class="titulo-card">Serviços cadastrados</div>
+            <div class="valor-card">{{ $servicos->count() }}</div>
+        </div>
 
+    </div>
+    <hr>
     <!-- Botões de collapse com versão detalhada -->
     <div class="row g-3 justify-content-center mb-5">
         <div class="col-12 col-sm-6 col-lg-3 d-flex">
-            <x-btn variant="padrao-detalhado" class="flex-fill" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCliente"
-                aria-expanded="false" aria-controls="collapseCliente">
+            <x-btn variant="padrao-detalhado" class="flex-fill" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseCliente" aria-expanded="false" aria-controls="collapseCliente">
                 <i class="fa-solid fa-user me-2"></i>
                 <span>Agendados como Cliente</span>
             </x-btn>
@@ -55,7 +58,6 @@
             </x-btn>
         </div>
     </div>
-
     <div id="collapseGroup">
         <!-- Serviços Agendados como Cliente -->
         <div class="collapse show" id="collapseCliente" data-bs-parent="#collapseGroup">
@@ -140,7 +142,8 @@
                                             <div class="form-group-editar-perfil mb-3">
                                                 <label class="label-editar-perfil">Serviço</label>
                                                 <input type="text" class="form-control input-editar-perfil"
-                                                    value="{{ $item->servico->nome_servico ?? 'Serviço inexistente.' }}" disabled>
+                                                    value="{{ $item->servico->nome_servico ?? 'Serviço inexistente.' }}"
+                                                    disabled>
                                             </div>
                                             <div class="form-group-editar-perfil mb-3">
                                                 <label class="label-editar-perfil">Prazo</label>
@@ -155,30 +158,32 @@
                                         </div>
                                         <x-slot name="footer_left">
                                             @if($item->status == 2)
-                                            <form class="form-finalizar-falha" action="{{ route('fechar.falha') }}" method="POST">
-                                                @csrf
-                                                @method('PUT')
-                                                <input type="hidden" name="id_servico" value="{{ $item->id_servico}}">
-                                                <input type="hidden" name="id_agendamento" value="{{ $item->id }}">
-                                                <x-btn variant="vermelho" type="submit" name="fechar_falha">
-                                                    <i class="fa-solid fa-times me-2"></i>
-                                                    Finalizado sem sucesso
-                                                </x-btn>
-                                            </form>
+                                                <form class="form-finalizar-falha" action="{{ route('fechar.falha') }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <input type="hidden" name="id_servico" value="{{ $item->id_servico}}">
+                                                    <input type="hidden" name="id_agendamento" value="{{ $item->id }}">
+                                                    <x-btn variant="vermelho" type="submit" name="fechar_falha">
+                                                        <i class="fa-solid fa-times me-2"></i>
+                                                        Finalizado sem sucesso
+                                                    </x-btn>
+                                                </form>
                                             @endif
                                         </x-slot>
                                         <x-slot name="footer_right">
                                             @if($item->status == 2)
-                                            <form class="form-finalizar-sucesso" action="{{ route('fechar.sucesso') }}" method="POST">
-                                                @csrf
-                                                @method('PUT')
-                                                <input type="hidden" name="id_servico" value="{{ $item->id_servico}}">
-                                                <input type="hidden" name="id_agendamento" value="{{ $item->id }}">
-                                                <x-btn variant="verde" type="submit" name="fechar_sucesso">
-                                                    <i class="fa-solid fa-check me-2"></i>
-                                                    Finalizado com sucesso
-                                                </x-btn>
-                                            </form>
+                                                <form class="form-finalizar-sucesso" action="{{ route('fechar.sucesso') }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <input type="hidden" name="id_servico" value="{{ $item->id_servico}}">
+                                                    <input type="hidden" name="id_agendamento" value="{{ $item->id }}">
+                                                    <x-btn variant="verde" type="submit" name="fechar_sucesso">
+                                                        <i class="fa-solid fa-check me-2"></i>
+                                                        Finalizado com sucesso
+                                                    </x-btn>
+                                                </form>
                                             @endif
                                         </x-slot>
                                     </x-modal-default>
@@ -304,7 +309,8 @@
                                     <tr>
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->nome_servico ?? 'Status não encontrado.' }}</td>
-                                        <td>{{ $item->created_at->format('d/m/Y') }} às {{ $item->created_at->format('H:i') }}</td>
+                                        <td>{{ $item->created_at->format('d/m/Y') }} às {{ $item->created_at->format('H:i') }}
+                                        </td>
                                         <td>
                                             <div class="d-flex justify-content-center gap-3">
                                                 <button type="button" class="bg-transparent border-0 p-0" data-bs-toggle="modal"
