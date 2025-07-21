@@ -1,143 +1,219 @@
 @extends('layouts.autenticado')
 @section('title', 'Cadastrar Serviço')
 
-@section('styles')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cropperjs@1.6.2/dist/cropper.min.css" />
-    <style>
-        .img-preview-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-        .img-preview {
-            max-width: 100%;
-            max-height: 250px;
-            border-radius: 1rem;
-            box-shadow: 0 0 10px #0002;
-            margin-bottom: 1rem;
-        }
-        .card-modern {
-            border-radius: 1.5rem;
-            border: none;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-            background: rgba(255,255,255,0.95);
-        }
-        .form-label {
-            font-weight: 600;
-        }
-        .img-area {
-            background: #f8f9fa;
-            border-radius: 1rem;
-            padding: 2rem 1rem 1rem 1rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 2px 8px 0 rgba(31, 38, 135, 0.07);
-        }
-    </style>
-@endsection
-
 @section('content')
-    <div class="container py-5">
+    <div class="container-fluid py-4">
         <div class="row justify-content-center">
-            <div class="col-lg-7">
-                <div class="card card-modern shadow">
-                    <div class="card-body p-5">
-                        <h2 class="text-center mb-4 fw-bold text-primary">
-                            <i class="bi bi-plus-circle me-2"></i> Cadastrar Serviço
-                        </h2>
-                        <form action="{{ route('servico.store') }}" method="POST" enctype="multipart/form-data" id="form-servico">
-                            @csrf
+            <div class="col-12 col-lg-10 col-xl-8">
+                <!-- Header da página -->
+                <div class="page-header mb-4">
+                    <div class="d-flex align-items-center justify-content-between flex-wrap">
+                        <div>
+                            <h1 class="page-title mb-2">
+                                <i class="fa-solid fa-plus-circle me-3"></i>
+                                Cadastrar Novo Serviço
+                            </h1>
+                            <p class="page-subtitle text-muted mb-0">
+                                Preencha as informações abaixo para cadastrar seu serviço
+                            </p>
+                        </div>
+                        <div class="page-actions">
+                            <x-btn variant="branco" type="button" onclick="window.location='{{ route('dashboard') }}'">
+                                <i class="fa-solid fa-arrow-left me-2"></i>
+                                Voltar
+                            </x-btn>
+                        </div>
+                    </div>
+                </div>
 
-                            {{-- Área exclusiva para imagem --}}
-                            <div class="row">
+                <!-- Card principal -->
+                <div class="service-card">
+                    <form action="{{ route('servico.store') }}" method="POST" enctype="multipart/form-data" id="form-servico">
+                        @csrf
+
+                        <!-- Seção de Upload de Imagem -->
+                        <div class="upload-section">
+                            <div class="upload-header">
+                                <h3 class="section-title">
+                                    <i class="fa-solid fa-image me-2"></i>
+                                    Imagem do Serviço
+                                </h3>
+                                <span class="required-badge">Obrigatório</span>
+                            </div>
+                            
+                            <div class="upload-area" id="upload-area">
+                                <div class="upload-placeholder" id="upload-placeholder">
+                                    <div class="upload-icon">
+                                        <i class="fa-solid fa-cloud-upload-alt"></i>
+                                    </div>
+                                    <h4>Clique ou arraste uma imagem</h4>
+                                    <p>PNG, JPG ou JPEG até 5MB</p>
+                                    <button type="button" class="btn btn-upload-custom">
+                                        <i class="fa-solid fa-folder-open me-2"></i>
+                                        Escolher Arquivo
+                                    </button>
+                                </div>
+                                
+                                <div class="upload-preview d-none" id="upload-preview">
+                                    <img id="img-preview" class="preview-image" alt="Prévia da imagem">
+                                    <div class="preview-overlay">
+                                        <button type="button" class="btn btn-change-custom">
+                                            <i class="fa-solid fa-edit me-2"></i>
+                                            Alterar
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <input type="file" name="imagem" id="imagem" class="upload-input" accept="image/*" required>
+                            </div>
+                            
+                            @error('imagem')
+                                <div class="error-message">
+                                    <i class="fa-solid fa-exclamation-circle me-2"></i>
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <!-- Seção de Informações Básicas -->
+                        <div class="info-section">
+                            <div class="section-header">
+                                <h3 class="section-title">
+                                    <i class="fa-solid fa-info-circle me-2"></i>
+                                    Informações Básicas
+                                </h3>
+                            </div>
+
+                            <div class="row g-4">
                                 <div class="col-12">
-                                    <div class="img-area text-center">
-                                        <label for="imagem" class="form-label mb-2">Imagem do Serviço*</label>
-                                        <div class="img-preview-container">
-                                            <img id="img-preview" class="img-preview d-none" alt="Prévia da imagem" />
+                                    <div class="form-group-modern">
+                                        <label for="nome" class="form-label-modern">
+                                            Título do Serviço
+                                            <span class="required">*</span>
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            name="nome" 
+                                            id="nome" 
+                                            class="form-control-modern"
+                                            placeholder="Ex: Manutenção de computadores domésticos" 
+                                            value="{{ old('nome') }}" 
+                                            minlength="20"
+                                            maxlength="40" 
+                                            required>
+                                        <div class="form-help">
+                                            <span class="char-counter">
+                                                <span id="nome-count">0</span>/40 caracteres
+                                            </span>
                                         </div>
-                                        <input type="file" name="imagem" id="imagem" class="form-control mb-2" accept="image/*" required>
-                                        @error('imagem')
-                                            <span class="text-danger small">{{ $message }}</span>
+                                        @error('nome')
+                                            <div class="error-message">
+                                                <i class="fa-solid fa-exclamation-circle me-2"></i>
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group-modern">
+                                        <label for="categoria" class="form-label-modern">
+                                            Categoria
+                                            <span class="required">*</span>
+                                        </label>
+                                        <div class="select-wrapper">
+                                            <select name="categoria" id="categoria" class="form-select-modern" required>
+                                                <option value="">Selecione uma categoria</option>
+                                                @foreach ($categorias as $categoria)
+                                                    <option value="{{ $categoria->id }}" {{ old('categoria') == $categoria->id ? 'selected' : '' }}>
+                                                        {{ $categoria->nome }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            <i class="fa-solid fa-chevron-down select-icon"></i>
+                                        </div>
+                                        @error('categoria')
+                                            <div class="error-message">
+                                                <i class="fa-solid fa-exclamation-circle me-2"></i>
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group-modern">
+                                        <label for="preco" class="form-label-modern">
+                                            Preço
+                                            <span class="required">*</span>
+                                        </label>
+                                        <div class="input-group-modern">
+                                            <span class="input-group-text-modern">R$</span>
+                                            <input 
+                                                type="text" 
+                                                name="preco" 
+                                                id="preco" 
+                                                class="form-control-modern"
+                                                placeholder="0,00" 
+                                                value="{{ old('preco') }}" 
+                                                required>
+                                        </div>
+                                        @error('preco')
+                                            <div class="error-message">
+                                                <i class="fa-solid fa-exclamation-circle me-2"></i>
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-group-modern">
+                                        <label for="descricao" class="form-label-modern">
+                                            Descrição do Serviço
+                                            <span class="required">*</span>
+                                        </label>
+                                        <textarea 
+                                            name="descricao" 
+                                            id="descricao" 
+                                            class="form-control-modern textarea-modern" 
+                                            rows="6"
+                                            placeholder="Descreva detalhadamente seu serviço, incluindo o que está incluído, tempo estimado, materiais necessários..."
+                                            maxlength="750" 
+                                            required>{{ old('descricao') }}</textarea>
+                                        <div class="form-help">
+                                            <span class="char-counter">
+                                                <span id="descricao-count">0</span>/750 caracteres
+                                            </span>
+                                        </div>
+                                        @error('descricao')
+                                            <div class="error-message">
+                                                <i class="fa-solid fa-exclamation-circle me-2"></i>
+                                                {{ $message }}
+                                            </div>
                                         @enderror
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            {{-- Demais campos --}}
-                            <div class="row g-4">
-                                <div class="col-12">
-                                    <label for="nome" class="form-label">Título do Serviço*</label>
-                                    <input type="text" name="nome" id="nome" class="form-control"
-                                        placeholder="Insira o título do serviço" value="{{ old('nome') }}" minlength="20"
-                                        maxlength="40" required>
-                                    @error('nome')
-                                        <span class="text-danger small">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label for="categoria" class="form-label">Categoria*</label>
-                                    <select name="categoria" id="categoria" class="form-select" required>
-                                        <option value="">Escolha a categoria</option>
-                                        @foreach ($categorias as $categoria)
-                                            <option value="{{ $categoria->id }}" {{ old('categoria') == $categoria->id ? 'selected' : '' }}>
-                                                {{ $categoria->nome }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('categoria')
-                                        <span class="text-danger small">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label for="preco" class="form-label">Preço (R$)*</label>
-                                    <input type="number" name="preco" id="preco" class="form-control"
-                                        placeholder="Ex: 99.90" value="{{ old('preco') }}" min="0" step="0.01" required>
-                                    @error('preco')
-                                        <span class="text-danger small">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="col-12">
-                                    <label for="descricao" class="form-label">Descrição*</label>
-                                    <textarea name="descricao" id="descricao" class="form-control" rows="5"
-                                        placeholder="Insira a descrição do serviço aqui mesmo" maxlength="750" required>{{ old('descricao') }}</textarea>
-                                    @error('descricao')
-                                        <span class="text-danger small">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="col-12 d-flex justify-content-center mt-4">
-                                    <x-btn variant="verde" type="submit" class="px-5 py-2 fs-5">
-                                        <i class="bi bi-save me-2"></i> Salvar
-                                    </x-btn>
-                                </div>
+                        <!-- Ações do formulário -->
+                        <div class="form-actions">
+                            <div class="d-flex gap-3 justify-content-end flex-wrap">
+                                <x-btn variant="branco" type="button" onclick="window.location='{{ route('dashboard') }}'">
+                                    <i class="fa-solid fa-times me-2"></i>
+                                    Cancelar
+                                </x-btn>
+                                <x-btn variant="verde" type="submit" size="large" class="btn-save">
+                                    <i class="fa-solid fa-save me-2"></i>
+                                    Cadastrar Serviço
+                                </x-btn>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 @endsection
 
-@section('scripts')
-    <script>
-        const inputImagem = document.getElementById('imagem');
-        const imgPreview = document.getElementById('img-preview');
-
-        inputImagem.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(ev) {
-                    imgPreview.src = ev.target.result;
-                    imgPreview.classList.remove('d-none');
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-    </script>
-@endsection
