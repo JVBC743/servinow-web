@@ -3,6 +3,15 @@
 @section('title', 'Agendamentos')
 
 @section('content')
+    {{-- Header com título e botão de relatório --}}
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0">Agendamentos</h1>
+        <a href="{{ route('relatorio.servicos.pdf') }}" class="btn btn-primary">
+            <i class="fa-solid fa-file-pdf me-2"></i>
+            Gerar Relatório
+        </a>
+    </div>
+
     <div class="d-flex flex-wrap gap-4 justify-content-center mb-3">
         <div class="card-resumo">
             <div class="titulo-card">Agendados como cliente</div>
@@ -24,9 +33,9 @@
             <div class="titulo-card">Serviços cadastrados</div>
             <div class="valor-card">{{ $servicos->count() }}</div>
         </div>
-
     </div>
     <hr>
+    
     <!-- Botões de collapse com versão detalhada -->
     <div class="row g-3 justify-content-center mb-5">
         <div class="col-12 col-sm-6 col-lg-3 d-flex">
@@ -58,6 +67,7 @@
             </x-btn>
         </div>
     </div>
+    
     <div id="collapseGroup">
         <!-- Serviços Agendados como Cliente -->
         <div class="collapse show" id="collapseCliente" data-bs-parent="#collapseGroup">
@@ -376,5 +386,4 @@
             </div>
         </div>
     </div>
-
 @endsection
