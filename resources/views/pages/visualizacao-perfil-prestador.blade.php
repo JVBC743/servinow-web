@@ -2,8 +2,6 @@
 
 @section('title', 'Perfil do Prestador')
 
-@include('components.modal-denunciar-usuario', ['motivos' => $motivos])
-
 @section('content')
     <div class="container py-5 rounded-5">
         <div class="card shadow mx-auto" style="max-width: 900px;">

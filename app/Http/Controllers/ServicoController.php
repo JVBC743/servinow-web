@@ -137,7 +137,10 @@ class ServicoController extends Controller
      */
     public function show($id)
     {
+
         $servico = Servico::with('prestador')->findOrFail($id);
+        $usr = $servico->prestador;
+        $motivos = Motivo::all();
 
         if($servico->caminho_foto)
             $servico->url_foto = Storage::disk('miniobusca')->temporaryUrl($servico->caminho_foto, now()->addMinutes(5));
@@ -150,9 +153,11 @@ class ServicoController extends Controller
             } else {
                 $avaliacao->cliente->url_foto = asset('images/user-icon.png');
             }
+
             return $avaliacao;
         });
-        return view('pages.servico', compact('servico', 'avaliacoes'));
+
+        return view('pages.servico', compact('servico', 'avaliacoes','motivos', 'usr'));
     }
 
     public function showPrestador($id)
