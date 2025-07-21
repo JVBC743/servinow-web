@@ -47,7 +47,27 @@
                                     <td>{{ $usr->email }}</td>
                                     <td>{{ $usr->cpf_cnpj }}</td>
                                     <td>
-                                        <div class="d-flex justify-content-center gap-3">
+                                        <div class="d-flex align-items-center justify-content-center gap-3">
+                                            {{-- BLOQUEADO --}}
+                                            @if ($usr->bloqueado)
+                                                {{-- Formulário para desbloquear --}}
+                                                <form action="{{ route('desbloqueio.usuario', $usr->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <button class="bg-transparent border-0 p-0 geral-icon" title="Desbloquear usuário">
+                                                        <i class="fa-solid fa-lock-open text-success"></i>
+                                                    </button>
+                                                </form>
+                                            @else
+                                                {{-- Formulário para bloquear --}}
+                                                <form action="{{ route('bloqueio.usuario', $usr->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <button class="bg-transparent border-0 p-0 geral-icon" title="Bloquear usuário">
+                                                        <i class="fa-solid fa-lock text-danger"></i>
+                                                    </button>
+                                                </form>
+                                            @endif
                                             <a href="{{ route('admin.mostrar.edicao', $usr->id) }}">
                                                 <i class="fa-solid fa-pen-to-square edit-icon"></i>
                                             </a>

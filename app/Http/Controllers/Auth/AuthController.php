@@ -17,8 +17,17 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
 
+            if (Auth::user()->bloqueado) {
+
+                Auth::logout();
+
+                return redirect()->route('login')->withErrors([
+                    'email' => 'Sua conta está bloqueada. Entre em contato com o suporte.',
+                ]);
+            }
+
+            $request->session()->regenerate();
             return redirect()->route('dashboard');
         }
 
