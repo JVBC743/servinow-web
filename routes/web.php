@@ -126,6 +126,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/fake-payment/boleto/{id}', [AgendamentoController::class, 'showBoleto'])
     ->name('fake.payment.boleto');
-    Route::post('/fake-payment/boleto/{id}', [App\Http\Controllers\AgendamentoController::class, 'pagarBoletoFake'])
+    Route::post('/fake-payment/boleto/{id}', [AgendamentoController::class, 'pagarBoletoFake'])
     ->name('fake.payment.boleto.pagar');
 });

@@ -333,15 +333,10 @@ class AgendamentoController extends Controller
 
     public function pagarBoletoFake($id)
     {
-        $pagamento = \App\Models\Pagamento::where('codigo', $id)->firstOrFail();
+        $pagamento = Pagamento::where('codigo', $id)->firstOrFail();
 
-        $gateway = new \App\Services\FakePaymentGateway();
+        $gateway = new FakePaymentGateway();
         $gateway->confirmPayment($pagamento->codigo);
-
-        // (Opcional) Atualize o status do agendamento, se desejar
-        if ($pagamento->agendamento) {
-            $pagamento->agendamento->update(['status' => 6]); // Exemplo: 6 = "Pago"
-        }
 
 
         // Ou, se preferir, redirecione para uma página de sucesso:
