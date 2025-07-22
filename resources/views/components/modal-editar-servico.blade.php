@@ -23,7 +23,6 @@
                                             placeholder="Insira o título do serviço" value="{{ old('nome', $servico->nome_servico) }}"
                                             minlength="20" maxlength="40" required>
                                     </div>
-                                    
                                     <!-- Categoria -->
                                     <div class="form-group-editar-perfil mb-3">
                                         <label for="categoria{{ $servico->id }}" class="label-editar-perfil">Categoria<span class="required">*</span></label>
@@ -48,7 +47,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                
                                 <div class="col-md-6">
                                     <!-- Descrição -->
                                     <div class="form-group-editar-perfil mb-3 h-100 d-flex flex-column">
@@ -58,7 +56,12 @@
                                     </div>
                                 </div>
                             </div>
-                            
+                            <!-- Preço -->
+                            <div class="form-group mb-3">
+                                <label for="preco{{ $servico->id }}" class="form-label">Preço</label>
+                                <input type="number" step="0.01" min="0" name="preco" id="preco{{ $servico->id }}"
+                                    class="form-control" value="{{ old('preco', $servico->preco) }}" required>
+                            </div>
                             <!-- Imagem do Serviço (embaixo de tudo) -->
                             <div class="form-group-editar-perfil mb-3 mt-4">
                                 <label for="imagem{{ $servico->id }}" class="label-editar-perfil">Alterar Imagem do Serviço</label>
