@@ -338,6 +338,11 @@ class AgendamentoController extends Controller
         $gateway = new FakePaymentGateway();
         $gateway->confirmPayment($pagamento->codigo);
 
+        // (Opcional) Atualize o status do agendamento, se desejar
+        if ($pagamento->agendamento) {
+            $pagamento->agendamento->update(['status' => 2]); // Exemplo: 2 = "Em progresso"
+        }
+
 
         // Ou, se preferir, redirecione para uma página de sucesso:
         return redirect()->route('agendamento.cliente')->with('success', 'Pagamento confirmado!');
