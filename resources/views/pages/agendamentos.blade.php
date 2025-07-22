@@ -319,7 +319,8 @@
                                     <tr>
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->nome_servico ?? 'Status não encontrado.' }}</td>
-                                        <td>{{ $item->created_at->format('d/m/Y') }} às {{ $item->created_at->format('H:i') }}</td>
+                                        <td>{{ $item->created_at->format('d/m/Y') }} às {{ $item->created_at->format('H:i') }}
+                                        </td>
                                         <td>
                                             <div class="d-flex justify-content-center gap-3">
                                                 <button type="button" class="bg-transparent border-0 p-0" data-bs-toggle="modal"
@@ -327,50 +328,61 @@
                                                     <i class="fa-solid fa-pen-to-square edit-icon"></i>
                                                 </button>
                                                 <button class="delete_icon_button bg-transparent border-0 p-0"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#modalConfirmDelete{{ $item->id }}">
+                                                    data-bs-toggle="modal" data-bs-target="#modalConfirmDelete"
+                                                    data-servico-id="{{ $item->id }}">
                                                     <i class="fa-solid fa-trash del-icon"></i>
                                                 </button>
                                             </div>
                                         </td>
                                     </tr>
                                     @include('components.modal-editar-servico', ['servico' => $item, 'categorias' => $categorias])
-
-                                    <!-- Modal de Confirmação de Exclusão para cada serviço -->
-                                    <div class="modal fade" id="modalConfirmDelete{{ $item->id }}" tabindex="-1" aria-labelledby="modalDeleteLabel{{ $item->id }}"
-                                        aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <form method="POST" action="{{ route('servico.destroy', ['servico' => $item->id]) }}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="modalDeleteLabel{{ $item->id }}">Confirmar Exclusão</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Fechar"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        Tem certeza que deseja excluir este serviço?
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <x-btn variant="branco" type="button" data-bs-dismiss="modal">
-                                                            <i class="fa-solid fa-times me-2"></i>
-                                                            Cancelar
-                                                        </x-btn>
-                                                        <x-btn variant="vermelho" type="submit">
-                                                            <i class="fa-solid fa-trash me-2"></i>
-                                                            Excluir
-                                                        </x-btn>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
+                <!-- Modal de Confirmação de Exclusão -->
+                <div class="modal fade" id="modalConfirmDelete" tabindex="-1" aria-labelledby="modalDeleteLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <form method="POST" id="form-delete-servico">
+                                @csrf
+                                @method('DELETE')
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalDeleteLabel">Confirmar Exclusão</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Fechar"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Tem certeza que deseja excluir este serviço?
+                                </div>
+                                <div class="modal-footer">
+                                    <x-btn variant="branco" type="button" data-bs-dismiss="modal">
+                                        <i class="fa-solid fa-times me-2"></i>
+                                        Cancelar
+                                    </x-btn>
+                                    <x-btn variant="vermelho" type="submit">
+                                        <i class="fa-solid fa-trash me-2"></i>
+                                        Excluir
+                                    </x-btn>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                @push('scripts')
+                    <script>
+                        const modal = document.getElementById('modalConfirmDelete');
+                        const form = document.getElementById('form-delete-servico');
+                        modal.addEventListener('show.bs.modal', function (event) {
+                            const button = event.relatedTarget;
+                            const servicoId = button.getAttribute('data-servico-id');
+                            const action = "{{ route('servico.destroy', ['servico' => '__id__']) }}".replace('__id__', servicoId);
+                            form.setAttribute('action', action);
+                        });
+                    </script>
+                @endpush
             </div>
         </div>
     </div>

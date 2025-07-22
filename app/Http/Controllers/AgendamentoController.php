@@ -98,7 +98,7 @@ class AgendamentoController extends Controller
         ]);
 
         $cliente = Auth::user();
-        $prestador = $servico->prestador;
+        $prestador = $servico->prestador; // Assumindo que $servico->prestador retorna o usuário dono do serviço
         $nomeServico = $servico->nome_servico;
         $dataFormatada = \Carbon\Carbon::parse($data['data'])->format('d/m/Y H:i');
 
@@ -106,7 +106,7 @@ class AgendamentoController extends Controller
         $mensagemCliente = "Olá {$cliente->nome}, sua solicitação de agendamento para o serviço *{$nomeServico}* foi enviada com sucesso!\n\n📅 Data: *{$dataFormatada}*\n💬 Descrição: {$data['descricao']}\n\nEm breve o prestador entrará em contato.";
         EvolutionWhatsApp::sendMessage('ServiNow', $cliente->telefone, $mensagemCliente);
 
-        // Mensagem para o prestador
+        // Mensagem para o provedor/prestador
         $mensagemPrestador = "Olá {$prestador->nome}, você recebeu uma nova solicitação de agendamento para o serviço *{$nomeServico}*.\n\n👤 Cliente: {$cliente->nome}\n📞 Contato: {$cliente->telefone}\n📅 Data: *{$dataFormatada}*\n💬 Descrição: {$data['descricao']}\n\nAcesse seu painel para aceitar ou recusar.";
         EvolutionWhatsApp::sendMessage('ServiNow', $prestador->telefone, $mensagemPrestador);
 
@@ -166,24 +166,51 @@ class AgendamentoController extends Controller
             return redirect()->route('agendamento.cliente')->with('error', 'A solicitação não foi encontrada no banco.');
         }
 
+        // 1. Atualiza status para "Aguardando Pagamento" (ajuste o número conforme seu status)
         $agendamento->update([
-            'status' => 2,
+            'status' => 5,
         ]);
 
-        $cliente = Usuario::find($agendamento->id_cliente);
-        $prestador = Usuario::find($agendamento->id_prestador);
-        $nomeServico = $agendamento->servico->nome_servico;
-        $dataFormatada = \Carbon\Carbon::parse($agendamento->prazo)->format('d/m/Y H:i');
+        // 2. Gera cobrança por boleto
+        $gateway = new FakePaymentGateway();
+        $servico = $agendamento->servico;
+        $amount = $servico->preco ?? 0;
+        $cliente = $agendamento->cliente;
 
-        // Mensagem para o cliente
-        $mensagemCliente = "Olá {$cliente->nome}, sua solicitação de agendamento para o serviço *{$nomeServico}* foi aceita pelo prestador!\n\n👤 Prestador: {$prestador->nome}\n📞 Contato: {$prestador->telefone}\n📅 Data: *{$dataFormatada}*\n\nO prestador entrará em contato em breve.";
-        EvolutionWhatsApp::sendMessage('ServiNow', $cliente->telefone, $mensagemCliente);
+        try {
+            $payment = $gateway->createPayment(
+                floatval($amount),
+                'boleto',
+                [
+                    'agendamento_id' => $agendamento->id,
+                    'cliente_nome' => $cliente->nome,
+                    'cliente_email' => $cliente->email ?? '',
+                ]
+            );
+        } catch (\Exception $e) {
+            return redirect()->route('agendamento.cliente')->with('error', 'Erro ao gerar cobrança: ' . $e->getMessage());
+        }
 
-        return redirect()->route('agendamento.cliente')->with('success', 'A solicitação foi aceita com sucesso.');
+        // 3. Envia o boleto para o cliente via WhatsApp
+        $boletoUrl = $payment['pdf_url'] ?? $payment['payment_url'] ?? null;
+        $barcode = $payment['barcode'] ?? '';
+        $mensagem = "Olá {$cliente->nome}, sua solicitação foi aceita! Para confirmar o agendamento, realize o pagamento do boleto:\n\n";
+        if ($boletoUrl) {
+            $mensagem .= "🔗 Boleto: {$boletoUrl}\n";
+        }
+        if ($barcode) {
+            $mensagem .= "Código de barras: {$barcode}\n";
+        }
+        $mensagem .= "\nApós o pagamento, seu agendamento será confirmado automaticamente.";
+
+        \App\Services\EvolutionWhatsApp::sendMessage('ServiNow', $cliente->telefone, $mensagem);
+
+        return redirect()->route('agendamento.cliente')->with('success', 'A solicitação foi aceita e o boleto enviado ao cliente!');
     }
 
-    public function denySolicitacao(Request $request)
+    public function destroySolicitacao(Request $request)
     {
+
         $id_agendamento = $request->input('id_agendamento');
 
         if (!$id_agendamento) {
@@ -195,60 +222,15 @@ class AgendamentoController extends Controller
         if (!$agendamento) {
             return redirect()->route('agendamento.cliente')->with('error', 'A solicitação não foi encontrada no banco.');
         }
-
-        $cliente = Usuario::find($agendamento->id_cliente);
-        $prestador = Usuario::find($agendamento->id_prestador);
-        $nomeServico = $agendamento->servico->nome_servico;
-        $dataFormatada = \Carbon\Carbon::parse($agendamento->prazo)->format('d/m/Y H:i');
-
-        // Mensagem para o cliente
-        $mensagemCliente = "Olá {$cliente->nome}, infelizmente sua solicitação de agendamento para o serviço *{$nomeServico}* foi recusada pelo prestador.\n\n📅 Data solicitada: *{$dataFormatada}*\n\nTente encontrar outro prestador ou remarque para outra data.";
-        EvolutionWhatsApp::sendMessage('ServiNow', $cliente->telefone, $mensagemCliente);
 
         $agendamento->delete();
 
-        return redirect()->route('agendamento.cliente')->with('success', 'A solicitação foi negada com sucesso.');
+        return redirect()->route('agendamento.cliente')->with('success', 'A solicitação foi excluída com sucesso.');
     }
 
-    public function fecharSucesso(Request $request)
+    public function closeFail(Request $request)
     {
-        $id_agendamento = $request->input('id_agendamento');
 
-        if (!$id_agendamento) {
-            return redirect()->route('agendamento.cliente')->with('error', 'A solicitação não foi encontrada pela solicitação de exclusão.');
-        }
-
-        $agendamento = Agendamento::find($id_agendamento);
-
-        if (!$agendamento) {
-            return redirect()->route('agendamento.cliente')->with('error', 'A solicitação não foi encontrada no banco.');
-        }
-        if ($agendamento->status != 2) {
-            return redirect()->route('agendamento.cliente')->with('error', 'Só é possível finalizar agendamentos em andamento.');
-        }
-        // Valida se já foi finalizado
-        if (in_array($agendamento->status, [3, 4])) {
-            return redirect()->route('agendamento.cliente')->with('error', 'Este agendamento já foi finalizado.');
-        }
-
-        $agendamento->update([
-            'status' => 3,
-        ]);
-
-        // Mensagem para o cliente
-        $cliente = Usuario::find($agendamento->id_cliente);
-        $prestador = Usuario::find($agendamento->id_prestador);
-        $nomeServico = $agendamento->servico->nome_servico;
-        $dataFormatada = \Carbon\Carbon::parse($agendamento->prazo)->format('d/m/Y H:i');
-
-        $mensagemCliente = "Olá {$cliente->nome}, o serviço *{$nomeServico}* foi finalizado com sucesso!\n\n👤 Prestador: {$prestador->nome}\n📅 Data: *{$dataFormatada}*\n\nNão esqueça de avaliar o serviço em nosso sistema.";
-        EvolutionWhatsApp::sendMessage('ServiNow', $cliente->telefone, $mensagemCliente);
-
-        return redirect()->route('agendamento.cliente')->with('success', 'O agendamento foi finalizado com sucesso.');
-    }
-
-    public function fecharFalha(Request $request)
-    {
         $id_agendamento = $request->input('id_agendamento');
 
         if (!$id_agendamento) {
@@ -273,15 +255,54 @@ class AgendamentoController extends Controller
         ]);
 
         // Mensagem para o cliente
-        $cliente = Usuario::find($agendamento->id_cliente);
-        $prestador = Usuario::find($agendamento->id_prestador);
-        $nomeServico = $agendamento->servico->nome_servico;
-        $dataFormatada = \Carbon\Carbon::parse($agendamento->prazo)->format('d/m/Y H:i');
-
-        $mensagemCliente = "Olá {$cliente->nome}, o agendamento do serviço *{$nomeServico}* foi finalizado sem sucesso.\n\n👤 Prestador: {$prestador->nome}\n📅 Data: *{$dataFormatada}*\n\nEntre em contato conosco se precisar de assistência.";
+        $cliente = $agendamento->cliente;
+        $servico = $agendamento->servico;
+        $nomeServico = $servico->nome_servico ?? 'Serviço';
+        $mensagemCliente = "Olá {$cliente->nome}, infelizmente o agendamento do serviço *{$nomeServico}* foi finalizado sem sucesso.\nSeu pagamento será estornado em até 3 dias úteis.";
         EvolutionWhatsApp::sendMessage('ServiNow', $cliente->telefone, $mensagemCliente);
 
-        return redirect()->route('agendamento.cliente')->with('success', 'O agendamento foi finalizado.');
+        return redirect()->route('agendamento.cliente')->with('success', 'O agendamento foi fechado com o status: Fechado sem sucesso.');
+    }
+
+    public function closeSuccess(Request $request)
+    {
+
+        $id_agendamento = $request->input('id_agendamento');
+
+        if (!$id_agendamento) {
+            return redirect()->route('agendamento.cliente')->with('error', 'A solicitação não foi encontrada pela solicitação de exclusão.');
+        }
+
+        $agendamento = Agendamento::find($id_agendamento);
+
+        if (!$agendamento) {
+            return redirect()->route('agendamento.cliente')->with('error', 'A solicitação não foi encontrada no banco.');
+        }
+        if ($agendamento->status != 2) {
+            return redirect()->route('agendamento.cliente')->with('error', 'Só é possível finalizar agendamentos em andamento.');
+        }
+        // Valida se já foi finalizado
+        if (in_array($agendamento->status, [3, 4])) {
+            return redirect()->route('agendamento.cliente')->with('error', 'Este agendamento já foi finalizado.');
+        }
+
+        $agendamento->update([
+            'status' => 3,
+        ]);
+
+        // Mensagem para o cliente
+        $cliente = $agendamento->cliente;
+        $servico = $agendamento->servico;
+        $nomeServico = $servico->nome_servico ?? 'Serviço';
+        $mensagemCliente = "Olá {$cliente->nome}, seu agendamento para o serviço *{$nomeServico}* foi finalizado com sucesso!\n\nVocê tem até 7 dias para reclamar caso o serviço não tenha sido realizado corretamente. Após esse prazo, o pagamento será liberado ao prestador.";
+        EvolutionWhatsApp::sendMessage('ServiNow', $cliente->telefone, $mensagemCliente);
+
+        // Mensagem para o prestador
+        $prestador = $agendamento->prestador;
+        $mensagemPrestador = "Olá {$prestador->nome}, o serviço *{$nomeServico}* foi finalizado com sucesso!\n\nEm até 7 dias, caso não haja reclamação do cliente, o pagamento será liberado para você.";
+        EvolutionWhatsApp::sendMessage('ServiNow', $prestador->telefone, $mensagemPrestador);
+
+        return redirect()->route('agendamento.cliente')->with('success', 'O agendamento foi fechado com o status: Fechado com sucesso.');
     }
 
     public function confirmarPagamento(Request $request)
@@ -289,13 +310,13 @@ class AgendamentoController extends Controller
         $id_agendamento = $request->input('id_agendamento');
 
         if (!$id_agendamento) {
-            return redirect()->back()->with('error', 'Agendamento não encontrado.');
+            return redirect()->route('agendamento.cliente')->with('error', 'Agendamento não encontrado.');
         }
 
         $pagamento = Pagamento::where('id_agendamento', $id_agendamento)->first();
 
         if (!$pagamento) {
-            return redirect()->back()->with('error', 'Pagamento não encontrado para este agendamento.');
+            return redirect()->route('agendamento.cliente')->with('error', 'Pagamento não encontrado para este agendamento.');
         }
 
         $gateway = new FakePaymentGateway();
@@ -307,7 +328,7 @@ class AgendamentoController extends Controller
             $agendamento->update(['status' => 2]); // Exemplo: 2 = "Em progresso"
         }
 
-        return redirect()->back()->with('success', 'Pagamento confirmado com sucesso!');
+        return redirect()->route('agendamento.cliente')->with('success', 'Pagamento confirmado com sucesso!');
     }
 
     public function pagarBoletoFake($id)
@@ -322,11 +343,8 @@ class AgendamentoController extends Controller
             $pagamento->agendamento->update(['status' => 6]); // Exemplo: 6 = "Pago"
         }
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Pagamento confirmado com sucesso!',
-        ]);
+
         // Ou, se preferir, redirecione para uma página de sucesso:
-        // return redirect()->route('fake.payment.boleto', ['id' => $id])->with('success', 'Pagamento confirmado!');
+        return redirect()->route('agendamento.cliente')->with('success', 'Pagamento confirmado!');
     }
 }
