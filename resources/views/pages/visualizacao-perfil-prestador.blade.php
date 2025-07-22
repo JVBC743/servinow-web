@@ -66,9 +66,13 @@
                 <hr>
 
                 <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
-                    <a href="#" class="btn btn-primary btn-geral">Enviar mensagem</a>
-                    
-                    <button data-bs-toggle="modal" data-bs-target="#modalDenunciarUsuarioTeste" class="btn btn-warning">Reportar</button>
+                    <a href="https://wa.me/55{{ preg_replace('/\D/', '', $usr->telefone) }}" target="_blank"
+                        class="btn btn-primary btn-geral">
+                        Enviar mensagem
+                    </a>
+
+                    <button data-bs-toggle="modal" data-bs-target="#modalDenunciarUsuarioTeste"
+                        class="btn btn-warning">Reportar</button>
                 </div>
             </div>
         </div>

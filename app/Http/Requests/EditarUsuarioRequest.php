@@ -36,7 +36,7 @@ class EditarUsuarioRequest extends FormRequest
             'cep' => 'sometimes|required|string',
             'logradouro' => 'sometimes|required|string',
             'numero' => 'sometimes|required|string',
-            'complemento' => 'sometimes|required|string', 
+            'complemento' => 'sometimes|nullable|string',
             'bairro' => 'sometimes|required|string',
             'cidade' => 'sometimes|required|string',
             'uf' => 'sometimes|required|string',
@@ -58,7 +58,7 @@ class EditarUsuarioRequest extends FormRequest
             'foto.mimes' => 'O arquivo inserido deve ser uma foto em formato PNG, JPG ou JPEG.',
             'foto.max' => 'A sua foto não deve possuir exceder de 15 MB de tamanho.',
 
-            'descricao.max' => 'O tamanho da descrição de usuário deve ser igual ou menor do que 300 dígitos, o que inclui espaços.', 
+            'descricao.max' => 'O tamanho da descrição de usuário deve ser igual ou menor do que 300 dígitos, o que inclui espaços.',
 
 
             'area_atuacao.required' => 'A sua área de atuação é obrigatória.',
