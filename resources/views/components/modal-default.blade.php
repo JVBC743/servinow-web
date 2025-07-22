@@ -10,7 +10,7 @@
             <div class="modal-body">
                 {{ $slot }}
             </div>
-            <div class="modal-footer d-flex justify-content-between">
+            <div class="modal-footer justify-content-between">
                 @isset($footer_left)
                     {{ $footer_left }}
                 @else

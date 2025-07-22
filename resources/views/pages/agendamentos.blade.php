@@ -175,7 +175,6 @@
                                                     <input type="hidden" name="id_servico" value="{{ $item->id_servico}}">
                                                     <input type="hidden" name="id_agendamento" value="{{ $item->id }}">
                                                     <x-btn variant="vermelho" type="submit" name="fechar_falha">
-                                                        <i class="fa-solid fa-times me-2"></i>
                                                         Finalizado sem sucesso
                                                     </x-btn>
                                                 </form>
@@ -190,7 +189,6 @@
                                                     <input type="hidden" name="id_servico" value="{{ $item->id_servico}}">
                                                     <input type="hidden" name="id_agendamento" value="{{ $item->id }}">
                                                     <x-btn variant="verde" type="submit" name="fechar_sucesso">
-                                                        <i class="fa-solid fa-check me-2"></i>
                                                         Finalizado com sucesso
                                                     </x-btn>
                                                 </form>

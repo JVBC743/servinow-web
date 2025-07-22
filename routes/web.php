@@ -119,13 +119,13 @@ Route::middleware('auth')->group(function () {
         Route::delete('/excluir/{id}', 'adminUserDestroy')->name('admin.excluir.usuario');
 
 
-        Route::put('/bloqueio/{id}','blockAdmin')->name('bloqueio.usuario');
-        Route::put('/desbloqueio/{id}','unblockAdmin')->name('desbloqueio.usuario');
+        Route::put('/bloqueio/{id}', 'blockAdmin')->name('bloqueio.usuario');
+        Route::put('/desbloqueio/{id}', 'unblockAdmin')->name('desbloqueio.usuario');
 
     });
 
     Route::get('/fake-payment/boleto/{id}', [AgendamentoController::class, 'showBoleto'])
-    ->name('fake.payment.boleto');
+        ->name('fake.payment.boleto');
     Route::post('/fake-payment/boleto/{id}', [App\Http\Controllers\AgendamentoController::class, 'pagarBoletoFake'])
-    ->name('fake.payment.boleto.pagar');
+        ->name('fake.payment.boleto.pagar');
 });
